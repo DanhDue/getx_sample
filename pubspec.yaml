@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: ^4.6.1
   flutter_hooks: ^0.18.2+1
+  lottie: ^1.2.2
 
 dev_dependencies:
   flutter_test:
