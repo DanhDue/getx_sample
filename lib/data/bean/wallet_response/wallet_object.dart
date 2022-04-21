@@ -1,4 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:getx_sample/data/local/storage_keys.dart';
+import 'package:hive/hive.dart';
 
 import 'wallet_attrs.dart';
 
