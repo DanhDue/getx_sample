@@ -1,18 +1,21 @@
-import 'package:getx_sample/app/app.dart';
-
-import '../interfaces/base_client_generator.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'api_service_impl.freezed.dart';
+import '../interfaces/base_client_generator.dart';
+
+part 'coin_client.freezed.dart';
 
 @freezed
-class ApiServiceImpl extends BaseClientGenerator with _$ApiServiceImpl {
-  const ApiServiceImpl._() : super();
-  const factory ApiServiceImpl.wallet() = _Wallet;
-  const factory ApiServiceImpl.delegate() = _Delegate;
+class CoinClient extends BaseClientGenerator with _$CoinClient {
+  const CoinClient._() : super();
+
+  const factory CoinClient.wallet() = _Wallet;
+
+  const factory CoinClient.delegate() = _Delegate;
+
+  const factory CoinClient.blockChain() = _BlockChain;
 
   @override
-  String get baseURL => EnvironmentConfig.BASE_URL;
+  String get baseURL => 'https://sxp.testnet.sh/api/';
 
   @override
   Map<String, dynamic>? get body {
@@ -38,6 +41,7 @@ class ApiServiceImpl extends BaseClientGenerator with _$ApiServiceImpl {
     return when<String>(
       wallet: () => 'posts/',
       delegate: () => 'users/',
+      blockChain: () => 'blockchain/',
     );
   }
 
