@@ -10,9 +10,11 @@ import '../layers/network_connectivity.dart';
 import 'network_creator.dart';
 import 'network_decoder.dart';
 
-class NetworkExecutor {
-  static bool debugMode = true;
+///     route : Route defined by client
+///     T : Response type.
+///     K : It specifies how the response type value should be. List or object.
 
+class NetworkExecutor {
   static Future<Result<K, NetworkError>>
       execute<T extends BaseResponseObject, K>(
           {required BaseClientGenerator route,
@@ -31,16 +33,12 @@ class NetworkExecutor {
 
         // NETWORK ERROR
       } on DioError catch (diorError) {
-        if (debugMode) {
-          Fimber.d("$route => ${NetworkError.request(error: diorError)}");
-        }
+        Fimber.d("$route => ${NetworkError.request(error: diorError)}");
         return Result.failure(NetworkError.request(error: diorError));
 
         // TYPE ERROR
       } on TypeError catch (e) {
-        if (debugMode) {
-          Fimber.d("$route => ${NetworkError.type(error: e.toString())}");
-        }
+        Fimber.d("$route => ${NetworkError.type(error: e.toString())}");
         return Result.failure(NetworkError.type(error: e.toString()));
       }
 

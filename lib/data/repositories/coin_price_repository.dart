@@ -3,6 +3,10 @@ import 'package:getx_sample/data/remote/network_error.dart';
 import 'package:getx_sample/data/remote/result.dart';
 
 abstract class CoinPriceRepository {
-  Future<Result<List<CoinPriceResponse?>?, NetworkError>> getCoinPrices(
+  Future<Result<CoinPriceResponse?, NetworkError>> getCoinPrices(
       String? symbol);
+
+  Future<CoinPriceResponse?> fetchBinanceCoinPriceByBTC();
+
+  Future<CoinPriceResponse?> fetchBinanceCoinPriceByUSD();
 }

@@ -8,6 +8,6 @@ class SplashController extends BaseController {
   void indicateAnimationComplete() {
     _animationComplete = true;
     printInfo(info: "Navigate to the dashboard screen.");
-    Get.offAllNamed(AppLinks.dashboard);
+    Get.offAllNamed(AppLinks.home);
   }
 }
