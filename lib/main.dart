@@ -64,7 +64,7 @@ class _MyAppState extends State<MyApp> {
       locale: const Locale('vi', 'VI'),
       fallbackLocale: const Locale('vi', 'VI'),
       initialBinding: AppGlobalBinding(),
-      initialRoute: AppLinks.splash,
+      initialRoute: NotificationManager().initialRoute,
       // initialRoute: AppLinks.localWallets,
       getPages: AppRoutes.pages,
     );

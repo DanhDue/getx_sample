@@ -17,32 +17,36 @@ class CoinPriceRepositoryImpl extends CoinPriceRepository {
 
   @override
   Future<CoinPriceResponse?> fetchBinanceCoinPriceByBTC() async {
+    CoinPriceResponse? _result;
     final _res =
         await NetworkExecutor.execute<CoinPriceResponse, CoinPriceResponse?>(
             route: const CoinPriceClient.price(CoinSymbol.SXPBTC),
             responseType: CoinPriceResponse());
 
     _res.when(success: (coinPrice) {
-      return coinPrice;
+      _result = coinPrice;
     }, failure: (networkError) {
       Fimber.e(networkError.toString());
-      return null;
     });
+
+    return _result;
   }
 
   @override
   Future<CoinPriceResponse?> fetchBinanceCoinPriceByUSD() async {
+    CoinPriceResponse? _result;
     final _res =
         await NetworkExecutor.execute<CoinPriceResponse, CoinPriceResponse?>(
             route: const CoinPriceClient.price(CoinSymbol.SXPUSDT),
             responseType: CoinPriceResponse());
 
     _res.when(success: (coinPrice) {
-      return coinPrice;
+      _result = coinPrice;
     }, failure: (networkError) {
       Fimber.e(networkError.toString());
-      return null;
     });
+
+    return _result;
   }
 }
 

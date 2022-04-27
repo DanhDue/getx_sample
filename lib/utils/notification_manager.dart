@@ -34,6 +34,8 @@ class NotificationManager {
 
   static String? selectedNotificationPayload;
 
+  String? initialRoute = AppLinks.splash;
+
   Future initialize() async {
     await _configureLocalTimeZone();
 
@@ -43,7 +45,6 @@ class NotificationManager {
             : await NotificationManager.flutterLocalNotificationsPlugin
                 .getNotificationAppLaunchDetails();
 
-    String initialRoute = AppLinks.splash;
     if (notificationAppLaunchDetails?.didNotificationLaunchApp ?? false) {
       NotificationManager.selectedNotificationPayload =
           notificationAppLaunchDetails!.payload;
