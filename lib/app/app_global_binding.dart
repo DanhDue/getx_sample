@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:getx_sample/data/bean/app_configurations/app_configurations.dart';
 import 'package:getx_sample/data/bean/block_chain/block_chain.dart';
 import 'package:getx_sample/data/local/storage_helper.dart';
 import 'package:getx_sample/data/local/storage_helper_impl.dart';
@@ -15,5 +16,6 @@ class AppGlobalBinding extends Bindings {
     Get.put<CoinPriceApiService>(CoinPriceApiServiceImpl(), permanent: true);
     Get.put<StorageHelper>(StorageHelperImpl(), permanent: true);
     Hive.registerAdapter(BlockChainAdapter());
+    Hive.registerAdapter(AppConfigurationsAdapter());
   }
 }

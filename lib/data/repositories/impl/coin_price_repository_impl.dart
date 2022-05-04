@@ -48,6 +48,20 @@ class CoinPriceRepositoryImpl extends CoinPriceRepository {
 
     return _result;
   }
+
+  @override
+  Future<Result<CoinPriceResponse?, NetworkError>> fetchCoinPriceByBTC() {
+    return NetworkExecutor.execute<CoinPriceResponse, CoinPriceResponse?>(
+        route: const CoinPriceClient.price(CoinSymbol.SXPBTC),
+        responseType: CoinPriceResponse());
+  }
+
+  @override
+  Future<Result<CoinPriceResponse?, NetworkError>> fetchCoinPriceByUSD() {
+    return NetworkExecutor.execute<CoinPriceResponse, CoinPriceResponse?>(
+        route: const CoinPriceClient.price(CoinSymbol.SXPUSDT),
+        responseType: CoinPriceResponse());
+  }
 }
 
 /// [CoinSymbol] is the coin symbol. Ex: SXPBTC is price of SXP in BTC.

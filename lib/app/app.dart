@@ -8,6 +8,4 @@ class EnvironmentConfig {
       defaultValue: "https://danhdue.com/");
 }
 
-class AppConfigurations {}
-
 typedef BindingCreator<S extends Bindings> = S Function();

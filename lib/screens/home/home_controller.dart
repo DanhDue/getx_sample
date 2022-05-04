@@ -20,4 +20,17 @@ class HomeController extends BaseController {
     coinInUSD.value = _coinPrice?.price ?? '';
   }
 
+  fetchCoinPriceByBTC() async {
+    Fimber.d('fetchCoinPriceByBTC()');
+  }
+
+  fetchCoinPriceByUSD() async {
+    Fimber.d('fetchCoinPriceByUSD()');
+    final _priceByUSD = await _coinPriceRepo.fetchCoinPriceByUSD();
+    _priceByUSD.when(
+        success: (coinPrice) {},
+        failure: (networkError) {
+          Fimber.d(networkError.toString());
+        });
+  }
 }

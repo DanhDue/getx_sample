@@ -11,6 +11,19 @@ class NetworkCreator {
 
   Future<Response> request(
       {required BaseClientGenerator route, NetworkOptions? options}) {
+    /// Add interceptor to refresh token.
+    _client.interceptors.add(InterceptorsWrapper(
+        onRequest: (options, _) => requestInterceptor(options),
+        onError: (error, handler) async {
+          if (error.response?.statusCode == 403 ||
+              error.response?.statusCode == 401) {
+            await refreshToken();
+            request(route: route, options: options);
+            return;
+          }
+          handler.next(error);
+        }));
+
     return _client.fetch(RequestOptions(
         baseUrl: route.baseURL,
         method: route.method,
@@ -22,5 +35,16 @@ class NetworkCreator {
         onReceiveProgress: options?.onReceiveProgress,
         validateStatus: (statusCode) => (statusCode! >= HttpStatus.ok &&
             statusCode <= HttpStatus.multipleChoices)));
+  }
+
+  Future<void> refreshToken() async {}
+
+  dynamic requestInterceptor(RequestOptions options) async {
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
+    // var token = prefs.get("token");
+
+    // options.headers.addAll({"Token": "$token${DateTime.now()}"});
+
+    return options;
   }
 }
