@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:getx_sample/app/routes/links.dart';
+import 'package:getx_sample/app/routes/middle_ware.dart';
 import 'package:getx_sample/utils/notification_manager.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
@@ -65,7 +65,7 @@ class _MyAppState extends State<MyApp> {
       fallbackLocale: const Locale('vi', 'VI'),
       initialBinding: AppGlobalBinding(),
       initialRoute: NotificationManager().initialRoute,
-      // initialRoute: AppLinks.localWallets,
+      routingCallback: (routing) => MiddleWare.observer,
       getPages: AppRoutes.pages,
     );
   }

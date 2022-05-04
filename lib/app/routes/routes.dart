@@ -3,6 +3,8 @@ import 'package:getx_sample/screens/dashboard/dashboard_binding.dart';
 import 'package:getx_sample/screens/dashboard/dashboard_page.dart';
 import 'package:getx_sample/screens/home/home_binding.dart';
 import 'package:getx_sample/screens/home/home_page.dart';
+import 'package:getx_sample/screens/login/login_binding.dart';
+import 'package:getx_sample/screens/login/login_page.dart';
 import 'package:getx_sample/screens/splash/splash_page.dart';
 
 import 'links.dart';
@@ -18,5 +20,9 @@ class AppRoutes {
         name: AppLinks.home,
         page: () => const HomePage(),
         binding: HomeBinding()),
+    GetPage(
+        name: AppLinks.login,
+        page: () => const LoginPage(),
+        binding: LoginBinding()),
   ];
 }

@@ -6,4 +6,6 @@ class StorageKeys {
   static const blockChainHiveTypeId = 1;
   static const blockHiveTypeId = 2;
   static const blockBurnedHiveTypeId = 3;
+
+  static const appConfigBoxName = 'appConfigBoxName';
 }

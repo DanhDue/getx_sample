@@ -13,7 +13,8 @@ class AppConfigurations with _$AppConfigurations {
     @HiveField(1) bool? walletNotification,
     @HiveField(2) bool? rankNotification,
     @HiveField(3) bool? blockNotification,
-    @HiveField(4) String? token,
+    @HiveField(4) String? accessToken,
+    @HiveField(5) String? refreshToken,
   }) = _AppConfigurations;
 
   factory AppConfigurations.fromJson(Map<String, dynamic> json) =>
