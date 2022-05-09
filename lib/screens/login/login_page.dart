@@ -8,6 +8,8 @@ class LoginPage extends BaseView<LoginController> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Center(
+      child: Text('Login Screen.'),
+    );
   }
 }

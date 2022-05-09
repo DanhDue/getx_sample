@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import 'links.dart';
 
-class MiddleWare {
+class MiddleWare extends GetMiddleware {
   static observer(Routing? routing) {
     if (routing?.current == AppLinks.tokenIsExpired) {
       Fimber.d('MiddleWare.observer() - AppLinks.tokenIsExpired');

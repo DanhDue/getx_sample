@@ -485,6 +485,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.2"
+  http_mock_adapter:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: "release/v0.3.3"
+      resolved-ref: a1a5209471e3c27d43e3d79172b902f7ada4db4b
+      url: "https://github.com/lomsa-dev/http-mock-adapter.git"
+    source: git
+    version: "0.3.3"
   http_multi_server:
     dependency: transitive
     description:

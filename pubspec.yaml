@@ -60,6 +60,10 @@ dependencies:
   cloud_firestore: ^3.1.12
   visibility_detector: ^0.2.2
   dio: ^4.0.6
+  http_mock_adapter:
+    git:
+      url: https://github.com/lomsa-dev/http-mock-adapter.git
+      ref: release/v0.3.3
 
 dev_dependencies:
   flutter_test:

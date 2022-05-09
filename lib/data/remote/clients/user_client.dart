@@ -27,7 +27,7 @@ class UserClient extends BaseClientGenerator with _$UserClient {
   @override
   String get path {
     return when<String>(
-      refresh: (String? refreshToken) => 'refresh/',
+      refresh: (String? refreshToken) => 'refresh',
     );
   }
 
