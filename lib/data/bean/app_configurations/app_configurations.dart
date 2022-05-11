@@ -15,6 +15,7 @@ class AppConfigurations with _$AppConfigurations {
     @HiveField(3) bool? blockNotification,
     @HiveField(4) String? accessToken,
     @HiveField(5) String? refreshToken,
+    @HiveField(6) String? baseUrl,
   }) = _AppConfigurations;
 
   factory AppConfigurations.fromJson(Map<String, dynamic> json) =>

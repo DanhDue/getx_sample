@@ -14,4 +14,6 @@ class CoinPriceResponse extends BaseResponseObject<CoinPriceResponse>
 
   factory CoinPriceResponse.fromJson(Map<String, dynamic> json) =>
       _$CoinPriceResponseFromJson(json);
+
+  factory CoinPriceResponse.fromJsonObject(Object? json) => _$CoinPriceResponseFromJson(json as Map<String, dynamic>);
 }

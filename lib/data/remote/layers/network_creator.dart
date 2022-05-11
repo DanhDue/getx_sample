@@ -13,13 +13,13 @@ import 'package:getx_sample/data/remote/clients/user_client.dart';
 import 'package:getx_sample/data/remote/layers/network_executor.dart';
 import 'package:getx_sample/data/remote/network_options.dart';
 import 'package:getx_sample/data/repositories/app_configurations_repository.dart';
-import 'package:http_mock_adapter/http_mock_adapter.dart';
 
 import '../interfaces/base_client_generator.dart';
 
 class NetworkCreator {
   static var shared = NetworkCreator();
   final Dio _client = Get.find();
+  AppConfigurations? _appConfigs;
   final _appConfigRepo = Get.find<AppConfigurationsRepository>();
 
   /// MOCK HTTP RESPONSE for the testing.
@@ -28,7 +28,10 @@ class NetworkCreator {
   Future<Response> request(
       {required BaseClientGenerator route,
       NetworkOptions? options,
-      bool? tokenRefreshing = false}) {
+      bool? tokenRefreshing = false}) async {
+    /// Load configurations
+    _appConfigs = await _appConfigRepo.retrieveAppConfigurations();
+
     /// Add interceptor to refresh token: START !!!.
     _client.interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) =>
@@ -64,7 +67,7 @@ class NetworkCreator {
     /// Test for the token refreshing: END !!!
 
     return _client.fetch(RequestOptions(
-        baseUrl: route.baseURL,
+        baseUrl: _appConfigs?.baseUrl ?? route.baseURL,
         method: route.method,
         path: route.path,
         queryParameters: route.queryParameters,
@@ -79,7 +82,6 @@ class NetworkCreator {
   dynamic requestInterceptor(
       {required RequestOptions options,
       required RequestInterceptorHandler handler}) async {
-    final _appConfigs = await _appConfigRepo.retrieveAppConfigurations();
     if (_appConfigs?.accessToken != null) {
       options.headers
           .addAll({"Authorization": "Bearer ${_appConfigs?.accessToken}"});
@@ -104,7 +106,6 @@ class NetworkCreator {
   }
 
   Future<void> refreshToken() async {
-    final _appConfigs = await _appConfigRepo.retrieveAppConfigurations();
     RefreshTokenResponse? _tokenResponse;
     final _response = await NetworkExecutor.execute(
         route: UserClient.refresh(_appConfigs?.refreshToken),
@@ -119,12 +120,13 @@ class NetworkCreator {
       Fimber.e('refresh token is fail! => Navigate to the login screen.');
       Get.toNamed(AppLinks.login);
     } else {
-      await _appConfigRepo.saveAppConfigurations(_appConfigs?.copyWith(
+      _appConfigs = _appConfigs?.copyWith(
               refreshToken: _tokenResponse?.refreshToken,
               accessToken: _tokenResponse?.accessToken) ??
           AppConfigurations(
               refreshToken: _tokenResponse?.refreshToken,
-              accessToken: _tokenResponse?.accessToken));
+              accessToken: _tokenResponse?.accessToken);
+      await _appConfigRepo.saveAppConfigurations(_appConfigs);
     }
   }
 }
