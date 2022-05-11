@@ -16,7 +16,7 @@ import 'network_decoder.dart';
 
 class NetworkExecutor {
   static Future<Result<K, NetworkError>>
-      execute<T extends BaseResponseObject, K>(
+      execute<T, K>(
           {required BaseClientGenerator route,
           required T responseType,
           NetworkOptions? options}) async {
@@ -29,6 +29,13 @@ class NetworkExecutor {
             await NetworkCreator.shared.request(route: route, options: options);
         var data = NetworkDecoder.shared
             .decode<T, K>(response: response, responseType: responseType);
+
+        /// handle errors follow by base response's status
+        // if((data as BaseResponseObject?)?.status == 'status') {
+        //   return Result.success(data);
+        //   return const Result.failure(NetworkError.type(error: 'custom response follow by the base response\'s status'));
+        // }
+
         return Result.success(data);
 
         // NETWORK ERROR

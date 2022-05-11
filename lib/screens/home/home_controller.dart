@@ -14,6 +14,12 @@ class HomeController extends BaseController {
     coinInBTC.value = _coinPrice?.price ?? '';
   }
 
+  fetchBinanceCoinPriceByBTCFollowByBaseResponse() async {
+    Fimber.d('fetchBinanceCoinPriceByBTC()');
+    final _coinPrice = await _coinPriceRepo.fetchBinanceCoinPriceByBTCFollowByBaseResponse();
+    coinInBTC.value = _coinPrice?.data?.price ?? '';
+  }
+
   fetchBinanceCoinPriceByUSD() async {
     Fimber.d('fetchBinanceCoinPriceByUSD()');
     final _coinPrice = await _coinPriceRepo.fetchBinanceCoinPriceByUSD();

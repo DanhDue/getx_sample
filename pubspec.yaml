@@ -64,6 +64,7 @@ dependencies:
     git:
       url: https://github.com/lomsa-dev/http-mock-adapter.git
       ref: release/v0.3.3
+  equatable: ^2.0.3
 
 dev_dependencies:
   flutter_test:

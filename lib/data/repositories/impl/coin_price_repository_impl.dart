@@ -1,6 +1,7 @@
 import 'package:fimber/fimber.dart';
 import 'package:getx_sample/data/bean/coin_price_response/coin_price_response.dart';
 import 'package:getx_sample/data/remote/clients/coin_price_client.dart';
+import 'package:getx_sample/data/remote/interfaces/base_response_object.dart';
 import 'package:getx_sample/data/remote/layers/network_executor.dart';
 import 'package:getx_sample/data/remote/network_error.dart';
 import 'package:getx_sample/data/remote/result.dart';
@@ -22,6 +23,25 @@ class CoinPriceRepositoryImpl extends CoinPriceRepository {
         await NetworkExecutor.execute<CoinPriceResponse, CoinPriceResponse?>(
             route: const CoinPriceClient.price(CoinSymbol.SXPBTC),
             responseType: CoinPriceResponse());
+
+    _res.when(success: (coinPrice) {
+      _result = coinPrice;
+    }, failure: (networkError) {
+      Fimber.e(networkError.toString());
+    });
+
+    return _result;
+  }
+
+  @override
+  Future<BaseResponseObject<CoinPriceResponse>?>
+      fetchBinanceCoinPriceByBTCFollowByBaseResponse() async {
+    BaseResponseObject<CoinPriceResponse>? _result;
+    final _res = await NetworkExecutor.execute<
+            BaseResponseObject<CoinPriceResponse>,
+            BaseResponseObject<CoinPriceResponse>?>(
+        route: const CoinPriceClient.price(CoinSymbol.SXPBTC),
+        responseType: const BaseResponseObject<CoinPriceResponse>());
 
     _res.when(success: (coinPrice) {
       _result = coinPrice;

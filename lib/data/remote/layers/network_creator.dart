@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:fimber/fimber.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get_connect/http/src/status/http_status.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/get_instance.dart';
@@ -13,6 +14,7 @@ import 'package:getx_sample/data/remote/clients/user_client.dart';
 import 'package:getx_sample/data/remote/layers/network_executor.dart';
 import 'package:getx_sample/data/remote/network_options.dart';
 import 'package:getx_sample/data/repositories/app_configurations_repository.dart';
+import 'package:http_mock_adapter/http_mock_adapter.dart';
 
 import '../interfaces/base_client_generator.dart';
 
@@ -23,7 +25,7 @@ class NetworkCreator {
   final _appConfigRepo = Get.find<AppConfigurationsRepository>();
 
   /// MOCK HTTP RESPONSE for the testing.
-  // DioAdapter? dioAdapter;
+  DioAdapter? dioAdapter;
 
   Future<Response> request(
       {required BaseClientGenerator route,
@@ -43,27 +45,28 @@ class NetworkCreator {
     /// Add interceptor to refresh token: END !!!.
 
     /// Test for the token refreshing: START !!!
-    // if (kDebugMode) {
-    //   dioAdapter = DioAdapter(
-    //       dio: _client, matcher: const UrlRequestMatcher(matchMethod: true));
-    //   _client.httpClientAdapter = dioAdapter as HttpClientAdapter;
-    //   dioAdapter?.onGet('price?symbol=SXPBTC', (server) {
-    //     server.reply(200, {'symbol': 'SXPBTC', 'price': '0.2456'});
-    //   });
-    //   dioAdapter?.onGet('price?symbol=SXPUSDT', (server) {
-    //     server.reply(
-    //         (tokenRefreshing == true) ? HttpStatus.ok : HttpStatus.unauthorized,
-    //         {'symbol': 'SXPBTC', 'price': '1.568'});
-    //   });
-    //   dioAdapter?.onPost('refresh', (server) {
-    //     server.reply(HttpStatus.notFound, {
-    //       'access_token': 'AYjcyMzY3ZDhiNmJkNTY',
-    //       'refresh_token': 'RjY2NjM5NzA2OWJjuE7c',
-    //       'token_type': 'bearer',
-    //       'expires': 3600
-    //     });
-    //   });
-    // }
+    if (kDebugMode) {
+      dioAdapter = DioAdapter(
+          dio: _client, matcher: const UrlRequestMatcher(matchMethod: true));
+      _client.httpClientAdapter = dioAdapter as HttpClientAdapter;
+      dioAdapter?.onGet('price?symbol=SXPUSDT', (server) {
+        server.reply(200, {'status': 'DanhDue ExOICTIF', 'message': 'Base Response Object', 'data': {'symbol': 'SXPBTC', 'price': '1.568'}});
+      });
+      dioAdapter?.onGet('price?symbol=SXPBTC', (server) {
+        server.reply(
+            // (tokenRefreshing == true) ? HttpStatus.ok : HttpStatus.unauthorized,
+            HttpStatus.ok,
+            {'status': 'DanhDue ExOICTIF', 'message': 'Base Response Object', 'data': {'symbol': 'SXPBTC', 'price': '1.568'}});
+      });
+      dioAdapter?.onPost('refresh', (server) {
+        server.reply(HttpStatus.ok, {
+          'access_token': 'AYjcyMzY3ZDhiNmJkNTY',
+          'refresh_token': 'RjY2NjM5NzA2OWJjuE7c',
+          'token_type': 'bearer',
+          'expires': 3600
+        });
+      });
+    }
     /// Test for the token refreshing: END !!!
 
     return _client.fetch(RequestOptions(

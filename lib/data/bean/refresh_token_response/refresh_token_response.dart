@@ -1,11 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:getx_sample/data/remote/interfaces/base_response_object.dart';
 
 part 'refresh_token_response.freezed.dart';
+
 part 'refresh_token_response.g.dart';
 
 @freezed
-class RefreshTokenResponse extends BaseResponseObject<RefreshTokenResponse> with _$RefreshTokenResponse {
+class RefreshTokenResponse with _$RefreshTokenResponse {
   factory RefreshTokenResponse({
     @JsonKey(name: 'access_token') String? accessToken,
     @JsonKey(name: 'refresh_token') String? refreshToken,
@@ -15,4 +15,7 @@ class RefreshTokenResponse extends BaseResponseObject<RefreshTokenResponse> with
 
   factory RefreshTokenResponse.fromJson(Map<String, dynamic> json) =>
       _$RefreshTokenResponseFromJson(json);
+
+  factory RefreshTokenResponse.fromJsonObject(Object? json) =>
+      _$RefreshTokenResponseFromJson(json as Map<String, dynamic>);
 }

@@ -85,7 +85,7 @@ class HomePage extends BaseView<HomeController> {
     Fimber.d('_handleVisibilityChanged(VisibilityInfo ${info.toString()})');
     if (info.visibleBounds.isEmpty == false) {
       controller.fetchBinanceCoinPriceByUSD();
-      controller.fetchBinanceCoinPriceByBTC();
+      controller.fetchBinanceCoinPriceByBTCFollowByBaseResponse();
     }
   }
 }
