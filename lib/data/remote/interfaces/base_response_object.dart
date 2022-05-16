@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:fimber/fimber.dart';
 import 'package:getx_sample/data/bean/block_chain/block_chain.dart';
 import 'package:getx_sample/data/bean/coin_price_response/coin_price_response.dart';
+import 'package:getx_sample/data/bean/meta/meta.dart';
 import 'package:getx_sample/data/bean/refresh_token_response/refresh_token_response.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -11,9 +12,10 @@ part 'base_response_object.g.dart';
 class BaseResponseObject<T> extends Equatable {
   final String? status;
   final String? message;
+  final Meta? meta;
   final T? data;
 
-  const BaseResponseObject({this.status, this.message, this.data});
+  const BaseResponseObject({this.status, this.message, this.meta, this.data});
 
   factory BaseResponseObject.fromJson(
     Map<String, dynamic> json,
@@ -29,7 +31,7 @@ class BaseResponseObject<T> extends Equatable {
   }
 
   @override
-  List<Object?> get props => [status, message, data];
+  List<Object?> get props => [status, message, meta, data];
 }
 
 extension NetworkResponseConverter on BaseResponseObject {

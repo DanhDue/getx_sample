@@ -15,11 +15,10 @@ import 'network_decoder.dart';
 ///     K : It specifies how the response type value should be. List or object.
 
 class NetworkExecutor {
-  static Future<Result<K, NetworkError>>
-      execute<T, K>(
-          {required BaseClientGenerator route,
-          required T responseType,
-          NetworkOptions? options}) async {
+  static Future<Result<K, NetworkError>> execute<T, K>(
+      {required BaseClientGenerator route,
+      required T responseType,
+      NetworkOptions? options}) async {
     Fimber.d(route.toString());
 
     // Check Network Connectivity

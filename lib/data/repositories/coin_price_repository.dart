@@ -9,7 +9,8 @@ abstract class CoinPriceRepository {
 
   Future<CoinPriceResponse?> fetchBinanceCoinPriceByBTC();
 
-  Future<BaseResponseObject<CoinPriceResponse>?> fetchBinanceCoinPriceByBTCFollowByBaseResponse();
+  Future<BaseResponseObject<CoinPriceResponse>?>
+      fetchBinanceCoinPriceByBTCFollowByBaseResponse();
 
   Future<CoinPriceResponse?> fetchBinanceCoinPriceByUSD();
 

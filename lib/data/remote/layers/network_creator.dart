@@ -50,13 +50,33 @@ class NetworkCreator {
           dio: _client, matcher: const UrlRequestMatcher(matchMethod: true));
       _client.httpClientAdapter = dioAdapter as HttpClientAdapter;
       dioAdapter?.onGet('price?symbol=SXPUSDT', (server) {
-        server.reply(200, {'status': 'DanhDue ExOICTIF', 'message': 'Base Response Object', 'data': {'symbol': 'SXPBTC', 'price': '1.568'}});
+        server.reply(200, {
+          'status': 'DanhDue ExOICTIF',
+          'message': 'Base Response Object',
+          'meta': {
+            'totalCountIsEstimate': false,
+            'count': 100,
+            'next': '/delegates/gym/blocks?page=2&limit=100&transform=true',
+            'previous': null
+          },
+          'data': {'symbol': 'SXPBTC', 'price': '1.568'}
+        });
       });
       dioAdapter?.onGet('price?symbol=SXPBTC', (server) {
         server.reply(
             // (tokenRefreshing == true) ? HttpStatus.ok : HttpStatus.unauthorized,
             HttpStatus.ok,
-            {'status': 'DanhDue ExOICTIF', 'message': 'Base Response Object', 'data': {'symbol': 'SXPBTC', 'price': '1.568'}});
+            {
+              'status': 'DanhDue ExOICTIF',
+              'message': 'Base Response Object',
+              'meta': {
+                'totalCountIsEstimate': false,
+                'count': 100,
+                'next': '/delegates/gym/blocks?page=2&limit=100&transform=true',
+                'previous': null
+              },
+              'data': {'symbol': 'SXPBTC', 'price': '1.568'}
+            });
       });
       dioAdapter?.onPost('refresh', (server) {
         server.reply(HttpStatus.ok, {
@@ -67,6 +87,7 @@ class NetworkCreator {
         });
       });
     }
+
     /// Test for the token refreshing: END !!!
 
     return _client.fetch(RequestOptions(
