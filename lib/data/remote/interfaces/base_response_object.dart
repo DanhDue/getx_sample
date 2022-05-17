@@ -44,6 +44,10 @@ extension NetworkResponseConverter on BaseResponseObject {
       return BaseResponseObject<CoinPriceResponse>.fromJson(
           json, CoinPriceResponse.fromJsonObject);
     }
+    if (this is BaseResponseObject<List<CoinPriceResponse>>) {
+      return BaseResponseObject<List<CoinPriceResponse>>.fromJson(
+          json, CoinPriceResponse.createListFromJsonObject);
+    }
     if (this is BaseResponseObject<RefreshTokenResponse>) {
       return BaseResponseObject<RefreshTokenResponse>.fromJson(
           json, RefreshTokenResponse.fromJsonObject);

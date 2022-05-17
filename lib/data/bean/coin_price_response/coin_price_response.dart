@@ -16,4 +16,9 @@ class CoinPriceResponse with _$CoinPriceResponse {
 
   factory CoinPriceResponse.fromJsonObject(Object? json) =>
       _$CoinPriceResponseFromJson(json as Map<String, dynamic>);
+
+  static List<CoinPriceResponse> createListFromJsonObject(Object? json) =>
+      List<Object>.from(json as List)
+          .map((e) => CoinPriceResponse.fromJson(e as Map<String, dynamic>))
+          .toList();
 }

@@ -34,14 +34,14 @@ class CoinPriceRepositoryImpl extends CoinPriceRepository {
   }
 
   @override
-  Future<BaseResponseObject<CoinPriceResponse>?>
+  Future<BaseResponseObject<List<CoinPriceResponse>>?>
       fetchBinanceCoinPriceByBTCFollowByBaseResponse() async {
-    BaseResponseObject<CoinPriceResponse>? _result;
+    BaseResponseObject<List<CoinPriceResponse>>? _result;
     final _res = await NetworkExecutor.execute<
-            BaseResponseObject<CoinPriceResponse>,
-            BaseResponseObject<CoinPriceResponse>?>(
+            BaseResponseObject<List<CoinPriceResponse>>,
+            BaseResponseObject<List<CoinPriceResponse>>?>(
         route: const CoinPriceClient.price(CoinSymbol.SXPBTC),
-        responseType: const BaseResponseObject<CoinPriceResponse>());
+        responseType: const BaseResponseObject<List<CoinPriceResponse>>());
 
     _res.when(success: (coinPrice) {
       _result = coinPrice;

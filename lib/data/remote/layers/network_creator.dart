@@ -75,7 +75,7 @@ class NetworkCreator {
                 'next': '/delegates/gym/blocks?page=2&limit=100&transform=true',
                 'previous': null
               },
-              'data': {'symbol': 'SXPBTC', 'price': '1.568'}
+              'data': [{'symbol': 'SXPBTC', 'price': '1.568'}, {'symbol': 'SXPBTC', 'price': '1.568'}]
             });
       });
       dioAdapter?.onPost('refresh', (server) {
