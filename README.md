@@ -61,6 +61,7 @@ Libraries Used
 [9]: https://viblo.asia/p/flutter-117-no-more-flavors-no-more-ios-schemas-command-argument-that-changes-everything-3P0lPB7gKox
 [10]: https://viblo.asia/p/setup-development-environmentsdevelopstagingproduction-for-the-flutter-project-bJzKmd9659N
 [11]: https://viblo.asia/p/how-to-parse-json-in-dartflutter-with-code-generation-using-freezed-3Q75wv02lWb
+[12]: https://viblo.asia/p/the-network-module-for-the-flutter-using-dio-freezed-json-annotation-json-serializable-bJzKmADrK9N
 
 
 Screenshots
@@ -87,6 +88,7 @@ References
 * [Flutter 1.17 — no more Flavors, no more iOS Schemas. Command argument that changes everything.][9]
 * [Setup development environments(Develop/Staging/Production) for the Flutter Project.][10]
 * [How to Parse JSON in Dart/Flutter with Code Generation using Freezed.][11]
+* [The Network Module for the Flutter using Dio, Freezed, json_annotation, json_serializable.][12]
 
 
 License
