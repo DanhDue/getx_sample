@@ -8,7 +8,7 @@ import 'package:getx_sample/screens/home/home_controller.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class HomePage extends BaseView<HomeController> {
-  const HomePage({Key? key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

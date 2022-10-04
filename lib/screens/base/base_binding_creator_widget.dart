@@ -10,7 +10,7 @@ abstract class BaseBindingCreatorWidget<Binding extends Bindings,
     T extends BaseController> extends BaseView<T> {
   final BindingCreator<Binding>? bindingCreator;
 
-  const BaseBindingCreatorWidget({required this.bindingCreator});
+  BaseBindingCreatorWidget({required this.bindingCreator});
 
   Widget? onCreateViews(BuildContext context);
 

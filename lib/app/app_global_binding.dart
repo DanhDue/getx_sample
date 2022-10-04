@@ -12,7 +12,6 @@ class AppGlobalBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut(() => Dio());
-
     Hive.registerAdapter(BlockChainAdapter());
     Hive.registerAdapter(AppConfigurationsAdapter());
     Get.put<StorageHelper>(StorageHelperImpl(), permanent: true);

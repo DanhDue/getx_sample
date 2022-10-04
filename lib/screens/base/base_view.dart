@@ -5,11 +5,22 @@ import 'package:get/get.dart';
 import 'base_controller.dart';
 
 abstract class BaseView<C extends BaseController> extends GetView<C> {
-  const BaseView({Key? key}) : super(key: key);
+  BaseView({Key? key}) : super(key: key);
+
+  var loadingDialogIsShown = false;
 
   void showLoadingDialog() {
     Fimber.d('showLoadingDialog()');
+    loadingDialogIsShown = true;
     Get.dialog(const Center(child: CircularProgressIndicator()),
         barrierDismissible: false);
+  }
+
+  void hideLoadingDialog() {
+    Fimber.d("hideLoadingDialog()");
+    if (loadingDialogIsShown) {
+      loadingDialogIsShown = false;
+      Get.back();
+    }
   }
 }

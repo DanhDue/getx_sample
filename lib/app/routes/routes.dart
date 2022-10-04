@@ -14,15 +14,15 @@ class AppRoutes {
     GetPage(name: AppLinks.splash, page: () => const SplashPage()),
     GetPage(
         name: AppLinks.dashboard,
-        page: () => const DashboardPage(),
+        page: () => DashboardPage(),
         binding: DashboardBinding()),
     GetPage(
         name: AppLinks.home,
-        page: () => const HomePage(),
+        page: () => HomePage(),
         binding: HomeBinding()),
     GetPage(
         name: AppLinks.login,
-        page: () => const LoginPage(),
+        page: () => LoginPage(),
         binding: LoginBinding()),
   ];
 }
