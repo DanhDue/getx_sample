@@ -1,0 +1,40 @@
+{
+    "dart.flutterSdkPath": ".fvm/flutter_sdk",
+    "search.exclude": {
+      "**/.fvm": true,
+      "**/.android": true,
+      "**/.dart_tool": true,
+      "**/.ios": true,
+      "**/.idea": true,
+      "**/.flutter-plugins": true,
+      "**/.flutter-plugins-dependencies": true,
+      "**/*.iml": true,
+      "**/.gitremotes": true,
+      "**/.metadata": true
+    },
+    "files.watcherExclude": {
+      "**/.fvm": true,
+      "**/.android": true,
+      "**/.dart_tool": true,
+      "**/.ios": true,
+      "**/.idea": true,
+      "**/.flutter-plugins": true,
+      "**/.flutter-plugins-dependencies": true,
+      "**/*.iml": true,
+      "**/.gitremotes": true,
+      "**/.metadata": true
+    },
+    "files.exclude": {
+      "**/.fvm": true,
+      "**/.android": true,
+      "**/.dart_tool": true,
+      "**/.ios": true,
+      "**/.idea": true,
+      "**/.flutter-plugins": true,
+      "**/.flutter-plugins-dependencies": true,
+      "**/*.iml": true,
+      "**/.gitremotes": true,
+      "**/.metadata": true
+    },
+    "java.configuration.updateBuildConfiguration": "disabled"
+}
