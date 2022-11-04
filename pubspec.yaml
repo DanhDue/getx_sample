@@ -46,7 +46,7 @@ dependencies:
   intl: ^0.17.0
   jiffy: ^5.0.0
   flutter_keyboard_visibility: ^5.2.0
-  freezed_annotation: ^1.1.0
+  freezed_annotation: ^2.1.0
   json_annotation: ^4.4.0
   connectivity_plus: ^2.3.0
   flutter_local_notifications: ^9.4.0
@@ -65,6 +65,7 @@ dependencies:
       url: https://github.com/lomsa-dev/http-mock-adapter.git
       ref: release/v0.3.3
   equatable: ^2.0.3
+  retrofit: ^3.3.1
 
 dev_dependencies:
   flutter_test:
@@ -77,10 +78,11 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
   build_runner: ^2.1.10
-  freezed: ^1.1.1
+  freezed: ^2.1.0+1
   json_serializable: ^6.1.6
   flutter_native_splash: ^2.1.6
   hive_generator: ^1.1.2
+  retrofit_generator: ^4.2.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

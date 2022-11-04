@@ -20,7 +20,7 @@ import '../interfaces/base_client_generator.dart';
 
 class NetworkCreator {
   static var shared = NetworkCreator();
-  final Dio _client = Get.find();
+  final Dio client = Get.find();
   AppConfigurations? _appConfigs;
   final _appConfigRepo = Get.find<AppConfigurationsRepository>();
 
@@ -35,9 +35,8 @@ class NetworkCreator {
     _appConfigs = await _appConfigRepo.retrieveAppConfigurations();
 
     /// Add interceptor to refresh token: START !!!.
-    _client.interceptors.add(InterceptorsWrapper(
-      onRequest: (options, handler) =>
-          requestInterceptor(options: options, handler: handler),
+    client.interceptors.add(InterceptorsWrapper(
+      onRequest: (options, handler) => requestInterceptor(options: options, handler: handler),
       onError: (error, handler) => refreshTokenInterceptor(
           error: error, handler: handler, route: route, options: options),
     ));
@@ -46,9 +45,8 @@ class NetworkCreator {
 
     /// Test for the token refreshing: START !!!
     if (kDebugMode) {
-      dioAdapter = DioAdapter(
-          dio: _client, matcher: const UrlRequestMatcher(matchMethod: true));
-      _client.httpClientAdapter = dioAdapter as HttpClientAdapter;
+      dioAdapter = DioAdapter(dio: client, matcher: const UrlRequestMatcher(matchMethod: true));
+      client.httpClientAdapter = dioAdapter as HttpClientAdapter;
       dioAdapter?.onGet('price?symbol=SXPUSDT', (server) {
         server.reply(200, {
           'status': 'DanhDue ExOICTIF',
@@ -75,7 +73,10 @@ class NetworkCreator {
                 'next': '/delegates/gym/blocks?page=2&limit=100&transform=true',
                 'previous': null
               },
-              'data': [{'symbol': 'SXPBTC', 'price': '1.568'}, {'symbol': 'SXPBTC', 'price': '1.568'}]
+              'data': [
+                {'symbol': 'SXPBTC', 'price': '1.568'},
+                {'symbol': 'SXPBTC', 'price': '1.568'}
+              ]
             });
       });
       dioAdapter?.onPost('refresh', (server) {
@@ -90,7 +91,7 @@ class NetworkCreator {
 
     /// Test for the token refreshing: END !!!
 
-    return _client.fetch(RequestOptions(
+    return client.fetch(RequestOptions(
         baseUrl: _appConfigs?.baseUrl ?? route.baseURL,
         method: route.method,
         path: route.path,
@@ -99,16 +100,14 @@ class NetworkCreator {
         sendTimeout: route.sendTimeout,
         receiveTimeout: route.sendTimeout,
         onReceiveProgress: options?.onReceiveProgress,
-        validateStatus: (statusCode) => (statusCode! >= HttpStatus.ok &&
-            statusCode <= HttpStatus.multipleChoices)));
+        validateStatus: (statusCode) =>
+            (statusCode! >= HttpStatus.ok && statusCode <= HttpStatus.multipleChoices)));
   }
 
   dynamic requestInterceptor(
-      {required RequestOptions options,
-      required RequestInterceptorHandler handler}) async {
+      {required RequestOptions options, required RequestInterceptorHandler handler}) async {
     if (_appConfigs?.accessToken != null) {
-      options.headers
-          .addAll({"Authorization": "Bearer ${_appConfigs?.accessToken}"});
+      options.headers.addAll({"Authorization": "Bearer ${_appConfigs?.accessToken}"});
     }
     handler.next(options);
   }
@@ -121,8 +120,7 @@ class NetworkCreator {
     if (error.response?.statusCode == HttpStatus.forbidden ||
         error.response?.statusCode == HttpStatus.unauthorized) {
       await refreshToken();
-      final _response =
-          await request(route: route, options: options, tokenRefreshing: true);
+      final _response = await request(route: route, options: options, tokenRefreshing: true);
       handler.resolve(_response);
       return;
     }

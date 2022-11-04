@@ -36,5 +36,6 @@
       "**/.gitremotes": true,
       "**/.metadata": true
     },
-    "java.configuration.updateBuildConfiguration": "disabled"
+    "java.configuration.updateBuildConfiguration": "disabled",
+    "dart.lineLength": 96
 }
