@@ -1,6 +1,7 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:fimber/fimber.dart';
-import 'package:get/get.dart';
 import 'package:getx_sample/data/bean/coin_price_response/coin_price_response.dart';
 import 'package:getx_sample/data/remote/clients/coin_price_client.dart';
 import 'package:getx_sample/data/remote/interfaces/base_response_object.dart';
@@ -50,8 +51,8 @@ class CoinPriceRepositoryImpl extends CoinPriceRepository {
     });
 
     final client = RestClient(NetworkCreator.shared.client);
-    final abc = await client.getCoinPrice(CoinSymbol.SXPBTC).then((it) {
-      Fimber.i(it.toString());
+    final _ = await client.getFullfiledCoinPrice(CoinSymbol.SXPBTC).then((it) {
+      Fimber.i(jsonEncode(it));
     }).catchError((Object obj) {
       // non-200 error goes here.
       switch (obj.runtimeType) {

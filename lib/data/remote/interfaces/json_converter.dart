@@ -7,7 +7,8 @@ import 'package:getx_sample/data/remote/interfaces/base_response_object.dart';
 extension NetworkResponseConverter on BaseResponseObject {
   BaseResponseObject? decodeJson(Map<String, dynamic> json) {
     if (this is BaseResponseObject<BlockChain>) {
-      return BaseResponseObject<BlockChain>.fromJson(json, BlockChain.fromJsonObject);
+      return BaseResponseObject<BlockChain>.fromJson(
+          json, BlockChain.fromJsonObject);
     }
     if (this is BaseResponseObject<CoinPriceResponse>) {
       return BaseResponseObject<CoinPriceResponse>.fromJson(
@@ -27,7 +28,8 @@ extension NetworkResponseConverter on BaseResponseObject {
 
   Map<String, dynamic>? encodeJson() {
     if (this is BlockChain) {
-      return (this as BaseResponseObject<BlockChain>?)?.toJson((value) => value.toJson());
+      return (this as BaseResponseObject<BlockChain>?)
+          ?.toJson((value) => value.toJson());
     }
     if (this is CoinPriceResponse) {
       return (this as BaseResponseObject<CoinPriceResponse>?)

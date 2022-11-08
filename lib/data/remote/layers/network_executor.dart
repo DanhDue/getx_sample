@@ -23,9 +23,10 @@ class NetworkExecutor {
     // Check Network Connectivity
     if (await NetworkConnectivity.status) {
       try {
-        var response = await NetworkCreator.shared.request(route: route, options: options);
-        var data =
-            NetworkDecoder.shared.decode<T, K>(response: response, responseType: responseType);
+        var response =
+            await NetworkCreator.shared.request(route: route, options: options);
+        var data = NetworkDecoder.shared
+            .decode<T, K>(response: response, responseType: responseType);
 
         /// handle errors follow by base response's status
         // if((data as BaseResponseObject?)?.status == 'status') {
@@ -49,7 +50,8 @@ class NetworkExecutor {
       // No Internet Connection
     } else {
       Fimber.d('No Internet Connection');
-      return const Result.failure(NetworkError.connectivity(message: 'No Internet Connection'));
+      return const Result.failure(
+          NetworkError.connectivity(message: 'No Internet Connection'));
     }
   }
 }
