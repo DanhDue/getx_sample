@@ -9,20 +9,16 @@ import 'package:getx_sample/data/repositories/coin_price_repository.dart';
 
 class CoinPriceRepositoryImpl extends CoinPriceRepository {
   @override
-  Future<Result<CoinPriceResponse?, NetworkError>> getCoinPrices(
-      String? symbol) async {
+  Future<Result<CoinPriceResponse?, NetworkError>> getCoinPrices(String? symbol) async {
     return NetworkExecutor.execute<CoinPriceResponse, CoinPriceResponse?>(
-        route: CoinPriceClient.price(symbol),
-        responseType: CoinPriceResponse());
+        route: CoinPriceClient.price(symbol), responseType: CoinPriceResponse());
   }
 
   @override
   Future<CoinPriceResponse?> fetchBinanceCoinPriceByBTC() async {
     CoinPriceResponse? _result;
-    final _res =
-        await NetworkExecutor.execute<CoinPriceResponse, CoinPriceResponse?>(
-            route: const CoinPriceClient.price(CoinSymbol.SXPBTC),
-            responseType: CoinPriceResponse());
+    final _res = await NetworkExecutor.execute<CoinPriceResponse, CoinPriceResponse?>(
+        route: const CoinPriceClient.price(CoinSymbol.SXPBTC), responseType: CoinPriceResponse());
 
     _res.when(success: (coinPrice) {
       _result = coinPrice;
@@ -37,8 +33,7 @@ class CoinPriceRepositoryImpl extends CoinPriceRepository {
   Future<BaseResponseObject<List<CoinPriceResponse>>?>
       fetchBinanceCoinPriceByBTCFollowByBaseResponse() async {
     BaseResponseObject<List<CoinPriceResponse>>? _result;
-    final _res = await NetworkExecutor.execute<
-            BaseResponseObject<List<CoinPriceResponse>>,
+    final _res = await NetworkExecutor.execute<BaseResponseObject<List<CoinPriceResponse>>,
             BaseResponseObject<List<CoinPriceResponse>>?>(
         route: const CoinPriceClient.price(CoinSymbol.SXPBTC),
         responseType: const BaseResponseObject<List<CoinPriceResponse>>());
@@ -55,10 +50,8 @@ class CoinPriceRepositoryImpl extends CoinPriceRepository {
   @override
   Future<CoinPriceResponse?> fetchBinanceCoinPriceByUSD() async {
     CoinPriceResponse? _result;
-    final _res =
-        await NetworkExecutor.execute<CoinPriceResponse, CoinPriceResponse?>(
-            route: const CoinPriceClient.price(CoinSymbol.SXPUSDT),
-            responseType: CoinPriceResponse());
+    final _res = await NetworkExecutor.execute<CoinPriceResponse, CoinPriceResponse?>(
+        route: const CoinPriceClient.price(CoinSymbol.SXPUSDT), responseType: CoinPriceResponse());
 
     _res.when(success: (coinPrice) {
       _result = coinPrice;
@@ -72,15 +65,13 @@ class CoinPriceRepositoryImpl extends CoinPriceRepository {
   @override
   Future<Result<CoinPriceResponse?, NetworkError>> fetchCoinPriceByBTC() {
     return NetworkExecutor.execute<CoinPriceResponse, CoinPriceResponse?>(
-        route: const CoinPriceClient.price(CoinSymbol.SXPBTC),
-        responseType: CoinPriceResponse());
+        route: const CoinPriceClient.price(CoinSymbol.SXPBTC), responseType: CoinPriceResponse());
   }
 
   @override
   Future<Result<CoinPriceResponse?, NetworkError>> fetchCoinPriceByUSD() {
     return NetworkExecutor.execute<CoinPriceResponse, CoinPriceResponse?>(
-        route: const CoinPriceClient.price(CoinSymbol.SXPUSDT),
-        responseType: CoinPriceResponse());
+        route: const CoinPriceClient.price(CoinSymbol.SXPUSDT), responseType: CoinPriceResponse());
   }
 }
 

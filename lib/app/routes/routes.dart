@@ -13,16 +13,8 @@ class AppRoutes {
   static final pages = [
     GetPage(name: AppLinks.splash, page: () => const SplashPage()),
     GetPage(
-        name: AppLinks.dashboard,
-        page: () => const DashboardPage(),
-        binding: DashboardBinding()),
-    GetPage(
-        name: AppLinks.home,
-        page: () => const HomePage(),
-        binding: HomeBinding()),
-    GetPage(
-        name: AppLinks.login,
-        page: () => const LoginPage(),
-        binding: LoginBinding()),
+        name: AppLinks.dashboard, page: () => const DashboardPage(), binding: DashboardBinding()),
+    GetPage(name: AppLinks.home, page: () => const HomePage(), binding: HomeBinding()),
+    GetPage(name: AppLinks.login, page: () => const LoginPage(), binding: LoginBinding()),
   ];
 }

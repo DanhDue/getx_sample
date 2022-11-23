@@ -12,6 +12,5 @@ class WalletAttrs with _$WalletAttrs {
     String? vote,
   }) = _WalletAttrs;
 
-  factory WalletAttrs.fromJson(Map<String, dynamic> json) =>
-      _$WalletAttrsFromJson(json);
+  factory WalletAttrs.fromJson(Map<String, dynamic> json) => _$WalletAttrsFromJson(json);
 }

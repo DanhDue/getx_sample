@@ -6,8 +6,8 @@ import 'package:getx_sample/app/app.dart';
 import 'base_controller.dart';
 import 'base_view.dart';
 
-abstract class BaseBindingCreatorWidget<Binding extends Bindings,
-    T extends BaseController> extends BaseView<T> {
+abstract class BaseBindingCreatorWidget<Binding extends Bindings, T extends BaseController>
+    extends BaseView<T> {
   final BindingCreator<Binding>? bindingCreator;
 
   const BaseBindingCreatorWidget({required this.bindingCreator});

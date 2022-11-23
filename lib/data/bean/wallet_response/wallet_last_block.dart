@@ -24,6 +24,5 @@ class WalletLastBlock with _$WalletLastBlock {
     String? burnedFee,
   }) = _WalletLastBlock;
 
-  factory WalletLastBlock.fromJson(Map<String, dynamic> json) =>
-      _$WalletLastBlockFromJson(json);
+  factory WalletLastBlock.fromJson(Map<String, dynamic> json) => _$WalletLastBlockFromJson(json);
 }

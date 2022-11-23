@@ -23,12 +23,10 @@ class NotificationManager {
 
   /// Streams are created so that app can respond to notification-related events
   /// since the plugin is initialised in the `main` function
-  static final BehaviorSubject<ReceivedNotification>
-      didReceiveLocalNotificationSubject =
+  static final BehaviorSubject<ReceivedNotification> didReceiveLocalNotificationSubject =
       BehaviorSubject<ReceivedNotification>();
 
-  static final BehaviorSubject<String?> selectNotificationSubject =
-      BehaviorSubject<String?>();
+  static final BehaviorSubject<String?> selectNotificationSubject = BehaviorSubject<String?>();
 
   static const MethodChannel platform = MethodChannel('danhdue.com/solar_coin');
 
@@ -46,8 +44,7 @@ class NotificationManager {
                 .getNotificationAppLaunchDetails();
 
     if (notificationAppLaunchDetails?.didNotificationLaunchApp ?? false) {
-      NotificationManager.selectedNotificationPayload =
-          notificationAppLaunchDetails!.payload;
+      NotificationManager.selectedNotificationPayload = notificationAppLaunchDetails!.payload;
       initialRoute = AppLinks.dashboard;
     }
 
@@ -56,35 +53,33 @@ class NotificationManager {
 
     /// Note: permissions aren't requested here just to demonstrate that can be
     /// done later
-    final IOSInitializationSettings initializationSettingsIOS =
-        IOSInitializationSettings(
-            requestAlertPermission: false,
-            requestBadgePermission: false,
-            requestSoundPermission: false,
-            onDidReceiveLocalNotification: (
-              int id,
-              String? title,
-              String? body,
-              String? payload,
-            ) async {
-              NotificationManager.didReceiveLocalNotificationSubject.add(
-                ReceivedNotification(
-                  id: id,
-                  title: title,
-                  body: body,
-                  payload: payload,
-                ),
-              );
-            });
+    final IOSInitializationSettings initializationSettingsIOS = IOSInitializationSettings(
+        requestAlertPermission: false,
+        requestBadgePermission: false,
+        requestSoundPermission: false,
+        onDidReceiveLocalNotification: (
+          int id,
+          String? title,
+          String? body,
+          String? payload,
+        ) async {
+          NotificationManager.didReceiveLocalNotificationSubject.add(
+            ReceivedNotification(
+              id: id,
+              title: title,
+              body: body,
+              payload: payload,
+            ),
+          );
+        });
 
-    final InitializationSettings initializationSettings =
-        InitializationSettings(
+    final InitializationSettings initializationSettings = InitializationSettings(
       android: initializationSettingsAndroid,
       iOS: initializationSettingsIOS,
     );
 
-    await NotificationManager.flutterLocalNotificationsPlugin.initialize(
-        initializationSettings, onSelectNotification: (String? payload) async {
+    await NotificationManager.flutterLocalNotificationsPlugin.initialize(initializationSettings,
+        onSelectNotification: (String? payload) async {
       if (payload != null) {
         Fimber.d('notification payload: $payload');
       }
@@ -95,16 +90,14 @@ class NotificationManager {
 
   void requestPermissions() {
     NotificationManager.flutterLocalNotificationsPlugin
-        .resolvePlatformSpecificImplementation<
-            IOSFlutterLocalNotificationsPlugin>()
+        .resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>()
         ?.requestPermissions(
           alert: true,
           badge: true,
           sound: true,
         );
     NotificationManager.flutterLocalNotificationsPlugin
-        .resolvePlatformSpecificImplementation<
-            MacOSFlutterLocalNotificationsPlugin>()
+        .resolvePlatformSpecificImplementation<MacOSFlutterLocalNotificationsPlugin>()
         ?.requestPermissions(
           alert: true,
           badge: true,
@@ -120,8 +113,7 @@ class NotificationManager {
   }
 
   void configureSelectNotificationSubject() {
-    NotificationManager.selectNotificationSubject.stream
-        .listen((String? payload) async {
+    NotificationManager.selectNotificationSubject.stream.listen((String? payload) async {
       await Get.toNamed(AppLinks.dashboard);
     });
   }

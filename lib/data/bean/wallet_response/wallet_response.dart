@@ -11,6 +11,5 @@ class WalletResponse with _$WalletResponse {
     @JsonKey(name: 'data') WalletObject? walletObject,
   }) = _WalletResponse;
 
-  factory WalletResponse.fromJson(Map<String, dynamic> json) =>
-      _$WalletResponseFromJson(json);
+  factory WalletResponse.fromJson(Map<String, dynamic> json) => _$WalletResponseFromJson(json);
 }

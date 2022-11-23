@@ -22,6 +22,5 @@ class Delegate with _$Delegate {
     String? version,
   }) = _Delegate;
 
-  factory Delegate.fromJson(Map<String, dynamic> json) =>
-      _$DelegateFromJson(json);
+  factory Delegate.fromJson(Map<String, dynamic> json) => _$DelegateFromJson(json);
 }

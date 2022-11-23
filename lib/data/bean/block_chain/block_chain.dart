@@ -18,8 +18,7 @@ class BlockChain with _$BlockChain {
     @HiveField(2) String? supply,
   }) = _BlockChain;
 
-  factory BlockChain.fromJson(Map<String, dynamic> json) =>
-      _$BlockChainFromJson(json);
+  factory BlockChain.fromJson(Map<String, dynamic> json) => _$BlockChainFromJson(json);
 
   factory BlockChain.fromJsonObject(Object? json) =>
       _$BlockChainFromJson(json as Map<String, dynamic>);

@@ -11,6 +11,5 @@ class DelegateResponse with _$DelegateResponse {
     @JsonKey(name: 'data') Delegate? delegate,
   }) = _DelegateResponse;
 
-  factory DelegateResponse.fromJson(Map<String, dynamic> json) =>
-      _$DelegateResponseFromJson(json);
+  factory DelegateResponse.fromJson(Map<String, dynamic> json) => _$DelegateResponseFromJson(json);
 }

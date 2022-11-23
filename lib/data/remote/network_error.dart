@@ -7,8 +7,7 @@ part 'network_error.freezed.dart';
 class NetworkError with _$NetworkError implements Exception {
   const NetworkError._() : super();
 
-  const factory NetworkError.request({required DioError error}) =
-      _ResponseError;
+  const factory NetworkError.request({required DioError error}) = _ResponseError;
 
   const factory NetworkError.type({String? error}) = _DecodingError;
 

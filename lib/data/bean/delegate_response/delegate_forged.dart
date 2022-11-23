@@ -12,6 +12,5 @@ class DelegateForged with _$DelegateForged {
     String? total,
   }) = _DelegateForged;
 
-  factory DelegateForged.fromJson(Map<String, dynamic> json) =>
-      _$DelegateForgedFromJson(json);
+  factory DelegateForged.fromJson(Map<String, dynamic> json) => _$DelegateForgedFromJson(json);
 }

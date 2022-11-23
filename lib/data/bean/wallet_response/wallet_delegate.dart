@@ -20,6 +20,5 @@ class WalletDelegate with _$WalletDelegate {
     @JsonKey(name: 'lastBlock') WalletLastBlock? walletLastBlock,
   }) = _WalletDelegate;
 
-  factory WalletDelegate.fromJson(Map<String, dynamic> json) =>
-      _$WalletDelegateFromJson(json);
+  factory WalletDelegate.fromJson(Map<String, dynamic> json) => _$WalletDelegateFromJson(json);
 }

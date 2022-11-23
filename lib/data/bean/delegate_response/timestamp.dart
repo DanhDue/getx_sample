@@ -11,6 +11,5 @@ class Timestamp with _$Timestamp {
     String? human,
   }) = _Timestamp;
 
-  factory Timestamp.fromJson(Map<String, dynamic> json) =>
-      _$TimestampFromJson(json);
+  factory Timestamp.fromJson(Map<String, dynamic> json) => _$TimestampFromJson(json);
 }

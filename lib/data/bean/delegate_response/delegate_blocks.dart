@@ -12,6 +12,5 @@ class DelegateBlocks with _$DelegateBlocks {
     @JsonKey(name: 'last') DelegateBlocksLast? delegateBlocksLast,
   }) = _DelegateBlocks;
 
-  factory DelegateBlocks.fromJson(Map<String, dynamic> json) =>
-      _$DelegateBlocksFromJson(json);
+  factory DelegateBlocks.fromJson(Map<String, dynamic> json) => _$DelegateBlocksFromJson(json);
 }

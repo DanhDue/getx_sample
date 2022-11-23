@@ -16,7 +16,6 @@ class AppGlobalBinding extends Bindings {
     Hive.registerAdapter(BlockChainAdapter());
     Hive.registerAdapter(AppConfigurationsAdapter());
     Get.put<StorageHelper>(StorageHelperImpl(), permanent: true);
-    Get.put<AppConfigurationsRepository>(AppConfigurationsRepositoryImpl(),
-        permanent: true);
+    Get.put<AppConfigurationsRepository>(AppConfigurationsRepositoryImpl(), permanent: true);
   }
 }
