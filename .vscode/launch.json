@@ -1,25 +1,48 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "getx_sample",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "getx_sample (profile mode)",
+            "name": "GetX Sample(Dev)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "program": "lib/main.dart",
+            "args": [
+                "--dart-define",
+                "DART_DEFINES_APP_NAME=GetX Sample(Dev)",
+                "--dart-define",
+                "DART_DEFINES_APP_SUFFIX=.dev",
+                "--dart-define",
+                "DART_DEFINES_BASE_URL=https://danhdue.com",
+                "--debug"
+            ]
         },
         {
-            "name": "getx_sample (release mode)",
+            "name": "GetX Sample(Stg)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
+            "program": "lib/main.dart",
+            "args": [
+                "--dart-define",
+                "DART_DEFINES_APP_NAME=GetX Sample(Stg)",
+                "--dart-define",
+                "DART_DEFINES_APP_SUFFIX=.stg",
+                "--dart-define",
+                "DART_DEFINES_BASE_URL=https://danhdue.com",
+                "--profile"
+            ]
+        },
+        {
+            "name": "GetX Sample",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "--dart-define",
+                "DART_DEFINES_APP_NAME=GetX Sample",
+                "--dart-define",
+                "DART_DEFINES_BASE_URL=https://danhdue.com",
+                "--release"
+            ]
         }
     ]
 }

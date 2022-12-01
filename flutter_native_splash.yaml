@@ -1,0 +1,7 @@
+flutter_native_splash:
+  color: "#F1FFE7"
+  background_image: "assets/images/ftu_logo.png"
+  background_image_dark: "assets/images/ftu_logo.png"
+  android_12:
+    image: assets/images/android12splash.png
+  web: false

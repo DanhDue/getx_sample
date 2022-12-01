@@ -1,0 +1,16 @@
+name: generators
+description: generators for networking serialization.
+version: 0.0.1
+publish_to:  none
+environment:
+  sdk: ">=2.18.2 <3.0.0"
+dependencies:
+  build:
+  source_gen:
+  annotations:
+    path: ../annotations/
+dev_dependencies:
+  flutter_lints: ^2.0.0
+  build_test:
+  build_runner:
+  test: ^1.21.4

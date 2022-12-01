@@ -1,24 +1,56 @@
+import 'package:equatable/equatable.dart';
 import 'package:fimber/fimber.dart';
-import 'package:getx_sample/data/bean/block_chain/block_chain.dart';
-import 'package:getx_sample/data/bean/coin_price_response/coin_price_response.dart';
-import 'package:getx_sample/data/bean/refresh_token_response/refresh_token_response.dart';
+import 'package:getx_sample/data/bean/user_object/user_object.dart';
+import 'package:json_annotation/json_annotation.dart';
 
-abstract class BaseResponseObject<T> {}
+part 'base_response_object.g.dart';
+
+@JsonSerializable(genericArgumentFactories: true)
+class BaseResponseObject<T> extends Equatable {
+  final String? code;
+  final String? message;
+  final T? result;
+
+  const BaseResponseObject({this.code, this.message, this.result});
+
+  factory BaseResponseObject.fromJson(
+    Map<String, dynamic> json,
+    T Function(Object? json) jsonToT,
+  ) {
+    return _$BaseResponseObjectFromJson<T>(json, jsonToT);
+  }
+
+  Map<String, dynamic> toJson(
+    Map<String, dynamic> Function(T value) toJsonT,
+  ) {
+    return _$BaseResponseObjectToJson<T>(this, toJsonT);
+  }
+
+  @override
+  List<Object?> get props => [code, message, result];
+}
 
 extension NetworkResponseConverter on BaseResponseObject {
   BaseResponseObject? decodeJson(Map<String, dynamic> json) {
-    if (this is BlockChain) return BlockChain.fromJson(json);
-    if (this is CoinPriceResponse) return CoinPriceResponse.fromJson(json);
-    if (this is RefreshTokenResponse) return RefreshTokenResponse.fromJson(json);
+    if (this is BaseResponseObject<UserObject>) {
+      return BaseResponseObject<UserObject>.fromJson(json, jsonToUserObject);
+    }
+    if (this is BaseResponseObject<UserObject?>) {
+      return BaseResponseObject<UserObject?>.fromJson(json, jsonToNullableUserObject);
+    }
+    if (this is BaseResponseObject<List<UserObject>>) {
+      return BaseResponseObject<List<UserObject>>.fromJson(json, jsonToListUserObjects);
+    }
+    if (this is BaseResponseObject<List<UserObject?>>) {
+      return BaseResponseObject<List<UserObject?>>.fromJson(json, jsonToListNullableUserObjects);
+    }
+    if (this is BaseResponseObject<List<UserObject>?>) {
+      return BaseResponseObject<List<UserObject>?>.fromJson(json, jsonToListUserObjects);
+    }
+    if (this is BaseResponseObject<List<UserObject?>?>) {
+      return BaseResponseObject<List<UserObject?>?>.fromJson(json, jsonToListNullableUserObjects);
+    }
     Fimber.e('You need to implement the decodeJson method');
-    return null;
-  }
-
-  Map<String, dynamic>? encodeJson() {
-    if (this is BlockChain) return (this as BlockChain).toJson();
-    if (this is CoinPriceResponse) return (this as CoinPriceResponse).toJson();
-    if (this is RefreshTokenResponse) return (this as RefreshTokenResponse).toJson();
-    Fimber.e('You need to implement the encodeJson method');
     return null;
   }
 }

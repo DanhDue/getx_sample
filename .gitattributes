@@ -1,0 +1,8 @@
+assets/locales/en_US.json merge=union
+assets/locales/vn_VI.json merge=union
+assets/colors/colors.xml merge=union
+
+lib/generated/assets.gen.dart merge=union
+lib/generated/colors.gen.dart merge=union
+lib/generated/fonts.gen.dart merge=union
+lib/generated/locales.g.dart merge=union

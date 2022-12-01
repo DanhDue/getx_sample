@@ -1,0 +1,15 @@
+{
+  "homePageTitle": "Login - Home Page",
+  "homePage": "Trang chủ",
+  "notification": "Thông báo",
+  "checkin": "Checkin",
+  "settings": "Thiết lập",
+  "personal": "Cá nhân",
+  "userName": "Tên đăng nhập",
+  "password": "Mật khẩu",
+  "forgotPassword": "Quên mật khẩu?",
+  "login": "Đăng nhập",
+  "welcomeMessage": "Welcome to D3F GetX Sample",
+  
+  "eof": "End of File. Please add a new text above this item to avoid conflicts. Thanks!"
+}

@@ -1,0 +1,16 @@
+{
+    "iduser": "ab538aca6e9be73d18999e6e2c7c9377",
+    "role": 1,
+    "username": "DanhDue",
+    "fullname": "DanhDue ExOICTIF",
+    "birthday": "01/01/1991",
+    "phone": "0967648834",
+    "email": "danhdue@gmail.com",
+    "ccid": "145398631",
+    "access_token": "ab538aca6e9be73d18999e6e2c7c9377",
+    "expires_in": "01/01/2051",
+    "token_type": "bear_token",
+    "refresh_token": "ab538aca6e9be73d18999e6e2c7c9377",
+    "scope": "Galaxy",
+    "biometricAuth": true
+}

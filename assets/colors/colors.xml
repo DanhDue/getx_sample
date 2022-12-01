@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="transparent">#00000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <color name="main_green">#148D4F</color>
+    <color name="red">#E51F37</color>
+    <color name="text_color">#111111</color>
+    <color name="text_light_grey">#C5C4C4</color>
+    <color name="bg_gray">#F1F1F1</color>
+    <color name="text_grey">#757575</color>
+    <color name="semi_grey">#515151</color>
+
+    <color name="sub_yellow">#EAD87A</color>
+    <color name="light_silver">#D9D9D9</color>
+    <color name="honeydew">#F1FFE7</color>
+
+    <color name="dark_green">#0A7746</color>
+    <color name="second_green">#55A845</color>
+    <color name="cyan">#00B0C3</color>
+
+    <color name="smoky_black">#042702</color>
+    <color name="palm_leaf">#639C38</color>
+    <color name="cultured">#F4F4F4</color>
+    <color name="black">#000000</color>
+    <color name="dartmouth_green">#097442</color>
+    <color name="apple">#62B345</color>
+    <color name="smoky_white">#15000000</color>
+    <color name="chinese_silver">#CCCCCC</color>
+    <color name="anti_flash_white">#F2F6F3</color>
+
+    <color name="dutch_white">#EFDCBB</color>
+    <color name="champagne_pink">#EDDAD3</color>
+    <color name="chinese_black">#101010</color>
+    <color name="cultured">#F5F5F5</color>
+    
+    <color name="EOF">#FA0606</color>
+</resources>

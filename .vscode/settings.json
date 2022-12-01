@@ -1,40 +1,61 @@
 {
-    "dart.flutterSdkPath": ".fvm/flutter_sdk",
-    "search.exclude": {
-      "**/.fvm": true,
-      "**/.android": true,
-      "**/.dart_tool": true,
-      "**/.ios": true,
-      "**/.idea": true,
-      "**/.flutter-plugins": true,
-      "**/.flutter-plugins-dependencies": true,
-      "**/*.iml": true,
-      "**/.gitremotes": true,
-      "**/.metadata": true
-    },
-    "files.watcherExclude": {
-      "**/.fvm": true,
-      "**/.android": true,
-      "**/.dart_tool": true,
-      "**/.ios": true,
-      "**/.idea": true,
-      "**/.flutter-plugins": true,
-      "**/.flutter-plugins-dependencies": true,
-      "**/*.iml": true,
-      "**/.gitremotes": true,
-      "**/.metadata": true
-    },
-    "files.exclude": {
-      "**/.fvm": true,
-      "**/.android": true,
-      "**/.dart_tool": true,
-      "**/.ios": true,
-      "**/.idea": true,
-      "**/.flutter-plugins": true,
-      "**/.flutter-plugins-dependencies": true,
-      "**/*.iml": true,
-      "**/.gitremotes": true,
-      "**/.metadata": true
-    },
-    "java.configuration.updateBuildConfiguration": "disabled"
+  "workbench.colorTheme": "Dracula",
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [
+      99
+    ],
+    "editor.selectionHighlight": false,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": false
+  },
+  "dart.debugExternalPackageLibraries": true,
+  "dart.debugSdkLibraries": true,
+  "editor.inlineSuggest.enabled": true,
+  "dart.openDevTools": "flutter",
+  "dart.flutterSdkPath": ".fvm/flutter_sdk",
+  "search.exclude": {
+    "**/.fvm": true,
+    "**/.android": true,
+    "**/.dart_tool": true,
+    "**/.ios": true,
+    "**/.idea": true,
+    "**/.flutter-plugins": true,
+    "**/.flutter-plugins-dependencies": true,
+    "**/*.iml": true,
+    "**/.metadata": true,
+    "**/.gradle": true,
+    "**/build": true
+  },
+  "files.watcherExclude": {
+    "**/.fvm": true,
+    "**/.android": true,
+    "**/.dart_tool": true,
+    "**/.ios": true,
+    "**/.idea": true,
+    "**/.flutter-plugins": true,
+    "**/.flutter-plugins-dependencies": true,
+    "**/*.iml": true,
+    "**/.metadata": true,
+    "**/.gradle": true,
+    "**/build": true
+  },
+  "files.exclude": {
+    "**/.fvm": true,
+    "**/.android": true,
+    "**/.dart_tool": true,
+    "**/.ios": true,
+    "**/.idea": true,
+    "**/.flutter-plugins": true,
+    "**/.flutter-plugins-dependencies": true,
+    "**/*.iml": true,
+    "**/.metadata": true,
+    "**/.gradle": true,
+    "**/build": true
+  },
+  "java.configuration.updateBuildConfiguration": "disabled",
+  "dart.lineLength": 99
 }

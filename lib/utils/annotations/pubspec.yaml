@@ -1,0 +1,10 @@
+name: annotations
+description: annotation package.
+version: 0.0.1
+environment:
+  sdk: ">=2.18.2 <3.0.0"
+dependencies:
+  build:
+dev_dependencies:
+  flutter_lints: ^2.0.0
+  test: ^1.21.4

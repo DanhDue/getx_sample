@@ -1,6 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../interfaces/base_client_generator.dart';
+import 'package:getx_sample/app/environment_configurations.dart';
+import 'package:getx_sample/data/bean/user_object/user_object.dart';
+import 'package:getx_sample/data/remote/interfaces/base_client_generator.dart';
+import 'package:http_mock_adapter/http_mock_adapter.dart';
 
 part 'user_client.freezed.dart';
 
@@ -8,10 +10,12 @@ part 'user_client.freezed.dart';
 class UserClient extends BaseClientGenerator with _$UserClient {
   const UserClient._() : super();
 
-  const factory UserClient.refresh(String? refreshToken) = _Refresh;
+  const factory UserClient.refreshToken(String? refreshToken) = _Refresh;
+  const factory UserClient.updateInfo(UserObject? user) = _UpdateInfo;
+  const factory UserClient.login(String? userName, String? password) = _Login;
 
   @override
-  String get baseURL => 'https://api.danhdue.com/api/v1/user/';
+  String get baseURL => EnvironmentConfig.BASE_URL;
 
   @override
   Map<String, dynamic> get header => {"Content-Type": "application/json"};
@@ -19,33 +23,31 @@ class UserClient extends BaseClientGenerator with _$UserClient {
   @override
   String get method {
     return maybeWhen<String>(
-      refresh: (String? refreshToken) => 'POST',
-      orElse: () => 'GET',
+      refreshToken: (String? refreshToken) => RequestMethods.post.name,
+      login: (userName, password) => RequestMethods.post.name,
+      orElse: () => RequestMethods.get.name,
     );
   }
 
   @override
   String get path {
-    return when<String>(
-      refresh: (String? refreshToken) => 'refresh',
+    return maybeWhen<String>(
+      refreshToken: (String? refreshToken) => 'user/refreshToken',
+      orElse: () => 'user',
     );
   }
 
   @override
   Map<String, dynamic>? get queryParameters {
     return maybeWhen(
-        refresh: (String? refreshToken) => {'refreshToken': refreshToken},
-        orElse: () {
-          return null;
-        });
+        login: (userName, password) => {'userName': userName, 'password': password},
+        refreshToken: (String? refreshToken) => {'refreshToken': refreshToken},
+        updateInfo: (user) => user?.toJson(),
+        orElse: () => null);
   }
 
   @override
   Map<String, dynamic>? get body {
-    return maybeWhen(
-      orElse: () {
-        return null;
-      },
-    );
+    return maybeWhen(orElse: () => null);
   }
 }
