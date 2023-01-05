@@ -1,3 +1,7 @@
+// Copyright (c) 2023, one of the D3F outsourcing projects. All rights reserved.
+
+// coverage:ignore-file
+
 import 'package:annotations/annotations.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:getx_sample/data/local/storage_keys.dart';

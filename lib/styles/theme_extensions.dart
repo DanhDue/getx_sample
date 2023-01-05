@@ -1,3 +1,7 @@
+// Copyright (c) 2023, one of the D3F outsourcing projects. All rights reserved.
+
+// coverage:ignore-file
+
 import 'package:flutter/material.dart';
 import 'package:getx_sample/generated/colors.gen.dart';
 import 'package:getx_sample/generated/fonts.gen.dart';

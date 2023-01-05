@@ -1,3 +1,7 @@
+// Copyright (c) 2023, one of the D3F outsourcing projects. All rights reserved.
+
+// coverage:ignore-file
+
 import 'package:equatable/equatable.dart';
 import 'package:fimber/fimber.dart';
 import 'package:getx_sample/data/bean/user_object/user_object.dart';

@@ -1,3 +1,7 @@
+// Copyright (c) 2023, one of the D3F outsourcing projects. All rights reserved.
+
+// coverage:ignore-file
+
 // ignore_for_file: library_private_types_in_public_api
 
 import 'dart:ui';

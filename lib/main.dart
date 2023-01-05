@@ -1,3 +1,7 @@
+// Copyright (c) 2023, one of the D3F outsourcing projects. All rights reserved.
+
+// coverage:ignore-file
+
 import 'package:cryptography_flutter/cryptography_flutter.dart';
 import 'package:fimber/fimber.dart';
 import 'package:flutter/material.dart';

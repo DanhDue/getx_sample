@@ -1,0 +1,1 @@
+Copyright (c) {{.Year}}, one of the D3F outsourcing projects. All rights reserved.

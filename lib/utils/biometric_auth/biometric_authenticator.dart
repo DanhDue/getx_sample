@@ -1,3 +1,7 @@
+// Copyright (c) 2023, one of the D3F outsourcing projects. All rights reserved.
+
+// coverage:ignore-file
+
 import 'package:local_auth/local_auth.dart';
 
 abstract class BiometricAuthenticator {

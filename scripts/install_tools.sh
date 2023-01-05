@@ -13,3 +13,6 @@ dart pub global activate flutter_gen
 
 # install get_cli
 dart pub global activate get_cli
+
+# install lcov to convert the lcov.info file to HTML pages.
+brew install lcov

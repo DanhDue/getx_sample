@@ -1,3 +1,5 @@
+// Copyright (c) 2023, one of the D3F outsourcing projects. All rights reserved.
+
 import 'package:getx_sample/data/bean/user_object/user_object.dart';
 import 'package:getx_sample/data/remote/interfaces/base_response_object.dart';
 import 'package:getx_sample/data/remote/wrappers/network_error.dart';

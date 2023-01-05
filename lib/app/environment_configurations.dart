@@ -1,3 +1,7 @@
+// Copyright (c) 2023, one of the D3F outsourcing projects. All rights reserved.
+
+// coverage:ignore-file
+
 class EnvironmentConfig {
   static const APP_NAME =
       String.fromEnvironment('DART_DEFINES_APP_NAME', defaultValue: "GetX Sample");

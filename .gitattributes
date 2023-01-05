@@ -6,3 +6,4 @@ lib/generated/assets.gen.dart merge=union
 lib/generated/colors.gen.dart merge=union
 lib/generated/fonts.gen.dart merge=union
 lib/generated/locales.g.dart merge=union
+lib/data/remote/interfaces/base_response_object.dart merge=union
