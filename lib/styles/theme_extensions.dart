@@ -71,6 +71,16 @@ class $_ThemeExtensions {
 
   static List<TextStyle> heading2 = [h2TextStyle, h2TextStyle];
 
+  static const h3TextStyle = TextStyle(
+      fontSize: 18,
+      fontFamily: LMSFontFamily.sfCompactSemiBold,
+      fontWeight: FontWeight.w700,
+      height: 1.3,
+      letterSpacing: 1.2,
+      decoration: TextDecoration.none);
+
+  static List<TextStyle> heading3 = [h3TextStyle, h3TextStyle];
+
   static const paragraphTextStyle = TextStyle(
       fontSize: 16,
       fontFamily: LMSFontFamily.sfCompactRegular,

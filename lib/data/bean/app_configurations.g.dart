@@ -61,8 +61,7 @@ _$_AppConfigurations _$$_AppConfigurationsFromJson(Map<String, dynamic> json) =>
       baseUrl: json['baseUrl'] as String?,
     );
 
-Map<String, dynamic> _$$_AppConfigurationsToJson(
-        _$_AppConfigurations instance) =>
+Map<String, dynamic> _$$_AppConfigurationsToJson(_$_AppConfigurations instance) =>
     <String, dynamic>{
       'latestSyncedTime': instance.latestSyncedTime,
       'accessToken': instance.accessToken,

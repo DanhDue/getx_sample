@@ -31,8 +31,7 @@ mixin _$AppConfigurations {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AppConfigurationsCopyWith<AppConfigurations> get copyWith =>
-      throw _privateConstructorUsedError;
+  $AppConfigurationsCopyWith<AppConfigurations> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -88,10 +87,9 @@ class _$AppConfigurationsCopyWithImpl<$Res, $Val extends AppConfigurations>
 }
 
 /// @nodoc
-abstract class _$$_AppConfigurationsCopyWith<$Res>
-    implements $AppConfigurationsCopyWith<$Res> {
-  factory _$$_AppConfigurationsCopyWith(_$_AppConfigurations value,
-          $Res Function(_$_AppConfigurations) then) =
+abstract class _$$_AppConfigurationsCopyWith<$Res> implements $AppConfigurationsCopyWith<$Res> {
+  factory _$$_AppConfigurationsCopyWith(
+          _$_AppConfigurations value, $Res Function(_$_AppConfigurations) then) =
       __$$_AppConfigurationsCopyWithImpl<$Res>;
   @override
   @useResult
@@ -176,24 +174,21 @@ class _$_AppConfigurations implements _AppConfigurations {
             other is _$_AppConfigurations &&
             (identical(other.latestSyncedTime, latestSyncedTime) ||
                 other.latestSyncedTime == latestSyncedTime) &&
-            (identical(other.accessToken, accessToken) ||
-                other.accessToken == accessToken) &&
-            (identical(other.refreshToken, refreshToken) ||
-                other.refreshToken == refreshToken) &&
+            (identical(other.accessToken, accessToken) || other.accessToken == accessToken) &&
+            (identical(other.refreshToken, refreshToken) || other.refreshToken == refreshToken) &&
             (identical(other.baseUrl, baseUrl) || other.baseUrl == baseUrl));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, latestSyncedTime, accessToken, refreshToken, baseUrl);
+  int get hashCode =>
+      Object.hash(runtimeType, latestSyncedTime, accessToken, refreshToken, baseUrl);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$_AppConfigurationsCopyWith<_$_AppConfigurations> get copyWith =>
-      __$$_AppConfigurationsCopyWithImpl<_$_AppConfigurations>(
-          this, _$identity);
+      __$$_AppConfigurationsCopyWithImpl<_$_AppConfigurations>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -210,8 +205,7 @@ abstract class _AppConfigurations implements AppConfigurations {
       @HiveField(5) final String? refreshToken,
       @HiveField(6) final String? baseUrl}) = _$_AppConfigurations;
 
-  factory _AppConfigurations.fromJson(Map<String, dynamic> json) =
-      _$_AppConfigurations.fromJson;
+  factory _AppConfigurations.fromJson(Map<String, dynamic> json) = _$_AppConfigurations.fromJson;
 
   @override
   @HiveField(0)

@@ -39,6 +39,7 @@ class ThemeExtensions extends ThemeExtension<ThemeExtensions> {
     required this.headline,
     required this.heading1,
     required this.heading2,
+    required this.heading3,
     required this.paragraph,
     required this.subTex,
     required this.subTexMedium,
@@ -75,6 +76,7 @@ class ThemeExtensions extends ThemeExtension<ThemeExtensions> {
   final TextStyle headline;
   final TextStyle heading1;
   final TextStyle heading2;
+  final TextStyle heading3;
   final TextStyle paragraph;
   final TextStyle subTex;
   final TextStyle subTexMedium;
@@ -111,6 +113,7 @@ class ThemeExtensions extends ThemeExtension<ThemeExtensions> {
     headline: $_ThemeExtensions.headline[0],
     heading1: $_ThemeExtensions.heading1[0],
     heading2: $_ThemeExtensions.heading2[0],
+    heading3: $_ThemeExtensions.heading3[0],
     paragraph: $_ThemeExtensions.paragraph[0],
     subTex: $_ThemeExtensions.subTex[0],
     subTexMedium: $_ThemeExtensions.subTexMedium[0],
@@ -148,6 +151,7 @@ class ThemeExtensions extends ThemeExtension<ThemeExtensions> {
     headline: $_ThemeExtensions.headline[1],
     heading1: $_ThemeExtensions.heading1[1],
     heading2: $_ThemeExtensions.heading2[1],
+    heading3: $_ThemeExtensions.heading3[1],
     paragraph: $_ThemeExtensions.paragraph[1],
     subTex: $_ThemeExtensions.subTex[1],
     subTexMedium: $_ThemeExtensions.subTexMedium[1],
@@ -191,6 +195,7 @@ class ThemeExtensions extends ThemeExtension<ThemeExtensions> {
     TextStyle? headline,
     TextStyle? heading1,
     TextStyle? heading2,
+    TextStyle? heading3,
     TextStyle? paragraph,
     TextStyle? subTex,
     TextStyle? subTexMedium,
@@ -227,6 +232,7 @@ class ThemeExtensions extends ThemeExtension<ThemeExtensions> {
       headline: headline ?? this.headline,
       heading1: heading1 ?? this.heading1,
       heading2: heading2 ?? this.heading2,
+      heading3: heading3 ?? this.heading3,
       paragraph: paragraph ?? this.paragraph,
       subTex: subTex ?? this.subTex,
       subTexMedium: subTexMedium ?? this.subTexMedium,
@@ -268,12 +274,12 @@ class ThemeExtensions extends ThemeExtension<ThemeExtensions> {
       headline: TextStyle.lerp(headline, other.headline, t)!,
       heading1: TextStyle.lerp(heading1, other.heading1, t)!,
       heading2: TextStyle.lerp(heading2, other.heading2, t)!,
+      heading3: TextStyle.lerp(heading3, other.heading3, t)!,
       paragraph: TextStyle.lerp(paragraph, other.paragraph, t)!,
       subTex: TextStyle.lerp(subTex, other.subTex, t)!,
       subTexMedium: TextStyle.lerp(subTexMedium, other.subTexMedium, t)!,
       smallTex: TextStyle.lerp(smallTex, other.smallTex, t)!,
-      paragraphSemiBold:
-          TextStyle.lerp(paragraphSemiBold, other.paragraphSemiBold, t)!,
+      paragraphSemiBold: TextStyle.lerp(paragraphSemiBold, other.paragraphSemiBold, t)!,
     );
   }
 
@@ -282,53 +288,41 @@ class ThemeExtensions extends ThemeExtension<ThemeExtensions> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is ThemeExtensions &&
-            const DeepCollectionEquality()
-                .equals(background, other.background) &&
+            const DeepCollectionEquality().equals(background, other.background) &&
             const DeepCollectionEquality().equals(mainGreen, other.mainGreen) &&
             const DeepCollectionEquality().equals(red, other.red) &&
             const DeepCollectionEquality().equals(textColor, other.textColor) &&
-            const DeepCollectionEquality()
-                .equals(textLightGrey, other.textLightGrey) &&
+            const DeepCollectionEquality().equals(textLightGrey, other.textLightGrey) &&
             const DeepCollectionEquality().equals(textGrey, other.textGrey) &&
             const DeepCollectionEquality().equals(semiGrey, other.semiGrey) &&
             const DeepCollectionEquality().equals(bgGrey, other.bgGrey) &&
             const DeepCollectionEquality().equals(subYellow, other.subYellow) &&
-            const DeepCollectionEquality()
-                .equals(lightSilver, other.lightSilver) &&
+            const DeepCollectionEquality().equals(lightSilver, other.lightSilver) &&
             const DeepCollectionEquality().equals(honeydew, other.honeydew) &&
             const DeepCollectionEquality().equals(darkGreen, other.darkGreen) &&
-            const DeepCollectionEquality()
-                .equals(secondGreen, other.secondGreen) &&
+            const DeepCollectionEquality().equals(secondGreen, other.secondGreen) &&
             const DeepCollectionEquality().equals(cyan, other.cyan) &&
-            const DeepCollectionEquality()
-                .equals(smokyBlack, other.smokyBlack) &&
+            const DeepCollectionEquality().equals(smokyBlack, other.smokyBlack) &&
             const DeepCollectionEquality().equals(palmLeaf, other.palmLeaf) &&
             const DeepCollectionEquality().equals(black, other.black) &&
             const DeepCollectionEquality().equals(white, other.white) &&
-            const DeepCollectionEquality()
-                .equals(dartmouthGreen, other.dartmouthGreen) &&
+            const DeepCollectionEquality().equals(dartmouthGreen, other.dartmouthGreen) &&
             const DeepCollectionEquality().equals(apple, other.apple) &&
             const DeepCollectionEquality().equals(cultured, other.cultured) &&
-            const DeepCollectionEquality()
-                .equals(transparent, other.transparent) &&
-            const DeepCollectionEquality()
-                .equals(smokyWhite, other.smokyWhite) &&
-            const DeepCollectionEquality()
-                .equals(chineseSilver, other.chineseSilver) &&
-            const DeepCollectionEquality()
-                .equals(antiFlashWhite, other.antiFlashWhite) &&
-            const DeepCollectionEquality()
-                .equals(chineseBlack, other.chineseBlack) &&
+            const DeepCollectionEquality().equals(transparent, other.transparent) &&
+            const DeepCollectionEquality().equals(smokyWhite, other.smokyWhite) &&
+            const DeepCollectionEquality().equals(chineseSilver, other.chineseSilver) &&
+            const DeepCollectionEquality().equals(antiFlashWhite, other.antiFlashWhite) &&
+            const DeepCollectionEquality().equals(chineseBlack, other.chineseBlack) &&
             const DeepCollectionEquality().equals(headline, other.headline) &&
             const DeepCollectionEquality().equals(heading1, other.heading1) &&
             const DeepCollectionEquality().equals(heading2, other.heading2) &&
+            const DeepCollectionEquality().equals(heading3, other.heading3) &&
             const DeepCollectionEquality().equals(paragraph, other.paragraph) &&
             const DeepCollectionEquality().equals(subTex, other.subTex) &&
-            const DeepCollectionEquality()
-                .equals(subTexMedium, other.subTexMedium) &&
+            const DeepCollectionEquality().equals(subTexMedium, other.subTexMedium) &&
             const DeepCollectionEquality().equals(smallTex, other.smallTex) &&
-            const DeepCollectionEquality()
-                .equals(paragraphSemiBold, other.paragraphSemiBold));
+            const DeepCollectionEquality().equals(paragraphSemiBold, other.paragraphSemiBold));
   }
 
   @override
@@ -364,6 +358,7 @@ class ThemeExtensions extends ThemeExtension<ThemeExtensions> {
       const DeepCollectionEquality().hash(headline),
       const DeepCollectionEquality().hash(heading1),
       const DeepCollectionEquality().hash(heading2),
+      const DeepCollectionEquality().hash(heading3),
       const DeepCollectionEquality().hash(paragraph),
       const DeepCollectionEquality().hash(subTex),
       const DeepCollectionEquality().hash(subTexMedium),
@@ -374,6 +369,5 @@ class ThemeExtensions extends ThemeExtension<ThemeExtensions> {
 }
 
 extension ThemeExtensionsBuildContext on BuildContext {
-  ThemeExtensions get themeExtensions =>
-      Theme.of(this).extension<ThemeExtensions>()!;
+  ThemeExtensions get themeExtensions => Theme.of(this).extension<ThemeExtensions>()!;
 }

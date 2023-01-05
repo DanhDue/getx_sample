@@ -15,6 +15,7 @@ abstract class Routes {
   static const CHECKIN = _Paths.CHECKIN;
   static const SETTINGS = _Paths.SETTINGS;
   static const PERSONAL = _Paths.PERSONAL;
+  static const INFINITE_LIST_SAMPLE = _Paths.INFINITE_LIST_SAMPLE;
 }
 
 abstract class _Paths {
@@ -27,4 +28,5 @@ abstract class _Paths {
   static const CHECKIN = '/checkin';
   static const SETTINGS = '/settings';
   static const PERSONAL = '/personal';
+  static const INFINITE_LIST_SAMPLE = '/infinite-list-sample';
 }

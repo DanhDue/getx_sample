@@ -5,11 +5,14 @@
 import 'package:intl/intl.dart';
 
 class DateTimeUtils {
+  static const yMd = 'dd/MM/yyyy';
+
   static String formatDateTime(DateTime dateTime, DateFormat dateFormat) {
     return dateFormat.format(dateTime);
   }
 
-  static DateTime? convertFromDateString({required String dateString, required DateFormat dateFormat}) {
+  static DateTime? convertFromDateString(
+      {required String dateString, required DateFormat dateFormat}) {
     DateTime? date;
     try {
       date = dateFormat.parse(dateString);

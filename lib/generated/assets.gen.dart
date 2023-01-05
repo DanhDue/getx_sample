@@ -96,6 +96,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/ic_finger_scan.svg
   SvgGenImage get icFingerScan => const SvgGenImage('assets/images/ic_finger_scan.svg');
 
+  /// File path: assets/images/ic_has_no_data.png
+  AssetGenImage get icHasNoData => const AssetGenImage('assets/images/ic_has_no_data.png');
+
   /// File path: assets/images/ic_home.svg
   SvgGenImage get icHome => const SvgGenImage('assets/images/ic_home.svg');
 
@@ -207,6 +210,7 @@ class $AssetsImagesGen {
         icEmptyWalletChange,
         icFilterSearch,
         icFingerScan,
+        icHasNoData,
         icHome,
         icInfoCircle,
         icKeySquare,

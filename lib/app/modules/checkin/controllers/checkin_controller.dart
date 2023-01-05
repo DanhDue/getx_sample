@@ -1,25 +1,13 @@
 // Copyright (c) 2023, one of the D3F outsourcing projects. All rights reserved.
 
+import 'package:fimber/fimber.dart';
 import 'package:get/get.dart';
+import 'package:getx_sample/app/modules/base/base.dart';
+import 'package:getx_sample/app/routes/app_pages.dart';
 
-class CheckinController extends GetxController {
-  //TODO: Implement CheckinController
-
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+class CheckinController extends BaseController {
+  navigateToTheInfiniteListSample() {
+    Fimber.d('navigateToTheInfiniteListSample()');
+    Get.toNamed(Routes.INFINITE_LIST_SAMPLE);
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

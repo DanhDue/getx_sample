@@ -1,11 +1,9 @@
 name: getx_sample
-description: A new Flutter project.
 version: 1.0.0+1
 publish_to: none
+description: A new Flutter project.
 environment: 
   sdk: '>=2.17.5 <3.0.0'
-dartfmt:
-  line_length: 99
 
 dependencies: 
   cupertino_icons: ^1.0.2
@@ -38,25 +36,26 @@ dependencies:
   cached_network_image: ^3.2.2
   carousel_slider: ^4.1.1
   get: 4.6.5
-  flutter: 
-    sdk: flutter
-  animated_bottom_navigation_bar:
-    git:
-      url: https://github.com/DanhDue/animated-bottom-navigation-bar-flutter.git
-      ref: disable-active-scale-animation
-  sliding_up_panel2:
-    git:
-      url: https://github.com/D3FOutsourcing/sliding_up_panel.git
-      ref: scrolling-in-the-minimized-state
   dotted_line: ^3.1.0
   local_auth: ^2.1.2
   cryptography_flutter: ^2.0.2
   video_player: ^2.4.7
   qr_flutter: ^4.0.0
   qr_code_scanner: ^1.0.1
-  annotations:
-    path: lib/utils/annotations/
   flutter_easyloading: ^3.0.5
+  dart_extensions: 2.2.0
+  flutter: 
+    sdk: flutter
+  animated_bottom_navigation_bar: 
+    git: 
+      url: https://github.com/DanhDue/animated-bottom-navigation-bar-flutter.git
+      ref: disable-active-scale-animation
+  sliding_up_panel2: 
+    git: 
+      url: https://github.com/D3FOutsourcing/sliding_up_panel.git
+      ref: scrolling-in-the-minimized-state
+  annotations: 
+    path: lib/utils/annotations/
 
 dev_dependencies: 
   flutter_lints: ^2.0.0
@@ -68,16 +67,20 @@ dev_dependencies:
   get_cli: ^0.2.30
   flutter_gen_runner: ^5.0.1
   theme_tailor: ^1.0.6
-  flutter_test: 
-    sdk: flutter
+  mockito: ^5.3.2
+  hive_test: ^1.0.1
   retrofit_generator: ^4.2.0
   flutter_native_splash: ^2.2.16
-  generators:
+  flutter_test: 
+    sdk: flutter
+  generators: 
     path: lib/utils/generators/
+
+dartfmt: 
+  line_length: 99
 
 flutter_gen: 
   output: lib/generated/
-  line_length: 99
   integrations: 
     flutter_svg: true
     flare_flutter: false
@@ -90,35 +93,37 @@ flutter_gen:
       style: dot-delimiter
       package_parameter_enabled: false
     enabled: true
-  colors:
-    enable: true
-    outputs:
+  colors: 
+    outputs: 
       class_name: LMSColors
       style: dot-delimiter
       package_parameter_enabled: false
-    inputs:
+    inputs: 
       - assets/colors/colors.xml
-  fonts:
-    enabled: true
-    outputs:
+    enable: true
+  fonts: 
+    outputs: 
       class_name: LMSFontFamily
+    enabled: true
+  line_length: 99
 
 flutter: 
   assets: 
     - assets/images/
     - assets/lotties/
     - assets/jsons/
-  uses-material-design: true
-  fonts:
+  fonts: 
     - family: SfCompactRegular
-      fonts:
+      fonts: 
         - asset: assets/fonts/SF_Compact_Display_Regular.ttf
     - family: SfCompactMedium
-      fonts:
+      fonts: 
         - asset: assets/fonts/SF_Compact_Display_Medium.ttf
     - family: SfCompactSemiBold
-      fonts:
+      fonts: 
         - asset: assets/fonts/SF_Compact_Display_Semibold.ttf
     - family: SfCompactBold
-      fonts:
+      fonts: 
         - asset: assets/fonts/SF_Compact_Display_Bold.ttf
+  uses-material-design: true
+

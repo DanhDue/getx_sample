@@ -11,6 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 import 'package:getx_sample/app/modules/base/keep_alive_widget.dart';
+import 'package:getx_sample/app/modules/checkin/bindings/checkin_binding.dart';
 import 'package:getx_sample/app/modules/checkin/views/checkin_view.dart';
 import 'package:getx_sample/app/modules/dashboard/controllers/dashboard_controller.dart';
 import 'package:getx_sample/app/modules/dashboard/models/bot_nav_items.dart';
@@ -57,9 +58,9 @@ class _DashboardViewState extends State<DashboardView> {
             },
             children: <Widget>[
               KeepAliveWidget(child: HomeView(bindingCreator: () => HomeBinding())),
-              KeepAliveWidget(child: NotificationView()),
-              KeepAliveWidget(child: CheckinView()),
-              KeepAliveWidget(child: SettingsView()),
+              const KeepAliveWidget(child: NotificationView()),
+              KeepAliveWidget(child: CheckinView(bindingCreator: () => CheckinBinding())),
+              const KeepAliveWidget(child: SettingsView()),
               KeepAliveWidget(child: PersonalView(bindingCreator: () => PersonalBinding())),
             ],
           ),
@@ -154,14 +155,11 @@ class _DashboardViewState extends State<DashboardView> {
                   ],
                 ),
                 const SizedBox(height: 4),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: AutoSizeText(
-                    botNavItem.title ?? "",
-                    maxLines: 1,
-                    style: TextStyle(color: color),
-                    group: autoSizeGroup,
-                  ),
+                AutoSizeText(
+                  botNavItem.title ?? "",
+                  maxLines: 1,
+                  style: TextStyle(color: color),
+                  group: autoSizeGroup,
                 )
               ],
             );

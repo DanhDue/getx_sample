@@ -10,6 +10,8 @@ import '../modules/dashboard/bindings/dashboard_binding.dart';
 import '../modules/dashboard/views/dashboard_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/infiniteListSample/bindings/infinite_list_sample_binding.dart';
+import '../modules/infiniteListSample/views/infinite_list_sample_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/notification/bindings/notification_binding.dart';
@@ -20,6 +22,8 @@ import '../modules/settings/bindings/settings_binding.dart';
 import '../modules/settings/views/settings_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
+
+// coverage:ignore-file
 
 part 'app_routes.dart';
 
@@ -55,8 +59,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.CHECKIN,
-      page: () => const CheckinView(),
-      binding: CheckinBinding(),
+      page: () => CheckinView(bindingCreator: () => CheckinBinding()),
     ),
     GetPage(
       name: _Paths.SETTINGS,
@@ -66,6 +69,11 @@ class AppPages {
     GetPage(
       name: _Paths.PERSONAL,
       page: () => PersonalView(bindingCreator: () => PersonalBinding()),
+    ),
+    GetPage(
+      name: _Paths.INFINITE_LIST_SAMPLE,
+      page: () => InfiniteListSampleView(),
+      binding: InfiniteListSampleBinding(),
     ),
   ];
 }

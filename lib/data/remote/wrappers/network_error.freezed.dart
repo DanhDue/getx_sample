@@ -64,8 +64,7 @@ mixin _$NetworkError {
 
 /// @nodoc
 abstract class $NetworkErrorCopyWith<$Res> {
-  factory $NetworkErrorCopyWith(
-          NetworkError value, $Res Function(NetworkError) then) =
+  factory $NetworkErrorCopyWith(NetworkError value, $Res Function(NetworkError) then) =
       _$NetworkErrorCopyWithImpl<$Res, NetworkError>;
 }
 
@@ -82,8 +81,7 @@ class _$NetworkErrorCopyWithImpl<$Res, $Val extends NetworkError>
 
 /// @nodoc
 abstract class _$$_ResponseErrorCopyWith<$Res> {
-  factory _$$_ResponseErrorCopyWith(
-          _$_ResponseError value, $Res Function(_$_ResponseError) then) =
+  factory _$$_ResponseErrorCopyWith(_$_ResponseError value, $Res Function(_$_ResponseError) then) =
       __$$_ResponseErrorCopyWithImpl<$Res>;
   @useResult
   $Res call({DioError error});
@@ -93,8 +91,7 @@ abstract class _$$_ResponseErrorCopyWith<$Res> {
 class __$$_ResponseErrorCopyWithImpl<$Res>
     extends _$NetworkErrorCopyWithImpl<$Res, _$_ResponseError>
     implements _$$_ResponseErrorCopyWith<$Res> {
-  __$$_ResponseErrorCopyWithImpl(
-      _$_ResponseError _value, $Res Function(_$_ResponseError) _then)
+  __$$_ResponseErrorCopyWithImpl(_$_ResponseError _value, $Res Function(_$_ResponseError) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -211,20 +208,17 @@ class _$_ResponseError extends _ResponseError {
 }
 
 abstract class _ResponseError extends NetworkError {
-  const factory _ResponseError({required final DioError error}) =
-      _$_ResponseError;
+  const factory _ResponseError({required final DioError error}) = _$_ResponseError;
   const _ResponseError._() : super._();
 
   DioError get error;
   @JsonKey(ignore: true)
-  _$$_ResponseErrorCopyWith<_$_ResponseError> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_ResponseErrorCopyWith<_$_ResponseError> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$_DecodingErrorCopyWith<$Res> {
-  factory _$$_DecodingErrorCopyWith(
-          _$_DecodingError value, $Res Function(_$_DecodingError) then) =
+  factory _$$_DecodingErrorCopyWith(_$_DecodingError value, $Res Function(_$_DecodingError) then) =
       __$$_DecodingErrorCopyWithImpl<$Res>;
   @useResult
   $Res call({String? error});
@@ -234,8 +228,7 @@ abstract class _$$_DecodingErrorCopyWith<$Res> {
 class __$$_DecodingErrorCopyWithImpl<$Res>
     extends _$NetworkErrorCopyWithImpl<$Res, _$_DecodingError>
     implements _$$_DecodingErrorCopyWith<$Res> {
-  __$$_DecodingErrorCopyWithImpl(
-      _$_DecodingError _value, $Res Function(_$_DecodingError) _then)
+  __$$_DecodingErrorCopyWithImpl(_$_DecodingError _value, $Res Function(_$_DecodingError) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -357,25 +350,21 @@ abstract class _DecodingError extends NetworkError {
 
   String? get error;
   @JsonKey(ignore: true)
-  _$$_DecodingErrorCopyWith<_$_DecodingError> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_DecodingErrorCopyWith<_$_DecodingError> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$_ConnectivityCopyWith<$Res> {
-  factory _$$_ConnectivityCopyWith(
-          _$_Connectivity value, $Res Function(_$_Connectivity) then) =
+  factory _$$_ConnectivityCopyWith(_$_Connectivity value, $Res Function(_$_Connectivity) then) =
       __$$_ConnectivityCopyWithImpl<$Res>;
   @useResult
   $Res call({String? message});
 }
 
 /// @nodoc
-class __$$_ConnectivityCopyWithImpl<$Res>
-    extends _$NetworkErrorCopyWithImpl<$Res, _$_Connectivity>
+class __$$_ConnectivityCopyWithImpl<$Res> extends _$NetworkErrorCopyWithImpl<$Res, _$_Connectivity>
     implements _$$_ConnectivityCopyWith<$Res> {
-  __$$_ConnectivityCopyWithImpl(
-      _$_Connectivity _value, $Res Function(_$_Connectivity) _then)
+  __$$_ConnectivityCopyWithImpl(_$_Connectivity _value, $Res Function(_$_Connectivity) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -497,6 +486,5 @@ abstract class _Connectivity extends NetworkError {
 
   String? get message;
   @JsonKey(ignore: true)
-  _$$_ConnectivityCopyWith<_$_Connectivity> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_ConnectivityCopyWith<_$_Connectivity> get copyWith => throw _privateConstructorUsedError;
 }

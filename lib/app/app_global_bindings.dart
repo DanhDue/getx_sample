@@ -4,6 +4,8 @@
 
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
+import 'package:getx_sample/app/modules/infiniteListSample/data/repository/impl/photo_repository_impl.dart';
+import 'package:getx_sample/app/modules/infiniteListSample/data/repository/photo_repository.dart';
 import 'package:getx_sample/data/bean/app_configurations.dart';
 import 'package:getx_sample/data/bean/user_object/user_object.dart';
 import 'package:getx_sample/data/repositories/app_configs_repository.dart';
@@ -25,5 +27,6 @@ class AppGlobalBindings extends Bindings {
     Get.lazyPut<UserRepository>(() => UserRepositoryImpl(), fenix: true);
     Get.lazyPut<LocalAuthentication>(() => LocalAuthentication(), fenix: true);
     Get.lazyPut<BiometricAuthenticator>(() => BiometricAuthenticatorImpl(), fenix: true);
+    Get.lazyPut<PhotoRepository>(() => PhotoRepositoryImpl(), fenix: true);
   }
 }

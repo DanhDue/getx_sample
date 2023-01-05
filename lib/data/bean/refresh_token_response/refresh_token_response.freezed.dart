@@ -37,8 +37,8 @@ mixin _$RefreshTokenResponse {
 
 /// @nodoc
 abstract class $RefreshTokenResponseCopyWith<$Res> {
-  factory $RefreshTokenResponseCopyWith(RefreshTokenResponse value,
-          $Res Function(RefreshTokenResponse) then) =
+  factory $RefreshTokenResponseCopyWith(
+          RefreshTokenResponse value, $Res Function(RefreshTokenResponse) then) =
       _$RefreshTokenResponseCopyWithImpl<$Res, RefreshTokenResponse>;
   @useResult
   $Res call(
@@ -49,8 +49,7 @@ abstract class $RefreshTokenResponseCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$RefreshTokenResponseCopyWithImpl<$Res,
-        $Val extends RefreshTokenResponse>
+class _$RefreshTokenResponseCopyWithImpl<$Res, $Val extends RefreshTokenResponse>
     implements $RefreshTokenResponseCopyWith<$Res> {
   _$RefreshTokenResponseCopyWithImpl(this._value, this._then);
 
@@ -91,8 +90,8 @@ class _$RefreshTokenResponseCopyWithImpl<$Res,
 /// @nodoc
 abstract class _$$_RefreshTokenResponseCopyWith<$Res>
     implements $RefreshTokenResponseCopyWith<$Res> {
-  factory _$$_RefreshTokenResponseCopyWith(_$_RefreshTokenResponse value,
-          $Res Function(_$_RefreshTokenResponse) then) =
+  factory _$$_RefreshTokenResponseCopyWith(
+          _$_RefreshTokenResponse value, $Res Function(_$_RefreshTokenResponse) then) =
       __$$_RefreshTokenResponseCopyWithImpl<$Res>;
   @override
   @useResult
@@ -107,8 +106,8 @@ abstract class _$$_RefreshTokenResponseCopyWith<$Res>
 class __$$_RefreshTokenResponseCopyWithImpl<$Res>
     extends _$RefreshTokenResponseCopyWithImpl<$Res, _$_RefreshTokenResponse>
     implements _$$_RefreshTokenResponseCopyWith<$Res> {
-  __$$_RefreshTokenResponseCopyWithImpl(_$_RefreshTokenResponse _value,
-      $Res Function(_$_RefreshTokenResponse) _then)
+  __$$_RefreshTokenResponseCopyWithImpl(
+      _$_RefreshTokenResponse _value, $Res Function(_$_RefreshTokenResponse) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -175,27 +174,21 @@ class _$_RefreshTokenResponse implements _RefreshTokenResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_RefreshTokenResponse &&
-            (identical(other.accessToken, accessToken) ||
-                other.accessToken == accessToken) &&
-            (identical(other.refreshToken, refreshToken) ||
-                other.refreshToken == refreshToken) &&
-            (identical(other.tokenType, tokenType) ||
-                other.tokenType == tokenType) &&
-            (identical(other.expiresIn, expiresIn) ||
-                other.expiresIn == expiresIn));
+            (identical(other.accessToken, accessToken) || other.accessToken == accessToken) &&
+            (identical(other.refreshToken, refreshToken) || other.refreshToken == refreshToken) &&
+            (identical(other.tokenType, tokenType) || other.tokenType == tokenType) &&
+            (identical(other.expiresIn, expiresIn) || other.expiresIn == expiresIn));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, accessToken, refreshToken, tokenType, expiresIn);
+  int get hashCode => Object.hash(runtimeType, accessToken, refreshToken, tokenType, expiresIn);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$_RefreshTokenResponseCopyWith<_$_RefreshTokenResponse> get copyWith =>
-      __$$_RefreshTokenResponseCopyWithImpl<_$_RefreshTokenResponse>(
-          this, _$identity);
+      __$$_RefreshTokenResponseCopyWithImpl<_$_RefreshTokenResponse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -207,11 +200,10 @@ class _$_RefreshTokenResponse implements _RefreshTokenResponse {
 
 abstract class _RefreshTokenResponse implements RefreshTokenResponse {
   factory _RefreshTokenResponse(
-          {@JsonKey(name: 'access_token') final String? accessToken,
-          @JsonKey(name: 'refresh_token') final String? refreshToken,
-          @JsonKey(name: 'token_type') final String? tokenType,
-          @JsonKey(name: 'expires_in') final String? expiresIn}) =
-      _$_RefreshTokenResponse;
+      {@JsonKey(name: 'access_token') final String? accessToken,
+      @JsonKey(name: 'refresh_token') final String? refreshToken,
+      @JsonKey(name: 'token_type') final String? tokenType,
+      @JsonKey(name: 'expires_in') final String? expiresIn}) = _$_RefreshTokenResponse;
 
   factory _RefreshTokenResponse.fromJson(Map<String, dynamic> json) =
       _$_RefreshTokenResponse.fromJson;

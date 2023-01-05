@@ -9,18 +9,15 @@ part of 'user_object.dart';
 UserObject? jsonToNullableUserObject(Object? json) =>
     UserObject.fromJson(json as Map<String, dynamic>);
 
-UserObject jsonToUserObject(Object? json) =>
-    UserObject.fromJson(json as Map<String, dynamic>);
+UserObject jsonToUserObject(Object? json) => UserObject.fromJson(json as Map<String, dynamic>);
 
-List<UserObject?> jsonToListNullableUserObjects(Object? json) =>
-    List<Object>.from(json as List)
-        .map((e) => UserObject.fromJson(e as Map<String, dynamic>))
-        .toList();
+List<UserObject?> jsonToListNullableUserObjects(Object? json) => List<Object>.from(json as List)
+    .map((e) => UserObject.fromJson(e as Map<String, dynamic>))
+    .toList();
 
-List<UserObject> jsonToListUserObjects(Object? json) =>
-    List<Object>.from(json as List)
-        .map((e) => UserObject.fromJson(e as Map<String, dynamic>))
-        .toList();
+List<UserObject> jsonToListUserObjects(Object? json) => List<Object>.from(json as List)
+    .map((e) => UserObject.fromJson(e as Map<String, dynamic>))
+    .toList();
 
 // **************************************************************************
 // TypeAdapterGenerator
@@ -94,17 +91,14 @@ class UserObjectAdapter extends TypeAdapter<UserObject> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is UserObjectAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
+      other is UserObjectAdapter && runtimeType == other.runtimeType && typeId == other.typeId;
 }
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_UserObject _$$_UserObjectFromJson(Map<String, dynamic> json) =>
-    _$_UserObject(
+_$_UserObject _$$_UserObjectFromJson(Map<String, dynamic> json) => _$_UserObject(
       iduser: json['iduser'] as String?,
       role: json['role'] as int?,
       username: json['username'] as String?,
@@ -121,8 +115,7 @@ _$_UserObject _$$_UserObjectFromJson(Map<String, dynamic> json) =>
       biometricAuth: json['biometricAuth'] as bool?,
     );
 
-Map<String, dynamic> _$$_UserObjectToJson(_$_UserObject instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$$_UserObjectToJson(_$_UserObject instance) => <String, dynamic>{
       'iduser': instance.iduser,
       'role': instance.role,
       'username': instance.username,

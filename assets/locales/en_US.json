@@ -10,6 +10,12 @@
   "forgotPassword": "Quên mật khẩu?",
   "login": "Đăng nhập",
   "welcomeMessage": "Welcome to D3F GetX Sample",
+  "close": "Đóng",
+  "titleDialog": "Thông báo",
+  "commonErrorMessage": "Đã có lỗi xảy ra. Vui lòng thử lại sau!",
+  "loadDataErrorMessage": "Error while loading data, tap to try again",
+  "noDataMessage": "There is no data to display.",
+  "oops": "Oops",
   
   "eof": "End of File. Please add a new text above this item to avoid conflicts. Thanks!"
 }

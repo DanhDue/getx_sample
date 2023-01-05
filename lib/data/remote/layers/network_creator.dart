@@ -29,7 +29,7 @@ class NetworkCreator {
   final _appConfigsRepo = Get.find<AppConfigsRepository>();
 
   /// MOCK HTTP RESPONSE for the testing.
-  DioAdapter? dioAdapter;
+  // DioAdapter? dioAdapter;
 
   Future<Response> request(
       {required BaseClientGenerator route,
@@ -48,44 +48,44 @@ class NetworkCreator {
     /// Add interceptor to refresh token: END !!!.
 
     /// Test for the token refreshing: START !!!
-    if (kDebugMode) {
-      dioAdapter = DioAdapter(dio: _client, matcher: const UrlRequestMatcher(matchMethod: true));
-      _client.httpClientAdapter = dioAdapter as HttpClientAdapter;
-      dioAdapter?.onPost('user', (server) {
-        server.reply(
-            HttpStatus.ok,
-            {
-              "code": "0000",
-              "message": "Thành Công",
-              "result": {
-                "iduser": "ab538aca6e9be73d18999e6e2c7c9377",
-                "role": 1,
-                "username": "DanhDue",
-                "fullname": "DanhDue ExOICTIF",
-                "birthday": "01/01/1991",
-                "phone": "0967648834",
-                "email": "danhdue@gmail.com",
-                "ccid": "145398631",
-                "access_token": "ab538aca6e9be73d18999e6e2c7c9377",
-                "expires_in": "01/01/2051",
-                "token_type": "bear_token",
-                "refresh_token": "ab538aca6e9be73d18999e6e2c7c9377",
-                "scope": "Galaxy",
-                "biometricAuth": true
-              }
-            },
-            delay: const Duration(seconds: 2));
-      });
+    // if (kDebugMode) {
+    //   dioAdapter = DioAdapter(dio: _client, matcher: const UrlRequestMatcher(matchMethod: true));
+    //   _client.httpClientAdapter = dioAdapter as HttpClientAdapter;
+    //   dioAdapter?.onPost('user', (server) {
+    //     server.reply(
+    //         HttpStatus.ok,
+    //         {
+    //           "code": "0000",
+    //           "message": "Thành Công",
+    //           "result": {
+    //             "iduser": "ab538aca6e9be73d18999e6e2c7c9377",
+    //             "role": 1,
+    //             "username": "DanhDue",
+    //             "fullname": "DanhDue ExOICTIF",
+    //             "birthday": "01/01/1991",
+    //             "phone": "0967648834",
+    //             "email": "danhdue@gmail.com",
+    //             "ccid": "145398631",
+    //             "access_token": "ab538aca6e9be73d18999e6e2c7c9377",
+    //             "expires_in": "01/01/2051",
+    //             "token_type": "bear_token",
+    //             "refresh_token": "ab538aca6e9be73d18999e6e2c7c9377",
+    //             "scope": "Galaxy",
+    //             "biometricAuth": true
+    //           }
+    //         },
+    //         delay: const Duration(seconds: 2));
+    //   });
 
-      dioAdapter?.onPost('/user/refreshToken', (server) {
-        server.reply(HttpStatus.ok, {
-          'access_token': 'AYjcyMzY3ZDhiNmJkNTY',
-          'refresh_token': 'RjY2NjM5NzA2OWJjuE7c',
-          'token_type': 'bearer',
-          'expires_in': '25/12/2022'
-        });
-      });
-    }
+    //   dioAdapter?.onPost('/user/refreshToken', (server) {
+    //     server.reply(HttpStatus.ok, {
+    //       'access_token': 'AYjcyMzY3ZDhiNmJkNTY',
+    //       'refresh_token': 'RjY2NjM5NzA2OWJjuE7c',
+    //       'token_type': 'bearer',
+    //       'expires_in': '25/12/2022'
+    //     });
+    //   });
+    // }
 
     /// Test for the token refreshing: END !!!
 

@@ -64,8 +64,7 @@ mixin _$UserClient {
 
 /// @nodoc
 abstract class $UserClientCopyWith<$Res> {
-  factory $UserClientCopyWith(
-          UserClient value, $Res Function(UserClient) then) =
+  factory $UserClientCopyWith(UserClient value, $Res Function(UserClient) then) =
       _$UserClientCopyWithImpl<$Res, UserClient>;
 }
 
@@ -82,16 +81,14 @@ class _$UserClientCopyWithImpl<$Res, $Val extends UserClient>
 
 /// @nodoc
 abstract class _$$_RefreshCopyWith<$Res> {
-  factory _$$_RefreshCopyWith(
-          _$_Refresh value, $Res Function(_$_Refresh) then) =
+  factory _$$_RefreshCopyWith(_$_Refresh value, $Res Function(_$_Refresh) then) =
       __$$_RefreshCopyWithImpl<$Res>;
   @useResult
   $Res call({String? refreshToken});
 }
 
 /// @nodoc
-class __$$_RefreshCopyWithImpl<$Res>
-    extends _$UserClientCopyWithImpl<$Res, _$_Refresh>
+class __$$_RefreshCopyWithImpl<$Res> extends _$UserClientCopyWithImpl<$Res, _$_Refresh>
     implements _$$_RefreshCopyWith<$Res> {
   __$$_RefreshCopyWithImpl(_$_Refresh _value, $Res Function(_$_Refresh) _then)
       : super(_value, _then);
@@ -128,8 +125,7 @@ class _$_Refresh extends _Refresh {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Refresh &&
-            (identical(other.refreshToken, refreshToken) ||
-                other.refreshToken == refreshToken));
+            (identical(other.refreshToken, refreshToken) || other.refreshToken == refreshToken));
   }
 
   @override
@@ -216,14 +212,12 @@ abstract class _Refresh extends UserClient {
 
   String? get refreshToken;
   @JsonKey(ignore: true)
-  _$$_RefreshCopyWith<_$_Refresh> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_RefreshCopyWith<_$_Refresh> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$_UpdateInfoCopyWith<$Res> {
-  factory _$$_UpdateInfoCopyWith(
-          _$_UpdateInfo value, $Res Function(_$_UpdateInfo) then) =
+  factory _$$_UpdateInfoCopyWith(_$_UpdateInfo value, $Res Function(_$_UpdateInfo) then) =
       __$$_UpdateInfoCopyWithImpl<$Res>;
   @useResult
   $Res call({UserObject? user});
@@ -232,11 +226,9 @@ abstract class _$$_UpdateInfoCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_UpdateInfoCopyWithImpl<$Res>
-    extends _$UserClientCopyWithImpl<$Res, _$_UpdateInfo>
+class __$$_UpdateInfoCopyWithImpl<$Res> extends _$UserClientCopyWithImpl<$Res, _$_UpdateInfo>
     implements _$$_UpdateInfoCopyWith<$Res> {
-  __$$_UpdateInfoCopyWithImpl(
-      _$_UpdateInfo _value, $Res Function(_$_UpdateInfo) _then)
+  __$$_UpdateInfoCopyWithImpl(_$_UpdateInfo _value, $Res Function(_$_UpdateInfo) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -370,8 +362,7 @@ abstract class _UpdateInfo extends UserClient {
 
   UserObject? get user;
   @JsonKey(ignore: true)
-  _$$_UpdateInfoCopyWith<_$_UpdateInfo> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_UpdateInfoCopyWith<_$_UpdateInfo> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -383,11 +374,9 @@ abstract class _$$_LoginCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_LoginCopyWithImpl<$Res>
-    extends _$UserClientCopyWithImpl<$Res, _$_Login>
+class __$$_LoginCopyWithImpl<$Res> extends _$UserClientCopyWithImpl<$Res, _$_Login>
     implements _$$_LoginCopyWith<$Res> {
-  __$$_LoginCopyWithImpl(_$_Login _value, $Res Function(_$_Login) _then)
-      : super(_value, _then);
+  __$$_LoginCopyWithImpl(_$_Login _value, $Res Function(_$_Login) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -428,10 +417,8 @@ class _$_Login extends _Login {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Login &&
-            (identical(other.userName, userName) ||
-                other.userName == userName) &&
-            (identical(other.password, password) ||
-                other.password == password));
+            (identical(other.userName, userName) || other.userName == userName) &&
+            (identical(other.password, password) || other.password == password));
   }
 
   @override
@@ -440,8 +427,7 @@ class _$_Login extends _Login {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LoginCopyWith<_$_Login> get copyWith =>
-      __$$_LoginCopyWithImpl<_$_Login>(this, _$identity);
+  _$$_LoginCopyWith<_$_Login> get copyWith => __$$_LoginCopyWithImpl<_$_Login>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -513,13 +499,11 @@ class _$_Login extends _Login {
 }
 
 abstract class _Login extends UserClient {
-  const factory _Login(final String? userName, final String? password) =
-      _$_Login;
+  const factory _Login(final String? userName, final String? password) = _$_Login;
   const _Login._() : super._();
 
   String? get userName;
   String? get password;
   @JsonKey(ignore: true)
-  _$$_LoginCopyWith<_$_Login> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_LoginCopyWith<_$_Login> get copyWith => throw _privateConstructorUsedError;
 }

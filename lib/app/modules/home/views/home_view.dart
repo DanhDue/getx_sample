@@ -20,10 +20,13 @@ class HomeView extends BaseBindingCreatorView<HomeBinding, HomeController> {
         title: const Text('HomeView'),
         centerTitle: true,
       ),
-      body: Center(
-        child: Text(
-          'HomeView is working',
-          style: TextStyle(fontSize: 20),
+      body: InkWell(
+        onTap: () => controller.navigateToTheInfiniteListSample(),
+        child: const Center(
+          child: Text(
+            'Navigate to the Infinite List sample.',
+            style: TextStyle(fontSize: 20),
+          ),
         ),
       ),
     );

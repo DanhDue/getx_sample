@@ -58,14 +58,13 @@ mixin _$Result<T, E extends Exception> {
 
 /// @nodoc
 abstract class $ResultCopyWith<T, E extends Exception, $Res> {
-  factory $ResultCopyWith(
-          Result<T, E> value, $Res Function(Result<T, E>) then) =
+  factory $ResultCopyWith(Result<T, E> value, $Res Function(Result<T, E>) then) =
       _$ResultCopyWithImpl<T, E, $Res, Result<T, E>>;
 }
 
 /// @nodoc
-class _$ResultCopyWithImpl<T, E extends Exception, $Res,
-    $Val extends Result<T, E>> implements $ResultCopyWith<T, E, $Res> {
+class _$ResultCopyWithImpl<T, E extends Exception, $Res, $Val extends Result<T, E>>
+    implements $ResultCopyWith<T, E, $Res> {
   _$ResultCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -76,8 +75,7 @@ class _$ResultCopyWithImpl<T, E extends Exception, $Res,
 
 /// @nodoc
 abstract class _$$_SuccessCopyWith<T, E extends Exception, $Res> {
-  factory _$$_SuccessCopyWith(
-          _$_Success<T, E> value, $Res Function(_$_Success<T, E>) then) =
+  factory _$$_SuccessCopyWith(_$_Success<T, E> value, $Res Function(_$_Success<T, E>) then) =
       __$$_SuccessCopyWithImpl<T, E, $Res>;
   @useResult
   $Res call({T data});
@@ -87,8 +85,7 @@ abstract class _$$_SuccessCopyWith<T, E extends Exception, $Res> {
 class __$$_SuccessCopyWithImpl<T, E extends Exception, $Res>
     extends _$ResultCopyWithImpl<T, E, $Res, _$_Success<T, E>>
     implements _$$_SuccessCopyWith<T, E, $Res> {
-  __$$_SuccessCopyWithImpl(
-      _$_Success<T, E> _value, $Res Function(_$_Success<T, E>) _then)
+  __$$_SuccessCopyWithImpl(_$_Success<T, E> _value, $Res Function(_$_Success<T, E>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -127,8 +124,7 @@ class _$_Success<T, E extends Exception> implements _Success<T, E> {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
+  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
 
   @JsonKey(ignore: true)
   @override
@@ -204,14 +200,12 @@ abstract class _Success<T, E extends Exception> implements Result<T, E> {
 
   T get data;
   @JsonKey(ignore: true)
-  _$$_SuccessCopyWith<T, E, _$_Success<T, E>> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_SuccessCopyWith<T, E, _$_Success<T, E>> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$_FailureCopyWith<T, E extends Exception, $Res> {
-  factory _$$_FailureCopyWith(
-          _$_Failure<T, E> value, $Res Function(_$_Failure<T, E>) then) =
+  factory _$$_FailureCopyWith(_$_Failure<T, E> value, $Res Function(_$_Failure<T, E>) then) =
       __$$_FailureCopyWithImpl<T, E, $Res>;
   @useResult
   $Res call({E error});
@@ -221,8 +215,7 @@ abstract class _$$_FailureCopyWith<T, E extends Exception, $Res> {
 class __$$_FailureCopyWithImpl<T, E extends Exception, $Res>
     extends _$ResultCopyWithImpl<T, E, $Res, _$_Failure<T, E>>
     implements _$$_FailureCopyWith<T, E, $Res> {
-  __$$_FailureCopyWithImpl(
-      _$_Failure<T, E> _value, $Res Function(_$_Failure<T, E>) _then)
+  __$$_FailureCopyWithImpl(_$_Failure<T, E> _value, $Res Function(_$_Failure<T, E>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -261,8 +254,7 @@ class _$_Failure<T, E extends Exception> implements _Failure<T, E> {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
+  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
 
   @JsonKey(ignore: true)
   @override
@@ -338,6 +330,5 @@ abstract class _Failure<T, E extends Exception> implements Result<T, E> {
 
   E get error;
   @JsonKey(ignore: true)
-  _$$_FailureCopyWith<T, E, _$_Failure<T, E>> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_FailureCopyWith<T, E, _$_Failure<T, E>> get copyWith => throw _privateConstructorUsedError;
 }

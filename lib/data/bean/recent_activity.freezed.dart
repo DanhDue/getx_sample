@@ -26,14 +26,12 @@ mixin _$RecentActivity {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $RecentActivityCopyWith<RecentActivity> get copyWith =>
-      throw _privateConstructorUsedError;
+  $RecentActivityCopyWith<RecentActivity> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $RecentActivityCopyWith<$Res> {
-  factory $RecentActivityCopyWith(
-          RecentActivity value, $Res Function(RecentActivity) then) =
+  factory $RecentActivityCopyWith(RecentActivity value, $Res Function(RecentActivity) then) =
       _$RecentActivityCopyWithImpl<$Res, RecentActivity>;
   @useResult
   $Res call({String? title, String? icon, String? content});
@@ -74,8 +72,7 @@ class _$RecentActivityCopyWithImpl<$Res, $Val extends RecentActivity>
 }
 
 /// @nodoc
-abstract class _$$_RecentActivityCopyWith<$Res>
-    implements $RecentActivityCopyWith<$Res> {
+abstract class _$$_RecentActivityCopyWith<$Res> implements $RecentActivityCopyWith<$Res> {
   factory _$$_RecentActivityCopyWith(
           _$_RecentActivity value, $Res Function(_$_RecentActivity) then) =
       __$$_RecentActivityCopyWithImpl<$Res>;
@@ -88,8 +85,7 @@ abstract class _$$_RecentActivityCopyWith<$Res>
 class __$$_RecentActivityCopyWithImpl<$Res>
     extends _$RecentActivityCopyWithImpl<$Res, _$_RecentActivity>
     implements _$$_RecentActivityCopyWith<$Res> {
-  __$$_RecentActivityCopyWithImpl(
-      _$_RecentActivity _value, $Res Function(_$_RecentActivity) _then)
+  __$$_RecentActivityCopyWithImpl(_$_RecentActivity _value, $Res Function(_$_RecentActivity) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -165,13 +161,10 @@ class _$_RecentActivity implements _RecentActivity {
 }
 
 abstract class _RecentActivity implements RecentActivity {
-  factory _RecentActivity(
-      {final String? title,
-      final String? icon,
-      final String? content}) = _$_RecentActivity;
+  factory _RecentActivity({final String? title, final String? icon, final String? content}) =
+      _$_RecentActivity;
 
-  factory _RecentActivity.fromJson(Map<String, dynamic> json) =
-      _$_RecentActivity.fromJson;
+  factory _RecentActivity.fromJson(Map<String, dynamic> json) = _$_RecentActivity.fromJson;
 
   @override
   String? get title;
@@ -181,6 +174,5 @@ abstract class _RecentActivity implements RecentActivity {
   String? get content;
   @override
   @JsonKey(ignore: true)
-  _$$_RecentActivityCopyWith<_$_RecentActivity> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_RecentActivityCopyWith<_$_RecentActivity> get copyWith => throw _privateConstructorUsedError;
 }

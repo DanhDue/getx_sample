@@ -52,8 +52,7 @@ mixin _$ScheduleClient {
 
 /// @nodoc
 abstract class $ScheduleClientCopyWith<$Res> {
-  factory $ScheduleClientCopyWith(
-          ScheduleClient value, $Res Function(ScheduleClient) then) =
+  factory $ScheduleClientCopyWith(ScheduleClient value, $Res Function(ScheduleClient) then) =
       _$ScheduleClientCopyWithImpl<$Res, ScheduleClient>;
 }
 
@@ -75,11 +74,9 @@ abstract class _$$_TestCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_TestCopyWithImpl<$Res>
-    extends _$ScheduleClientCopyWithImpl<$Res, _$_Test>
+class __$$_TestCopyWithImpl<$Res> extends _$ScheduleClientCopyWithImpl<$Res, _$_Test>
     implements _$$_TestCopyWith<$Res> {
-  __$$_TestCopyWithImpl(_$_Test _value, $Res Function(_$_Test) _then)
-      : super(_value, _then);
+  __$$_TestCopyWithImpl(_$_Test _value, $Res Function(_$_Test) _then) : super(_value, _then);
 }
 
 /// @nodoc
@@ -94,8 +91,7 @@ class _$_Test extends _Test {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Test);
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$_Test);
   }
 
   @override

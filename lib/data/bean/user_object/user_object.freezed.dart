@@ -55,14 +55,12 @@ mixin _$UserObject {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UserObjectCopyWith<UserObject> get copyWith =>
-      throw _privateConstructorUsedError;
+  $UserObjectCopyWith<UserObject> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $UserObjectCopyWith<$Res> {
-  factory $UserObjectCopyWith(
-          UserObject value, $Res Function(UserObject) then) =
+  factory $UserObjectCopyWith(UserObject value, $Res Function(UserObject) then) =
       _$UserObjectCopyWithImpl<$Res, UserObject>;
   @useResult
   $Res call(
@@ -172,10 +170,8 @@ class _$UserObjectCopyWithImpl<$Res, $Val extends UserObject>
 }
 
 /// @nodoc
-abstract class _$$_UserObjectCopyWith<$Res>
-    implements $UserObjectCopyWith<$Res> {
-  factory _$$_UserObjectCopyWith(
-          _$_UserObject value, $Res Function(_$_UserObject) then) =
+abstract class _$$_UserObjectCopyWith<$Res> implements $UserObjectCopyWith<$Res> {
+  factory _$$_UserObjectCopyWith(_$_UserObject value, $Res Function(_$_UserObject) then) =
       __$$_UserObjectCopyWithImpl<$Res>;
   @override
   @useResult
@@ -197,11 +193,9 @@ abstract class _$$_UserObjectCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_UserObjectCopyWithImpl<$Res>
-    extends _$UserObjectCopyWithImpl<$Res, _$_UserObject>
+class __$$_UserObjectCopyWithImpl<$Res> extends _$UserObjectCopyWithImpl<$Res, _$_UserObject>
     implements _$$_UserObjectCopyWith<$Res> {
-  __$$_UserObjectCopyWithImpl(
-      _$_UserObject _value, $Res Function(_$_UserObject) _then)
+  __$$_UserObjectCopyWithImpl(_$_UserObject _value, $Res Function(_$_UserObject) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -302,8 +296,7 @@ class _$_UserObject implements _UserObject {
       @HiveField(12) this.scope,
       @HiveField(13) this.biometricAuth});
 
-  factory _$_UserObject.fromJson(Map<String, dynamic> json) =>
-      _$$_UserObjectFromJson(json);
+  factory _$_UserObject.fromJson(Map<String, dynamic> json) => _$$_UserObjectFromJson(json);
 
   @override
   @HiveField(0)
@@ -364,23 +357,16 @@ class _$_UserObject implements _UserObject {
             other is _$_UserObject &&
             (identical(other.iduser, iduser) || other.iduser == iduser) &&
             (identical(other.role, role) || other.role == role) &&
-            (identical(other.username, username) ||
-                other.username == username) &&
-            (identical(other.fullname, fullname) ||
-                other.fullname == fullname) &&
-            (identical(other.birthday, birthday) ||
-                other.birthday == birthday) &&
+            (identical(other.username, username) || other.username == username) &&
+            (identical(other.fullname, fullname) || other.fullname == fullname) &&
+            (identical(other.birthday, birthday) || other.birthday == birthday) &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.ccid, ccid) || other.ccid == ccid) &&
-            (identical(other.accessToken, accessToken) ||
-                other.accessToken == accessToken) &&
-            (identical(other.expiresIn, expiresIn) ||
-                other.expiresIn == expiresIn) &&
-            (identical(other.tokenType, tokenType) ||
-                other.tokenType == tokenType) &&
-            (identical(other.refreshToken, refreshToken) ||
-                other.refreshToken == refreshToken) &&
+            (identical(other.accessToken, accessToken) || other.accessToken == accessToken) &&
+            (identical(other.expiresIn, expiresIn) || other.expiresIn == expiresIn) &&
+            (identical(other.tokenType, tokenType) || other.tokenType == tokenType) &&
+            (identical(other.refreshToken, refreshToken) || other.refreshToken == refreshToken) &&
             (identical(other.scope, scope) || other.scope == scope) &&
             (identical(other.biometricAuth, biometricAuth) ||
                 other.biometricAuth == biometricAuth));
@@ -388,22 +374,8 @@ class _$_UserObject implements _UserObject {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      iduser,
-      role,
-      username,
-      fullname,
-      birthday,
-      phone,
-      email,
-      ccid,
-      accessToken,
-      expiresIn,
-      tokenType,
-      refreshToken,
-      scope,
-      biometricAuth);
+  int get hashCode => Object.hash(runtimeType, iduser, role, username, fullname, birthday, phone,
+      email, ccid, accessToken, expiresIn, tokenType, refreshToken, scope, biometricAuth);
 
   @JsonKey(ignore: true)
   @override
@@ -436,8 +408,7 @@ abstract class _UserObject implements UserObject {
       @HiveField(12) final String? scope,
       @HiveField(13) final bool? biometricAuth}) = _$_UserObject;
 
-  factory _UserObject.fromJson(Map<String, dynamic> json) =
-      _$_UserObject.fromJson;
+  factory _UserObject.fromJson(Map<String, dynamic> json) = _$_UserObject.fromJson;
 
   @override
   @HiveField(0)
@@ -487,6 +458,5 @@ abstract class _UserObject implements UserObject {
   bool? get biometricAuth;
   @override
   @JsonKey(ignore: true)
-  _$$_UserObjectCopyWith<_$_UserObject> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_UserObjectCopyWith<_$_UserObject> get copyWith => throw _privateConstructorUsedError;
 }

@@ -22,6 +22,12 @@ class LocaleKeys {
   static const forgotPassword = 'forgotPassword';
   static const login = 'login';
   static const welcomeMessage = 'welcomeMessage';
+  static const close = 'close';
+  static const titleDialog = 'titleDialog';
+  static const commonErrorMessage = 'commonErrorMessage';
+  static const loadDataErrorMessage = 'loadDataErrorMessage';
+  static const noDataMessage = 'noDataMessage';
+  static const oops = 'oops';
   static const eof = 'eof';
 }
 
@@ -38,8 +44,13 @@ class Locales {
     'forgotPassword': 'Quên mật khẩu?',
     'login': 'Đăng nhập',
     'welcomeMessage': 'Welcome to D3F GetX Sample',
-    'eof':
-        'End of File. Please add a new text above this item to avoid conflicts. Thanks!',
+    'close': 'Đóng',
+    'titleDialog': 'Thông báo',
+    'commonErrorMessage': 'Đã có lỗi xảy ra. Vui lòng thử lại sau!',
+    'loadDataErrorMessage': 'Error while loading data, tap to try again',
+    'noDataMessage': 'There is no data to display.',
+    'oops': 'Oops',
+    'eof': 'End of File. Please add a new text above this item to avoid conflicts. Thanks!',
   };
   static const en_US = {
     'homePageTitle': 'Login - Home Page',
@@ -53,7 +64,12 @@ class Locales {
     'forgotPassword': 'Quên mật khẩu?',
     'login': 'Đăng nhập',
     'welcomeMessage': 'Welcome to D3F GetX Sample',
-    'eof':
-        'End of File. Please add a new text above this item to avoid conflicts. Thanks!',
+    'close': 'Đóng',
+    'titleDialog': 'Thông báo',
+    'commonErrorMessage': 'Đã có lỗi xảy ra. Vui lòng thử lại sau!',
+    'loadDataErrorMessage': 'Error while loading data, tap to try again',
+    'noDataMessage': 'There is no data to display.',
+    'oops': 'Oops',
+    'eof': 'End of File. Please add a new text above this item to avoid conflicts. Thanks!',
   };
 }

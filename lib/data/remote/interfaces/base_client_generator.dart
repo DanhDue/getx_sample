@@ -15,7 +15,7 @@ abstract class BaseClientGenerator {
 
   Map<String, dynamic>? get queryParameters;
 
-  Map<String, dynamic> get header;
+  Map<String, dynamic> get header => {"Content-Type": "application/json"};
 
   int? get sendTimeout => 30000;
 
