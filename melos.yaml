@@ -256,3 +256,9 @@ scripts:
         --ignore "**/Pods/**" \
         .
     description: check the license header in all necessary files.
+
+  clearGitCached: bash ./scripts/clearGitCachedFiles.sh
+
+  gitStats:
+    run: bash ./scripts/fileTypeStatistic.sh
+    description: File type statistic.
