@@ -1,0 +1,73 @@
+before_all do
+  Dotenv.overload '.env.build.configurations'
+  Dotenv.overload '.env.info'
+  Dotenv.overload '.env.firebase.appid'
+  Dotenv.overload '.env.apple.devteam'
+end
+
+after_all do |lane|
+end
+
+default_platform(:ios)
+
+platform :ios do
+
+  desc "Beta Distribution(build & push to the Firebase App Distribution)."
+  lane :betaDistribute do
+    build
+    uploadToFirebase
+  end
+
+  desc "build the iOS app."
+  lane :build do
+    sh("fvm", "flutter", "clean")
+    # remove the .symlinks folder.
+    sh("rm", "-rf", "../.symlinks")
+    # remove the build folder.
+    sh("rm", "-rf", "../build")
+    # run flutter pub get to gen default flutter_export_environment & Generated files.
+    sh("fvm", "flutter", "pub", "get")
+
+    # prebuild to generate the flutter configurations.
+    sh("fvm", "flutter", "build", "ios", "--dart-define=DART_DEFINES_APP_NAME=#{ENV["#{ENV['BUILD_VARIANT']}AppName"]}",
+     "--dart-define=DART_DEFINES_BASE_URL=#{ENV["#{ENV['BUILD_VARIANT']}BaseURL"]}")
+
+    get_certificates(username: "#{ENV['USER_NAME']}", team_name: "#{ENV['TEAM_NAME']}",
+     team_id: "#{ENV['TEAM_ID']}", development: true, output_path: "#{ENV['SINGINGS_CERTS_PATH']}")
+
+    get_provisioning_profile(username: "#{ENV['USER_NAME']}", team_name: "#{ENV['TEAM_NAME']}",
+     team_id: "#{ENV['TEAM_ID']}", development: true, output_path: "#{ENV['SINGINGS_PROFILES_PATH']}")
+
+    # set a specific number that is ticket number of the task management system such as: Jira, Redmine,...
+    increment_build_number(build_number: "#{ENV['TICKET_NUMBER']}")
+    build_app(
+      scheme: 'Runner',
+      configuration: "#{ENV['BUILD_VARIANT']}",
+      export_method: "#{ENV['EXPORT_METHOD']}",
+      workspace: "Runner.xcworkspace",
+      clean: false,
+      export_options: "fastlane/export_options/#{ENV['BUILD_VARIANT']}/ExportOptions.plist",
+      export_team_id: "#{ENV['TEAM_ID']}",
+      output_directory: "build/ipa/#{ENV['BUILD_VARIANT']}",
+      output_name: "#{ENV["#{ENV['BUILD_VARIANT']}AppName"]}.ipa",
+      archive_path: "../build/ios/archive/Runner.xcarchive"
+     )
+  end
+
+  desc "Upload the ipa file to the Firebase App Distribution."
+  lane :uploadToFirebase do
+    puts "------ BUILD_VARIANT: #{ENV['BUILD_VARIANT']} -------"
+    firebaseAppID = "#{ENV["#{ENV['BUILD_VARIANT']}FirebaseAppID"]}"
+    puts "------ Firebase iOS App ID: #{firebaseAppID} -------"
+    releaseNotes = File.read("./release-notes.txt")
+    puts "------ Release notes: #{releaseNotes} -------"
+    firebase_app_distribution(
+        app: "#{firebaseAppID}",
+        ipa_path: "../..build/ipa/#{ENV['BUILD_VARIANT']}/#{ENV["#{ENV['BUILD_VARIANT']}AppName"]}.ipa",
+        release_notes: "#{releaseNotes}",
+        groups:"#{ENV['GROUP_TESTER']}",
+        firebase_cli_token: "#{ENV['FIREBASE_TOKEN_FOR_CI_SYSTEM']}"
+    )
+  end
+
+end

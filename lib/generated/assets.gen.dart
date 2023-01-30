@@ -5,7 +5,7 @@
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: directives_ordering,unnecessary_import
+// ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -148,6 +148,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/ic_profile_tick.png
   AssetGenImage get icProfileTick => const AssetGenImage('assets/images/ic_profile_tick.png');
 
+  /// File path: assets/images/ic_read_all.svg
+  SvgGenImage get icReadAll => const SvgGenImage('assets/images/ic_read_all.svg');
+
   /// File path: assets/images/ic_settings.svg
   SvgGenImage get icSettings => const SvgGenImage('assets/images/ic_settings.svg');
 
@@ -227,6 +230,7 @@ class $AssetsImagesGen {
         icPersonalFingerScan,
         icProfile,
         icProfileTick,
+        icReadAll,
         icSettings,
         icSplashBackground,
         icTeacherPng,
@@ -381,6 +385,8 @@ class SvgGenImage {
   }
 
   String get path => _assetName;
+
+  String get keyName => _assetName;
 }
 
 class LottieGenImage {
@@ -413,6 +419,7 @@ class LottieGenImage {
   }) {
     return Lottie.asset(
       _assetName,
+      controller: controller,
       animate: animate,
       frameRate: frameRate,
       repeat: repeat,
@@ -437,4 +444,6 @@ class LottieGenImage {
   }
 
   String get path => _assetName;
+
+  String get keyName => _assetName;
 }

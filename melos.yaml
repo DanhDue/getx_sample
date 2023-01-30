@@ -262,3 +262,15 @@ scripts:
   gitStats:
     run: bash ./scripts/fileTypeStatistic.sh
     description: File type statistic.
+
+  buildAppBundleRelease:
+    run: bash ./scripts/buildAppBundleRelease.sh
+    description: build the app bundle release.
+
+  buildAPKRelease:
+    run: bash ./scripts/buildAPKRelease.sh
+    description: build the APK release.
+
+  buildIPARelease:
+    run: bash ./scripts/buildIPARelease.sh
+    description: build the IPA release.

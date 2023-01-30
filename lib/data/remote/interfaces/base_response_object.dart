@@ -14,6 +14,8 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'base_response_object.g.dart';
 
+const String networkSuccessResStatus = "0000";
+
 @JsonSerializable(genericArgumentFactories: true)
 class BaseResponseObject<T> extends Equatable {
   final String? code;
@@ -21,6 +23,8 @@ class BaseResponseObject<T> extends Equatable {
   final T? result;
 
   const BaseResponseObject({this.code, this.message, this.result});
+
+  bool isSuccess() => code == networkSuccessResStatus;
 
   factory BaseResponseObject.fromJson(
     Map<String, dynamic> json,

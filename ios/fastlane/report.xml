@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="fastlane.lanes">
+    
+    
+    
+      
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000327">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="1: fvm flutter clean" time="9.864818">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="2: rm -rf ../.symlinks" time="0.013757">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="3: rm -rf ../build" time="0.007011">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="4: fvm flutter pub get" time="20.214329">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="5: fvm flutter build ipa --obfuscate --split-debug-info --split-per-abi --dart-define\=DART_DEFINES_APP_NAME\=D3FLogin --dart-define\=DART_DEFINES_BASE_URL\=https://danhdue.com/api/v1 --export-options-plist\ ./ios/fastlane/export_options/Release/ExportOptions.plist --release" time="1.961736">
+        
+          <failure message="/usr/local/Cellar/fastlane/2.211.0/libexec/gems/fastlane-2.211.0/fastlane/lib/fastlane/actions/actions_helper.rb:67:in `execute_action&apos;&#10;/usr/local/Cellar/fastlane/2.211.0/libexec/gems/fastlane-2.211.0/fastlane/lib/fastlane/fast_file.rb:222:in `sh&apos;&#10;/usr/local/Cellar/fastlane/2.211.0/libexec/gems/fastlane-2.211.0/fastlane/lib/fastlane/fast_file.rb:216:in `sh&apos;&#10;Fastfile:32:in `block (2 levels) in parsing_binding&apos;&#10;/usr/local/Cellar/fastlane/2.211.0/libexec/gems/fastlane-2.211.0/fastlane/lib/fastlane/lane.rb:33:in `call&apos;&#10;/usr/local/Cellar/fastlane/2.211.0/libexec/gems/fastlane-2.211.0/fastlane/lib/fastlane/runner.rb:49:in `block in execute&apos;&#10;/usr/local/Cellar/fastlane/2.211.0/libexec/gems/fastlane-2.211.0/fastlane/lib/fastlane/runner.rb:45:in `chdir&apos;&#10;/usr/local/Cellar/fastlane/2.211.0/libexec/gems/fastlane-2.211.0/fastlane/lib/fastlane/runner.rb:45:in `execute&apos;&#10;/usr/local/Cellar/fastlane/2.211.0/libexec/gems/fastlane-2.211.0/fastlane/lib/fastlane/lane_manager.rb:47:in `cruise_lane&apos;&#10;/usr/local/Cellar/fastlane/2.211.0/libexec/gems/fastlane-2.211.0/fastlane/lib/fastlane/command_line_handler.rb:36:in `handle&apos;&#10;/usr/local/Cellar/fastlane/2.211.0/libexec/gems/fastlane-2.211.0/fastlane/lib/fastlane/commands_generator.rb:110:in `block (2 levels) in run&apos;&#10;/usr/local/Cellar/fastlane/2.211.0/libexec/gems/commander-4.6.0/lib/commander/command.rb:187:in `call&apos;&#10;/usr/local/Cellar/fastlane/2.211.0/libexec/gems/commander-4.6.0/lib/commander/command.rb:157:in `run&apos;&#10;/usr/local/Cellar/fastlane/2.211.0/libexec/gems/commander-4.6.0/lib/commander/runner.rb:444:in `run_active_command&apos;&#10;/usr/local/Cellar/fastlane/2.211.0/libexec/gems/fastlane-2.211.0/fastlane_core/lib/fastlane_core/ui/fastlane_runner.rb:124:in `run!&apos;&#10;/usr/local/Cellar/fastlane/2.211.0/libexec/gems/commander-4.6.0/lib/commander/delegates.rb:18:in `run!&apos;&#10;/usr/local/Cellar/fastlane/2.211.0/libexec/gems/fastlane-2.211.0/fastlane/lib/fastlane/commands_generator.rb:354:in `run&apos;&#10;/usr/local/Cellar/fastlane/2.211.0/libexec/gems/fastlane-2.211.0/fastlane/lib/fastlane/commands_generator.rb:43:in `start&apos;&#10;/usr/local/Cellar/fastlane/2.211.0/libexec/gems/fastlane-2.211.0/fastlane/lib/fastlane/cli_tools_distributor.rb:123:in `take_off&apos;&#10;/usr/local/Cellar/fastlane/2.211.0/libexec/gems/fastlane-2.211.0/bin/fastlane:23:in `&lt;top (required)&gt;&apos;&#10;/usr/local/Cellar/fastlane/2.211.0/libexec/bin/fastlane:25:in `load&apos;&#10;/usr/local/Cellar/fastlane/2.211.0/libexec/bin/fastlane:25:in `&lt;main&gt;&apos;&#10;&#10;Exit status of command &apos;fvm flutter build ipa --obfuscate --split-debug-info --split-per-abi --dart-define\=DART_DEFINES_APP_NAME\=D3FLogin --dart-define\=DART_DEFINES_BASE_URL\=https://danhdue.com/api/v1 --export-options-plist\ ./ios/fastlane/export_options/Release/ExportOptions.plist --release&apos; was 1 instead of 0.&#10;Changing current working directory to: /Users/danhdueexoictif/Data/AllProjects/d3f_modularization/d3f_login&#10;Target file &quot;--export-options-plist ./ios/fastlane/export_options/Release/ExportOptions.plist&quot; not found.&#10;" />
+        
+      </testcase>
+    
+  </testsuite>
+</testsuites>

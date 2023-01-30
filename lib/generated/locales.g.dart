@@ -28,6 +28,9 @@ class LocaleKeys {
   static const loadDataErrorMessage = 'loadDataErrorMessage';
   static const noDataMessage = 'noDataMessage';
   static const oops = 'oops';
+  static const bimometricTitle = 'bimometricTitle';
+  static const bimometricDescription = 'bimometricDescription';
+  static const biometricAuthIsNotSupportedMessage = 'biometricAuthIsNotSupportedMessage';
   static const eof = 'eof';
 }
 
@@ -50,6 +53,9 @@ class Locales {
     'loadDataErrorMessage': 'Error while loading data, tap to try again',
     'noDataMessage': 'There is no data to display.',
     'oops': 'Oops',
+    'bimometricTitle': 'Xác thực danh tính của bạn',
+    'bimometricDescription': 'Sử dụng sinh trắc học để xác thực danh tính của bạn',
+    'biometricAuthIsNotSupportedMessage': 'Thiết bị này không hỗ trợ xác thực sinh trắc học.',
     'eof': 'End of File. Please add a new text above this item to avoid conflicts. Thanks!',
   };
   static const en_US = {
@@ -70,6 +76,9 @@ class Locales {
     'loadDataErrorMessage': 'Error while loading data, tap to try again',
     'noDataMessage': 'There is no data to display.',
     'oops': 'Oops',
+    'bimometricTitle': 'Xác thực danh tính của bạn',
+    'bimometricDescription': 'Sử dụng sinh trắc học để xác thực danh tính của bạn',
+    'biometricAuthIsNotSupportedMessage': 'Thiết bị này không hỗ trợ xác thực sinh trắc học.',
     'eof': 'End of File. Please add a new text above this item to avoid conflicts. Thanks!',
   };
 }

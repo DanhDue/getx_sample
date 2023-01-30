@@ -37,24 +37,34 @@ class UserObjectAdapter extends TypeAdapter<UserObject> {
       iduser: fields[0] as String?,
       role: fields[1] as int?,
       username: fields[2] as String?,
-      fullname: fields[3] as String?,
-      birthday: fields[4] as String?,
-      phone: fields[5] as String?,
-      email: fields[6] as String?,
-      ccid: fields[7] as String?,
-      accessToken: fields[8] as String?,
-      expiresIn: fields[9] as String?,
-      tokenType: fields[10] as String?,
-      refreshToken: fields[11] as String?,
+      sex: fields[3] as String?,
+      fullname: fields[4] as String?,
+      birthday: fields[5] as String?,
+      phone: fields[6] as String?,
+      email: fields[7] as String?,
+      ccid: fields[8] as String?,
+      accessToken: fields[9] as String?,
+      expiresIn: fields[10] as String?,
+      tokenType: fields[11] as String?,
       scope: fields[12] as String?,
-      biometricAuth: fields[13] as bool?,
+      hedaotao: fields[13] as String?,
+      khoa: fields[14] as String?,
+      nganh: fields[15] as String?,
+      nienkhoa: fields[16] as String?,
+      hocham: fields[17] as String?,
+      namphonghocham: fields[18] as String?,
+      linhvucnghiencuu: fields[19] as String?,
+      chucdanhnghiencuu: fields[20] as String?,
+      biometricAuth: fields[21] as bool?,
+      avatar: fields[22] as String?,
+      password: fields[23] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, UserObject obj) {
     writer
-      ..writeByte(14)
+      ..writeByte(24)
       ..writeByte(0)
       ..write(obj.iduser)
       ..writeByte(1)
@@ -62,27 +72,47 @@ class UserObjectAdapter extends TypeAdapter<UserObject> {
       ..writeByte(2)
       ..write(obj.username)
       ..writeByte(3)
-      ..write(obj.fullname)
+      ..write(obj.sex)
       ..writeByte(4)
-      ..write(obj.birthday)
+      ..write(obj.fullname)
       ..writeByte(5)
-      ..write(obj.phone)
+      ..write(obj.birthday)
       ..writeByte(6)
-      ..write(obj.email)
+      ..write(obj.phone)
       ..writeByte(7)
-      ..write(obj.ccid)
+      ..write(obj.email)
       ..writeByte(8)
-      ..write(obj.accessToken)
+      ..write(obj.ccid)
       ..writeByte(9)
-      ..write(obj.expiresIn)
+      ..write(obj.accessToken)
       ..writeByte(10)
-      ..write(obj.tokenType)
+      ..write(obj.expiresIn)
       ..writeByte(11)
-      ..write(obj.refreshToken)
+      ..write(obj.tokenType)
       ..writeByte(12)
       ..write(obj.scope)
       ..writeByte(13)
-      ..write(obj.biometricAuth);
+      ..write(obj.hedaotao)
+      ..writeByte(14)
+      ..write(obj.khoa)
+      ..writeByte(15)
+      ..write(obj.nganh)
+      ..writeByte(16)
+      ..write(obj.nienkhoa)
+      ..writeByte(17)
+      ..write(obj.hocham)
+      ..writeByte(18)
+      ..write(obj.namphonghocham)
+      ..writeByte(19)
+      ..write(obj.linhvucnghiencuu)
+      ..writeByte(20)
+      ..write(obj.chucdanhnghiencuu)
+      ..writeByte(21)
+      ..write(obj.biometricAuth)
+      ..writeByte(22)
+      ..write(obj.avatar)
+      ..writeByte(23)
+      ..write(obj.password);
   }
 
   @override
@@ -102,6 +132,7 @@ _$_UserObject _$$_UserObjectFromJson(Map<String, dynamic> json) => _$_UserObject
       iduser: json['iduser'] as String?,
       role: json['role'] as int?,
       username: json['username'] as String?,
+      sex: json['sex'] as String?,
       fullname: json['fullname'] as String?,
       birthday: json['birthday'] as String?,
       phone: json['phone'] as String?,
@@ -110,15 +141,25 @@ _$_UserObject _$$_UserObjectFromJson(Map<String, dynamic> json) => _$_UserObject
       accessToken: json['access_token'] as String?,
       expiresIn: json['expires_in'] as String?,
       tokenType: json['token_type'] as String?,
-      refreshToken: json['refresh_token'] as String?,
       scope: json['scope'] as String?,
+      hedaotao: json['hedaotao'] as String?,
+      khoa: json['khoa'] as String?,
+      nganh: json['nganh'] as String?,
+      nienkhoa: json['nienkhoa'] as String?,
+      hocham: json['hocham'] as String?,
+      namphonghocham: json['namphonghocham'] as String?,
+      linhvucnghiencuu: json['linhvucnghiencuu'] as String?,
+      chucdanhnghiencuu: json['chucdanhnghiencuu'] as String?,
       biometricAuth: json['biometricAuth'] as bool?,
+      avatar: json['avatar'] as String?,
+      password: json['password'] as String?,
     );
 
 Map<String, dynamic> _$$_UserObjectToJson(_$_UserObject instance) => <String, dynamic>{
       'iduser': instance.iduser,
       'role': instance.role,
       'username': instance.username,
+      'sex': instance.sex,
       'fullname': instance.fullname,
       'birthday': instance.birthday,
       'phone': instance.phone,
@@ -127,7 +168,16 @@ Map<String, dynamic> _$$_UserObjectToJson(_$_UserObject instance) => <String, dy
       'access_token': instance.accessToken,
       'expires_in': instance.expiresIn,
       'token_type': instance.tokenType,
-      'refresh_token': instance.refreshToken,
       'scope': instance.scope,
+      'hedaotao': instance.hedaotao,
+      'khoa': instance.khoa,
+      'nganh': instance.nganh,
+      'nienkhoa': instance.nienkhoa,
+      'hocham': instance.hocham,
+      'namphonghocham': instance.namphonghocham,
+      'linhvucnghiencuu': instance.linhvucnghiencuu,
+      'chucdanhnghiencuu': instance.chucdanhnghiencuu,
       'biometricAuth': instance.biometricAuth,
+      'avatar': instance.avatar,
+      'password': instance.password,
     };
