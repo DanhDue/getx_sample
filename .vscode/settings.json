@@ -54,7 +54,7 @@
     "**/*.iml": true,
     "**/.metadata": true,
     "**/.gradle": true,
-    "**/build": true
+    "**/build": false
   },
   "java.configuration.updateBuildConfiguration": "disabled",
   "dart.lineLength": 99

@@ -72,7 +72,7 @@ scripts:
   fvmUse:
     run: |
       melos exec \
-      -- fvm use 3.3.3
+      -- fvm use 3.3.9
     description: sync the Flutter SDK version for all modules.
 
   gitInitModularRemotes:
@@ -273,4 +273,12 @@ scripts:
 
   buildIPARelease:
     run: bash ./scripts/buildIPARelease.sh
+    description: build the IPA release.
+
+  buildDockerImage:
+    run: bash ./scripts/docker_build.sh
+    description: build the IPA release.
+
+  runDockerImage:
+    run: bash ./scripts/docker_run.sh
     description: build the IPA release.
