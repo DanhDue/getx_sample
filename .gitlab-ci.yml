@@ -23,7 +23,6 @@ CIChecking:
   artifacts:
     paths:
       - .ci-reports
-      - coverage_report/html
   script:
     - melos testWithCoverage
     - melos buildAPKRelease
