@@ -1,3 +1,7 @@
+# Copyright (c) 2023, one of the D3F outsourcing projects. All rights reserved.
+
+# coverage:ignore-file
+
 FROM adoptopenjdk/openjdk11:jdk-11.0.18_10-ubuntu-slim
 
 WORKDIR /
@@ -99,9 +103,6 @@ WORKDIR /
 RUN brew tap leoafarias/fvm
 RUN brew install fvm
 RUN dart pub global activate fvm
-RUN dart pub global activate melos
-RUN dart pub global activate flutter_gen
-RUN dart pub global activate get_cli
 
 ENV FLUTTER_VERSION 3.3.9
 RUN fvm install $FLUTTER_VERSION
@@ -111,12 +112,17 @@ ENV PUB_CACHE=/root/.pub-cache
 ENV PATH ${PATH}:${PUB_CACHE}/bin
 RUN echo "export LANG=en_US.UTF-8\n\n$(cat ~/.bashrc)" > ~/.bashrc
 
+# Active flutter tools.
+RUN dart pub global activate melos
+RUN dart pub global activate flutter_gen 5.0.0
+RUN dart pub global activate get_cli
+
 # clean up
 RUN apt-get update
 RUN yes Y | apt-get upgrade
 RUN rm -rf /var/lib/apt/lists/* /tmp/*
 
-## Remove comment for local testing.
+# # Remove comment for local testing.
 # COPY . /getx_sample
 
 # ADD start.sh /
