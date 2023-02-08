@@ -271,6 +271,10 @@ scripts:
     run: bash ./scripts/buildAPKRelease.sh
     description: build the APK release.
 
+  androidBetaDistribute:
+    run: bash ./scripts/androidBetaDistribute.sh
+    description: upload the APK for the beta distribution to the Firebase App Distributions.
+
   buildIPARelease:
     run: bash ./scripts/buildIPARelease.sh
     description: build the IPA release.
