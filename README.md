@@ -98,6 +98,15 @@ fvm use 2.10.3
 [18]: https://pub.dev/packages/melos/install
 <br />
 
+## CI/CD results with Gitlab, Gitlab Runner, Docker,...
+### 1. Flutter project overview.
+![Flutter Project Overview](screenshots/CICD_sample_project_overview.png "Flutter Project Overview.")
+
+### 2. Results ran on Virtual Box's Ubuntu Server.
+<b>Setup environment and restore cached files</b>
+![Setup environment & restore cached files.](screenshots/CICD_sample_project_pre_built.png "setup environment & restore cache.")
+<b>Distribute to Firebase and save cached files.</b>
+![Distribute to Firebase and save cached files.](screenshots/CICD_sample_project_post_built.png "Distribute to Firebase and save cached files.")
 ## Screenshots
 1. Coverage Overview.
 

@@ -116,14 +116,40 @@ RUN echo "export LANG=en_US.UTF-8\n\n$(cat ~/.bashrc)" > ~/.bashrc
 RUN dart pub global activate melos
 RUN dart pub global activate flutter_gen 5.0.0
 RUN dart pub global activate get_cli
+RUN brew install golang
+# install lcov to convert the lcov.info file to HTML pages.
+RUN brew install lcov
+# install cloc to tracking file types.
+RUN brew install cloc
 
 # clean up
 RUN apt-get update
 RUN yes Y | apt-get upgrade
 RUN rm -rf /var/lib/apt/lists/* /tmp/*
 
-# # Remove comment for local testing.
-# COPY . /getx_sample
+# addlicense
+RUN go install github.com/google/addlicense@latest
 
-# ADD start.sh /
-# RUN chmod +x start.sh
+# active tools.
+RUN gradle --version
+RUN flutter doctor -v
+
+## Remove comment for local testing.
+COPY . /ftu_lms
+
+WORKDIR /ftu_lms
+
+# Trigger the first time building to cache all build tools.
+RUN melos buildAPKRelease
+
+WORKDIR /
+
+# remove the source code & pub cache to optimize the docker image size.
+RUN rm -rf /ftu_lms
+RUN yes Y | fvm flutter pub cache clean
+
+# Reactivate dart tools.
+RUN dart pub global activate fvm
+RUN dart pub global activate melos
+RUN dart pub global activate flutter_gen 5.0.0
+RUN dart pub global activate get_cli
