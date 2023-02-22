@@ -98,7 +98,7 @@ fvm use 2.10.3
 [18]: https://pub.dev/packages/melos/install
 <br />
 
-## CI/CD results with Gitlab, Gitlab Runner, Docker,...
+## CI/CD results with Gitlab, Gitlab Runner, Docker,... on another project.
 ### 1. Flutter project overview.
 ![Flutter Project Overview](screenshots/CICD_sample_project_overview.png "Flutter Project Overview.")
 
