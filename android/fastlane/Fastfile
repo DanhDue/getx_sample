@@ -1,0 +1,31 @@
+before_all do
+  Dotenv.overload '.env.build.configurations'
+  Dotenv.overload '.env.info'
+  Dotenv.overload '.env.firebase.appid'
+end
+
+after_all do |lane|
+end
+
+default_platform(:android)
+
+platform :android do
+
+  desc "Upload the ipa file to the Firebase App Distribution."
+  lane :uploadToFirebase do
+    puts "------ BUILD_VARIANT: #{ENV['BUILD_VARIANT']} -------"
+    firebaseAppID = "#{ENV["#{ENV['BUILD_VARIANT']}FirebaseAppID"]}"
+    puts "------ Firebase iOS App ID: #{firebaseAppID} -------"
+    releaseNotes = File.read("./release-notes.txt")
+    puts "------ Release notes: #{releaseNotes} -------"
+    firebase_app_distribution(
+      app: "#{firebaseAppID}",
+      apk_path: "../build/app/outputs/flutter-apk/app-release.apk",
+      release_notes: "#{releaseNotes}",
+      groups:"#{ENV['GROUP_TESTER']}",
+      firebase_cli_token: "#{ENV['FIREBASE_TOKEN_FOR_CI_SYSTEM']}"
+    )
+    puts "------ upload the APK to Firebase App Distribution successfully !! -------"
+  end
+
+end
