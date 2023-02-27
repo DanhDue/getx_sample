@@ -112,6 +112,7 @@ flutter:
     - assets/images/
     - assets/lotties/
     - assets/jsons/
+    - web/assets/images/
   fonts: 
     - family: SfCompactRegular
       fonts: 

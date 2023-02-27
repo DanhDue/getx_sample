@@ -12,6 +12,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
 
+class $WebGen {
+  const $WebGen();
+
+  $WebAssetsGen get assets => const $WebAssetsGen();
+}
+
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
@@ -265,12 +271,35 @@ class $AssetsLottiesGen {
   List<LottieGenImage> get values => [splashAnimation];
 }
 
+class $WebAssetsGen {
+  const $WebAssetsGen();
+
+  $WebAssetsImagesGen get images => const $WebAssetsImagesGen();
+}
+
+class $WebAssetsImagesGen {
+  const $WebAssetsImagesGen();
+
+  /// File path: web/assets/images/cup-of-tea.gif
+  AssetGenImage get cupOfTea => const AssetGenImage('web/assets/images/cup-of-tea.gif');
+
+  /// File path: web/assets/images/home_banner.jpg
+  AssetGenImage get homeBanner => const AssetGenImage('web/assets/images/home_banner.jpg');
+
+  /// File path: web/assets/images/home_top_ads.png
+  AssetGenImage get homeTopAds => const AssetGenImage('web/assets/images/home_top_ads.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [cupOfTea, homeBanner, homeTopAds];
+}
+
 class Assets {
   Assets._();
 
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsJsonsGen jsons = $AssetsJsonsGen();
   static const $AssetsLottiesGen lotties = $AssetsLottiesGen();
+  static const $WebGen web = $WebGen();
 }
 
 class AssetGenImage {

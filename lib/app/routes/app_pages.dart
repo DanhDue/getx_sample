@@ -1,7 +1,3 @@
-// Copyright (c) 2023, one of the D3F outsourcing projects. All rights reserved.
-
-// coverage:ignore-file
-
 import 'package:get/get.dart';
 
 import '../modules/checkin/bindings/checkin_binding.dart';
@@ -22,6 +18,12 @@ import '../modules/settings/bindings/settings_binding.dart';
 import '../modules/settings/views/settings_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
+import '../modules/tea_home/bindings/tea_home_binding.dart';
+import '../modules/tea_home/views/tea_home_view.dart';
+
+// Copyright (c) 2023, one of the D3F outsourcing projects. All rights reserved.
+
+// coverage:ignore-file
 
 // coverage:ignore-file
 
@@ -74,6 +76,11 @@ class AppPages {
       name: _Paths.INFINITE_LIST_SAMPLE,
       page: () => InfiniteListSampleView(),
       binding: InfiniteListSampleBinding(),
+    ),
+    GetPage(
+      name: _Paths.TEA_HOME,
+      page: () => TeaHomeView(),
+      binding: TeaHomeBinding(),
     ),
   ];
 }
