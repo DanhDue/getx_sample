@@ -40,6 +40,7 @@ class $_ThemeExtensions {
   static List<Color> chineseSilver = [LMSColors.chineseSilver, LMSColors.chineseSilver];
   static List<Color> antiFlashWhite = [LMSColors.antiFlashWhite, LMSColors.antiFlashWhite];
   static List<Color> chineseBlack = [LMSColors.chineseBlack, LMSColors.chineseBlack];
+  static List<Color> water = [LMSColors.water, LMSColors.water];
 
   static const headLineTextStyle = TextStyle(
       fontSize: 30,

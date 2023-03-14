@@ -34,6 +34,7 @@
     <color name="champagne_pink">#EDDAD3</color>
     <color name="chinese_black">#101010</color>
     <color name="cultured">#F5F5F5</color>
+    <color name="water">#DCF2FF</color>
     
     <color name="EOF">#FA0606</color>
 </resources>

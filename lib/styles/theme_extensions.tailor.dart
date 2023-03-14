@@ -36,6 +36,7 @@ class ThemeExtensions extends ThemeExtension<ThemeExtensions> {
     required this.chineseSilver,
     required this.antiFlashWhite,
     required this.chineseBlack,
+    required this.water,
     required this.headline,
     required this.heading1,
     required this.heading2,
@@ -73,6 +74,7 @@ class ThemeExtensions extends ThemeExtension<ThemeExtensions> {
   final Color chineseSilver;
   final Color antiFlashWhite;
   final Color chineseBlack;
+  final Color water;
   final TextStyle headline;
   final TextStyle heading1;
   final TextStyle heading2;
@@ -110,6 +112,7 @@ class ThemeExtensions extends ThemeExtension<ThemeExtensions> {
     chineseSilver: $_ThemeExtensions.chineseSilver[0],
     antiFlashWhite: $_ThemeExtensions.antiFlashWhite[0],
     chineseBlack: $_ThemeExtensions.chineseBlack[0],
+    water: $_ThemeExtensions.water[0],
     headline: $_ThemeExtensions.headline[0],
     heading1: $_ThemeExtensions.heading1[0],
     heading2: $_ThemeExtensions.heading2[0],
@@ -148,6 +151,7 @@ class ThemeExtensions extends ThemeExtension<ThemeExtensions> {
     chineseSilver: $_ThemeExtensions.chineseSilver[1],
     antiFlashWhite: $_ThemeExtensions.antiFlashWhite[1],
     chineseBlack: $_ThemeExtensions.chineseBlack[1],
+    water: $_ThemeExtensions.water[1],
     headline: $_ThemeExtensions.headline[1],
     heading1: $_ThemeExtensions.heading1[1],
     heading2: $_ThemeExtensions.heading2[1],
@@ -192,6 +196,7 @@ class ThemeExtensions extends ThemeExtension<ThemeExtensions> {
     Color? chineseSilver,
     Color? antiFlashWhite,
     Color? chineseBlack,
+    Color? water,
     TextStyle? headline,
     TextStyle? heading1,
     TextStyle? heading2,
@@ -229,6 +234,7 @@ class ThemeExtensions extends ThemeExtension<ThemeExtensions> {
       chineseSilver: chineseSilver ?? this.chineseSilver,
       antiFlashWhite: antiFlashWhite ?? this.antiFlashWhite,
       chineseBlack: chineseBlack ?? this.chineseBlack,
+      water: water ?? this.water,
       headline: headline ?? this.headline,
       heading1: heading1 ?? this.heading1,
       heading2: heading2 ?? this.heading2,
@@ -271,6 +277,7 @@ class ThemeExtensions extends ThemeExtension<ThemeExtensions> {
       chineseSilver: Color.lerp(chineseSilver, other.chineseSilver, t)!,
       antiFlashWhite: Color.lerp(antiFlashWhite, other.antiFlashWhite, t)!,
       chineseBlack: Color.lerp(chineseBlack, other.chineseBlack, t)!,
+      water: Color.lerp(water, other.water, t)!,
       headline: TextStyle.lerp(headline, other.headline, t)!,
       heading1: TextStyle.lerp(heading1, other.heading1, t)!,
       heading2: TextStyle.lerp(heading2, other.heading2, t)!,
@@ -314,6 +321,7 @@ class ThemeExtensions extends ThemeExtension<ThemeExtensions> {
             const DeepCollectionEquality().equals(chineseSilver, other.chineseSilver) &&
             const DeepCollectionEquality().equals(antiFlashWhite, other.antiFlashWhite) &&
             const DeepCollectionEquality().equals(chineseBlack, other.chineseBlack) &&
+            const DeepCollectionEquality().equals(water, other.water) &&
             const DeepCollectionEquality().equals(headline, other.headline) &&
             const DeepCollectionEquality().equals(heading1, other.heading1) &&
             const DeepCollectionEquality().equals(heading2, other.heading2) &&
@@ -355,6 +363,7 @@ class ThemeExtensions extends ThemeExtension<ThemeExtensions> {
       const DeepCollectionEquality().hash(chineseSilver),
       const DeepCollectionEquality().hash(antiFlashWhite),
       const DeepCollectionEquality().hash(chineseBlack),
+      const DeepCollectionEquality().hash(water),
       const DeepCollectionEquality().hash(headline),
       const DeepCollectionEquality().hash(heading1),
       const DeepCollectionEquality().hash(heading2),
