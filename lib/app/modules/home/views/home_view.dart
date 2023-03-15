@@ -183,7 +183,7 @@ class HomeView extends BaseBindingCreatorView<HomeBinding, HomeController> {
                 ),
               ],
             ),
-          ).marginOnly(bottom: 96, left: 20),
+          ).marginOnly(bottom: 126, left: 20),
           Align(
             alignment: Alignment.topRight,
             child: Column(

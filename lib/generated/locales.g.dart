@@ -31,6 +31,7 @@ class LocaleKeys {
   static const bimometricTitle = 'bimometricTitle';
   static const bimometricDescription = 'bimometricDescription';
   static const biometricAuthIsNotSupportedMessage = 'biometricAuthIsNotSupportedMessage';
+  static const vehicle = 'vehicle';
   static const eof = 'eof';
 }
 
@@ -56,6 +57,7 @@ class Locales {
     'bimometricTitle': 'Xác thực danh tính của bạn',
     'bimometricDescription': 'Sử dụng sinh trắc học để xác thực danh tính của bạn',
     'biometricAuthIsNotSupportedMessage': 'Thiết bị này không hỗ trợ xác thực sinh trắc học.',
+    'vehicle': 'Vehicle',
     'eof': 'End of File. Please add a new text above this item to avoid conflicts. Thanks!',
   };
   static const en_US = {
@@ -79,6 +81,7 @@ class Locales {
     'bimometricTitle': 'Xác thực danh tính của bạn',
     'bimometricDescription': 'Sử dụng sinh trắc học để xác thực danh tính của bạn',
     'biometricAuthIsNotSupportedMessage': 'Thiết bị này không hỗ trợ xác thực sinh trắc học.',
+    'vehicle': 'Vehicle',
     'eof': 'End of File. Please add a new text above this item to avoid conflicts. Thanks!',
   };
 }

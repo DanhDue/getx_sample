@@ -57,9 +57,9 @@ class _DashboardViewState extends State<DashboardView> {
               if (index > checkInTabIndex) dashboardController.currentTabIndex.value = index - 1;
             },
             children: <Widget>[
-              KeepAliveWidget(child: HomeView(bindingCreator: () => HomeBinding())),
-              const KeepAliveWidget(child: NotificationView()),
               KeepAliveWidget(child: CheckinView(bindingCreator: () => CheckinBinding())),
+              const KeepAliveWidget(child: NotificationView()),
+              KeepAliveWidget(child: HomeView(bindingCreator: () => HomeBinding())),
               const KeepAliveWidget(child: SettingsView()),
               KeepAliveWidget(child: PersonalView(bindingCreator: () => PersonalBinding())),
             ],
@@ -90,7 +90,7 @@ class _DashboardViewState extends State<DashboardView> {
                 child: Obx(() => Container(
                       padding: const EdgeInsets.only(top: 32, bottom: 8),
                       child: AutoSizeText(
-                        LocaleKeys.checkin.tr,
+                        LocaleKeys.vehicle.tr,
                         maxLines: 1,
                         style: TextStyle(
                             decoration: TextDecoration.none,
