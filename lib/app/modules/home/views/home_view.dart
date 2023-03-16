@@ -23,16 +23,18 @@ class HomeView extends BaseBindingCreatorView<HomeBinding, HomeController> {
     return Scaffold(
       body: Stack(
         children: [
-          Obx(() => GoogleMap(
-                mapType: MapType.normal,
-                initialCameraPosition: controller.myLocation,
-                onMapCreated: (GoogleMapController gMapController) {
-                  controller.gMapController.complete(gMapController);
-                },
-                zoomControlsEnabled: false,
-                trafficEnabled: controller.trafficEnabled.value,
-                markers: Set<Marker>.of(controller.markers.values),
-              )),
+          GetBuilder<HomeController>(
+              builder: (controller) => GoogleMap(
+                    mapType: MapType.normal,
+                    initialCameraPosition: controller.vehicleLocation,
+                    onMapCreated: (GoogleMapController gMapController) {
+                      controller.gMapController.complete(gMapController);
+                    },
+                    zoomControlsEnabled: false,
+                    trafficEnabled: controller.trafficEnabled.value,
+                    polylines: Set<Polyline>.of(controller.polylines.values),
+                    markers: Set<Marker>.of(controller.markers.values),
+                  )),
           Align(
             alignment: Alignment.topLeft,
             child: Column(
@@ -216,24 +218,27 @@ class HomeView extends BaseBindingCreatorView<HomeBinding, HomeController> {
                   ),
                 ),
                 const SizedBox(height: 7),
-                Container(
-                  width: 46,
-                  height: 46,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(8)),
-                    boxShadow: [
-                      BoxShadow(
-                          color: context.themeExtensions.black.withOpacity(0.2),
-                          offset: const Offset(0, 4),
-                          blurRadius: 4)
-                    ],
-                    color: context.themeExtensions.black.withOpacity(0.3),
-                  ),
-                  child: Center(
-                    child: AutoSizeText(
-                      'View',
-                      style: context.themeExtensions.heading3
-                          .copyWith(color: context.themeExtensions.white),
+                InkWell(
+                  onTap: () => controller.animatePolyline(),
+                  child: Container(
+                    width: 46,
+                    height: 46,
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(Radius.circular(8)),
+                      boxShadow: [
+                        BoxShadow(
+                            color: context.themeExtensions.black.withOpacity(0.2),
+                            offset: const Offset(0, 4),
+                            blurRadius: 4)
+                      ],
+                      color: context.themeExtensions.black.withOpacity(0.3),
+                    ),
+                    child: Center(
+                      child: AutoSizeText(
+                        'View',
+                        style: context.themeExtensions.heading3
+                            .copyWith(color: context.themeExtensions.white),
+                      ),
                     ),
                   ),
                 ),
