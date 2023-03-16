@@ -23,7 +23,7 @@ class HomeController extends BaseController {
   final trafficEnabled = false.obs;
   static const vehicleMarkerId = MarkerId('vehicleMarkerId');
   static const currentLocationMarkerId = MarkerId('currentLocationMarkerId');
-  static const myLocationMarkerId = MarkerId('myLocationMarkerId');
+  static const destLocationMarkerId = MarkerId('myLocationMarkerId');
   static const backgroundPolylineId = PolylineId("backgroundPolylineId");
   static const animatedPolylineId = PolylineId("animatedPolylineId");
 
@@ -89,36 +89,33 @@ class HomeController extends BaseController {
     super.onInit();
     myLocation = const CameraPosition(
       target: LatLng(21.0316059, 105.7922232),
-      zoom: 16,
+      zoom: 20,
     );
     vehicleLocation = const CameraPosition(
       target: LatLng(21.01116, 105.84728),
-      zoom: 16,
+      zoom: 20,
     );
     curLocation = const CameraPosition(
       target: LatLng(21.01116, 105.84728),
-      zoom: 16,
+      zoom: 20,
     );
     gMapController = Completer<GoogleMapController>();
     markers[vehicleMarkerId] = Marker(
       markerId: vehicleMarkerId,
       position: vehicleLocation.target,
-      icon: sourceIcon,
       infoWindow: const InfoWindow(
           title: 'Pagani Huaya',
           snippet: 'Pagani Huaya Roadster: 2023	\n-829 horsepower			>\n-Mercedes-AMG V12			'),
     );
-    markers[myLocationMarkerId] = Marker(
-      markerId: myLocationMarkerId,
+    markers[destLocationMarkerId] = Marker(
+      markerId: destLocationMarkerId,
       position: myLocation.target,
-      icon: sourceIcon,
       infoWindow: const InfoWindow(title: 'Vị trí của bạn'),
     );
 
     markers[currentLocationMarkerId] = Marker(
       markerId: currentLocationMarkerId,
       position: vehicleLocation.target,
-      icon: sourceIcon,
       infoWindow: const InfoWindow(title: 'Vị trí hiện tại'),
     );
 
@@ -136,53 +133,53 @@ class HomeController extends BaseController {
       width: 6,
     );
 
-    // _getAssetIcon(Assets.images.icCar.path).then(
-    //   (BitmapDescriptor icon) {
-    //     _setMarkerIcon(currentLocationMarkerId, icon);
-    //     // _setMarkerIcon(vehicleMarkerId, icon);
-    //   },
-    // );
-    setCustomMarkerIcon();
+    _getAssetIcon(Assets.images.icCar.path).then(
+      (BitmapDescriptor icon) {
+        _setMarkerIcon(vehicleMarkerId, icon);
+        Marker? curLocationMarker = markers[currentLocationMarkerId];
+        markers[currentLocationMarkerId] = curLocationMarker?.copyWith(iconParam: icon) ??
+            const Marker(markerId: currentLocationMarkerId);
+      },
+    );
   }
 
   void setCustomMarkerIcon() {
-    BitmapDescriptor.fromAssetImage(ImageConfiguration.empty, Assets.images.icCar.path)
+    BitmapDescriptor.fromAssetImage(
+            const ImageConfiguration(size: Size(18, 18)), Assets.images.icCar.path)
         .then((icon) {
-      sourceIcon = icon;
-      currentLocationIcon = icon;
-      destinationIcon = icon;
+      Marker? vehicleMarker = markers[vehicleMarkerId];
+      markers[vehicleMarkerId] =
+          vehicleMarker?.copyWith(iconParam: icon) ?? const Marker(markerId: vehicleMarkerId);
+      Marker? curLocationMarker = markers[currentLocationMarkerId];
+      markers[currentLocationMarkerId] = curLocationMarker?.copyWith(iconParam: icon) ??
+          const Marker(markerId: currentLocationMarkerId);
+      Marker? desLocationMarker = markers[destLocationMarkerId];
+      markers[destLocationMarkerId] = desLocationMarker?.copyWith(iconParam: icon) ??
+          const Marker(markerId: destLocationMarkerId);
       update();
     });
-    // BitmapDescriptor.fromAssetImage(ImageConfiguration.empty, Assets.images.icCar.path)
-    //     .then((icon) {
-    //   currentLocationIcon = icon;
-    // });
-    // BitmapDescriptor.fromAssetImage(ImageConfiguration.empty, Assets.images.icCar.path)
-    //     .then((icon) {
-    //   destinationIcon = icon;
-    // });
   }
 
   void animatePolyline() {
     Fimber.d("animatePolyline()");
     _index = 0;
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) async {
+    _timer = Timer.periodic(const Duration(milliseconds: 1250), (timer) async {
       Fimber.d("Timer.periodic(const Duration(milliseconds: 200), (timer)");
       if (_index < backgroundPolylineCoordinates.length - 1) {
         _index++;
-        curLocation = CameraPosition(target: backgroundPolylineCoordinates[_index], zoom: 16);
+        curLocation = CameraPosition(target: backgroundPolylineCoordinates[_index], zoom: 20);
         animatedPolylineCoordinates.add(backgroundPolylineCoordinates[_index]);
         final GoogleMapController controller = await gMapController.future;
         controller.animateCamera(
           CameraUpdate.newCameraPosition(
-            CameraPosition(target: backgroundPolylineCoordinates[_index], zoom: 16),
+            CameraPosition(target: backgroundPolylineCoordinates[_index], zoom: 20),
           ),
         );
-        markers[currentLocationMarkerId] = Marker(
-          markerId: currentLocationMarkerId,
-          position: backgroundPolylineCoordinates[_index],
-          infoWindow: const InfoWindow(title: 'Vị trí hiện tại'),
-        );
+
+        Marker? curLocationMarker = markers[currentLocationMarkerId];
+        markers[currentLocationMarkerId] =
+            curLocationMarker?.copyWith(positionParam: backgroundPolylineCoordinates[_index]) ??
+                const Marker(markerId: currentLocationMarkerId);
 
         update();
       } else {
@@ -209,7 +206,7 @@ class HomeController extends BaseController {
     controller.animateCamera(CameraUpdate.newCameraPosition(myLocation));
     myLocation = const CameraPosition(
       target: LatLng(21.0316059, 105.7922232),
-      zoom: 16,
+      zoom: 20,
     );
     controller.animateCamera(CameraUpdate.newCameraPosition(myLocation));
   }
