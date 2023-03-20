@@ -1,6 +1,7 @@
 // Copyright (c) 2023, one of the D3F outsourcing projects. All rights reserved.
 
 import 'dart:async';
+import 'dart:convert';
 import 'dart:ui';
 
 import 'package:fimber/fimber.dart';
@@ -9,17 +10,20 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:getx_sample/app/modules/base/base.dart';
 import 'package:getx_sample/app/routes/app_pages.dart';
+import 'package:getx_sample/data/bean/location_object/location_object.dart';
 import 'package:getx_sample/generated/colors.gen.dart';
 import 'package:getx_sample/styles/theme_extensions.dart';
+import 'package:getx_sample/utils/extensions/extensions.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../../generated/assets.gen.dart';
 
 class HomeController extends BaseController {
   late Completer<GoogleMapController> gMapController;
-  late CameraPosition myLocation;
-  late CameraPosition vehicleLocation;
-  late CameraPosition curLocation;
+  CameraPosition? myLocation;
+  CameraPosition? sourceLocation;
+  CameraPosition? destLocation;
+  CameraPosition? curLocation;
   final trafficEnabled = false.obs;
   static const vehicleMarkerId = MarkerId('vehicleMarkerId');
   static const currentLocationMarkerId = MarkerId('currentLocationMarkerId');
@@ -30,55 +34,12 @@ class HomeController extends BaseController {
   Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
 
   Map<PolylineId, Polyline> polylines = <PolylineId, Polyline>{};
-  List<LatLng> backgroundPolylineCoordinates = [
-    const LatLng(21.01116, 105.84728),
-    const LatLng(21.01116, 105.84728),
-    const LatLng(21.01125, 105.84795),
-    const LatLng(21.01125, 105.84795),
-    const LatLng(21.01169, 105.84802),
-    const LatLng(21.01169, 105.84802),
-    const LatLng(21.01088, 105.84885),
-    const LatLng(21.01088, 105.84885),
-    const LatLng(21.01064, 105.84911),
-    const LatLng(21.01064, 105.84911),
-    const LatLng(21.00979, 105.84995),
-    const LatLng(21.00979, 105.84995),
-    const LatLng(21.00929, 105.85049),
-    const LatLng(21.00929, 105.85049),
-    const LatLng(21.00907, 105.8507),
-    const LatLng(21.00907, 105.8507),
-    const LatLng(21.00862, 105.85106),
-    const LatLng(21.00862, 105.85106),
-    const LatLng(21.00861, 105.8514),
-    const LatLng(21.00861, 105.8514),
-    const LatLng(21.00855, 105.85235),
-    const LatLng(21.00855, 105.85235),
-    const LatLng(21.00856, 105.85292),
-    const LatLng(21.00856, 105.85292),
-    const LatLng(21.00858, 105.85311),
-    const LatLng(21.00858, 105.85311),
-    const LatLng(21.00896, 105.85508),
-    const LatLng(21.00896, 105.85508),
-    const LatLng(21.00908, 105.85582),
-    const LatLng(21.00908, 105.85582),
-    const LatLng(21.0091, 105.85624),
-    const LatLng(21.0091, 105.85624),
-    const LatLng(21.00905, 105.85859),
-    const LatLng(21.00905, 105.85859),
-    const LatLng(21.00904, 105.85929),
-    const LatLng(21.00904, 105.85929),
-    const LatLng(21.00899, 105.86043),
-    const LatLng(21.00899, 105.86043),
-    const LatLng(21.00888, 105.86057),
-    const LatLng(21.00888, 105.86057),
-    const LatLng(21.00869, 105.86071),
-    const LatLng(21.00869, 105.86071)
-  ];
-
+  List<LatLng> backgroundPolylineCoordinates = [];
   List<LatLng> animatedPolylineCoordinates = [];
   late Timer _timer;
-
   late int _index;
+
+  late List<LocationObject?>? locationList = [];
 
   BitmapDescriptor sourceIcon = BitmapDescriptor.defaultMarker;
   BitmapDescriptor destinationIcon = BitmapDescriptor.defaultMarker;
@@ -87,42 +48,61 @@ class HomeController extends BaseController {
   @override
   void onInit() async {
     super.onInit();
+    final sLocationList = await rootBundle.loadString(Assets.jsons.locations);
+    Iterable iLocations = jsonDecode(sLocationList);
+    locationList = List<LocationObject?>.from(iLocations.map((e) => LocationObject.fromJson(e)));
+    Fimber.d(sLocationList);
+
+    locationList?.first?.let(
+      (self) => {
+        sourceLocation =
+            CameraPosition(target: LatLng(self.latitude ?? 0.0, self.longitude ?? 0.0), zoom: 16),
+        curLocation =
+            CameraPosition(target: LatLng(self.latitude ?? 0.0, self.longitude ?? 0.0), zoom: 16)
+      },
+    );
+
+    locationList?.last?.let(
+      (self) => {
+        destLocation =
+            CameraPosition(target: LatLng(self.latitude ?? 0.0, self.longitude ?? 0.0), zoom: 16)
+      },
+    );
+
+    locationList?.forEach((element) {
+      element?.toLatLng()?.let((self) => backgroundPolylineCoordinates.add(self));
+    });
+
     myLocation = const CameraPosition(
       target: LatLng(21.0316059, 105.7922232),
-      zoom: 20,
+      zoom: 16,
     );
-    vehicleLocation = const CameraPosition(
-      target: LatLng(21.01116, 105.84728),
-      zoom: 20,
-    );
-    curLocation = const CameraPosition(
-      target: LatLng(21.01116, 105.84728),
-      zoom: 20,
-    );
+
     gMapController = Completer<GoogleMapController>();
     markers[vehicleMarkerId] = Marker(
       markerId: vehicleMarkerId,
-      position: vehicleLocation.target,
+      position: sourceLocation?.target ?? const LatLng(21.0316059, 105.7922232),
       infoWindow: const InfoWindow(
           title: 'Pagani Huaya',
           snippet: 'Pagani Huaya Roadster: 2023	\n-829 horsepower			>\n-Mercedes-AMG V12			'),
     );
     markers[destLocationMarkerId] = Marker(
       markerId: destLocationMarkerId,
-      position: myLocation.target,
+      position: myLocation?.target ?? const LatLng(21.0316059, 105.7922232),
       infoWindow: const InfoWindow(title: 'Vị trí của bạn'),
     );
 
     markers[currentLocationMarkerId] = Marker(
       markerId: currentLocationMarkerId,
-      position: vehicleLocation.target,
+      position: sourceLocation?.target ?? const LatLng(21.0316059, 105.7922232),
+      rotation: locationList![0]?.heading ?? 0.0,
       infoWindow: const InfoWindow(title: 'Vị trí hiện tại'),
     );
 
     polylines[backgroundPolylineId] = Polyline(
       polylineId: backgroundPolylineId,
       points: backgroundPolylineCoordinates,
-      color: Get.context?.themeExtensions.lightSilver ?? LMSColors.lightSilver,
+      color: Get.context?.themeExtensions.textGrey ?? LMSColors.textGrey,
       width: 6,
     );
 
@@ -141,6 +121,12 @@ class HomeController extends BaseController {
             const Marker(markerId: currentLocationMarkerId);
       },
     );
+    _getAssetIcon(Assets.images.icDirection.path).then(
+      (value) {
+        _setMarkerIcon(currentLocationMarkerId, value);
+      },
+    );
+    update();
   }
 
   void setCustomMarkerIcon() {
@@ -150,12 +136,6 @@ class HomeController extends BaseController {
       Marker? vehicleMarker = markers[vehicleMarkerId];
       markers[vehicleMarkerId] =
           vehicleMarker?.copyWith(iconParam: icon) ?? const Marker(markerId: vehicleMarkerId);
-      Marker? curLocationMarker = markers[currentLocationMarkerId];
-      markers[currentLocationMarkerId] = curLocationMarker?.copyWith(iconParam: icon) ??
-          const Marker(markerId: currentLocationMarkerId);
-      Marker? desLocationMarker = markers[destLocationMarkerId];
-      markers[destLocationMarkerId] = desLocationMarker?.copyWith(iconParam: icon) ??
-          const Marker(markerId: destLocationMarkerId);
       update();
     });
   }
@@ -163,23 +143,25 @@ class HomeController extends BaseController {
   void animatePolyline() {
     Fimber.d("animatePolyline()");
     _index = 0;
-    _timer = Timer.periodic(const Duration(milliseconds: 1250), (timer) async {
+    _timer = Timer.periodic(const Duration(milliseconds: 100), (timer) async {
       Fimber.d("Timer.periodic(const Duration(milliseconds: 200), (timer)");
       if (_index < backgroundPolylineCoordinates.length - 1) {
         _index++;
-        curLocation = CameraPosition(target: backgroundPolylineCoordinates[_index], zoom: 20);
+        curLocation = CameraPosition(target: backgroundPolylineCoordinates[_index], zoom: 16);
         animatedPolylineCoordinates.add(backgroundPolylineCoordinates[_index]);
         final GoogleMapController controller = await gMapController.future;
         controller.animateCamera(
           CameraUpdate.newCameraPosition(
-            CameraPosition(target: backgroundPolylineCoordinates[_index], zoom: 20),
+            CameraPosition(target: backgroundPolylineCoordinates[_index], zoom: 16),
           ),
         );
 
         Marker? curLocationMarker = markers[currentLocationMarkerId];
-        markers[currentLocationMarkerId] =
-            curLocationMarker?.copyWith(positionParam: backgroundPolylineCoordinates[_index]) ??
-                const Marker(markerId: currentLocationMarkerId);
+        markers[currentLocationMarkerId] = curLocationMarker?.copyWith(
+                positionParam: backgroundPolylineCoordinates[_index],
+                rotationParam: locationList![_index]?.heading,
+                anchorParam: const Offset(0.5, 0.5)) ??
+            const Marker(markerId: currentLocationMarkerId);
 
         update();
       } else {
@@ -197,18 +179,30 @@ class HomeController extends BaseController {
   Future<void> goToVehicle() async {
     Fimber.d("Future<void> goToTheLake() async");
     final GoogleMapController controller = await gMapController.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(vehicleLocation));
+    controller.animateCamera(CameraUpdate.newCameraPosition(sourceLocation ??
+        const CameraPosition(
+          target: LatLng(21.0316059, 105.7922232),
+          zoom: 16,
+        )));
   }
 
   Future<void> toMyLocation() async {
     Fimber.d("Future<void> goToTheLake() async");
     final GoogleMapController controller = await gMapController.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(myLocation));
+    controller.animateCamera(CameraUpdate.newCameraPosition(myLocation ??
+        const CameraPosition(
+          target: LatLng(21.0316059, 105.7922232),
+          zoom: 16,
+        )));
     myLocation = const CameraPosition(
       target: LatLng(21.0316059, 105.7922232),
       zoom: 20,
     );
-    controller.animateCamera(CameraUpdate.newCameraPosition(myLocation));
+    controller.animateCamera(CameraUpdate.newCameraPosition(myLocation ??
+        const CameraPosition(
+          target: LatLng(21.0316059, 105.7922232),
+          zoom: 16,
+        )));
   }
 
   void _setMarkerIcon(MarkerId markerId, BitmapDescriptor assetIcon) {
@@ -223,7 +217,7 @@ class HomeController extends BaseController {
     final Completer<BitmapDescriptor> bitmapIcon = Completer<BitmapDescriptor>();
 
     AssetImage(imageName)
-        .resolve(const ImageConfiguration(size: Size(36, 36)))
+        .resolve(const ImageConfiguration(size: Size(136, 136)))
         .addListener(ImageStreamListener((ImageInfo image, bool sync) async {
       final ByteData? bytes = await image.image.toByteData(format: ImageByteFormat.png);
       if (bytes == null) {

@@ -8,7 +8,7 @@ part of 'app_configurations.dart';
 
 class AppConfigurationsAdapter extends TypeAdapter<AppConfigurations> {
   @override
-  final int typeId = 0;
+  final int typeId = 223;
 
   @override
   AppConfigurations read(BinaryReader reader) {

@@ -45,6 +45,7 @@ dependencies:
   dart_extensions: 2.2.0
   google_maps_flutter: ^2.2.5
   flutter_polyline_points: 1.0.0
+  location: 4.4.0
   flutter: 
     sdk: flutter
   animated_bottom_navigation_bar: 

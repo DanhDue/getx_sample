@@ -25,7 +25,7 @@ List<UserObject> jsonToListUserObjects(Object? json) => List<Object>.from(json a
 
 class UserObjectAdapter extends TypeAdapter<UserObject> {
   @override
-  final int typeId = 1;
+  final int typeId = 222;
 
   @override
   UserObject read(BinaryReader reader) {

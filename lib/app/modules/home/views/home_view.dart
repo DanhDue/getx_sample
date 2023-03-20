@@ -24,17 +24,23 @@ class HomeView extends BaseBindingCreatorView<HomeBinding, HomeController> {
       body: Stack(
         children: [
           GetBuilder<HomeController>(
-              builder: (controller) => GoogleMap(
-                    mapType: MapType.normal,
-                    initialCameraPosition: controller.vehicleLocation,
-                    onMapCreated: (GoogleMapController gMapController) {
-                      controller.gMapController.complete(gMapController);
-                    },
-                    zoomControlsEnabled: false,
-                    trafficEnabled: controller.trafficEnabled.value,
-                    polylines: Set<Polyline>.of(controller.polylines.values),
-                    markers: Set<Marker>.of(controller.markers.values),
-                  )),
+              builder: (controller) => (controller.sourceLocation == null)
+                  ? const Center(child: AutoSizeText("Loading..."))
+                  : GoogleMap(
+                      mapType: MapType.normal,
+                      initialCameraPosition: controller.sourceLocation ??
+                          const CameraPosition(
+                            target: LatLng(21.0316059, 105.7922232),
+                            zoom: 20,
+                          ),
+                      onMapCreated: (GoogleMapController gMapController) {
+                        controller.gMapController.complete(gMapController);
+                      },
+                      zoomControlsEnabled: false,
+                      trafficEnabled: controller.trafficEnabled.value,
+                      polylines: Set<Polyline>.of(controller.polylines.values),
+                      markers: Set<Marker>.of(controller.markers.values),
+                    )),
           Align(
             alignment: Alignment.topLeft,
             child: Column(

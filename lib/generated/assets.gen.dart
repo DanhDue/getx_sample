@@ -55,6 +55,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/icCar.png
   AssetGenImage get icCar => const AssetGenImage('assets/images/icCar.png');
 
+  /// File path: assets/images/icDirection.png
+  AssetGenImage get icDirection => const AssetGenImage('assets/images/icDirection.png');
+
   /// File path: assets/images/icTarget.png
   AssetGenImage get icTarget => const AssetGenImage('assets/images/icTarget.png');
 
@@ -210,6 +213,7 @@ class $AssetsImagesGen {
         homeTopLeftButBg,
         homeTopRightButBg,
         icCar,
+        icDirection,
         icTarget,
         icArrowLeft,
         icAward,
@@ -261,11 +265,14 @@ class $AssetsImagesGen {
 class $AssetsJsonsGen {
   const $AssetsJsonsGen();
 
+  /// File path: assets/jsons/locations.json
+  String get locations => 'assets/jsons/locations.json';
+
   /// File path: assets/jsons/user_object.json
   String get userObject => 'assets/jsons/user_object.json';
 
   /// List of all assets
-  List<String> get values => [userObject];
+  List<String> get values => [locations, userObject];
 }
 
 class $AssetsLottiesGen {
