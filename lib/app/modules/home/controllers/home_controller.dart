@@ -25,6 +25,7 @@ class HomeController extends BaseController {
   CameraPosition? destLocation;
   CameraPosition? curLocation;
   final trafficEnabled = false.obs;
+  final satelliteMap = false.obs;
   static const vehicleMarkerId = MarkerId('vehicleMarkerId');
   static const currentLocationMarkerId = MarkerId('currentLocationMarkerId');
   static const destLocationMarkerId = MarkerId('myLocationMarkerId');
@@ -126,6 +127,18 @@ class HomeController extends BaseController {
         _setMarkerIcon(currentLocationMarkerId, value);
       },
     );
+    update();
+  }
+
+  void changeTrafficStatus() {
+    Fimber.d("changeTrafficStatus()");
+    trafficEnabled.value = !trafficEnabled.value;
+    update();
+  }
+
+  void changeMapType() {
+    Fimber.d("changeMapType()");
+    satelliteMap.value = !satelliteMap.value;
     update();
   }
 

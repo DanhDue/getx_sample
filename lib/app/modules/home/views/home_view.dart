@@ -27,7 +27,9 @@ class HomeView extends BaseBindingCreatorView<HomeBinding, HomeController> {
               builder: (controller) => (controller.sourceLocation == null)
                   ? const Center(child: AutoSizeText("Loading..."))
                   : GoogleMap(
-                      mapType: MapType.normal,
+                      mapType: controller.satelliteMap.value == true
+                          ? MapType.satellite
+                          : MapType.normal,
                       initialCameraPosition: controller.sourceLocation ??
                           const CameraPosition(
                             target: LatLng(21.0316059, 105.7922232),
@@ -200,7 +202,7 @@ class HomeView extends BaseBindingCreatorView<HomeBinding, HomeController> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 InkWell(
-                  onTap: () => controller.trafficEnabled.value = !controller.trafficEnabled.value,
+                  onTap: () => controller.changeTrafficStatus(),
                   child: Container(
                     width: 46,
                     height: 46,
@@ -208,18 +210,42 @@ class HomeView extends BaseBindingCreatorView<HomeBinding, HomeController> {
                       borderRadius: const BorderRadius.all(Radius.circular(8)),
                       boxShadow: [
                         BoxShadow(
-                            color: context.themeExtensions.black.withOpacity(0.2),
+                            color: context.themeExtensions.black.withOpacity(0.1),
                             offset: const Offset(0, 4),
                             blurRadius: 4)
                       ],
-                      color: context.themeExtensions.black.withOpacity(0.3),
+                      color: context.themeExtensions.black.withOpacity(0.1),
                     ),
                     child: Center(
-                      child: AutoSizeText(
-                        'Traf',
-                        style: context.themeExtensions.heading3
-                            .copyWith(color: context.themeExtensions.white),
-                      ),
+                      child: Obx(() => controller.trafficEnabled.value == true
+                          ? Assets.images.trafficOn.image(width: 46, height: 46, fit: BoxFit.cover)
+                          : Assets.images.trafficOff
+                              .image(width: 46, height: 46, fit: BoxFit.cover)),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 7),
+                InkWell(
+                  onTap: () => controller.changeMapType(),
+                  child: Container(
+                    width: 46,
+                    height: 46,
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(Radius.circular(8)),
+                      boxShadow: [
+                        BoxShadow(
+                            color: context.themeExtensions.black.withOpacity(0.1),
+                            offset: const Offset(0, 4),
+                            blurRadius: 4)
+                      ],
+                      color: context.themeExtensions.black.withOpacity(0.1),
+                    ),
+                    child: Center(
+                      child: Obx(() => controller.satelliteMap.value == true
+                          ? Assets.images.mapLayerSatellite
+                              .image(width: 46, height: 46, fit: BoxFit.cover)
+                          : Assets.images.mapLayerRoad
+                              .image(width: 46, height: 46, fit: BoxFit.cover)),
                     ),
                   ),
                 ),
@@ -233,19 +259,17 @@ class HomeView extends BaseBindingCreatorView<HomeBinding, HomeController> {
                       borderRadius: const BorderRadius.all(Radius.circular(8)),
                       boxShadow: [
                         BoxShadow(
-                            color: context.themeExtensions.black.withOpacity(0.2),
+                            color: context.themeExtensions.lightSilver,
                             offset: const Offset(0, 4),
                             blurRadius: 4)
                       ],
-                      color: context.themeExtensions.black.withOpacity(0.3),
+                      color: context.themeExtensions.white,
                     ),
-                    child: Center(
-                      child: AutoSizeText(
-                        'View',
-                        style: context.themeExtensions.heading3
-                            .copyWith(color: context.themeExtensions.white),
-                      ),
-                    ),
+                    child: const Center(
+                        child: Icon(
+                      Icons.directions,
+                      size: 36,
+                    )),
                   ),
                 ),
               ],
