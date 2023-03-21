@@ -45,8 +45,7 @@ mixin _$LocationObject {
   @HiveField(11)
   double? get elapsedRealtimeNanos => throw _privateConstructorUsedError;
   @HiveField(12)
-  double? get elapsedRealtimeUncertaintyNanos =>
-      throw _privateConstructorUsedError;
+  double? get elapsedRealtimeUncertaintyNanos => throw _privateConstructorUsedError;
   @HiveField(13)
   int? get satelliteNumber => throw _privateConstructorUsedError;
   @HiveField(14)
@@ -54,14 +53,12 @@ mixin _$LocationObject {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $LocationObjectCopyWith<LocationObject> get copyWith =>
-      throw _privateConstructorUsedError;
+  $LocationObjectCopyWith<LocationObject> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $LocationObjectCopyWith<$Res> {
-  factory $LocationObjectCopyWith(
-          LocationObject value, $Res Function(LocationObject) then) =
+  factory $LocationObjectCopyWith(LocationObject value, $Res Function(LocationObject) then) =
       _$LocationObjectCopyWithImpl<$Res, LocationObject>;
   @useResult
   $Res call(
@@ -160,8 +157,7 @@ class _$LocationObjectCopyWithImpl<$Res, $Val extends LocationObject>
           ? _value.elapsedRealtimeNanos
           : elapsedRealtimeNanos // ignore: cast_nullable_to_non_nullable
               as double?,
-      elapsedRealtimeUncertaintyNanos: freezed ==
-              elapsedRealtimeUncertaintyNanos
+      elapsedRealtimeUncertaintyNanos: freezed == elapsedRealtimeUncertaintyNanos
           ? _value.elapsedRealtimeUncertaintyNanos
           : elapsedRealtimeUncertaintyNanos // ignore: cast_nullable_to_non_nullable
               as double?,
@@ -178,8 +174,7 @@ class _$LocationObjectCopyWithImpl<$Res, $Val extends LocationObject>
 }
 
 /// @nodoc
-abstract class _$$_LocationObjectCopyWith<$Res>
-    implements $LocationObjectCopyWith<$Res> {
+abstract class _$$_LocationObjectCopyWith<$Res> implements $LocationObjectCopyWith<$Res> {
   factory _$$_LocationObjectCopyWith(
           _$_LocationObject value, $Res Function(_$_LocationObject) then) =
       __$$_LocationObjectCopyWithImpl<$Res>;
@@ -207,8 +202,7 @@ abstract class _$$_LocationObjectCopyWith<$Res>
 class __$$_LocationObjectCopyWithImpl<$Res>
     extends _$LocationObjectCopyWithImpl<$Res, _$_LocationObject>
     implements _$$_LocationObjectCopyWith<$Res> {
-  __$$_LocationObjectCopyWithImpl(
-      _$_LocationObject _value, $Res Function(_$_LocationObject) _then)
+  __$$_LocationObjectCopyWithImpl(_$_LocationObject _value, $Res Function(_$_LocationObject) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -279,8 +273,7 @@ class __$$_LocationObjectCopyWithImpl<$Res>
           ? _value.elapsedRealtimeNanos
           : elapsedRealtimeNanos // ignore: cast_nullable_to_non_nullable
               as double?,
-      elapsedRealtimeUncertaintyNanos: freezed ==
-              elapsedRealtimeUncertaintyNanos
+      elapsedRealtimeUncertaintyNanos: freezed == elapsedRealtimeUncertaintyNanos
           ? _value.elapsedRealtimeUncertaintyNanos
           : elapsedRealtimeUncertaintyNanos // ignore: cast_nullable_to_non_nullable
               as double?,
@@ -375,16 +368,12 @@ class _$_LocationObject implements _LocationObject {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LocationObject &&
-            (identical(other.latitude, latitude) ||
-                other.latitude == latitude) &&
-            (identical(other.longitude, longitude) ||
-                other.longitude == longitude) &&
-            (identical(other.accuracy, accuracy) ||
-                other.accuracy == accuracy) &&
+            (identical(other.latitude, latitude) || other.latitude == latitude) &&
+            (identical(other.longitude, longitude) || other.longitude == longitude) &&
+            (identical(other.accuracy, accuracy) || other.accuracy == accuracy) &&
             (identical(other.verticalAccuracy, verticalAccuracy) ||
                 other.verticalAccuracy == verticalAccuracy) &&
-            (identical(other.altitude, altitude) ||
-                other.altitude == altitude) &&
+            (identical(other.altitude, altitude) || other.altitude == altitude) &&
             (identical(other.speed, speed) || other.speed == speed) &&
             (identical(other.speedAccuracy, speedAccuracy) ||
                 other.speedAccuracy == speedAccuracy) &&
@@ -395,14 +384,11 @@ class _$_LocationObject implements _LocationObject {
                 other.headingAccuracy == headingAccuracy) &&
             (identical(other.elapsedRealtimeNanos, elapsedRealtimeNanos) ||
                 other.elapsedRealtimeNanos == elapsedRealtimeNanos) &&
-            (identical(other.elapsedRealtimeUncertaintyNanos,
-                    elapsedRealtimeUncertaintyNanos) ||
-                other.elapsedRealtimeUncertaintyNanos ==
-                    elapsedRealtimeUncertaintyNanos) &&
+            (identical(other.elapsedRealtimeUncertaintyNanos, elapsedRealtimeUncertaintyNanos) ||
+                other.elapsedRealtimeUncertaintyNanos == elapsedRealtimeUncertaintyNanos) &&
             (identical(other.satelliteNumber, satelliteNumber) ||
                 other.satelliteNumber == satelliteNumber) &&
-            (identical(other.provider, provider) ||
-                other.provider == provider));
+            (identical(other.provider, provider) || other.provider == provider));
   }
 
   @JsonKey(ignore: true)
@@ -457,8 +443,7 @@ abstract class _LocationObject implements LocationObject {
       @HiveField(13) final int? satelliteNumber,
       @HiveField(14) final String? provider}) = _$_LocationObject;
 
-  factory _LocationObject.fromJson(Map<String, dynamic> json) =
-      _$_LocationObject.fromJson;
+  factory _LocationObject.fromJson(Map<String, dynamic> json) = _$_LocationObject.fromJson;
 
   @override
   @HiveField(0)
@@ -507,6 +492,5 @@ abstract class _LocationObject implements LocationObject {
   String? get provider;
   @override
   @JsonKey(ignore: true)
-  _$$_LocationObjectCopyWith<_$_LocationObject> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_LocationObjectCopyWith<_$_LocationObject> get copyWith => throw _privateConstructorUsedError;
 }

@@ -111,6 +111,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/ic_finger_scan.svg
   SvgGenImage get icFingerScan => const SvgGenImage('assets/images/ic_finger_scan.svg');
 
+  /// File path: assets/images/ic_format_text_grey600_36dp.png
+  AssetGenImage get icFormatTextGrey60036dp =>
+      const AssetGenImage('assets/images/ic_format_text_grey600_36dp.png');
+
   /// File path: assets/images/ic_has_no_data.png
   AssetGenImage get icHasNoData => const AssetGenImage('assets/images/ic_has_no_data.png');
 
@@ -186,6 +190,19 @@ class $AssetsImagesGen {
   AssetGenImage get lessonRegistrationBanner =>
       const AssetGenImage('assets/images/lesson_registration_banner.png');
 
+  /// File path: assets/images/login_account.png
+  AssetGenImage get loginAccount => const AssetGenImage('assets/images/login_account.png');
+
+  /// File path: assets/images/login_password.png
+  AssetGenImage get loginPassword => const AssetGenImage('assets/images/login_password.png');
+
+  /// File path: assets/images/map_layer_road.png
+  AssetGenImage get mapLayerRoad => const AssetGenImage('assets/images/map_layer_road.png');
+
+  /// File path: assets/images/map_layer_satellite.png
+  AssetGenImage get mapLayerSatellite =>
+      const AssetGenImage('assets/images/map_layer_satellite.png');
+
   /// File path: assets/images/personal_study_overview_bg.png
   AssetGenImage get personalStudyOverviewBg =>
       const AssetGenImage('assets/images/personal_study_overview_bg.png');
@@ -196,6 +213,12 @@ class $AssetsImagesGen {
   /// File path: assets/images/splash_bot_content.png
   AssetGenImage get splashBotContent =>
       const AssetGenImage('assets/images/splash_bot_content.png');
+
+  /// File path: assets/images/traffic_off.png
+  AssetGenImage get trafficOff => const AssetGenImage('assets/images/traffic_off.png');
+
+  /// File path: assets/images/traffic_on.png
+  AssetGenImage get trafficOn => const AssetGenImage('assets/images/traffic_on.png');
 
   /// File path: assets/images/university_building.png
   AssetGenImage get universityBuilding =>
@@ -231,6 +254,7 @@ class $AssetsImagesGen {
         icEmptyWalletChange,
         icFilterSearch,
         icFingerScan,
+        icFormatTextGrey60036dp,
         icHasNoData,
         icHome,
         icInfoCircle,
@@ -255,9 +279,15 @@ class $AssetsImagesGen {
         icTeacherSvg,
         icUserOctagon,
         lessonRegistrationBanner,
+        loginAccount,
+        loginPassword,
+        mapLayerRoad,
+        mapLayerSatellite,
         personalStudyOverviewBg,
         profileHeaderBg,
         splashBotContent,
+        trafficOff,
+        trafficOn,
         universityBuilding
       ];
 }

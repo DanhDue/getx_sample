@@ -77,17 +77,14 @@ class LocationObjectAdapter extends TypeAdapter<LocationObject> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is LocationObjectAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
+      other is LocationObjectAdapter && runtimeType == other.runtimeType && typeId == other.typeId;
 }
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_LocationObject _$$_LocationObjectFromJson(Map<String, dynamic> json) =>
-    _$_LocationObject(
+_$_LocationObject _$$_LocationObjectFromJson(Map<String, dynamic> json) => _$_LocationObject(
       latitude: (json['latitude'] as num?)?.toDouble(),
       longitude: (json['longitude'] as num?)?.toDouble(),
       accuracy: (json['accuracy'] as num?)?.toDouble(),
@@ -106,8 +103,7 @@ _$_LocationObject _$$_LocationObjectFromJson(Map<String, dynamic> json) =>
       provider: json['provider'] as String?,
     );
 
-Map<String, dynamic> _$$_LocationObjectToJson(_$_LocationObject instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$$_LocationObjectToJson(_$_LocationObject instance) => <String, dynamic>{
       'latitude': instance.latitude,
       'longitude': instance.longitude,
       'accuracy': instance.accuracy,
@@ -120,8 +116,7 @@ Map<String, dynamic> _$$_LocationObjectToJson(_$_LocationObject instance) =>
       'isMock': instance.isMock,
       'headingAccuracy': instance.headingAccuracy,
       'elapsedRealtimeNanos': instance.elapsedRealtimeNanos,
-      'elapsedRealtimeUncertaintyNanos':
-          instance.elapsedRealtimeUncertaintyNanos,
+      'elapsedRealtimeUncertaintyNanos': instance.elapsedRealtimeUncertaintyNanos,
       'satelliteNumber': instance.satelliteNumber,
       'provider': instance.provider,
     };
