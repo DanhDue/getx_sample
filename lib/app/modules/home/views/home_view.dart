@@ -31,9 +31,9 @@ class HomeView extends BaseBindingCreatorView<HomeBinding, HomeController> {
                           ? MapType.satellite
                           : MapType.normal,
                       initialCameraPosition: controller.sourceLocation ??
-                          const CameraPosition(
-                            target: LatLng(21.0316059, 105.7922232),
-                            zoom: 20,
+                          CameraPosition(
+                            target: const LatLng(21.0316059, 105.7922232),
+                            zoom: controller.mapZoom,
                           ),
                       onMapCreated: (GoogleMapController gMapController) {
                         controller.gMapController.complete(gMapController);
@@ -64,11 +64,8 @@ class HomeView extends BaseBindingCreatorView<HomeBinding, HomeController> {
                     color: context.themeExtensions.water,
                   ),
                   child: Center(
-                    child: AutoSizeText(
-                      'T',
-                      style: context.themeExtensions.heading1
-                          .copyWith(color: context.themeExtensions.red),
-                    ),
+                    child: Assets.images.icFormatTextGrey60036dp
+                        .image(width: 36, height: 36, fit: BoxFit.cover),
                   ),
                 ),
                 const SizedBox(height: 7),
@@ -148,46 +145,52 @@ class HomeView extends BaseBindingCreatorView<HomeBinding, HomeController> {
                   ),
                 ),
                 const SizedBox(height: 7),
-                Container(
-                  width: 46,
-                  height: 46,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(8)),
-                    boxShadow: [
-                      BoxShadow(
-                          color: context.themeExtensions.black.withOpacity(0.2),
-                          offset: const Offset(0, 4),
-                          blurRadius: 4)
-                    ],
-                    color: context.themeExtensions.water,
-                  ),
-                  child: Center(
-                    child: AutoSizeText(
-                      '+',
-                      style: context.themeExtensions.paragraph
-                          .copyWith(color: context.themeExtensions.red, fontSize: 36),
+                InkWell(
+                  onTap: () => controller.updateMapZoomValue(0.5),
+                  child: Container(
+                    width: 46,
+                    height: 46,
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(Radius.circular(8)),
+                      boxShadow: [
+                        BoxShadow(
+                            color: context.themeExtensions.black.withOpacity(0.2),
+                            offset: const Offset(0, 4),
+                            blurRadius: 4)
+                      ],
+                      color: context.themeExtensions.water,
+                    ),
+                    child: Center(
+                      child: AutoSizeText(
+                        '+',
+                        style: context.themeExtensions.paragraph
+                            .copyWith(color: context.themeExtensions.red, fontSize: 36),
+                      ),
                     ),
                   ),
                 ),
                 const SizedBox(height: 7),
-                Container(
-                  width: 46,
-                  height: 46,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(8)),
-                    boxShadow: [
-                      BoxShadow(
-                          color: context.themeExtensions.black.withOpacity(0.2),
-                          offset: const Offset(0, 4),
-                          blurRadius: 4)
-                    ],
-                    color: context.themeExtensions.water,
-                  ),
-                  child: Center(
-                    child: AutoSizeText(
-                      '-',
-                      style: context.themeExtensions.paragraph
-                          .copyWith(color: context.themeExtensions.red, fontSize: 36),
+                InkWell(
+                  onTap: () => controller.updateMapZoomValue(-0.5),
+                  child: Container(
+                    width: 46,
+                    height: 46,
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(Radius.circular(8)),
+                      boxShadow: [
+                        BoxShadow(
+                            color: context.themeExtensions.black.withOpacity(0.2),
+                            offset: const Offset(0, 4),
+                            blurRadius: 4)
+                      ],
+                      color: context.themeExtensions.water,
+                    ),
+                    child: Center(
+                      child: AutoSizeText(
+                        '-',
+                        style: context.themeExtensions.paragraph
+                            .copyWith(color: context.themeExtensions.red, fontSize: 36),
+                      ),
                     ),
                   ),
                 ),
@@ -265,11 +268,28 @@ class HomeView extends BaseBindingCreatorView<HomeBinding, HomeController> {
                       ],
                       color: context.themeExtensions.white,
                     ),
-                    child: const Center(
-                        child: Icon(
-                      Icons.directions,
-                      size: 36,
-                    )),
+                    child: Center(
+                      child: Stack(
+                        children: [
+                          const Icon(
+                            Icons.directions,
+                            size: 33,
+                          ),
+                          Align(
+                            alignment: Alignment.bottomRight,
+                            child: Obx(() => Visibility(
+                                  visible: controller.animationSpeed.value != -1,
+                                  child: AutoSizeText(
+                                    "${controller.animationSpeed.value}x",
+                                    style: context.themeExtensions.subTexMedium.copyWith(
+                                        color: context.themeExtensions.red,
+                                        fontWeight: FontWeight.w900),
+                                  ),
+                                )),
+                          ),
+                        ],
+                      ).paddingAll(3),
+                    ),
                   ),
                 ),
               ],

@@ -32,13 +32,16 @@ class HomeController extends BaseController {
   static const backgroundPolylineId = PolylineId("backgroundPolylineId");
   static const animatedPolylineId = PolylineId("animatedPolylineId");
 
+  late double mapZoom = 16.0;
+
   Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
 
   Map<PolylineId, Polyline> polylines = <PolylineId, Polyline>{};
   List<LatLng> backgroundPolylineCoordinates = [];
   List<LatLng> animatedPolylineCoordinates = [];
   late Timer _timer;
-  late int _index;
+  int _index = 0;
+  final animationSpeed = (-1).obs;
 
   late List<LocationObject?>? locationList = [];
 
@@ -56,17 +59,17 @@ class HomeController extends BaseController {
 
     locationList?.first?.let(
       (self) => {
-        sourceLocation =
-            CameraPosition(target: LatLng(self.latitude ?? 0.0, self.longitude ?? 0.0), zoom: 16),
-        curLocation =
-            CameraPosition(target: LatLng(self.latitude ?? 0.0, self.longitude ?? 0.0), zoom: 16)
+        sourceLocation = CameraPosition(
+            target: LatLng(self.latitude ?? 0.0, self.longitude ?? 0.0), zoom: mapZoom),
+        curLocation = CameraPosition(
+            target: LatLng(self.latitude ?? 0.0, self.longitude ?? 0.0), zoom: mapZoom)
       },
     );
 
     locationList?.last?.let(
       (self) => {
-        destLocation =
-            CameraPosition(target: LatLng(self.latitude ?? 0.0, self.longitude ?? 0.0), zoom: 16)
+        destLocation = CameraPosition(
+            target: LatLng(self.latitude ?? 0.0, self.longitude ?? 0.0), zoom: mapZoom)
       },
     );
 
@@ -74,9 +77,9 @@ class HomeController extends BaseController {
       element?.toLatLng()?.let((self) => backgroundPolylineCoordinates.add(self));
     });
 
-    myLocation = const CameraPosition(
-      target: LatLng(21.0316059, 105.7922232),
-      zoom: 16,
+    myLocation = CameraPosition(
+      target: const LatLng(21.0316059, 105.7922232),
+      zoom: mapZoom,
     );
 
     gMapController = Completer<GoogleMapController>();
@@ -155,17 +158,27 @@ class HomeController extends BaseController {
 
   void animatePolyline() {
     Fimber.d("animatePolyline()");
-    _index = 0;
-    _timer = Timer.periodic(const Duration(milliseconds: 100), (timer) async {
+    if (_index == backgroundPolylineCoordinates.length - 1) {
+      _index = 0;
+      animatedPolylineCoordinates.clear();
+      animationSpeed.value = -1;
+    }
+    if (animationSpeed.value == -1) {
+      animationSpeed.value = 1;
+    } else {
+      animationSpeed.value += 1;
+      _timer.cancel();
+    }
+    _timer = Timer.periodic(Duration(milliseconds: 500 ~/ animationSpeed.value), (timer) async {
       Fimber.d("Timer.periodic(const Duration(milliseconds: 200), (timer)");
       if (_index < backgroundPolylineCoordinates.length - 1) {
         _index++;
-        curLocation = CameraPosition(target: backgroundPolylineCoordinates[_index], zoom: 16);
+        curLocation = CameraPosition(target: backgroundPolylineCoordinates[_index], zoom: mapZoom);
         animatedPolylineCoordinates.add(backgroundPolylineCoordinates[_index]);
         final GoogleMapController controller = await gMapController.future;
         controller.animateCamera(
           CameraUpdate.newCameraPosition(
-            CameraPosition(target: backgroundPolylineCoordinates[_index], zoom: 16),
+            CameraPosition(target: backgroundPolylineCoordinates[_index], zoom: mapZoom),
           ),
         );
 
@@ -173,12 +186,13 @@ class HomeController extends BaseController {
         markers[currentLocationMarkerId] = curLocationMarker?.copyWith(
                 positionParam: backgroundPolylineCoordinates[_index],
                 rotationParam: locationList![_index]?.heading,
-                anchorParam: const Offset(0.5, 0.5)) ??
+                anchorParam: const Offset(0.5, 0.7)) ??
             const Marker(markerId: currentLocationMarkerId);
 
         update();
       } else {
         _timer.cancel();
+        animationSpeed.value = -1;
         update();
       }
     });
@@ -193,29 +207,39 @@ class HomeController extends BaseController {
     Fimber.d("Future<void> goToTheLake() async");
     final GoogleMapController controller = await gMapController.future;
     controller.animateCamera(CameraUpdate.newCameraPosition(sourceLocation ??
-        const CameraPosition(
-          target: LatLng(21.0316059, 105.7922232),
-          zoom: 16,
+        CameraPosition(
+          target: const LatLng(21.0316059, 105.7922232),
+          zoom: mapZoom,
         )));
+    curLocation = sourceLocation;
+  }
+
+  updateMapZoomValue(double value) async {
+    mapZoom = mapZoom + value;
+    final GoogleMapController controller = await gMapController.future;
+    controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
+        target: curLocation?.target ?? const LatLng(21.0316059, 105.7922232), zoom: mapZoom)));
+    update();
   }
 
   Future<void> toMyLocation() async {
     Fimber.d("Future<void> goToTheLake() async");
     final GoogleMapController controller = await gMapController.future;
     controller.animateCamera(CameraUpdate.newCameraPosition(myLocation ??
-        const CameraPosition(
-          target: LatLng(21.0316059, 105.7922232),
-          zoom: 16,
+        CameraPosition(
+          target: const LatLng(21.0316059, 105.7922232),
+          zoom: mapZoom,
         )));
-    myLocation = const CameraPosition(
-      target: LatLng(21.0316059, 105.7922232),
-      zoom: 20,
+    myLocation = CameraPosition(
+      target: const LatLng(21.0316059, 105.7922232),
+      zoom: mapZoom,
     );
     controller.animateCamera(CameraUpdate.newCameraPosition(myLocation ??
-        const CameraPosition(
-          target: LatLng(21.0316059, 105.7922232),
-          zoom: 16,
+        CameraPosition(
+          target: const LatLng(21.0316059, 105.7922232),
+          zoom: mapZoom,
         )));
+    curLocation = myLocation;
   }
 
   void _setMarkerIcon(MarkerId markerId, BitmapDescriptor assetIcon) {
