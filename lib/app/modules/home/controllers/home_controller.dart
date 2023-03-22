@@ -4,6 +4,9 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:ui';
 
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:clippy_flutter/clippy_flutter.dart';
+import 'package:custom_info_window/custom_info_window.dart';
 import 'package:fimber/fimber.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,6 +23,7 @@ import '../../../../generated/assets.gen.dart';
 
 class HomeController extends BaseController {
   late Completer<GoogleMapController> gMapController;
+  late CustomInfoWindowController mapInfoWindowController;
   CameraPosition? myLocation;
   CameraPosition? sourceLocation;
   CameraPosition? destLocation;
@@ -83,6 +87,7 @@ class HomeController extends BaseController {
     );
 
     gMapController = Completer<GoogleMapController>();
+    mapInfoWindowController = CustomInfoWindowController();
     markers[vehicleMarkerId] = Marker(
       markerId: vehicleMarkerId,
       position: sourceLocation?.target ?? const LatLng(21.0316059, 105.7922232),
@@ -100,7 +105,79 @@ class HomeController extends BaseController {
       markerId: currentLocationMarkerId,
       position: sourceLocation?.target ?? const LatLng(21.0316059, 105.7922232),
       rotation: locationList![0]?.heading ?? 0.0,
-      infoWindow: const InfoWindow(title: 'Vị trí hiện tại'),
+      onTap: () {
+        mapInfoWindowController.addInfoWindow!(
+          Column(
+            children: [
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Get.context?.themeExtensions.semiGrey,
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            AutoSizeText(
+                              "Pagani Huaya",
+                              style: Get.context?.themeExtensions.paragraphSemiBold
+                                  .copyWith(color: Get.context?.themeExtensions.white),
+                            ),
+                            AutoSizeText(
+                              "2023-03-01 07:51:43",
+                              style: Get.context?.themeExtensions.paragraph
+                                  .copyWith(color: Get.context?.themeExtensions.white),
+                            ),
+                            AutoSizeText(
+                              "Moving 46 km/h",
+                              style: Get.context?.themeExtensions.paragraph
+                                  .copyWith(color: Get.context?.themeExtensions.white),
+                            ),
+                            AutoSizeText(
+                              "Device: Disarmed",
+                              style: Get.context?.themeExtensions.paragraph
+                                  .copyWith(color: Get.context?.themeExtensions.white),
+                            ),
+                            AutoSizeText(
+                              "Ignition : ON",
+                              style: Get.context?.themeExtensions.paragraph
+                                  .copyWith(color: Get.context?.themeExtensions.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Assets.images.arrowRight.svg(
+                        width: 18,
+                        height: 18,
+                        fit: BoxFit.cover,
+                        color: Get.context?.themeExtensions.white,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Triangle.isosceles(
+                edge: Edge.BOTTOM,
+                child: Container(
+                  color: Get.context?.themeExtensions.semiGrey,
+                  width: 20.0,
+                  height: 10.0,
+                ),
+              ),
+            ],
+          ),
+          sourceLocation?.target ?? const LatLng(21.0316059, 105.7922232),
+        );
+      },
     );
 
     polylines[backgroundPolylineId] = Polyline(
@@ -170,7 +247,8 @@ class HomeController extends BaseController {
       _timer.cancel();
     }
     _timer = Timer.periodic(Duration(milliseconds: 500 ~/ animationSpeed.value), (timer) async {
-      Fimber.d("Timer.periodic(const Duration(milliseconds: 200), (timer)");
+      Fimber.d(
+          "Timer.periodic(const Duration(milliseconds: ${500 ~/ animationSpeed.value}), (timer)");
       if (_index < backgroundPolylineCoordinates.length - 1) {
         _index++;
         curLocation = CameraPosition(target: backgroundPolylineCoordinates[_index], zoom: mapZoom);
@@ -216,6 +294,9 @@ class HomeController extends BaseController {
 
   updateMapZoomValue(double value) async {
     mapZoom = mapZoom + value;
+    if (mapZoom < 2.0) mapZoom = 2.0; // the min zoom value is 2.0
+    if (mapZoom > 20.5) mapZoom = 20.5; // the max zoom value is 20.5
+    Fimber.d("mapZoom: $mapZoom");
     final GoogleMapController controller = await gMapController.future;
     controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
         target: curLocation?.target ?? const LatLng(21.0316059, 105.7922232), zoom: mapZoom)));
@@ -269,8 +350,65 @@ class HomeController extends BaseController {
   }
 
   @override
-  void onClose() {
+  void onClose() async {
     _timer.cancel();
+    final GoogleMapController controller = await gMapController.future;
+    controller.dispose();
+    mapInfoWindowController.dispose();
     super.onClose();
+  }
+
+  addInfoWindow() {
+    mapInfoWindowController.addInfoWindow!(
+      Column(
+        children: [
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Get.context?.themeExtensions.semiGrey,
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        AutoSizeText(
+                          "DanhDue ExOICTIF",
+                          style: Get.context?.themeExtensions.paragraphSemiBold
+                              .copyWith(color: Get.context?.themeExtensions.white),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Assets.images.arrowRight.svg(
+                    width: 18,
+                    height: 18,
+                    fit: BoxFit.cover,
+                    color: Get.context?.themeExtensions.white,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Triangle.isosceles(
+            edge: Edge.BOTTOM,
+            child: Container(
+              color: Get.context?.themeExtensions.semiGrey,
+              width: 20.0,
+              height: 10.0,
+            ),
+          ),
+        ],
+      ),
+      sourceLocation?.target ?? const LatLng(21.0316059, 105.7922232),
+    );
   }
 }

@@ -225,6 +225,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.0"
+  clippy_flutter:
+    dependency: "direct main"
+    description:
+      name: clippy_flutter
+      sha256: f63f487afe1233f7189f83154aa9f4903dddda61687b5b81ce4955250c133a07
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0-nullsafety.1"
   clock:
     dependency: transitive
     description:
@@ -385,6 +393,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+  custom_info_window:
+    dependency: "direct main"
+    description:
+      name: custom_info_window
+      sha256: b7fce9017cb4b8a4319fa7f8080e4fdabfc65996df61c65cd2079dbaf93f56f5
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   dart_extensions:
     dependency: "direct main"
     description:

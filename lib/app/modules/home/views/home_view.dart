@@ -3,6 +3,7 @@
 // coverage:ignore-file
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:custom_info_window/custom_info_window.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_sample/app/modules/base/base.dart';
@@ -26,22 +27,37 @@ class HomeView extends BaseBindingCreatorView<HomeBinding, HomeController> {
           GetBuilder<HomeController>(
               builder: (controller) => (controller.sourceLocation == null)
                   ? const Center(child: AutoSizeText("Loading..."))
-                  : GoogleMap(
-                      mapType: controller.satelliteMap.value == true
-                          ? MapType.satellite
-                          : MapType.normal,
-                      initialCameraPosition: controller.sourceLocation ??
-                          CameraPosition(
-                            target: const LatLng(21.0316059, 105.7922232),
-                            zoom: controller.mapZoom,
-                          ),
-                      onMapCreated: (GoogleMapController gMapController) {
-                        controller.gMapController.complete(gMapController);
-                      },
-                      zoomControlsEnabled: false,
-                      trafficEnabled: controller.trafficEnabled.value,
-                      polylines: Set<Polyline>.of(controller.polylines.values),
-                      markers: Set<Marker>.of(controller.markers.values),
+                  : Stack(
+                      children: [
+                        GoogleMap(
+                          onTap: (argument) => controller.mapInfoWindowController.hideInfoWindow,
+                          mapType: controller.satelliteMap.value == true
+                              ? MapType.satellite
+                              : MapType.normal,
+                          initialCameraPosition: controller.sourceLocation ??
+                              CameraPosition(
+                                target: const LatLng(21.0316059, 105.7922232),
+                                zoom: controller.mapZoom,
+                              ),
+                          onCameraMove: (position) =>
+                              controller.mapInfoWindowController.onCameraMove,
+                          onMapCreated: (GoogleMapController gMapController) {
+                            controller.gMapController.complete(gMapController);
+                            controller.mapInfoWindowController.googleMapController =
+                                gMapController;
+                          },
+                          zoomControlsEnabled: false,
+                          trafficEnabled: controller.trafficEnabled.value,
+                          polylines: Set<Polyline>.of(controller.polylines.values),
+                          markers: Set<Marker>.of(controller.markers.values),
+                        ),
+                        CustomInfoWindow(
+                          controller: controller.mapInfoWindowController,
+                          height: 136,
+                          width: 222,
+                          offset: 15,
+                        ),
+                      ],
                     )),
           Align(
             alignment: Alignment.topLeft,
@@ -50,22 +66,25 @@ class HomeView extends BaseBindingCreatorView<HomeBinding, HomeController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Container(
-                  width: 46,
-                  height: 46,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(8)),
-                    boxShadow: [
-                      BoxShadow(
-                          color: context.themeExtensions.black.withOpacity(0.2),
-                          offset: const Offset(0, 4),
-                          blurRadius: 4)
-                    ],
-                    color: context.themeExtensions.water,
-                  ),
-                  child: Center(
-                    child: Assets.images.icFormatTextGrey60036dp
-                        .image(width: 36, height: 36, fit: BoxFit.cover),
+                InkWell(
+                  onTap: () => controller.addInfoWindow(),
+                  child: Container(
+                    width: 46,
+                    height: 46,
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(Radius.circular(8)),
+                      boxShadow: [
+                        BoxShadow(
+                            color: context.themeExtensions.black.withOpacity(0.2),
+                            offset: const Offset(0, 4),
+                            blurRadius: 4)
+                      ],
+                      color: context.themeExtensions.water,
+                    ),
+                    child: Center(
+                      child: Assets.images.icFormatTextGrey60036dp
+                          .image(width: 36, height: 36, fit: BoxFit.cover),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 7),

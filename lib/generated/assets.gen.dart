@@ -210,6 +210,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/profile_header_bg.png
   AssetGenImage get profileHeaderBg => const AssetGenImage('assets/images/profile_header_bg.png');
 
+  /// File path: assets/images/quote_bubble.png
+  AssetGenImage get quoteBubble => const AssetGenImage('assets/images/quote_bubble.png');
+
   /// File path: assets/images/splash_bot_content.png
   AssetGenImage get splashBotContent =>
       const AssetGenImage('assets/images/splash_bot_content.png');
@@ -285,6 +288,7 @@ class $AssetsImagesGen {
         mapLayerSatellite,
         personalStudyOverviewBg,
         profileHeaderBg,
+        quoteBubble,
         splashBotContent,
         trafficOff,
         trafficOn,
