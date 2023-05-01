@@ -1,8 +1,5 @@
 // Copyright (c) 2023, one of the D3F outsourcing projects. All rights reserved.
 
-// coverage:ignore-file
-
-import 'package:cryptography_flutter/cryptography_flutter.dart';
 import 'package:fimber/fimber.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,6 +9,7 @@ import 'package:getx_sample/app/app_global_bindings.dart';
 import 'package:getx_sample/generated/locales.g.dart';
 import 'package:getx_sample/styles/theme_extensions.dart';
 import 'package:getx_sample/utils/constants.dart';
+import 'package:getx_sample/widgets/no_thumb_scroll_behavior.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'app/routes/app_pages.dart';
@@ -23,7 +21,6 @@ Future<void> main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
 
-  FlutterCryptography.enable();
   await Hive.initFlutter();
 
   SystemChrome.setSystemUIOverlayStyle(
@@ -55,6 +52,7 @@ Future<void> main() async {
             initialRoute: AppPages.INITIAL,
             getPages: AppPages.routes,
             builder: EasyLoading.init(),
+            scrollBehavior: NoThumbScrollBehavior().copyWith(scrollbars: false),
           )));
   configLoading();
 }

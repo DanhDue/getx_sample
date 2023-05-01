@@ -1,11 +1,11 @@
-// Copyright (c) 2023, one of the D3F outsourcing projects. All rights reserved.
-
 import 'package:get/get.dart';
 
 import '../modules/checkin/bindings/checkin_binding.dart';
 import '../modules/checkin/views/checkin_view.dart';
 import '../modules/dashboard/bindings/dashboard_binding.dart';
 import '../modules/dashboard/views/dashboard_view.dart';
+import '../modules/documents/bindings/documents_binding.dart';
+import '../modules/documents/views/documents_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/infiniteListSample/bindings/infinite_list_sample_binding.dart';
@@ -25,6 +25,8 @@ import '../modules/tea_home/views/tea_home_view.dart';
 
 // Copyright (c) 2023, one of the D3F outsourcing projects. All rights reserved.
 
+// Copyright (c) 2023, one of the D3F outsourcing projects. All rights reserved.
+
 // coverage:ignore-file
 
 // coverage:ignore-file
@@ -34,7 +36,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.DASH_BOARD;
+  static const INITIAL = Routes.DOCUMENTS;
 
   static final routes = [
     GetPage(
@@ -83,6 +85,11 @@ class AppPages {
       name: _Paths.TEA_HOME,
       page: () => TeaHomeView(),
       binding: TeaHomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.DOCUMENTS,
+      page: () => DocumentsView(),
+      binding: DocumentsBinding(),
     ),
   ];
 }

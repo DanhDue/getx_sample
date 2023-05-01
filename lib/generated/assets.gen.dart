@@ -33,6 +33,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/coin_logo.svg
   SvgGenImage get coinLogo => const SvgGenImage('assets/images/coin_logo.svg');
 
+  /// File path: assets/images/communist_party.png
+  AssetGenImage get communistParty => const AssetGenImage('assets/images/communist_party.png');
+
   /// File path: assets/images/ftu_logo.png
   AssetGenImage get ftuLogo => const AssetGenImage('assets/images/ftu_logo.png');
 
@@ -93,6 +96,9 @@ class $AssetsImagesGen {
 
   /// File path: assets/images/ic_date.svg
   SvgGenImage get icDate => const SvgGenImage('assets/images/ic_date.svg');
+
+  /// File path: assets/images/ic_document.svg
+  SvgGenImage get icDocument => const SvgGenImage('assets/images/ic_document.svg');
 
   /// File path: assets/images/ic_document_normal.png
   AssetGenImage get icDocumentNormal =>
@@ -210,6 +216,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/profile_header_bg.png
   AssetGenImage get profileHeaderBg => const AssetGenImage('assets/images/profile_header_bg.png');
 
+  /// File path: assets/images/qn_slogan.jpg
+  AssetGenImage get qnSlogan => const AssetGenImage('assets/images/qn_slogan.jpg');
+
   /// File path: assets/images/quote_bubble.png
   AssetGenImage get quoteBubble => const AssetGenImage('assets/images/quote_bubble.png');
 
@@ -233,6 +242,7 @@ class $AssetsImagesGen {
         arrowRight,
         butGradientBg,
         coinLogo,
+        communistParty,
         ftuLogo,
         homeBotLeftButBg,
         homeBotRightButBg,
@@ -252,6 +262,7 @@ class $AssetsImagesGen {
         icClock,
         icClose,
         icDate,
+        icDocument,
         icDocumentNormal,
         icDot,
         icEmptyWalletChange,
@@ -288,6 +299,7 @@ class $AssetsImagesGen {
         mapLayerSatellite,
         personalStudyOverviewBg,
         profileHeaderBg,
+        qnSlogan,
         quoteBubble,
         splashBotContent,
         trafficOff,
@@ -409,7 +421,16 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider() => AssetImage(_assetName);
+  ImageProvider provider({
+    AssetBundle? bundle,
+    String? package,
+  }) {
+    return AssetImage(
+      _assetName,
+      bundle: bundle,
+      package: package,
+    );
+  }
 
   String get path => _assetName;
 
@@ -436,9 +457,9 @@ class SvgGenImage {
     bool excludeFromSemantics = false,
     SvgTheme theme = const SvgTheme(),
     ColorFilter? colorFilter,
+    Clip clipBehavior = Clip.hardEdge,
     @deprecated Color? color,
     @deprecated BlendMode colorBlendMode = BlendMode.srcIn,
-    @deprecated Clip? clipBehavior,
     @deprecated bool cacheColorFilter = false,
   }) {
     return SvgPicture.asset(

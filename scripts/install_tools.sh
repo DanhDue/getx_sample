@@ -5,8 +5,8 @@ set -e
 brew tap leoafarias/fvm
 brew install fvm
 
-fvm install 3.7.9
-fvm use 3.7.9
+fvm install 3.7.12
+fvm use 3.7.12
 
 # install flutter_gen
 dart pub global activate flutter_gen

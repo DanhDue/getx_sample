@@ -17,6 +17,7 @@ abstract class Routes {
   static const PERSONAL = _Paths.PERSONAL;
   static const INFINITE_LIST_SAMPLE = _Paths.INFINITE_LIST_SAMPLE;
   static const TEA_HOME = _Paths.TEA_HOME;
+  static const DOCUMENTS = _Paths.DOCUMENTS;
 }
 
 abstract class _Paths {
@@ -31,4 +32,5 @@ abstract class _Paths {
   static const PERSONAL = '/personal';
   static const INFINITE_LIST_SAMPLE = '/infinite-list-sample';
   static const TEA_HOME = '/tea-home';
+  static const DOCUMENTS = '/documents';
 }
