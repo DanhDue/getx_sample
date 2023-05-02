@@ -23,30 +23,25 @@ mixin _$ResolutionObject {
   int? get index => throw _privateConstructorUsedError;
   String? get resolution => throw _privateConstructorUsedError;
   @TextEditingControllerJsonConverter()
-  TextEditingController? get editTextController =>
-      throw _privateConstructorUsedError;
+  TextEditingController? get editTextController => throw _privateConstructorUsedError;
   @FocusNodeJsonConverter()
   FocusNode? get focusNode => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ResolutionObjectCopyWith<ResolutionObject> get copyWith =>
-      throw _privateConstructorUsedError;
+  $ResolutionObjectCopyWith<ResolutionObject> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $ResolutionObjectCopyWith<$Res> {
-  factory $ResolutionObjectCopyWith(
-          ResolutionObject value, $Res Function(ResolutionObject) then) =
+  factory $ResolutionObjectCopyWith(ResolutionObject value, $Res Function(ResolutionObject) then) =
       _$ResolutionObjectCopyWithImpl<$Res, ResolutionObject>;
   @useResult
   $Res call(
       {int? index,
       String? resolution,
-      @TextEditingControllerJsonConverter()
-          TextEditingController? editTextController,
-      @FocusNodeJsonConverter()
-          FocusNode? focusNode});
+      @TextEditingControllerJsonConverter() TextEditingController? editTextController,
+      @FocusNodeJsonConverter() FocusNode? focusNode});
 }
 
 /// @nodoc
@@ -89,8 +84,7 @@ class _$ResolutionObjectCopyWithImpl<$Res, $Val extends ResolutionObject>
 }
 
 /// @nodoc
-abstract class _$$_ResolutionObjectCopyWith<$Res>
-    implements $ResolutionObjectCopyWith<$Res> {
+abstract class _$$_ResolutionObjectCopyWith<$Res> implements $ResolutionObjectCopyWith<$Res> {
   factory _$$_ResolutionObjectCopyWith(
           _$_ResolutionObject value, $Res Function(_$_ResolutionObject) then) =
       __$$_ResolutionObjectCopyWithImpl<$Res>;
@@ -99,10 +93,8 @@ abstract class _$$_ResolutionObjectCopyWith<$Res>
   $Res call(
       {int? index,
       String? resolution,
-      @TextEditingControllerJsonConverter()
-          TextEditingController? editTextController,
-      @FocusNodeJsonConverter()
-          FocusNode? focusNode});
+      @TextEditingControllerJsonConverter() TextEditingController? editTextController,
+      @FocusNodeJsonConverter() FocusNode? focusNode});
 }
 
 /// @nodoc
@@ -176,18 +168,15 @@ class _$_ResolutionObject implements _ResolutionObject {
         (other.runtimeType == runtimeType &&
             other is _$_ResolutionObject &&
             (identical(other.index, index) || other.index == index) &&
-            (identical(other.resolution, resolution) ||
-                other.resolution == resolution) &&
+            (identical(other.resolution, resolution) || other.resolution == resolution) &&
             (identical(other.editTextController, editTextController) ||
                 other.editTextController == editTextController) &&
-            (identical(other.focusNode, focusNode) ||
-                other.focusNode == focusNode));
+            (identical(other.focusNode, focusNode) || other.focusNode == focusNode));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, index, resolution, editTextController, focusNode);
+  int get hashCode => Object.hash(runtimeType, index, resolution, editTextController, focusNode);
 
   @JsonKey(ignore: true)
   @override
@@ -207,13 +196,10 @@ abstract class _ResolutionObject implements ResolutionObject {
   factory _ResolutionObject(
       {final int? index,
       final String? resolution,
-      @TextEditingControllerJsonConverter()
-          final TextEditingController? editTextController,
-      @FocusNodeJsonConverter()
-          final FocusNode? focusNode}) = _$_ResolutionObject;
+      @TextEditingControllerJsonConverter() final TextEditingController? editTextController,
+      @FocusNodeJsonConverter() final FocusNode? focusNode}) = _$_ResolutionObject;
 
-  factory _ResolutionObject.fromJson(Map<String, dynamic> json) =
-      _$_ResolutionObject.fromJson;
+  factory _ResolutionObject.fromJson(Map<String, dynamic> json) = _$_ResolutionObject.fromJson;
 
   @override
   int? get index;

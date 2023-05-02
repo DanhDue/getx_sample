@@ -19,6 +19,7 @@ abstract class Routes {
   static const TEA_HOME = _Paths.TEA_HOME;
   static const DOCUMENTS = _Paths.DOCUMENTS;
   static const RESOLUTION = _Paths.RESOLUTION;
+  static const DOCUMENT_PREVIEW = _Paths.DOCUMENT_PREVIEW;
 }
 
 abstract class _Paths {
@@ -35,4 +36,5 @@ abstract class _Paths {
   static const TEA_HOME = '/tea-home';
   static const DOCUMENTS = '/documents';
   static const RESOLUTION = '/resolution';
+  static const DOCUMENT_PREVIEW = '/document-preview';
 }

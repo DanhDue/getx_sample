@@ -4,6 +4,8 @@ import '../modules/checkin/bindings/checkin_binding.dart';
 import '../modules/checkin/views/checkin_view.dart';
 import '../modules/dashboard/bindings/dashboard_binding.dart';
 import '../modules/dashboard/views/dashboard_view.dart';
+import '../modules/document_preview/bindings/document_preview_binding.dart';
+import '../modules/document_preview/views/document_preview_view.dart';
 import '../modules/document_templates/resolution/bindings/resolution_binding.dart';
 import '../modules/document_templates/resolution/views/resolution_view.dart';
 import '../modules/documents/bindings/documents_binding.dart';
@@ -38,7 +40,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.DOCUMENTS;
+  static const INITIAL = Routes.DOCUMENT_PREVIEW;
 
   static final routes = [
     GetPage(
@@ -98,6 +100,11 @@ class AppPages {
       page: () => ResolutionView(
         bindingCreator: () => ResolutionBinding(),
       ),
+    ),
+    GetPage(
+      name: _Paths.DOCUMENT_PREVIEW,
+      page: () => DocumentPreviewView(),
+      binding: DocumentPreviewBinding(),
     ),
   ];
 }

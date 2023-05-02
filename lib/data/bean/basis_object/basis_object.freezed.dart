@@ -23,30 +23,25 @@ mixin _$BasisObject {
   int? get index => throw _privateConstructorUsedError;
   String? get basis => throw _privateConstructorUsedError;
   @TextEditingControllerJsonConverter()
-  TextEditingController? get editTextController =>
-      throw _privateConstructorUsedError;
+  TextEditingController? get editTextController => throw _privateConstructorUsedError;
   @FocusNodeJsonConverter()
   FocusNode? get focusNode => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $BasisObjectCopyWith<BasisObject> get copyWith =>
-      throw _privateConstructorUsedError;
+  $BasisObjectCopyWith<BasisObject> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $BasisObjectCopyWith<$Res> {
-  factory $BasisObjectCopyWith(
-          BasisObject value, $Res Function(BasisObject) then) =
+  factory $BasisObjectCopyWith(BasisObject value, $Res Function(BasisObject) then) =
       _$BasisObjectCopyWithImpl<$Res, BasisObject>;
   @useResult
   $Res call(
       {int? index,
       String? basis,
-      @TextEditingControllerJsonConverter()
-          TextEditingController? editTextController,
-      @FocusNodeJsonConverter()
-          FocusNode? focusNode});
+      @TextEditingControllerJsonConverter() TextEditingController? editTextController,
+      @FocusNodeJsonConverter() FocusNode? focusNode});
 }
 
 /// @nodoc
@@ -89,28 +84,22 @@ class _$BasisObjectCopyWithImpl<$Res, $Val extends BasisObject>
 }
 
 /// @nodoc
-abstract class _$$_BasisObjectCopyWith<$Res>
-    implements $BasisObjectCopyWith<$Res> {
-  factory _$$_BasisObjectCopyWith(
-          _$_BasisObject value, $Res Function(_$_BasisObject) then) =
+abstract class _$$_BasisObjectCopyWith<$Res> implements $BasisObjectCopyWith<$Res> {
+  factory _$$_BasisObjectCopyWith(_$_BasisObject value, $Res Function(_$_BasisObject) then) =
       __$$_BasisObjectCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {int? index,
       String? basis,
-      @TextEditingControllerJsonConverter()
-          TextEditingController? editTextController,
-      @FocusNodeJsonConverter()
-          FocusNode? focusNode});
+      @TextEditingControllerJsonConverter() TextEditingController? editTextController,
+      @FocusNodeJsonConverter() FocusNode? focusNode});
 }
 
 /// @nodoc
-class __$$_BasisObjectCopyWithImpl<$Res>
-    extends _$BasisObjectCopyWithImpl<$Res, _$_BasisObject>
+class __$$_BasisObjectCopyWithImpl<$Res> extends _$BasisObjectCopyWithImpl<$Res, _$_BasisObject>
     implements _$$_BasisObjectCopyWith<$Res> {
-  __$$_BasisObjectCopyWithImpl(
-      _$_BasisObject _value, $Res Function(_$_BasisObject) _then)
+  __$$_BasisObjectCopyWithImpl(_$_BasisObject _value, $Res Function(_$_BasisObject) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -151,8 +140,7 @@ class _$_BasisObject implements _BasisObject {
       @TextEditingControllerJsonConverter() this.editTextController,
       @FocusNodeJsonConverter() this.focusNode});
 
-  factory _$_BasisObject.fromJson(Map<String, dynamic> json) =>
-      _$$_BasisObjectFromJson(json);
+  factory _$_BasisObject.fromJson(Map<String, dynamic> json) => _$$_BasisObjectFromJson(json);
 
   @override
   final int? index;
@@ -179,14 +167,12 @@ class _$_BasisObject implements _BasisObject {
             (identical(other.basis, basis) || other.basis == basis) &&
             (identical(other.editTextController, editTextController) ||
                 other.editTextController == editTextController) &&
-            (identical(other.focusNode, focusNode) ||
-                other.focusNode == focusNode));
+            (identical(other.focusNode, focusNode) || other.focusNode == focusNode));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, index, basis, editTextController, focusNode);
+  int get hashCode => Object.hash(runtimeType, index, basis, editTextController, focusNode);
 
   @JsonKey(ignore: true)
   @override
@@ -206,13 +192,10 @@ abstract class _BasisObject implements BasisObject {
   factory _BasisObject(
       {final int? index,
       final String? basis,
-      @TextEditingControllerJsonConverter()
-          final TextEditingController? editTextController,
-      @FocusNodeJsonConverter()
-          final FocusNode? focusNode}) = _$_BasisObject;
+      @TextEditingControllerJsonConverter() final TextEditingController? editTextController,
+      @FocusNodeJsonConverter() final FocusNode? focusNode}) = _$_BasisObject;
 
-  factory _BasisObject.fromJson(Map<String, dynamic> json) =
-      _$_BasisObject.fromJson;
+  factory _BasisObject.fromJson(Map<String, dynamic> json) = _$_BasisObject.fromJson;
 
   @override
   int? get index;
@@ -226,6 +209,5 @@ abstract class _BasisObject implements BasisObject {
   FocusNode? get focusNode;
   @override
   @JsonKey(ignore: true)
-  _$$_BasisObjectCopyWith<_$_BasisObject> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_BasisObjectCopyWith<_$_BasisObject> get copyWith => throw _privateConstructorUsedError;
 }

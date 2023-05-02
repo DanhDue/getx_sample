@@ -23,30 +23,25 @@ mixin _$ConsumerObject {
   int? get index => throw _privateConstructorUsedError;
   String? get consumer => throw _privateConstructorUsedError;
   @TextEditingControllerJsonConverter()
-  TextEditingController? get editTextController =>
-      throw _privateConstructorUsedError;
+  TextEditingController? get editTextController => throw _privateConstructorUsedError;
   @FocusNodeJsonConverter()
   FocusNode? get focusNode => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ConsumerObjectCopyWith<ConsumerObject> get copyWith =>
-      throw _privateConstructorUsedError;
+  $ConsumerObjectCopyWith<ConsumerObject> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $ConsumerObjectCopyWith<$Res> {
-  factory $ConsumerObjectCopyWith(
-          ConsumerObject value, $Res Function(ConsumerObject) then) =
+  factory $ConsumerObjectCopyWith(ConsumerObject value, $Res Function(ConsumerObject) then) =
       _$ConsumerObjectCopyWithImpl<$Res, ConsumerObject>;
   @useResult
   $Res call(
       {int? index,
       String? consumer,
-      @TextEditingControllerJsonConverter()
-          TextEditingController? editTextController,
-      @FocusNodeJsonConverter()
-          FocusNode? focusNode});
+      @TextEditingControllerJsonConverter() TextEditingController? editTextController,
+      @FocusNodeJsonConverter() FocusNode? focusNode});
 }
 
 /// @nodoc
@@ -89,8 +84,7 @@ class _$ConsumerObjectCopyWithImpl<$Res, $Val extends ConsumerObject>
 }
 
 /// @nodoc
-abstract class _$$_ConsumerObjectCopyWith<$Res>
-    implements $ConsumerObjectCopyWith<$Res> {
+abstract class _$$_ConsumerObjectCopyWith<$Res> implements $ConsumerObjectCopyWith<$Res> {
   factory _$$_ConsumerObjectCopyWith(
           _$_ConsumerObject value, $Res Function(_$_ConsumerObject) then) =
       __$$_ConsumerObjectCopyWithImpl<$Res>;
@@ -99,18 +93,15 @@ abstract class _$$_ConsumerObjectCopyWith<$Res>
   $Res call(
       {int? index,
       String? consumer,
-      @TextEditingControllerJsonConverter()
-          TextEditingController? editTextController,
-      @FocusNodeJsonConverter()
-          FocusNode? focusNode});
+      @TextEditingControllerJsonConverter() TextEditingController? editTextController,
+      @FocusNodeJsonConverter() FocusNode? focusNode});
 }
 
 /// @nodoc
 class __$$_ConsumerObjectCopyWithImpl<$Res>
     extends _$ConsumerObjectCopyWithImpl<$Res, _$_ConsumerObject>
     implements _$$_ConsumerObjectCopyWith<$Res> {
-  __$$_ConsumerObjectCopyWithImpl(
-      _$_ConsumerObject _value, $Res Function(_$_ConsumerObject) _then)
+  __$$_ConsumerObjectCopyWithImpl(_$_ConsumerObject _value, $Res Function(_$_ConsumerObject) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -176,18 +167,15 @@ class _$_ConsumerObject implements _ConsumerObject {
         (other.runtimeType == runtimeType &&
             other is _$_ConsumerObject &&
             (identical(other.index, index) || other.index == index) &&
-            (identical(other.consumer, consumer) ||
-                other.consumer == consumer) &&
+            (identical(other.consumer, consumer) || other.consumer == consumer) &&
             (identical(other.editTextController, editTextController) ||
                 other.editTextController == editTextController) &&
-            (identical(other.focusNode, focusNode) ||
-                other.focusNode == focusNode));
+            (identical(other.focusNode, focusNode) || other.focusNode == focusNode));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, index, consumer, editTextController, focusNode);
+  int get hashCode => Object.hash(runtimeType, index, consumer, editTextController, focusNode);
 
   @JsonKey(ignore: true)
   @override
@@ -207,13 +195,10 @@ abstract class _ConsumerObject implements ConsumerObject {
   factory _ConsumerObject(
       {final int? index,
       final String? consumer,
-      @TextEditingControllerJsonConverter()
-          final TextEditingController? editTextController,
-      @FocusNodeJsonConverter()
-          final FocusNode? focusNode}) = _$_ConsumerObject;
+      @TextEditingControllerJsonConverter() final TextEditingController? editTextController,
+      @FocusNodeJsonConverter() final FocusNode? focusNode}) = _$_ConsumerObject;
 
-  factory _ConsumerObject.fromJson(Map<String, dynamic> json) =
-      _$_ConsumerObject.fromJson;
+  factory _ConsumerObject.fromJson(Map<String, dynamic> json) = _$_ConsumerObject.fromJson;
 
   @override
   int? get index;
@@ -227,6 +212,5 @@ abstract class _ConsumerObject implements ConsumerObject {
   FocusNode? get focusNode;
   @override
   @JsonKey(ignore: true)
-  _$$_ConsumerObjectCopyWith<_$_ConsumerObject> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_ConsumerObjectCopyWith<_$_ConsumerObject> get copyWith => throw _privateConstructorUsedError;
 }

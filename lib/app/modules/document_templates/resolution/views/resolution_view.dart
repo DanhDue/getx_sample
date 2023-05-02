@@ -7,10 +7,8 @@ import 'package:getx_sample/styles/theme_extensions.dart';
 
 import '../controllers/resolution_controller.dart';
 
-class ResolutionView
-    extends BaseBindingCreatorView<ResolutionBinding, ResolutionController> {
-  ResolutionView(
-      {Key? key, required BindingCreator<ResolutionBinding>? bindingCreator})
+class ResolutionView extends BaseBindingCreatorView<ResolutionBinding, ResolutionController> {
+  ResolutionView({Key? key, required BindingCreator<ResolutionBinding>? bindingCreator})
       : super(key: key, bindingCreator: bindingCreator);
 
   @override
