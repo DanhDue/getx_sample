@@ -41,14 +41,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.2+1"
-  ansicolor:
-    dependency: transitive
-    description:
-      name: ansicolor
-      sha256: "607f8fa9786f392043f169898923e6c59b4518242b68b8862eb8a8b7d9c30b4a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.1"
   appflowy_editor:
     dependency: "direct main"
     description:
@@ -217,14 +209,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.2"
-  cli_dialog:
-    dependency: transitive
-    description:
-      name: cli_dialog
-      sha256: "47530e1c4a6190662954cefce196d35143c4ed2675ea697d6e542790bdef5641"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.5.0"
   cli_launcher:
     dependency: transitive
     description:
@@ -401,14 +385,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.1"
-  dart_console:
-    dependency: transitive
-    description:
-      name: dart_console
-      sha256: cfbaeb901f23f3c838a6e70bf15c747b83bf53884bb850d1536c8512dc5005b3
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.2"
   dart_extensions:
     dependency: "direct main"
     description:
@@ -513,6 +489,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.4"
+  file_picker:
+    dependency: transitive
+    description:
+      name: file_picker
+      sha256: b85eb92b175767fdaa0c543bf3b0d1f610fe966412ea72845fe5ba7801e763ff
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.2.10"
   fimber:
     dependency: "direct main"
     description:
@@ -780,14 +764,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.6.5"
-  get_cli:
-    dependency: "direct dev"
-    description:
-      name: get_cli
-      sha256: "80148853005e93dae8bfedd86a3beb0b42144b9ba4ea80e093ad847fd6092580"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.8.1"
   glob:
     dependency: transitive
     description:
@@ -1284,6 +1260,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  pointer_interceptor:
+    dependency: transitive
+    description:
+      name: pointer_interceptor
+      sha256: "6aa680b30d96dccef496933d00208ad25f07e047f644dc98ce03ec6141633a9a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.9.3+4"
   pointycastle:
     dependency: transitive
     description:
@@ -1308,14 +1292,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.2.4"
-  process_run:
-    dependency: transitive
-    description:
-      name: process_run
-      sha256: "1142d7f4f0c3f36393a1319406efcf481def2b6d862b2bf600c8ae8fa74d5bd8"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.12.5+2"
   prompts:
     dependency: transitive
     description:
@@ -1388,6 +1364,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.0"
+  quill_html_editor:
+    dependency: "direct main"
+    description:
+      name: quill_html_editor
+      sha256: "0bb5492b1f58228613414d1e43753f48081d2c8c20a4d0f78f1be9f35c890a38"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.8"
   quiver:
     dependency: transitive
     description:
@@ -1396,14 +1380,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.1"
-  recase:
-    dependency: transitive
-    description:
-      name: recase
-      sha256: e4eb4ec2dcdee52dcf99cb4ceabaffc631d7424ee55e56f280bc039737f89213
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.1.0"
   retrofit:
     dependency: transitive
     description:
@@ -1858,14 +1834,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
-  version:
-    dependency: transitive
-    description:
-      name: version
-      sha256: b8d9fc75327de5da108942502043f0b7d6500fbded3137560ec2254dc4b9f8ba
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.3"
   video_player:
     dependency: "direct main"
     description:
@@ -1946,14 +1914,46 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  webview_flutter:
+    dependency: transitive
+    description:
+      name: webview_flutter
+      sha256: "1a37bdbaaf5fbe09ad8579ab09ecfd473284ce482f900b5aea27cf834386a567"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.2.0"
+  webview_flutter_android:
+    dependency: transitive
+    description:
+      name: webview_flutter_android
+      sha256: d6cf18cd6c809c5a9294cd99707a21986aac4e08c87e1916ce2590315fb55d3a
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.6.2"
+  webview_flutter_platform_interface:
+    dependency: transitive
+    description:
+      name: webview_flutter_platform_interface
+      sha256: "78715dc442b7849dbde74e92bb67de1cecf5addf95531c5fb474e72f5fe9a507"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.0"
+  webview_flutter_wkwebview:
+    dependency: transitive
+    description:
+      name: webview_flutter_wkwebview
+      sha256: c94d242d8cbe1012c06ba7ac790c46d6e6b68723b7d34f8c74ed19f68d166f49
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.4.0"
   win32:
     dependency: transitive
     description:
       name: win32
-      sha256: "6b75ac2ddd42f5c226fdaf4498a2b04071c06f1f2b8f7ab1c3f77cc7f2285ff1"
+      sha256: a6f0236dbda0f63aa9a25ad1ff9a9d8a4eaaa5012da0dc59d21afdb1dc361ca4
       url: "https://pub.dev"
     source: hosted
-    version: "2.7.0"
+    version: "3.1.4"
   xdg_directories:
     dependency: transitive
     description:

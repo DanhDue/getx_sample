@@ -4,6 +4,8 @@ import '../modules/checkin/bindings/checkin_binding.dart';
 import '../modules/checkin/views/checkin_view.dart';
 import '../modules/dashboard/bindings/dashboard_binding.dart';
 import '../modules/dashboard/views/dashboard_view.dart';
+import '../modules/document_templates/resolution/bindings/resolution_binding.dart';
+import '../modules/document_templates/resolution/views/resolution_view.dart';
 import '../modules/documents/bindings/documents_binding.dart';
 import '../modules/documents/views/documents_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -90,6 +92,12 @@ class AppPages {
       name: _Paths.DOCUMENTS,
       page: () => DocumentsView(),
       binding: DocumentsBinding(),
+    ),
+    GetPage(
+      name: _Paths.RESOLUTION,
+      page: () => ResolutionView(
+        bindingCreator: () => ResolutionBinding(),
+      ),
     ),
   ];
 }
