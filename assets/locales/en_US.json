@@ -33,6 +33,8 @@
   "docManagementSystem": "Hệ thống văn bản",
   "createdDocuments": "Văn bản đã soạn thảo",
   "organizationNameDiscription": "TÊN CQ, TC CHỦ QUẢN\nTÊN CƠ QUAN, TỔ CHỨC",
+  "resolution": "Nghị quyết",
+  "basisTitle": "Thẩm quyền ban hành",
   
   "eof": "End of File. Please add a new text above this item to avoid conflicts. Thanks!"
 }

@@ -36,68 +36,118 @@ Future<Uint8List> generateResume(
     build: (pw.Context context) => [
       pw.Partitions(children: [
         pw.Partition(
-          child: pw.Row(
-              mainAxisAlignment: pw.MainAxisAlignment.start,
-              crossAxisAlignment: pw.CrossAxisAlignment.start,
-              children: <pw.Widget>[
-                pw.Expanded(
-                  flex: 4,
-                  child: pw.Column(
-                      mainAxisAlignment: pw.MainAxisAlignment.center,
+          child: pw.Column(
+            mainAxisAlignment: pw.MainAxisAlignment.start,
+            crossAxisAlignment: pw.CrossAxisAlignment.start,
+            mainAxisSize: pw.MainAxisSize.max,
+            children: <pw.Widget>[
+              pw.Row(
+                mainAxisAlignment: pw.MainAxisAlignment.start,
+                crossAxisAlignment: pw.CrossAxisAlignment.start,
+                children: <pw.Widget>[
+                  pw.Expanded(
+                    flex: 4,
+                    child: pw.Column(
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisSize: pw.MainAxisSize.max,
+                        children: <pw.Widget>[
+                          pw.Text(
+                            // resolution?.organization ?? "",
+                            "Công ty cổ phần\nTập đoàn đầu tư địa ốc NoVa".toUpperCase(),
+                            style: pw.Theme.of(context)
+                                .defaultTextStyle
+                                .copyWith(color: PdfColors.black, fontWeight: pw.FontWeight.bold),
+                            textAlign: pw.TextAlign.center,
+                          ),
+                          pw.SizedBox(height: 7),
+                          pw.Container(height: 1, width: 120, color: PdfColors.grey),
+                          pw.SizedBox(height: 13),
+                          pw.Text(
+                            "Số: 31/2023 NQ-HĐQT-NVL",
+                            style: pw.Theme.of(context).tableCell.copyWith(color: PdfColors.black),
+                            textAlign: pw.TextAlign.center,
+                          ),
+                        ]),
+                  ),
+                  pw.Expanded(
+                    flex: 5,
+                    child: pw.Column(
+                      mainAxisAlignment: pw.MainAxisAlignment.start,
                       crossAxisAlignment: pw.CrossAxisAlignment.center,
                       mainAxisSize: pw.MainAxisSize.max,
-                      children: <pw.Widget>[
+                      children: [
+                        pw.Text(LocaleKeys.vietnam.tr.toUpperCase(),
+                            textAlign: pw.TextAlign.center,
+                            style: pw.Theme.of(context)
+                                .defaultTextStyle
+                                .copyWith(color: PdfColors.black, fontWeight: pw.FontWeight.bold)),
+                        pw.SizedBox(height: 3),
                         pw.Text(
-                          // resolution?.organization ?? "",
-                          "Công ty cổ phần\nTập đoàn đầu tư địa ốc NoVa".toUpperCase(),
-                          style: pw.Theme.of(context).header4.copyWith(color: PdfColors.black),
-                          textAlign: pw.TextAlign.center,
+                          LocaleKeys.vietnamSlogan.tr,
+                          style: pw.Theme.of(context).tableHeader.copyWith(color: PdfColors.black),
                         ),
                         pw.SizedBox(height: 7),
-                        pw.Container(height: 1, width: 120, color: PdfColors.grey),
+                        pw.Container(
+                          height: 1,
+                          width: 286,
+                          color: PdfColors.grey,
+                        ),
                         pw.SizedBox(height: 13),
                         pw.Text(
-                          "Số: 31/2023 NQ-HĐQT-NVL",
+                          "TP.Hồ Chí Minh, ngày 25, tháng 12, năm 2022",
                           style: pw.Theme.of(context)
-                              .defaultTextStyle
-                              .copyWith(color: PdfColors.black),
+                              .tableCell
+                              .copyWith(color: PdfColors.black, height: 1.6),
                           textAlign: pw.TextAlign.center,
                         ),
-                      ]),
-                ),
-                pw.Expanded(
-                  flex: 5,
-                  child: pw.Column(
-                    mainAxisAlignment: pw.MainAxisAlignment.start,
-                    crossAxisAlignment: pw.CrossAxisAlignment.center,
-                    mainAxisSize: pw.MainAxisSize.max,
-                    children: [
-                      pw.Text(LocaleKeys.vietnam.tr.toUpperCase(),
-                          style: pw.Theme.of(context).header4.copyWith(color: PdfColors.black)),
-                      pw.SizedBox(height: 3),
-                      pw.Text(
-                        LocaleKeys.vietnamSlogan.tr,
-                        style: pw.Theme.of(context).header5.copyWith(color: PdfColors.black),
-                      ),
-                      pw.SizedBox(height: 7),
-                      pw.Container(
-                        height: 1,
-                        width: 286,
-                        color: PdfColors.grey,
-                      ),
-                      pw.SizedBox(height: 13),
-                      pw.Text(
-                        "TP.Hồ Chí Minh, ngày 25, tháng 12, năm 2022",
-                        style: pw.Theme.of(context)
-                            .defaultTextStyle
-                            .copyWith(color: PdfColors.black, height: 1.6),
-                        textAlign: pw.TextAlign.center,
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ]),
-        )
+                ],
+              ),
+              pw.Column(
+                mainAxisAlignment: pw.MainAxisAlignment.center,
+                crossAxisAlignment: pw.CrossAxisAlignment.center,
+                mainAxisSize: pw.MainAxisSize.max,
+                children: <pw.Widget>[
+                  pw.Container(height: 35),
+                  pw.Text(
+                    LocaleKeys.resolution.tr.toUpperCase(),
+                    textAlign: pw.TextAlign.center,
+                    style: pw.Theme.of(context)
+                        .defaultTextStyle
+                        .copyWith(color: PdfColors.black, fontWeight: pw.FontWeight.bold),
+                  ),
+                  pw.SizedBox(height: 9),
+                  pw.Padding(
+                    padding: const pw.EdgeInsets.symmetric(horizontal: 96),
+                    child: pw.Text(
+                      "V/v CBTT liên quan đến nghị quyết HĐQT của công ty và thông báo về ngày đăng kí cuối cùng",
+                      textAlign: pw.TextAlign.center,
+                      style:
+                          pw.Theme.of(context).defaultTextStyle.copyWith(color: PdfColors.black),
+                    ),
+                  ),
+                  pw.SizedBox(height: 6),
+                  pw.Container(
+                    height: 1,
+                    width: 136,
+                    color: PdfColors.grey,
+                  ),
+                  pw.SizedBox(height: 25),
+                  pw.Text(
+                    LocaleKeys.basisTitle.tr.toUpperCase(),
+                    textAlign: pw.TextAlign.center,
+                    style: pw.Theme.of(context)
+                        .defaultTextStyle
+                        .copyWith(color: PdfColors.black, fontWeight: pw.FontWeight.bold),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
       ])
     ],
   ));
@@ -115,8 +165,8 @@ Future<pw.PageTheme> _myPageTheme(PdfPageFormat format) async {
   return pw.PageTheme(
     pageFormat: format,
     theme: pw.ThemeData.withFont(
-      base: await PdfGoogleFonts.openSansRegular(),
-      bold: await PdfGoogleFonts.openSansBold(),
+      base: await PdfGoogleFonts.tinosRegular(),
+      bold: await PdfGoogleFonts.tinosBold(),
       icons: await PdfGoogleFonts.materialIcons(),
     ),
     buildBackground: (pw.Context context) {

@@ -45,6 +45,8 @@ class LocaleKeys {
   static const docManagementSystem = 'docManagementSystem';
   static const createdDocuments = 'createdDocuments';
   static const organizationNameDiscription = 'organizationNameDiscription';
+  static const resolution = 'resolution';
+  static const basisTitle = 'basisTitle';
   static const eof = 'eof';
 }
 
@@ -84,6 +86,8 @@ class Locales {
     'docManagementSystem': 'Hệ thống văn bản',
     'createdDocuments': 'Văn bản đã soạn thảo',
     'organizationNameDiscription': 'TÊN CQ, TC CHỦ QUẢN\nTÊN CƠ QUAN, TỔ CHỨC',
+    'resolution': 'Nghị quyết',
+    'basisTitle': 'Thẩm quyền ban hành',
     'eof': 'End of File. Please add a new text above this item to avoid conflicts. Thanks!',
   };
   static const en_US = {
@@ -121,6 +125,8 @@ class Locales {
     'docManagementSystem': 'Hệ thống văn bản',
     'createdDocuments': 'Văn bản đã soạn thảo',
     'organizationNameDiscription': 'TÊN CQ, TC CHỦ QUẢN\nTÊN CƠ QUAN, TỔ CHỨC',
+    'resolution': 'Nghị quyết',
+    'basisTitle': 'Thẩm quyền ban hành',
     'eof': 'End of File. Please add a new text above this item to avoid conflicts. Thanks!',
   };
 }

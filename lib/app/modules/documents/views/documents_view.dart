@@ -471,7 +471,8 @@ class DocumentsView extends BaseView<DocumentsController> {
                       color: context.themeExtensions.textColor, fontWeight: FontWeight.w900),
                   maxLines: null,
                   textAlign: TextAlign.center,
-                  decoration: InputDecoration.collapsed(hintText: LocaleKeys.rightPositionOfDelegate.tr),
+                  decoration:
+                      InputDecoration.collapsed(hintText: LocaleKeys.rightPositionOfDelegate.tr),
                 ),
                 const SizedBox(height: 7),
                 TextFormField(
@@ -613,7 +614,7 @@ class DocumentsView extends BaseView<DocumentsController> {
           maxLines: null,
           textAlign: TextAlign.center,
           decoration: const InputDecoration.collapsed(hintText: ""),
-        ),
+        ).paddingSymmetric(horizontal: 96),
         const SizedBox(height: 13),
         Container(
           height: 2,
