@@ -53,13 +53,13 @@ class DocumentsView extends BaseView<DocumentsController> {
             mainAxisSize: MainAxisSize.max,
             children: [
               AutoSizeText(
-                "hệ thống hỗ trợ soạn thảo văn bản công".toUpperCase(),
+                LocaleKeys.communityDocumentSystem.tr.toUpperCase(),
                 style: context.themeExtensions.heading3
                     .copyWith(color: context.themeExtensions.subYellow, fontSize: 18),
               ),
               const SizedBox(height: 10),
               AutoSizeText(
-                "Ủy ban nhân dân tỉnh Quảng Nghãi".toUpperCase(),
+                LocaleKeys.qnCommunity.tr.toUpperCase(),
                 style: context.themeExtensions.heading1
                     .copyWith(color: context.themeExtensions.subYellow, fontSize: 26),
               )
@@ -93,7 +93,7 @@ class DocumentsView extends BaseView<DocumentsController> {
               Padding(
                 padding: const EdgeInsets.all(20),
                 child: AutoSizeText(
-                  LocaleKeys.homePage.toUpperCase(),
+                  LocaleKeys.homePage.tr.toUpperCase(),
                   style: context.themeExtensions.paragraphSemiBold
                       .copyWith(color: context.themeExtensions.white),
                 ),
@@ -105,7 +105,7 @@ class DocumentsView extends BaseView<DocumentsController> {
               Padding(
                 padding: const EdgeInsets.all(20),
                 child: AutoSizeText(
-                  "Dịch vụ công".toUpperCase(),
+                  LocaleKeys.publicService.tr.toUpperCase(),
                   style: context.themeExtensions.paragraphSemiBold
                       .copyWith(color: context.themeExtensions.white),
                 ),
@@ -113,7 +113,7 @@ class DocumentsView extends BaseView<DocumentsController> {
               Padding(
                 padding: const EdgeInsets.all(20),
                 child: AutoSizeText(
-                  "Hệ thống văn bản".toUpperCase(),
+                  LocaleKeys.docManagementSystem.tr.toUpperCase(),
                   style: context.themeExtensions.paragraphSemiBold
                       .copyWith(color: context.themeExtensions.white),
                 ),
@@ -171,7 +171,7 @@ class DocumentsView extends BaseView<DocumentsController> {
                       Expanded(
                         flex: 1,
                         child: AutoSizeText(
-                          "Thể loại văn bản",
+                          LocaleKeys.docCategories.tr,
                           style: context.themeExtensions.paragraphSemiBold
                               .copyWith(color: context.themeExtensions.mainGreen),
                         ),
@@ -202,7 +202,7 @@ class DocumentsView extends BaseView<DocumentsController> {
                       Expanded(
                         flex: 1,
                         child: AutoSizeText(
-                          "Văn bản đã soạn thảo",
+                          LocaleKeys.createdDocuments.tr,
                           style: context.themeExtensions.paragraphSemiBold
                               .copyWith(color: context.themeExtensions.mainGreen),
                         ),
@@ -343,8 +343,8 @@ class DocumentsView extends BaseView<DocumentsController> {
                           .copyWith(color: context.themeExtensions.black, height: 1.6),
                       maxLines: null,
                       textAlign: TextAlign.center,
-                      decoration: const InputDecoration.collapsed(
-                          hintText: "TÊN CQ, TC CHỦ QUẢN\nTÊN CƠ QUAN, TỔ CHỨC"),
+                      decoration: InputDecoration.collapsed(
+                          hintText: LocaleKeys.organizationNameDiscription.tr.toUpperCase()),
                     ),
                     const SizedBox(height: 7),
                     Container(
@@ -370,14 +370,14 @@ class DocumentsView extends BaseView<DocumentsController> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     AutoSizeText(
-                      "Cộng hòa xã hội chủ nghĩa Việt Nam".toUpperCase(),
+                      LocaleKeys.vietnam.tr.toUpperCase(),
                       style: context.themeExtensions.heading2.copyWith(
                         color: context.themeExtensions.black,
                       ),
                     ),
                     const SizedBox(height: 3),
                     AutoSizeText(
-                      "Độc lập - Tự Do - Hạnh phúc",
+                      LocaleKeys.vietnamSlogan.tr,
                       style: context.themeExtensions.heading2.copyWith(
                         color: context.themeExtensions.black,
                       ),
@@ -448,7 +448,7 @@ class DocumentsView extends BaseView<DocumentsController> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 AutoSizeText(
-                  "Nơi nhận:",
+                  LocaleKeys.consumer.tr,
                   style: context.themeExtensions.heading2
                       .copyWith(color: context.themeExtensions.black, fontStyle: FontStyle.italic),
                 ),
@@ -471,8 +471,7 @@ class DocumentsView extends BaseView<DocumentsController> {
                       color: context.themeExtensions.textColor, fontWeight: FontWeight.w900),
                   maxLines: null,
                   textAlign: TextAlign.center,
-                  decoration:
-                      const InputDecoration.collapsed(hintText: "QUYỀN HẠN, CHỨC VỤ CỦA NGƯỜI KÍ"),
+                  decoration: InputDecoration.collapsed(hintText: LocaleKeys.rightPositionOfDelegate.tr),
                 ),
                 const SizedBox(height: 7),
                 TextFormField(
@@ -485,7 +484,7 @@ class DocumentsView extends BaseView<DocumentsController> {
                 ).paddingSymmetric(horizontal: 79),
                 const SizedBox(height: 79),
                 AutoSizeText(
-                  "Họ và tên",
+                  LocaleKeys.firstNameAndLastName.tr,
                   style: context.themeExtensions.heading2
                       .copyWith(color: context.themeExtensions.textColor),
                 ),
@@ -516,7 +515,7 @@ class DocumentsView extends BaseView<DocumentsController> {
               const SizedBox(height: 7),
               Center(
                 child: AutoSizeText(
-                  "Danh sách gợi ý",
+                  LocaleKeys.sugesstionList.tr,
                   style: context.themeExtensions.heading2
                       .copyWith(color: context.themeExtensions.mainGreen),
                 ),

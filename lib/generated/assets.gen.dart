@@ -222,6 +222,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/quote_bubble.png
   AssetGenImage get quoteBubble => const AssetGenImage('assets/images/quote_bubble.png');
 
+  /// File path: assets/images/resume.svg
+  SvgGenImage get resume => const SvgGenImage('assets/images/resume.svg');
+
   /// File path: assets/images/splash_bot_content.png
   AssetGenImage get splashBotContent =>
       const AssetGenImage('assets/images/splash_bot_content.png');
@@ -301,6 +304,7 @@ class $AssetsImagesGen {
         profileHeaderBg,
         qnSlogan,
         quoteBubble,
+        resume,
         splashBotContent,
         trafficOff,
         trafficOn,

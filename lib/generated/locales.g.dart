@@ -32,6 +32,19 @@ class LocaleKeys {
   static const bimometricDescription = 'bimometricDescription';
   static const biometricAuthIsNotSupportedMessage = 'biometricAuthIsNotSupportedMessage';
   static const vehicle = 'vehicle';
+  static const vietnam = 'vietnam';
+  static const vietnamSlogan = 'vietnamSlogan';
+  static const consumer = 'consumer';
+  static const rightPositionOfDelegate = 'rightPositionOfDelegate';
+  static const firstNameAndLastName = 'firstNameAndLastName';
+  static const sugesstionList = 'sugesstionList';
+  static const docCategories = 'docCategories';
+  static const qnCommunity = 'qnCommunity';
+  static const communityDocumentSystem = 'communityDocumentSystem';
+  static const publicService = 'publicService';
+  static const docManagementSystem = 'docManagementSystem';
+  static const createdDocuments = 'createdDocuments';
+  static const organizationNameDiscription = 'organizationNameDiscription';
   static const eof = 'eof';
 }
 
@@ -58,6 +71,19 @@ class Locales {
     'bimometricDescription': 'Sử dụng sinh trắc học để xác thực danh tính của bạn',
     'biometricAuthIsNotSupportedMessage': 'Thiết bị này không hỗ trợ xác thực sinh trắc học.',
     'vehicle': 'Vehicle',
+    'vietnam': 'Cộng hòa xã hội chủ nghĩa Việt Nam',
+    'vietnamSlogan': 'Độc lập - Tự Do - Hạnh phúc',
+    'consumer': 'Nơi nhận:',
+    'rightPositionOfDelegate': 'QUYỀN HẠN, CHỨC VỤ CỦA NGƯỜI KÍ',
+    'firstNameAndLastName': 'Họ và tên',
+    'sugesstionList': 'Danh sách gợi ý',
+    'docCategories': 'Thể loại văn bản',
+    'qnCommunity': 'Ủy ban nhân dân tỉnh Quảng Nghãi',
+    'communityDocumentSystem': 'Hệ thống hỗ trợ soạn thảo văn bản công',
+    'publicService': 'Dịch vụ công',
+    'docManagementSystem': 'Hệ thống văn bản',
+    'createdDocuments': 'Văn bản đã soạn thảo',
+    'organizationNameDiscription': 'TÊN CQ, TC CHỦ QUẢN\nTÊN CƠ QUAN, TỔ CHỨC',
     'eof': 'End of File. Please add a new text above this item to avoid conflicts. Thanks!',
   };
   static const en_US = {
@@ -82,6 +108,19 @@ class Locales {
     'bimometricDescription': 'Sử dụng sinh trắc học để xác thực danh tính của bạn',
     'biometricAuthIsNotSupportedMessage': 'Thiết bị này không hỗ trợ xác thực sinh trắc học.',
     'vehicle': 'Vehicle',
+    'vietnam': 'Cộng hòa xã hội chủ nghĩa Việt Nam',
+    'vietnamSlogan': 'Độc lập - Tự Do - Hạnh phúc',
+    'consumer': 'Nơi nhận:',
+    'rightPositionOfDelegate': 'QUYỀN HẠN, CHỨC VỤ CỦA NGƯỜI KÍ',
+    'firstNameAndLastName': 'Họ và tên',
+    'sugesstionList': 'Danh sách gợi ý',
+    'docCategories': 'Thể loại văn bản',
+    'qnCommunity': 'Ủy ban nhân dân tỉnh Quảng Nghãi',
+    'communityDocumentSystem': 'Hệ thống hỗ trợ soạn thảo văn bản công',
+    'publicService': 'Dịch vụ công',
+    'docManagementSystem': 'Hệ thống văn bản',
+    'createdDocuments': 'Văn bản đã soạn thảo',
+    'organizationNameDiscription': 'TÊN CQ, TC CHỦ QUẢN\nTÊN CƠ QUAN, TỔ CHỨC',
     'eof': 'End of File. Please add a new text above this item to avoid conflicts. Thanks!',
   };
 }

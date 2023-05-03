@@ -5,8 +5,10 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:get/get.dart';
 import 'package:getx_sample/app/modules/base/base.dart';
 import 'package:getx_sample/data/bean/resolution_data_object/resolution_data_object.dart';
+import 'package:getx_sample/generated/locales.g.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
@@ -70,11 +72,11 @@ Future<Uint8List> generateResume(
                     crossAxisAlignment: pw.CrossAxisAlignment.center,
                     mainAxisSize: pw.MainAxisSize.max,
                     children: [
-                      pw.Text("Cộng hòa xã hội chủ nghĩa Việt Nam".toUpperCase(),
+                      pw.Text(LocaleKeys.vietnam.tr.toUpperCase(),
                           style: pw.Theme.of(context).header4.copyWith(color: PdfColors.black)),
                       pw.SizedBox(height: 3),
                       pw.Text(
-                        "Độc lập - Tự Do - Hạnh phúc",
+                        LocaleKeys.vietnamSlogan.tr,
                         style: pw.Theme.of(context).header5.copyWith(color: PdfColors.black),
                       ),
                       pw.SizedBox(height: 7),

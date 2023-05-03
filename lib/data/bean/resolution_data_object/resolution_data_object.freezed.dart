@@ -39,8 +39,8 @@ mixin _$ResolutionDataObject {
 
 /// @nodoc
 abstract class $ResolutionDataObjectCopyWith<$Res> {
-  factory $ResolutionDataObjectCopyWith(ResolutionDataObject value,
-          $Res Function(ResolutionDataObject) then) =
+  factory $ResolutionDataObjectCopyWith(
+          ResolutionDataObject value, $Res Function(ResolutionDataObject) then) =
       _$ResolutionDataObjectCopyWithImpl<$Res, ResolutionDataObject>;
   @useResult
   $Res call(
@@ -57,8 +57,7 @@ abstract class $ResolutionDataObjectCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ResolutionDataObjectCopyWithImpl<$Res,
-        $Val extends ResolutionDataObject>
+class _$ResolutionDataObjectCopyWithImpl<$Res, $Val extends ResolutionDataObject>
     implements $ResolutionDataObjectCopyWith<$Res> {
   _$ResolutionDataObjectCopyWithImpl(this._value, this._then);
 
@@ -129,8 +128,8 @@ class _$ResolutionDataObjectCopyWithImpl<$Res,
 /// @nodoc
 abstract class _$$_ResolutionDataObjectCopyWith<$Res>
     implements $ResolutionDataObjectCopyWith<$Res> {
-  factory _$$_ResolutionDataObjectCopyWith(_$_ResolutionDataObject value,
-          $Res Function(_$_ResolutionDataObject) then) =
+  factory _$$_ResolutionDataObjectCopyWith(
+          _$_ResolutionDataObject value, $Res Function(_$_ResolutionDataObject) then) =
       __$$_ResolutionDataObjectCopyWithImpl<$Res>;
   @override
   @useResult
@@ -151,8 +150,8 @@ abstract class _$$_ResolutionDataObjectCopyWith<$Res>
 class __$$_ResolutionDataObjectCopyWithImpl<$Res>
     extends _$ResolutionDataObjectCopyWithImpl<$Res, _$_ResolutionDataObject>
     implements _$$_ResolutionDataObjectCopyWith<$Res> {
-  __$$_ResolutionDataObjectCopyWithImpl(_$_ResolutionDataObject _value,
-      $Res Function(_$_ResolutionDataObject) _then)
+  __$$_ResolutionDataObjectCopyWithImpl(
+      _$_ResolutionDataObject _value, $Res Function(_$_ResolutionDataObject) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -287,24 +286,17 @@ class _$_ResolutionDataObject implements _ResolutionDataObject {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ResolutionDataObject &&
-            (identical(other.organization, organization) ||
-                other.organization == organization) &&
-            (identical(other.docNumber, docNumber) ||
-                other.docNumber == docNumber) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.resolution, resolution) ||
-                other.resolution == resolution) &&
+            (identical(other.organization, organization) || other.organization == organization) &&
+            (identical(other.docNumber, docNumber) || other.docNumber == docNumber) &&
+            (identical(other.createdAt, createdAt) || other.createdAt == createdAt) &&
+            (identical(other.resolution, resolution) || other.resolution == resolution) &&
             (identical(other.resolutionDes, resolutionDes) ||
                 other.resolutionDes == resolutionDes) &&
             (identical(other.author, author) || other.author == author) &&
             const DeepCollectionEquality().equals(other._basises, _basises) &&
-            const DeepCollectionEquality()
-                .equals(other._resolutions, _resolutions) &&
-            const DeepCollectionEquality()
-                .equals(other._consumers, _consumers) &&
-            (identical(other.delegate, delegate) ||
-                other.delegate == delegate));
+            const DeepCollectionEquality().equals(other._resolutions, _resolutions) &&
+            const DeepCollectionEquality().equals(other._consumers, _consumers) &&
+            (identical(other.delegate, delegate) || other.delegate == delegate));
   }
 
   @JsonKey(ignore: true)
@@ -326,8 +318,7 @@ class _$_ResolutionDataObject implements _ResolutionDataObject {
   @override
   @pragma('vm:prefer-inline')
   _$$_ResolutionDataObjectCopyWith<_$_ResolutionDataObject> get copyWith =>
-      __$$_ResolutionDataObjectCopyWithImpl<_$_ResolutionDataObject>(
-          this, _$identity);
+      __$$_ResolutionDataObjectCopyWithImpl<_$_ResolutionDataObject>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
