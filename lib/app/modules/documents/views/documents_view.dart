@@ -448,7 +448,7 @@ class DocumentsView extends BaseView<DocumentsController> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 AutoSizeText(
-                  LocaleKeys.consumer.tr,
+                  "${LocaleKeys.consumer.tr}:",
                   style: context.themeExtensions.heading2
                       .copyWith(color: context.themeExtensions.black, fontStyle: FontStyle.italic),
                 ),

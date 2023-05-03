@@ -47,6 +47,8 @@ class LocaleKeys {
   static const organizationNameDiscription = 'organizationNameDiscription';
   static const resolution = 'resolution';
   static const basisTitle = 'basisTitle';
+  static const resolve = 'resolve';
+  static const basis = 'basis';
   static const eof = 'eof';
 }
 
@@ -75,7 +77,7 @@ class Locales {
     'vehicle': 'Vehicle',
     'vietnam': 'Cộng hòa xã hội chủ nghĩa Việt Nam',
     'vietnamSlogan': 'Độc lập - Tự Do - Hạnh phúc',
-    'consumer': 'Nơi nhận:',
+    'consumer': 'Nơi nhận',
     'rightPositionOfDelegate': 'QUYỀN HẠN, CHỨC VỤ CỦA NGƯỜI KÍ',
     'firstNameAndLastName': 'Họ và tên',
     'sugesstionList': 'Danh sách gợi ý',
@@ -88,6 +90,8 @@ class Locales {
     'organizationNameDiscription': 'TÊN CQ, TC CHỦ QUẢN\nTÊN CƠ QUAN, TỔ CHỨC',
     'resolution': 'Nghị quyết',
     'basisTitle': 'Thẩm quyền ban hành',
+    'resolve': 'Quyết nghị',
+    'basis': 'Căn cứ',
     'eof': 'End of File. Please add a new text above this item to avoid conflicts. Thanks!',
   };
   static const en_US = {
@@ -114,7 +118,7 @@ class Locales {
     'vehicle': 'Vehicle',
     'vietnam': 'Cộng hòa xã hội chủ nghĩa Việt Nam',
     'vietnamSlogan': 'Độc lập - Tự Do - Hạnh phúc',
-    'consumer': 'Nơi nhận:',
+    'consumer': 'Nơi nhận',
     'rightPositionOfDelegate': 'QUYỀN HẠN, CHỨC VỤ CỦA NGƯỜI KÍ',
     'firstNameAndLastName': 'Họ và tên',
     'sugesstionList': 'Danh sách gợi ý',
@@ -127,6 +131,8 @@ class Locales {
     'organizationNameDiscription': 'TÊN CQ, TC CHỦ QUẢN\nTÊN CƠ QUAN, TỔ CHỨC',
     'resolution': 'Nghị quyết',
     'basisTitle': 'Thẩm quyền ban hành',
+    'resolve': 'Quyết nghị',
+    'basis': 'Căn cứ',
     'eof': 'End of File. Please add a new text above this item to avoid conflicts. Thanks!',
   };
 }
