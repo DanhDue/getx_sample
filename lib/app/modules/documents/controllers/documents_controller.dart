@@ -19,9 +19,12 @@ class DocumentsController extends BaseController {
   late TextEditingController? resolutionTextController;
   late TextEditingController? resolutionEditTextDesController;
   late TextEditingController? authorizationEditTextDesController;
+  late TextEditingController? authorizationTitleEditTextDesController;
   late TextEditingController? resolveEditTextDesController;
+  late TextEditingController? resolveDescriptionEditTextDesController;
   late TextEditingController? positionEditTextDesController;
   late TextEditingController? positionNoteEditTextDesController;
+  late TextEditingController? delegateFullNameEditTextDesController;
 
   final lstCategories = <String>[
     "Nghị quyết",
@@ -48,22 +51,28 @@ class DocumentsController extends BaseController {
     "Căn cứ luật sửa đổi bổ sung một số điều của luật tổ chức chính phủ ngày 22 tháng 11 năm 2023",
     "Căn cứ luật sửa đổi bổ sung một số điều của luật tổ chức chính phủ ngày 22 tháng 11 năm 2018",
     "Căn cứ luật sửa đổi bổ sung một số điều của luật tổ chức chính phủ ngày 22 tháng 11 năm 2017",
+    "Căn cứ luật sửa đổi bổ sung một số điều của luật tổ chức chính phủ ngày 22 tháng 11 năm 2016",
+    "Căn cứ luật sửa đổi bổ sung một số điều của luật tổ chức chính phủ ngày 22 tháng 11 năm 2015",
   ].obs;
 
   final basises = <String>[
-    "    Căn cứ ........................................................................................................................................",
-    "    Căn cứ ........................................................................................................................................",
-    "    Căn cứ ........................................................................................................................................",
-    "    Căn cứ ......................................................................................................................................................................................................................................................................................................................................................................................................................................................",
+    "............................................................................................................................................",
+    "............................................................................................................................................",
+    "............................................................................................................................................",
+    "............................................................................................................................................",
+    "............................................................................................................................................",
   ].obs;
 
   final lstBasises = <BasisObject?>[].obs;
 
   final resolutions = <String>[
-    "    Điều 1: ........................................................................................................................................",
-    "    Điều 2: ........................................................................................................................................",
-    "    Điều 3: ......................................................................................................................................................................................................................................................................................................................................................................................................................................................",
-    "    Điều 4: ...........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................",
+    "..................................................................................................................................................................................................................................................................",
+    "..................................................................................................................................................................................................................................................................",
+    "..................................................................................................................................................................................................................................................................",
+    "..................................................................................................................................................................................................................................................................",
+    "..................................................................................................................................................................................................................................................................",
+    "..................................................................................................................................................................................................................................................................",
+    "..................................................................................................................................................................................................................................................................",
   ].obs;
 
   final lstResolutions = <ResolutionObject?>[].obs;
@@ -88,21 +97,24 @@ class DocumentsController extends BaseController {
     resolutionTextController = TextEditingController();
     resolutionEditTextDesController = TextEditingController();
     authorizationEditTextDesController = TextEditingController();
+    authorizationTitleEditTextDesController = TextEditingController();
     resolveEditTextDesController = TextEditingController();
+    resolveDescriptionEditTextDesController = TextEditingController();
     positionEditTextDesController = TextEditingController();
     positionNoteEditTextDesController = TextEditingController();
+    delegateFullNameEditTextDesController = TextEditingController();
     basises.asMap().forEach((index, value) {
       lstBasises.add(BasisObject(
           index: index,
           basis: value,
-          editTextController: TextEditingController()..text = value,
+          editTextController: TextEditingController(),
           focusNode: FocusNode()));
     });
     resolutions.asMap().forEach((index, resolution) {
       lstResolutions.add(ResolutionObject(
           index: index,
           resolution: resolution,
-          editTextController: TextEditingController()..text = resolution,
+          editTextController: TextEditingController(),
           focusNode: FocusNode()));
     });
     consumers.asMap().forEach((index, consumer) {
@@ -117,12 +129,14 @@ class DocumentsController extends BaseController {
   @override
   void onReady() {
     super.onReady();
-    createdAtEditTextController?.text = "....., ngày ..., tháng ..., năm ... .";
-    docNumberEditTextController?.text = "Số:   /NQ-.......";
+    createdAtEditTextController?.text = "..., ngày ..., tháng ..., năm ... .";
+    docNumberEditTextController?.text = "Số: .../... NQ-.......";
     resolutionTextController?.text = "Nghị quyết".toUpperCase();
     resolutionEditTextDesController?.text = "................................";
     authorizationEditTextDesController?.text = "Thẩm quyền ban hành".toUpperCase();
+    authorizationTitleEditTextDesController?.text = "Căn cứ:";
     resolveEditTextDesController?.text = "Quyết nghị".toUpperCase();
+    resolveDescriptionEditTextDesController?.text = "Thông qua việc ...";
     positionNoteEditTextDesController?.text =
         "(Chữ kí của người có thẩm quyền, dấu/chữ kí số của cơ quan, tổ chức)";
     _handleOrganizationEdtFocus();
@@ -162,4 +176,12 @@ class DocumentsController extends BaseController {
       Fimber.d("Add a new line.");
     }
   }
+
+  changeBasisValue(String value) {}
+
+  deleteBasis(BasisObject? basis) {}
+
+  deleteConsumer(ConsumerObject? consumer) {}
+
+  deleteResolution(ResolutionObject? resolution) {}
 }

@@ -40,7 +40,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.DOCUMENT_PREVIEW;
+  static const INITIAL = Routes.DOCUMENTS;
 
   static final routes = [
     GetPage(

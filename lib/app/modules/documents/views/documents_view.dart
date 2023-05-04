@@ -146,7 +146,7 @@ class DocumentsView extends BaseView<DocumentsController> {
       alignment: FractionalOffset.topLeft,
       child: Container(
         width: 269,
-        height: double.infinity,
+        height: 727,
         color: context.themeExtensions.bgGrey,
         child: SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
@@ -484,10 +484,14 @@ class DocumentsView extends BaseView<DocumentsController> {
                   decoration: const InputDecoration.collapsed(hintText: ""),
                 ).paddingSymmetric(horizontal: 79),
                 const SizedBox(height: 79),
-                AutoSizeText(
-                  LocaleKeys.firstNameAndLastName.tr,
+                TextFormField(
+                  controller: controller.delegateFullNameEditTextDesController,
                   style: context.themeExtensions.heading2
                       .copyWith(color: context.themeExtensions.textColor),
+                  maxLines: null,
+                  textAlign: TextAlign.center,
+                  decoration:
+                      InputDecoration.collapsed(hintText: LocaleKeys.firstNameAndLastName.tr),
                 ),
                 const SizedBox(height: 69),
               ],
@@ -503,7 +507,7 @@ class DocumentsView extends BaseView<DocumentsController> {
       alignment: FractionalOffset.topRight,
       child: Container(
           width: 269,
-          height: double.infinity,
+          height: 727,
           decoration: BoxDecoration(
               color: context.themeExtensions.transparent,
               borderRadius: const BorderRadius.all(Radius.zero),
@@ -631,6 +635,15 @@ class DocumentsView extends BaseView<DocumentsController> {
           decoration: const InputDecoration.collapsed(hintText: ""),
         ),
         const SizedBox(height: 20),
+        TextFormField(
+          controller: controller.authorizationTitleEditTextDesController,
+          style: context.themeExtensions.heading2
+              .copyWith(color: context.themeExtensions.textColor, fontWeight: FontWeight.w900),
+          maxLines: null,
+          textAlign: TextAlign.start,
+          decoration: const InputDecoration.collapsed(hintText: ""),
+        ).paddingOnly(left: 35),
+        const SizedBox(height: 13),
         for (var basis in controller.lstBasises) _buildBasis(context, basis: basis),
         const SizedBox(height: 35),
         TextFormField(
@@ -642,8 +655,18 @@ class DocumentsView extends BaseView<DocumentsController> {
           decoration: const InputDecoration.collapsed(hintText: ""),
         ),
         const SizedBox(height: 20),
+        TextFormField(
+          controller: controller.resolveDescriptionEditTextDesController,
+          style: context.themeExtensions.paragraph
+              .copyWith(color: context.themeExtensions.textColor, fontWeight: FontWeight.w700),
+          maxLines: null,
+          textAlign: TextAlign.start,
+          decoration: const InputDecoration.collapsed(hintText: ""),
+        ).paddingOnly(left: 35),
+        const SizedBox(height: 35),
         for (var resolution in controller.lstResolutions)
-          _buildResolution(context, resolution: resolution),
+          _buildResolution(context,
+              resolution: resolution, index: controller.lstResolutions.indexOf(resolution)),
         const SizedBox(height: 69),
       ],
     );
@@ -654,31 +677,106 @@ class DocumentsView extends BaseView<DocumentsController> {
     return RawKeyboardListener(
       focusNode: basis?.focusNode ?? FocusNode(),
       onKey: (value) => controller.handleKey(value),
-      child: TextFormField(
-        controller: basis?.editTextController,
-        style: context.themeExtensions.subTexMedium
-            .copyWith(color: context.themeExtensions.textColor, height: 1.6),
-        maxLines: null,
-        textAlign: TextAlign.start,
-        decoration: const InputDecoration.collapsed(hintText: ""),
-        onFieldSubmitted: (value) => controller.basisSubmitted(basis),
-      ).marginOnly(left: 45, top: 0, right: 45, bottom: 15),
-    );
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const SizedBox(width: 20),
+          AutoSizeText(
+            "\u2022",
+            style: context.themeExtensions.paragraphSemiBold
+                .copyWith(color: context.themeExtensions.black),
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: TextFormField(
+              controller: basis?.editTextController,
+              style: context.themeExtensions.paragraph
+                  .copyWith(color: context.themeExtensions.textColor, height: 1.6),
+              maxLines: null,
+              textAlign: TextAlign.start,
+              decoration: InputDecoration.collapsed(hintText: basis?.basis),
+              onFieldSubmitted: (value) => controller.basisSubmitted(basis),
+            ),
+          ),
+          InkWell(
+            onTap: () => controller.deleteBasis(basis),
+            child: IconTheme(
+              data: IconThemeData(color: context.themeExtensions.textGrey),
+              child: Container(
+                padding: const EdgeInsets.only(right: 13),
+                child: Assets.images.icClear.svg(
+                  width: 22,
+                  height: 22,
+                  fit: BoxFit.cover,
+                  color: context.themeExtensions.textGrey,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    ).marginOnly(left: 45, top: 0, right: 45, bottom: 15);
   }
 
   _buildResolution(BuildContext context,
-      {ResolutionObject? resolution, bool? isFirst = false, bool? isLast = false}) {
+      {ResolutionObject? resolution, int? index, bool? isFirst = false, bool? isLast = false}) {
     return RawKeyboardListener(
       focusNode: resolution?.focusNode ?? FocusNode(),
       onKey: (value) => controller.handleKey(value),
-      child: TextFormField(
-        controller: resolution?.editTextController,
-        style: context.themeExtensions.subTexMedium
-            .copyWith(color: context.themeExtensions.textColor, height: 1.6),
-        maxLines: null,
-        textAlign: TextAlign.start,
-        decoration: const InputDecoration.collapsed(hintText: ""),
-        onFieldSubmitted: (value) => controller.resolutionSummitted(resolution),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                "Điều ${(index ?? 0) + 1}:",
+                style: context.themeExtensions.paragraphSemiBold
+                    .copyWith(color: context.themeExtensions.black, fontWeight: FontWeight.w900),
+              ),
+              const SizedBox(height: 2),
+              Container(
+                height: 1,
+                width: 56,
+                color: Colors.grey,
+              ),
+            ],
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: TextFormField(
+              controller: resolution?.editTextController,
+              style: context.themeExtensions.paragraph
+                  .copyWith(color: context.themeExtensions.textColor, height: 1.6),
+              maxLines: null,
+              minLines: 2,
+              textAlign: TextAlign.start,
+              decoration: InputDecoration.collapsed(hintText: resolution?.resolution),
+              onFieldSubmitted: (value) => controller.resolutionSummitted(resolution),
+            ),
+          ),
+          InkWell(
+            onTap: () => controller.deleteResolution(resolution),
+            child: IconTheme(
+              data: IconThemeData(color: context.themeExtensions.textGrey),
+              child: Container(
+                padding: const EdgeInsets.only(right: 13),
+                child: Assets.images.icClear.svg(
+                  width: 22,
+                  height: 22,
+                  fit: BoxFit.cover,
+                  color: context.themeExtensions.textGrey,
+                ),
+              ),
+            ),
+          ),
+        ],
       ).marginOnly(left: 45, top: 0, right: 45, bottom: 15),
     );
   }
@@ -688,13 +786,37 @@ class DocumentsView extends BaseView<DocumentsController> {
     return RawKeyboardListener(
       focusNode: consumer?.focusNode ?? FocusNode(),
       onKey: (value) => controller.handleKey(value),
-      child: TextFormField(
-        controller: consumer?.editTextController,
-        style:
-            context.themeExtensions.subTexMedium.copyWith(color: context.themeExtensions.textGrey),
-        maxLines: null,
-        decoration: const InputDecoration.collapsed(hintText: ""),
-        onFieldSubmitted: (value) => controller.consumerSummitted(consumer),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Expanded(
+            child: TextFormField(
+              controller: consumer?.editTextController,
+              style: context.themeExtensions.subTexMedium
+                  .copyWith(color: context.themeExtensions.textGrey),
+              maxLines: null,
+              decoration: const InputDecoration.collapsed(hintText: ""),
+              onFieldSubmitted: (value) => controller.consumerSummitted(consumer),
+            ),
+          ),
+          InkWell(
+            onTap: () => controller.deleteConsumer(consumer),
+            child: IconTheme(
+              data: IconThemeData(color: context.themeExtensions.textGrey),
+              child: Container(
+                padding: const EdgeInsets.only(right: 13),
+                child: Assets.images.icClear.svg(
+                  width: 22,
+                  height: 22,
+                  fit: BoxFit.cover,
+                  color: context.themeExtensions.textGrey,
+                ),
+              ),
+            ),
+          ),
+        ],
       ).marginOnly(left: 0, top: 0, right: 45, bottom: 15),
     );
   }
