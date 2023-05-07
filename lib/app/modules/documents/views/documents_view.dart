@@ -507,9 +507,7 @@ class DocumentsView extends BaseView<DocumentsController> {
                       textAlign: TextAlign.start,
                       decoration: const InputDecoration.collapsed(hintText: ""),
                       textInputAction: TextInputAction.none,
-                      focusNode: FocusNode(
-                        onKey: (node, event) => controller.addNewConsumerIfNeeded(event, -1),
-                      ),
+                      focusNode: controller.consumerEdtFocusNode,
                     ),
                     const SizedBox(height: 15),
                     for (var consumer in controller.lstConsumers)
@@ -708,9 +706,7 @@ class DocumentsView extends BaseView<DocumentsController> {
               maxLines: null,
               textAlign: TextAlign.start,
               decoration: const InputDecoration.collapsed(hintText: ""),
-              focusNode: FocusNode(
-                onKey: (node, event) => controller.addNewBasisIfNeeded(event, -1),
-              ),
+              focusNode: controller.authTitleEdtFocusNode,
               textInputAction: TextInputAction.none,
             ).paddingOnly(left: 35),
             const SizedBox(height: 13),
@@ -733,9 +729,7 @@ class DocumentsView extends BaseView<DocumentsController> {
               textAlign: TextAlign.start,
               decoration: const InputDecoration.collapsed(hintText: ""),
               textInputAction: TextInputAction.none,
-              focusNode: FocusNode(
-                onKey: (node, event) => controller.addNewResolutionIfNeeded(event, -1),
-              ),
+              focusNode: controller.resolveDesEdtFocusNode,
             ).paddingOnly(left: 35),
             const SizedBox(height: 35),
             for (var resolution in controller.lstResolutions)

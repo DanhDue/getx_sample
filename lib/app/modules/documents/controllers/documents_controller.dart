@@ -22,9 +22,12 @@ class DocumentsController extends BaseController {
   late TextEditingController? resolutionEditTextDesController;
   late TextEditingController? authorizationEditTextDesController;
   late TextEditingController? authorizationTitleEditTextDesController;
+  late FocusNode? authTitleEdtFocusNode;
   late TextEditingController? resolveEditTextDesController;
   late TextEditingController? resolveDescriptionEditTextDesController;
+  late FocusNode? resolveDesEdtFocusNode;
   late TextEditingController? consumerEditTextDesController;
+  late FocusNode? consumerEdtFocusNode;
   late TextEditingController? positionEditTextDesController;
   late TextEditingController? positionNoteEditTextDesController;
   late TextEditingController? delegateFullNameEditTextDesController;
@@ -130,9 +133,14 @@ class DocumentsController extends BaseController {
     resolutionEditTextDesController = TextEditingController();
     authorizationEditTextDesController = TextEditingController();
     authorizationTitleEditTextDesController = TextEditingController();
+    authTitleEdtFocusNode = FocusNode(onKey: (node, event) => addNewBasisIfNeeded(event, -1));
     resolveEditTextDesController = TextEditingController();
     resolveDescriptionEditTextDesController = TextEditingController();
+    resolveDesEdtFocusNode = FocusNode(
+      onKey: (node, event) => addNewResolutionIfNeeded(event, -1),
+    );
     consumerEditTextDesController = TextEditingController();
+    consumerEdtFocusNode = FocusNode(onKey: (node, event) => addNewConsumerIfNeeded(event, -1));
     positionEditTextDesController = TextEditingController();
     positionNoteEditTextDesController = TextEditingController();
     delegateFullNameEditTextDesController = TextEditingController();
@@ -253,7 +261,8 @@ class DocumentsController extends BaseController {
   KeyEventResult addNewBasisIfNeeded(RawKeyEvent value, int? index) {
     Fimber.d("addNewBasisIfNeeded(RawKeyEvent value, index: $index)");
     if (needToAddNewsOne(value)) {
-      lstBasises.value[index ?? 0]?.focusNode?.unfocus();
+      if (index == -1) authTitleEdtFocusNode?.unfocus();
+      if (index != null && index >= 0) lstBasises.value[index]?.focusNode?.unfocus();
       final newBasis = BasisObject(
           index: (index ?? 0) + 1, basis: basisHint, editTextController: TextEditingController());
       lstBasises.value.insert((index ?? 0) + 1, newBasis);
@@ -279,7 +288,8 @@ class DocumentsController extends BaseController {
   KeyEventResult addNewResolutionIfNeeded(RawKeyEvent event, int? index) {
     Fimber.d("addNewResolutionIfNeeded(RawKeyEvent value, index: $index)");
     if (needToAddNewsOne(event)) {
-      lstResolutions.value[index ?? 0]?.focusNode?.unfocus();
+      if (index == -1) resolveDesEdtFocusNode?.unfocus();
+      if (index != null && index >= 0) lstResolutions.value[index]?.focusNode?.unfocus();
 
       final newResolution = ResolutionObject(
           index: (index ?? 0) + 1,
@@ -307,7 +317,8 @@ class DocumentsController extends BaseController {
   KeyEventResult addNewConsumerIfNeeded(RawKeyEvent value, int? index) {
     Fimber.d("addNewConsumerIfNeeded(RawKeyEvent $value, index: $index)");
     if (needToAddNewsOne(value)) {
-      lstConsumers.value[index ?? 0]?.focusNode?.unfocus();
+      if (index == -1) consumerEdtFocusNode?.unfocus();
+      if (index != null && index >= 0) lstConsumers.value[index]?.focusNode?.unfocus();
 
       final newConsumer = ConsumerObject(
         index: (index ?? 0) + 1,
