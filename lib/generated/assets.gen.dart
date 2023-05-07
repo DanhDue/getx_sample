@@ -318,11 +318,14 @@ class $AssetsJsonsGen {
   /// File path: assets/jsons/locations.json
   String get locations => 'assets/jsons/locations.json';
 
+  /// File path: assets/jsons/resolution_data.json
+  String get resolutionData => 'assets/jsons/resolution_data.json';
+
   /// File path: assets/jsons/user_object.json
   String get userObject => 'assets/jsons/user_object.json';
 
   /// List of all assets
-  List<String> get values => [locations, userObject];
+  List<String> get values => [locations, resolutionData, userObject];
 }
 
 class $AssetsLottiesGen {

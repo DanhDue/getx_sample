@@ -294,17 +294,37 @@ class DocumentsView extends BaseView<DocumentsController> {
               bottom: 0,
               end: 0,
               textDirection: TextDirection.ltr,
-              child: InkWell(
-                onTap: () => controller.navigateToPreview(),
-                child: Container(
-                  color: context.themeExtensions.apple,
-                  padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 3),
-                  child: AutoSizeText(
-                    "Preview",
-                    style: context.themeExtensions.paragraphSemiBold
-                        .copyWith(color: context.themeExtensions.red),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  InkWell(
+                    onTap: () => controller.saveDocument(),
+                    child: Container(
+                      color: context.themeExtensions.apple,
+                      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+                      child: AutoSizeText(
+                        LocaleKeys.save.tr,
+                        style: context.themeExtensions.paragraphSemiBold
+                            .copyWith(color: context.themeExtensions.red),
+                      ),
+                    ),
                   ),
-                ),
+                  Container(width: 1, color: context.themeExtensions.bgGrey),
+                  InkWell(
+                    onTap: () => controller.navigateToPreview(),
+                    child: Container(
+                      color: context.themeExtensions.apple,
+                      padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 3),
+                      child: AutoSizeText(
+                        LocaleKeys.preview.tr,
+                        style: context.themeExtensions.paragraphSemiBold
+                            .copyWith(color: context.themeExtensions.red),
+                      ),
+                    ),
+                  )
+                ],
               ),
             )
           ],
@@ -493,7 +513,7 @@ class DocumentsView extends BaseView<DocumentsController> {
         mainAxisSize: MainAxisSize.max,
         children: [
           Expanded(
-            flex: 1,
+            flex: 4,
             child: Obx(() => Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -516,7 +536,7 @@ class DocumentsView extends BaseView<DocumentsController> {
                 )),
           ),
           Expanded(
-            flex: 2,
+            flex: 7,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -532,14 +552,18 @@ class DocumentsView extends BaseView<DocumentsController> {
                       InputDecoration.collapsed(hintText: LocaleKeys.rightPositionOfDelegate.tr),
                 ),
                 const SizedBox(height: 7),
-                TextFormField(
-                  controller: controller.positionNoteEditTextDesController,
-                  style: context.themeExtensions.heading3.copyWith(
-                      color: context.themeExtensions.textGrey, fontStyle: FontStyle.italic),
-                  maxLines: null,
-                  textAlign: TextAlign.center,
-                  decoration: const InputDecoration.collapsed(hintText: ""),
-                ).paddingSymmetric(horizontal: 79),
+                Focus(
+                  canRequestFocus: false,
+                  descendantsAreFocusable: false,
+                  child: TextFormField(
+                    controller: controller.positionNoteEditTextDesController,
+                    style: context.themeExtensions.heading3.copyWith(
+                        color: context.themeExtensions.textGrey, fontStyle: FontStyle.italic),
+                    maxLines: null,
+                    textAlign: TextAlign.center,
+                    decoration: const InputDecoration.collapsed(hintText: ""),
+                  ).paddingSymmetric(horizontal: 79),
+                ),
                 const SizedBox(height: 79),
                 TextFormField(
                   controller: controller.delegateFullNameEditTextDesController,
@@ -885,7 +909,7 @@ class DocumentsView extends BaseView<DocumentsController> {
             child: IconTheme(
               data: IconThemeData(color: context.themeExtensions.textGrey),
               child: Container(
-                padding: const EdgeInsets.only(right: 13),
+                padding: const EdgeInsets.only(left: 3),
                 child: Assets.images.icClear.svg(
                   width: 22,
                   height: 22,

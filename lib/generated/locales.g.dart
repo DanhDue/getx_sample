@@ -49,6 +49,8 @@ class LocaleKeys {
   static const basisTitle = 'basisTitle';
   static const resolve = 'resolve';
   static const basis = 'basis';
+  static const preview = 'preview';
+  static const save = 'save';
   static const eof = 'eof';
 }
 
@@ -92,6 +94,8 @@ class Locales {
     'basisTitle': 'Thẩm quyền ban hành',
     'resolve': 'Quyết nghị',
     'basis': 'Căn cứ',
+    'preview': 'Xem trước',
+    'save': 'Lưu',
     'eof': 'End of File. Please add a new text above this item to avoid conflicts. Thanks!',
   };
   static const en_US = {
@@ -133,6 +137,8 @@ class Locales {
     'basisTitle': 'Thẩm quyền ban hành',
     'resolve': 'Quyết nghị',
     'basis': 'Căn cứ',
+    'preview': 'Preview',
+    'save': 'save',
     'eof': 'End of File. Please add a new text above this item to avoid conflicts. Thanks!',
   };
 }

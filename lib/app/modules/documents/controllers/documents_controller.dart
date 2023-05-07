@@ -9,6 +9,7 @@ import 'package:getx_sample/app/modules/base/base.dart';
 import 'package:getx_sample/app/routes/app_pages.dart';
 import 'package:getx_sample/data/bean/basis_object/basis_object.dart';
 import 'package:getx_sample/data/bean/consumer_object/consumer_object.dart';
+import 'package:getx_sample/data/bean/resolution_data_object/resolution_data_object.dart';
 import 'package:getx_sample/data/bean/resolution_object/resolution_object.dart';
 import 'package:getx_sample/generated/locales.g.dart';
 import 'package:quill_html_editor/quill_html_editor.dart';
@@ -265,7 +266,7 @@ class DocumentsController extends BaseController {
   @override
   void onReady() {
     super.onReady();
-    createdAtEditTextController?.text = "..., ngày ..., tháng ..., năm ... .";
+    createdAtEditTextController?.text = "Quảng Ngãi, ngày ..., tháng ..., năm ... .";
     docNumberEditTextController?.text = "Số: .../... NQ-.......";
     resolutionTextController?.text = "Nghị quyết".toUpperCase();
     authorizationEditTextDesController?.text = "Thẩm quyền ban hành".toUpperCase();
@@ -424,12 +425,46 @@ class DocumentsController extends BaseController {
   }
 
   navigateToPreview() {
-    Get.toNamed(Routes.DOCUMENT_PREVIEW);
+    final resolutionData = ResolutionDataObject(
+      organization: organizationEditTextController?.text,
+      docNumber: docNumberEditTextController?.text,
+      createdAt: createdAtEditTextController?.text,
+      resolution: resolutionTextController?.text,
+      resolutionDes: resolutionEditTextDesController?.text,
+      author: authorizationEditTextDesController?.text,
+      basises: lstBasises,
+      resolve: resolveEditTextDesController?.text,
+      resolveDescription: resolveDescriptionEditTextDesController?.text,
+      resolutions: lstResolutions,
+      consumers: lstConsumers,
+      rightPositionOfDelegate: positionEditTextDesController?.text,
+      delegate: delegateFullNameEditTextDesController?.text,
+    );
+    Get.toNamed(Routes.DOCUMENT_PREVIEW, arguments: resolutionData);
   }
 
   pickSuggestion(String? suggestion) {
     Fimber.d("pickSuggestion(String? $suggestion)");
     currentBasis?.editTextController?.text = suggestion ?? "";
     currentResolution?.editTextController?.text = suggestion ?? "";
+  }
+
+  saveDocument() {
+    Fimber.d("saveDocument()");
+    final resolutionData = ResolutionDataObject(
+      organization: organizationEditTextController?.text,
+      docNumber: docNumberEditTextController?.text,
+      createdAt: createdAtEditTextController?.text,
+      resolution: resolutionTextController?.text,
+      resolutionDes: resolutionEditTextDesController?.text,
+      author: authorizationEditTextDesController?.text,
+      basises: lstBasises,
+      resolve: resolveEditTextDesController?.text,
+      resolveDescription: resolveDescriptionEditTextDesController?.text,
+      resolutions: lstResolutions,
+      consumers: lstConsumers,
+      rightPositionOfDelegate: positionEditTextDesController?.text,
+      delegate: delegateFullNameEditTextDesController?.text,
+    );
   }
 }

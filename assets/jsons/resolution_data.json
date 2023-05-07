@@ -1,0 +1,24 @@
+{
+    "organization": "CÔNG TY CỔ PHẦN\nTẬP ĐOÀN ĐẦU TƯ ExOICTIF",
+    "docNumber": "docNumber",
+    "createdAt": "Quảng Nghãi, ngày 15, tháng 05, năm 2023.",
+    "resolution": "Nghị quyết",
+    "resolutionDes": "V/v CBTT liên quan...",
+    "author": "Thẩm quyền ban hành",
+    "basises": [
+        "Căn cứ 1",
+        "Căn cứ 2"
+    ],
+    "resolve": "Quyết nghị",
+    "resolveDescription": "Thông qua việc...",
+    "resolutions": [
+        "Điều 1",
+        "Điều 2"
+    ],
+    "consumers": [
+        "Như điều ...;",
+        "Lưu VT: 20231;"
+    ],
+    "rightPositionOfDelegate": "TM. HỘI ĐỒNG QUẢN TRỊ\nCHỦ TỊCH HỘI ĐỒNG QUẢN TRỊ",
+    "delegate": "TM. HỘI ĐỒNG QUẢN TRỊ CHỦ TỊCH HỘI ĐỒNG QUẢN TRỊ"
+}

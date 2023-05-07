@@ -14,9 +14,18 @@ _$_ResolutionDataObject _$$_ResolutionDataObjectFromJson(Map<String, dynamic> js
       resolution: json['resolution'] as String?,
       resolutionDes: json['resolutionDes'] as String?,
       author: json['author'] as String?,
-      basises: (json['basises'] as List<dynamic>?)?.map((e) => e as String).toList(),
-      resolutions: (json['resolutions'] as List<dynamic>?)?.map((e) => e as String).toList(),
-      consumers: (json['consumers'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      basises: (json['basises'] as List<dynamic>?)
+          ?.map((e) => e == null ? null : BasisObject.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      resolve: json['resolve'] as String?,
+      resolveDescription: json['resolveDescription'] as String?,
+      resolutions: (json['resolutions'] as List<dynamic>?)
+          ?.map((e) => e == null ? null : ResolutionObject.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      consumers: (json['consumers'] as List<dynamic>?)
+          ?.map((e) => e == null ? null : ConsumerObject.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      rightPositionOfDelegate: json['rightPositionOfDelegate'] as String?,
       delegate: json['delegate'] as String?,
     );
 
@@ -29,7 +38,10 @@ Map<String, dynamic> _$$_ResolutionDataObjectToJson(_$_ResolutionDataObject inst
       'resolutionDes': instance.resolutionDes,
       'author': instance.author,
       'basises': instance.basises,
+      'resolve': instance.resolve,
+      'resolveDescription': instance.resolveDescription,
       'resolutions': instance.resolutions,
       'consumers': instance.consumers,
+      'rightPositionOfDelegate': instance.rightPositionOfDelegate,
       'delegate': instance.delegate,
     };

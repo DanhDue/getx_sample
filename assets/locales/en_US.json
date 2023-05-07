@@ -37,6 +37,8 @@
   "basisTitle": "Thẩm quyền ban hành",
   "resolve": "Quyết nghị",
   "basis": "Căn cứ",
+  "preview": "Preview",
+  "save": "save",
   
   "eof": "End of File. Please add a new text above this item to avoid conflicts. Thanks!"
 }
