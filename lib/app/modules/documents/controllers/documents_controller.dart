@@ -32,9 +32,12 @@ class DocumentsController extends BaseController {
   late TextEditingController? positionNoteEditTextDesController;
   late TextEditingController? delegateFullNameEditTextDesController;
 
-  final Rx<BasisObject?> basisItemRequestFocus = BasisObject().obs;
-  final Rx<ResolutionObject?> resolutionItemRequestFocus = ResolutionObject().obs;
-  final Rx<ConsumerObject?> consumerItemRequestFocus = ConsumerObject().obs;
+  final Rx<BasisObject?> basisItemRequestFocus =
+      BasisObject(basis: "", editTextController: TextEditingController()).obs;
+  final Rx<ResolutionObject?> resolutionItemRequestFocus =
+      ResolutionObject(resolution: "", editTextController: TextEditingController()).obs;
+  final Rx<ConsumerObject?> consumerItemRequestFocus =
+      ConsumerObject(consumer: "", editTextController: TextEditingController()).obs;
 
   final lstCategories = <String>[
     "Nghị quyết",
@@ -81,6 +84,9 @@ class DocumentsController extends BaseController {
   ];
 
   final suggestions = <String>[].obs;
+  late BasisObject? currentBasis;
+  late ResolutionObject? currentResolution;
+  late ConsumerObject? currentConsumer;
 
   static const String basisHint =
       "........................................................................................................................";
@@ -144,42 +150,116 @@ class DocumentsController extends BaseController {
     positionEditTextDesController = TextEditingController();
     positionNoteEditTextDesController = TextEditingController();
     delegateFullNameEditTextDesController = TextEditingController();
+
     basises.asMap().forEach((index, value) {
       lstBasises.add(
-        BasisObject(
-          index: index,
-          basis: value,
-          editTextController: TextEditingController(),
-          focusNode: FocusNode(
-            onKey: (node, event) => addNewBasisIfNeeded(event, index),
+        _buildNewBasis(
+          index,
+          BasisObject(
+            basis: value,
+            editTextController: TextEditingController(),
           ),
         ),
       );
     });
+
     resolutions.asMap().forEach((index, resolution) {
       lstResolutions.add(
-        ResolutionObject(
-          index: index,
-          resolution: resolution,
-          editTextController: TextEditingController(),
-          focusNode: FocusNode(
-            onKey: (node, event) => addNewResolutionIfNeeded(event, index),
+        _buildNewResolution(
+          index,
+          ResolutionObject(
+            resolution: resolution,
+            editTextController: TextEditingController(),
           ),
         ),
       );
     });
+
     consumers.asMap().forEach((index, consumer) {
       lstConsumers.add(
-        ConsumerObject(
-          index: index,
-          consumer: consumer,
-          editTextController: TextEditingController(),
-          focusNode: FocusNode(
-            onKey: (node, event) => addNewConsumerIfNeeded(event, index),
+        _buildNewConsumer(
+          index,
+          ConsumerObject(
+            consumer: consumer,
+            editTextController: TextEditingController(),
           ),
         ),
       );
     });
+  }
+
+  BasisObject? _buildNewBasis(int? index, BasisObject? oldBasis) {
+    final x = index;
+    final currentFocusNode = FocusNode(
+      onKey: (node, event) => addNewBasisIfNeeded(event, x),
+    );
+    final newBasis = (oldBasis == null)
+        ? BasisObject(
+            index: index,
+            basis: basisHint,
+            editTextController: TextEditingController(),
+            focusNode: currentFocusNode,
+          )
+        : oldBasis.copyWith(
+            index: x,
+            focusNode: currentFocusNode,
+          );
+
+    currentFocusNode.addListener(() {
+      if (currentFocusNode.hasFocus == true) {
+        Fimber.d("currentFocusNode: $newBasis");
+        currentBasis = newBasis;
+      }
+    });
+    return newBasis;
+  }
+
+  ResolutionObject? _buildNewResolution(int? index, ResolutionObject? oldResolution) {
+    final x = index;
+    final currentFocusNode = FocusNode(
+      onKey: (node, event) => addNewBasisIfNeeded(event, x),
+    );
+    final newResolution = (oldResolution == null)
+        ? ResolutionObject(
+            index: index,
+            resolution: resolutionHint,
+            editTextController: TextEditingController(),
+            focusNode: currentFocusNode,
+          )
+        : oldResolution.copyWith(
+            index: x,
+            focusNode: currentFocusNode,
+          );
+    currentFocusNode.addListener(() {
+      if (currentFocusNode.hasFocus == true) {
+        currentResolution = newResolution;
+      }
+    });
+    return newResolution;
+  }
+
+  ConsumerObject? _buildNewConsumer(int? index, ConsumerObject? oldConsumer) {
+    final x = index;
+    final currentFocusNode = FocusNode(
+      onKey: (node, event) => addNewConsumerIfNeeded(event, x),
+    );
+    final newConsumer = (oldConsumer == null)
+        ? ConsumerObject(
+            index: index,
+            consumer: consumerHint,
+            editTextController: TextEditingController(),
+            focusNode: currentFocusNode,
+          )
+        : oldConsumer.copyWith(
+            index: x,
+            focusNode: currentFocusNode,
+          );
+    currentFocusNode.addListener(() {
+      if (currentFocusNode.hasFocus == true) {
+        currentConsumer = newConsumer;
+      }
+    });
+    return newConsumer;
   }
 
   @override
@@ -188,7 +268,6 @@ class DocumentsController extends BaseController {
     createdAtEditTextController?.text = "..., ngày ..., tháng ..., năm ... .";
     docNumberEditTextController?.text = "Số: .../... NQ-.......";
     resolutionTextController?.text = "Nghị quyết".toUpperCase();
-    resolutionEditTextDesController?.text = "................................";
     authorizationEditTextDesController?.text = "Thẩm quyền ban hành".toUpperCase();
     authorizationTitleEditTextDesController?.text = "Căn cứ:";
     resolveEditTextDesController?.text = "Quyết nghị".toUpperCase();
@@ -269,13 +348,7 @@ class DocumentsController extends BaseController {
 
       final List<BasisObject?> result = [];
       lstBasises.value.forEachIndexed((element, index) {
-        final x = index;
-        result.add(element?.copyWith(
-          index: x,
-          focusNode: FocusNode(
-            onKey: (node, event) => addNewBasisIfNeeded(event, x),
-          ),
-        ));
+        result.add(_buildNewBasis(index, element));
       });
       lstBasises.value = result;
       // request focus to the new item.
@@ -299,12 +372,7 @@ class DocumentsController extends BaseController {
 
       final List<ResolutionObject?> result = [];
       lstResolutions.value.forEachIndexed((element, index) {
-        final x = index;
-        result.add(element?.copyWith(
-            index: x,
-            focusNode: FocusNode(
-              onKey: (node, event) => addNewResolutionIfNeeded(event, x),
-            )));
+        result.add(_buildNewResolution(index, element));
       });
       lstResolutions.value = result;
       // request focus to the new item.
@@ -329,13 +397,7 @@ class DocumentsController extends BaseController {
 
       final List<ConsumerObject?> result = [];
       lstConsumers.value.forEachIndexed((element, index) {
-        final x = index;
-        result.add(element?.copyWith(
-          index: x,
-          focusNode: FocusNode(
-            onKey: (node, event) => addNewConsumerIfNeeded(event, x),
-          ),
-        ));
+        result.add(_buildNewConsumer(index, element));
       });
       lstConsumers.value = result;
       // request focus to the new item.
@@ -345,14 +407,20 @@ class DocumentsController extends BaseController {
     return KeyEventResult.ignored;
   }
 
-  retrieveBasisSugesstion(String value) {
+  retrieveBasisSugesstion(String value, BasisObject? basis) {
     Fimber.d("retrieveBasisSugesstion(String $value)");
     suggestions.value = basisSuggestions;
+    currentBasis = basis;
+    currentResolution = null;
+    currentConsumer = null;
   }
 
-  retrieveResolutionSuggestions(String value) {
+  retrieveResolutionSuggestions(String value, ResolutionObject? resolution) {
     Fimber.d("retrieveResolutionSuggestions(String $value)");
     suggestions.value = resolutionSuggestions;
+    currentResolution = resolution;
+    currentBasis = null;
+    currentConsumer = null;
   }
 
   navigateToPreview() {
@@ -361,5 +429,7 @@ class DocumentsController extends BaseController {
 
   pickSuggestion(String? suggestion) {
     Fimber.d("pickSuggestion(String? $suggestion)");
+    currentBasis?.editTextController?.text = suggestion ?? "";
+    currentResolution?.editTextController?.text = suggestion ?? "";
   }
 }

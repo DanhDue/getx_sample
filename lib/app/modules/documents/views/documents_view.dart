@@ -681,7 +681,8 @@ class DocumentsView extends BaseView<DocumentsController> {
               controller: controller.resolutionEditTextDesController,
               maxLines: null,
               textAlign: TextAlign.center,
-              decoration: const InputDecoration.collapsed(hintText: ""),
+              decoration:
+                  const InputDecoration.collapsed(hintText: "................................"),
             ).paddingSymmetric(horizontal: 96),
             const SizedBox(height: 13),
             Container(
@@ -758,7 +759,7 @@ class DocumentsView extends BaseView<DocumentsController> {
         const SizedBox(width: 10),
         Expanded(
           child: TextFormField(
-            onChanged: (value) => controller.retrieveBasisSugesstion(value),
+            onChanged: (value) => controller.retrieveBasisSugesstion(value, basis),
             controller: basis?.editTextController,
             style: context.themeExtensions.paragraph
                 .copyWith(color: context.themeExtensions.textColor, height: 1.6),
@@ -821,7 +822,7 @@ class DocumentsView extends BaseView<DocumentsController> {
         const SizedBox(width: 10),
         Expanded(
           child: TextFormField(
-            onChanged: (value) => controller.retrieveResolutionSuggestions(value),
+            onChanged: (value) => controller.retrieveResolutionSuggestions(value, resolution),
             controller: resolution?.editTextController,
             style: context.themeExtensions.paragraph
                 .copyWith(color: context.themeExtensions.textColor, height: 1.6),
