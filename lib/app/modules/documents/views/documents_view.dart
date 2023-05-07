@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_sample/app/modules/base/base.dart';
 import 'package:getx_sample/app/modules/documents/controllers/documents_controller.dart';
+import 'package:getx_sample/app/modules/documents/views/widgets/header_view.dart';
+import 'package:getx_sample/app/modules/documents/views/widgets/menu_view.dart';
 import 'package:getx_sample/data/bean/basis_object/basis_object.dart';
 import 'package:getx_sample/data/bean/consumer_object/consumer_object.dart';
 import 'package:getx_sample/data/bean/resolution_object/resolution_object.dart';
@@ -14,10 +16,10 @@ import 'package:quill_html_editor/quill_html_editor.dart';
 class DocumentsView extends BaseView<DocumentsController> {
   DocumentsView({Key? key}) : super(key: key);
 
-  final _editorTextStyle =
-      const TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.normal);
-  final _hintTextStyle =
-      const TextStyle(fontSize: 18, color: Colors.teal, fontWeight: FontWeight.normal);
+  // final _editorTextStyle =
+  //     const TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.normal);
+  // final _hintTextStyle =
+  //     const TextStyle(fontSize: 18, color: Colors.teal, fontWeight: FontWeight.normal);
 
   @override
   Widget build(BuildContext context) {
@@ -27,99 +29,10 @@ class DocumentsView extends BaseView<DocumentsController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.max,
         children: [
-          headerView(context),
-          menuView(context),
+          const HeaderView(),
+          const MenuView(),
           const SizedBox(height: 20),
           contentViews(context),
-        ],
-      ),
-    );
-  }
-
-  Widget headerView(BuildContext context) {
-    return Container(
-      color: context.themeExtensions.red,
-      padding: const EdgeInsets.all(20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Assets.images.communistParty.image(width: 120, height: 120),
-          const SizedBox(width: 15),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              AutoSizeText(
-                LocaleKeys.communityDocumentSystem.tr.toUpperCase(),
-                style: context.themeExtensions.heading3
-                    .copyWith(color: context.themeExtensions.subYellow, fontSize: 18),
-              ),
-              const SizedBox(height: 10),
-              AutoSizeText(
-                LocaleKeys.qnCommunity.tr.toUpperCase(),
-                style: context.themeExtensions.heading1
-                    .copyWith(color: context.themeExtensions.subYellow, fontSize: 26),
-              )
-            ],
-          ),
-          Expanded(
-              child:
-                  Align(alignment: Alignment.centerRight, child: Assets.images.qnSlogan.image()))
-        ],
-      ),
-    );
-  }
-
-  Widget menuView(BuildContext context) {
-    return Container(
-      color: context.themeExtensions.red,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Container(
-            color: context.themeExtensions.white,
-            height: 2,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: AutoSizeText(
-                  LocaleKeys.homePage.tr.toUpperCase(),
-                  style: context.themeExtensions.paragraphSemiBold
-                      .copyWith(color: context.themeExtensions.white),
-                ),
-              ),
-              Container(
-                width: 2,
-                color: context.themeExtensions.white,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: AutoSizeText(
-                  LocaleKeys.publicService.tr.toUpperCase(),
-                  style: context.themeExtensions.paragraphSemiBold
-                      .copyWith(color: context.themeExtensions.white),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: AutoSizeText(
-                  LocaleKeys.docManagementSystem.tr.toUpperCase(),
-                  style: context.themeExtensions.paragraphSemiBold
-                      .copyWith(color: context.themeExtensions.white),
-                ),
-              ),
-            ],
-          )
         ],
       ),
     );
@@ -436,31 +349,6 @@ class DocumentsView extends BaseView<DocumentsController> {
     );
   }
 
-  _buildDocumentContentViewsWithQuillHTMLEditor(BuildContext context) {
-    return Flexible(
-      fit: FlexFit.tight,
-      child: QuillHtmlEditor(
-        text:
-            "<h2 class=\"ql-align-center\">NGHỊ QUYẾT</h2><p class=\"ql-align-center\"><u>............................</u></p><p class=\"ql-align-center\"><br></p><h2 class=\"ql-align-center\">THẨM QUYỀN BAN HÀNH</h2><p class=\"ql-align-center\"><br></p><p>Căn cứ: .................................................................................................................................................</p><p>Căn cứ: .................................................................................................................................................</p><p><br></p><h2 class=\"ql-align-center\">NGHỊ QUYẾT</h2><p class=\"ql-align-center\"><br></p><p>................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................</p><p><br></p><p><br></p><p class=\"ql-align-center\"><br></p>",
-        hintText: 'Hint text goes here',
-        controller: controller.quillEditorController,
-        isEnabled: true,
-        minHeight: 300,
-        textStyle: _editorTextStyle,
-        hintTextStyle: _hintTextStyle,
-        hintTextAlign: TextAlign.start,
-        padding: const EdgeInsets.only(left: 0, top: 0),
-        hintTextPadding: const EdgeInsets.only(left: 20),
-        backgroundColor: Colors.white,
-        onFocusChanged: (hasFocus) => debugPrint('has focus $hasFocus'),
-        onTextChanged: (text) => debugPrint('widget text change $text'),
-        onEditorCreated: () => debugPrint('Editor has been loaded'),
-        onEditorResized: (height) => debugPrint('Editor resized $height'),
-        onSelectionChanged: (sel) => debugPrint('index ${sel.index}, range ${sel.length}'),
-      ),
-    );
-  }
-
   _buildDocumentFooterViews(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 35),
@@ -485,6 +373,7 @@ class DocumentsView extends BaseView<DocumentsController> {
                       decoration: const InputDecoration.collapsed(hintText: ""),
                       textInputAction: TextInputAction.none,
                       focusNode: FocusNode(
+                        ///TODO tuyendv
                         onKey: (node, event) => controller.addNewConsumerIfNeeded(event, -1),
                       ),
                     ),
@@ -682,7 +571,8 @@ class DocumentsView extends BaseView<DocumentsController> {
               textAlign: TextAlign.start,
               decoration: const InputDecoration.collapsed(hintText: ""),
               focusNode: FocusNode(
-                onKey: (node, event) => controller.addNewBasisIfNeeded(event, -1),
+                onKey: (node, event) =>
+                    controller.addNewBasisIfNeeded(event, -1, context: context),
               ),
               textInputAction: TextInputAction.none,
             ).paddingOnly(left: 35),

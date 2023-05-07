@@ -12,6 +12,7 @@ import 'package:getx_sample/data/bean/consumer_object/consumer_object.dart';
 import 'package:getx_sample/data/bean/resolution_object/resolution_object.dart';
 import 'package:getx_sample/generated/locales.g.dart';
 import 'package:getx_sample/utils/pair.dart';
+import 'package:pdf/widgets.dart';
 import 'package:quill_html_editor/quill_html_editor.dart';
 
 class DocumentsController extends BaseController {
@@ -245,11 +246,13 @@ class DocumentsController extends BaseController {
 
   deleteResolution(ResolutionObject? resolution) {
     Fimber.d("deleteResolution(ResolutionObject? ${resolution.toString()})");
-    lstResolutions.remove(resolution);
-    lstResolutions.value = lstResolutions.value;
+    if (resolution?.index != 0) {
+      lstResolutions.remove(resolution);
+      lstResolutions.value = lstResolutions.value;
+    }
   }
 
-  KeyEventResult addNewBasisIfNeeded(RawKeyEvent value, int? index) {
+  KeyEventResult addNewBasisIfNeeded(RawKeyEvent value, int? index, {BuildContext? context}) {
     Fimber.d("addNewBasisIfNeeded(RawKeyEvent value, index: $index)");
     if (needToAddNewsOne(value)) {
       final newBasis = BasisObject(
@@ -260,6 +263,9 @@ class DocumentsController extends BaseController {
           onKey: (node, event) => addNewBasisIfNeeded(event, (index ?? 0) + 1),
         ),
       );
+      if (index == -1) {
+        FocusScope.of(context!).unfocus();
+      }
       lstBasises.insert((index ?? 0) + 1, newBasis);
       lstBasises.value = lstBasises.value;
       ittemRequestFocus.value = newBasis;
@@ -291,6 +297,7 @@ class DocumentsController extends BaseController {
   KeyEventResult addNewConsumerIfNeeded(RawKeyEvent value, int? index) {
     Fimber.d("addNewConsumerIfNeeded(RawKeyEvent $value, index: $index)");
     if (needToAddNewsOne(value)) {
+      FocusNode().unfocus();
       lstConsumers.insert(
         (index ?? 0) + 1,
         ConsumerObject(
