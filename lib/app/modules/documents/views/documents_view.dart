@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:fimber/fimber.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_sample/app/modules/base/base.dart';
@@ -142,82 +143,86 @@ class DocumentsView extends BaseView<DocumentsController> {
   }
 
   buildLeftMenus(BuildContext context) {
-    return Align(
-      alignment: FractionalOffset.topLeft,
-      child: Container(
-        width: 269,
-        height: 727,
-        color: context.themeExtensions.bgGrey,
-        child: SingleChildScrollView(
-          physics: const AlwaysScrollableScrollPhysics(),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Obx(() {
-                return ExpansionTile(
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      AutoSizeText(
-                        '#',
-                        style: context.themeExtensions.heading2
-                            .copyWith(color: context.themeExtensions.black),
-                      ),
-                      const SizedBox(width: 7),
-                      Expanded(
-                        flex: 1,
-                        child: AutoSizeText(
-                          LocaleKeys.docCategories.tr,
-                          style: context.themeExtensions.paragraphSemiBold
-                              .copyWith(color: context.themeExtensions.mainGreen),
+    return Focus(
+      canRequestFocus: false,
+      descendantsAreFocusable: false,
+      child: Align(
+        alignment: FractionalOffset.topLeft,
+        child: Container(
+          width: 269,
+          height: 727,
+          color: context.themeExtensions.bgGrey,
+          child: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Obx(() {
+                  return ExpansionTile(
+                    title: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        AutoSizeText(
+                          '#',
+                          style: context.themeExtensions.heading2
+                              .copyWith(color: context.themeExtensions.black),
                         ),
-                      )
-                    ],
-                  ),
-                  iconColor: context.themeExtensions.semiGrey,
-                  collapsedIconColor: context.themeExtensions.semiGrey,
-                  children: [
-                    for (var category in controller.lstCategories)
-                      _buildCategoryOrSavedDocumentMenuItem(context, category)
-                  ],
-                );
-              }),
-              Obx(() {
-                return ExpansionTile(
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.max,
+                        const SizedBox(width: 7),
+                        Expanded(
+                          flex: 1,
+                          child: AutoSizeText(
+                            LocaleKeys.docCategories.tr,
+                            style: context.themeExtensions.paragraphSemiBold
+                                .copyWith(color: context.themeExtensions.mainGreen),
+                          ),
+                        )
+                      ],
+                    ),
+                    iconColor: context.themeExtensions.semiGrey,
+                    collapsedIconColor: context.themeExtensions.semiGrey,
                     children: [
-                      AutoSizeText(
-                        '#',
-                        style: context.themeExtensions.heading2
-                            .copyWith(color: context.themeExtensions.black),
-                      ),
-                      const SizedBox(width: 7),
-                      Expanded(
-                        flex: 1,
-                        child: AutoSizeText(
-                          LocaleKeys.createdDocuments.tr,
-                          style: context.themeExtensions.paragraphSemiBold
-                              .copyWith(color: context.themeExtensions.mainGreen),
-                        ),
-                      )
+                      for (var category in controller.lstCategories)
+                        _buildCategoryOrSavedDocumentMenuItem(context, category)
                     ],
-                  ),
-                  iconColor: context.themeExtensions.semiGrey,
-                  collapsedIconColor: context.themeExtensions.semiGrey,
-                  children: [
-                    for (var document in controller.savedDocuments)
-                      _buildCategoryOrSavedDocumentMenuItem(context, document)
-                  ],
-                );
-              }),
-            ],
+                  );
+                }),
+                Obx(() {
+                  return ExpansionTile(
+                    title: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        AutoSizeText(
+                          '#',
+                          style: context.themeExtensions.heading2
+                              .copyWith(color: context.themeExtensions.black),
+                        ),
+                        const SizedBox(width: 7),
+                        Expanded(
+                          flex: 1,
+                          child: AutoSizeText(
+                            LocaleKeys.createdDocuments.tr,
+                            style: context.themeExtensions.paragraphSemiBold
+                                .copyWith(color: context.themeExtensions.mainGreen),
+                          ),
+                        )
+                      ],
+                    ),
+                    iconColor: context.themeExtensions.semiGrey,
+                    collapsedIconColor: context.themeExtensions.semiGrey,
+                    children: [
+                      for (var document in controller.savedDocuments)
+                        _buildCategoryOrSavedDocumentMenuItem(context, document)
+                    ],
+                  );
+                }),
+              ],
+            ),
           ),
         ),
       ),
@@ -326,10 +331,28 @@ class DocumentsView extends BaseView<DocumentsController> {
             _buildDocumentContentViews(context),
             _buildDocumentFooterViews(context),
             Obx(() {
-              if (controller.ittemRequestFocus.value.focusNode != null) {
+              // request focus for the basis item if need.
+              if (controller.basisItemRequestFocus.value?.focusNode != null) {
                 WidgetsBinding.instance.addPostFrameCallback((duration) {
                   FocusScope.of(context)
-                      .requestFocus(controller.ittemRequestFocus.value.focusNode);
+                      .requestFocus(controller.basisItemRequestFocus.value?.focusNode);
+                  controller.basisItemRequestFocus.value = BasisObject();
+                });
+              }
+              // request focus for the resolution item if need.
+              if (controller.resolutionItemRequestFocus.value?.focusNode != null) {
+                WidgetsBinding.instance.addPostFrameCallback((duration) {
+                  FocusScope.of(context)
+                      .requestFocus(controller.resolutionItemRequestFocus.value?.focusNode);
+                  controller.resolutionItemRequestFocus.value = ResolutionObject();
+                });
+              }
+              // request focus for the basis item if need.
+              if (controller.consumerItemRequestFocus.value?.focusNode != null) {
+                WidgetsBinding.instance.addPostFrameCallback((duration) {
+                  FocusScope.of(context)
+                      .requestFocus(controller.consumerItemRequestFocus.value?.focusNode);
+                  controller.consumerItemRequestFocus.value = ConsumerObject();
                 });
               }
               return const SizedBox.shrink();
@@ -539,50 +562,54 @@ class DocumentsView extends BaseView<DocumentsController> {
   }
 
   buildSuggestions(BuildContext context) {
-    return Align(
-      alignment: FractionalOffset.topRight,
-      child: Container(
-          width: 269,
-          height: 727,
-          decoration: BoxDecoration(
-              color: context.themeExtensions.transparent,
-              borderRadius: const BorderRadius.all(Radius.zero),
-              border: Border.all(color: context.themeExtensions.black)),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              const SizedBox(height: 7),
-              Center(
-                child: AutoSizeText(
-                  LocaleKeys.sugesstionList.tr,
-                  style: context.themeExtensions.heading2
-                      .copyWith(color: context.themeExtensions.mainGreen),
+    return Focus(
+      canRequestFocus: false,
+      descendantsAreFocusable: false,
+      child: Align(
+        alignment: FractionalOffset.topRight,
+        child: Container(
+            width: 269,
+            height: 727,
+            decoration: BoxDecoration(
+                color: context.themeExtensions.transparent,
+                borderRadius: const BorderRadius.all(Radius.zero),
+                border: Border.all(color: context.themeExtensions.black)),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                const SizedBox(height: 7),
+                Center(
+                  child: AutoSizeText(
+                    LocaleKeys.sugesstionList.tr,
+                    style: context.themeExtensions.heading2
+                        .copyWith(color: context.themeExtensions.mainGreen),
+                  ),
                 ),
-              ),
-              Container(
-                height: 1,
-                color: context.themeExtensions.black,
-              ),
-              Expanded(
-                child: SingleChildScrollView(
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  child: Obx(() => Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          for (var suggestion in controller.suggestions)
-                            _buildSuggestionItem(context,
-                                suggestion: suggestion,
-                                isFirst: controller.suggestions.first == suggestion)
-                        ],
-                      )),
+                Container(
+                  height: 1,
+                  color: context.themeExtensions.black,
                 ),
-              ),
-            ],
-          )),
+                Expanded(
+                  child: SingleChildScrollView(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    child: Obx(() => Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            for (var suggestion in controller.suggestions)
+                              _buildSuggestionItem(context,
+                                  suggestion: suggestion,
+                                  isFirst: controller.suggestions.first == suggestion)
+                          ],
+                        )),
+                  ),
+                ),
+              ],
+            )),
+      ),
     );
   }
 
@@ -721,6 +748,8 @@ class DocumentsView extends BaseView<DocumentsController> {
 
   _buildBasis(BuildContext context,
       {BasisObject? basis, bool? isFirst = false, bool? isLast = false}) {
+    Fimber.d(
+        "_buildBasis(BuildContext context, {BasisObject? $basis, bool? isFirst = false, bool? isLast = false})");
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,

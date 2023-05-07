@@ -11,7 +11,6 @@ import 'package:getx_sample/data/bean/basis_object/basis_object.dart';
 import 'package:getx_sample/data/bean/consumer_object/consumer_object.dart';
 import 'package:getx_sample/data/bean/resolution_object/resolution_object.dart';
 import 'package:getx_sample/generated/locales.g.dart';
-import 'package:getx_sample/utils/pair.dart';
 import 'package:quill_html_editor/quill_html_editor.dart';
 
 class DocumentsController extends BaseController {
@@ -30,7 +29,9 @@ class DocumentsController extends BaseController {
   late TextEditingController? positionNoteEditTextDesController;
   late TextEditingController? delegateFullNameEditTextDesController;
 
-  final Rx<dynamic> ittemRequestFocus = BasisObject().obs;
+  final Rx<BasisObject?> basisItemRequestFocus = BasisObject().obs;
+  final Rx<ResolutionObject?> resolutionItemRequestFocus = ResolutionObject().obs;
+  final Rx<ConsumerObject?> consumerItemRequestFocus = ConsumerObject().obs;
 
   final lstCategories = <String>[
     "Nghị quyết",
@@ -252,17 +253,24 @@ class DocumentsController extends BaseController {
   KeyEventResult addNewBasisIfNeeded(RawKeyEvent value, int? index) {
     Fimber.d("addNewBasisIfNeeded(RawKeyEvent value, index: $index)");
     if (needToAddNewsOne(value)) {
+      lstBasises.value[index ?? 0]?.focusNode?.unfocus();
       final newBasis = BasisObject(
-        index: (index ?? 0) + 1,
-        basis: basisHint,
-        editTextController: TextEditingController(),
-        focusNode: FocusNode(
-          onKey: (node, event) => addNewBasisIfNeeded(event, (index ?? 0) + 1),
-        ),
-      );
-      lstBasises.insert((index ?? 0) + 1, newBasis);
-      lstBasises.value = lstBasises.value;
-      ittemRequestFocus.value = newBasis;
+          index: (index ?? 0) + 1, basis: basisHint, editTextController: TextEditingController());
+      lstBasises.value.insert((index ?? 0) + 1, newBasis);
+
+      final List<BasisObject?> result = [];
+      lstBasises.value.forEachIndexed((element, index) {
+        final x = index;
+        result.add(element?.copyWith(
+          index: x,
+          focusNode: FocusNode(
+            onKey: (node, event) => addNewBasisIfNeeded(event, x),
+          ),
+        ));
+      });
+      lstBasises.value = result;
+      // request focus to the new item.
+      basisItemRequestFocus.value = lstBasises[(index ?? 0) + 1];
       return KeyEventResult.handled;
     }
     return KeyEventResult.ignored;
@@ -271,18 +279,26 @@ class DocumentsController extends BaseController {
   KeyEventResult addNewResolutionIfNeeded(RawKeyEvent event, int? index) {
     Fimber.d("addNewResolutionIfNeeded(RawKeyEvent value, index: $index)");
     if (needToAddNewsOne(event)) {
-      lstResolutions.insert(
-        (index ?? 0) + 1,
-        ResolutionObject(
+      lstResolutions.value[index ?? 0]?.focusNode?.unfocus();
+
+      final newResolution = ResolutionObject(
           index: (index ?? 0) + 1,
           resolution: resolutionHint,
-          editTextController: TextEditingController(),
-          focusNode: FocusNode(
-            onKey: (node, event) => addNewResolutionIfNeeded(event, (index ?? 0) + 1),
-          ),
-        ),
-      );
-      lstResolutions.value = lstResolutions.value;
+          editTextController: TextEditingController());
+      lstResolutions.value.insert((index ?? 0) + 1, newResolution);
+
+      final List<ResolutionObject?> result = [];
+      lstResolutions.value.forEachIndexed((element, index) {
+        final x = index;
+        result.add(element?.copyWith(
+            index: x,
+            focusNode: FocusNode(
+              onKey: (node, event) => addNewResolutionIfNeeded(event, x),
+            )));
+      });
+      lstResolutions.value = result;
+      // request focus to the new item.
+      resolutionItemRequestFocus.value = lstResolutions[(index ?? 0) + 1];
       return KeyEventResult.handled;
     }
     return KeyEventResult.ignored;
@@ -291,18 +307,28 @@ class DocumentsController extends BaseController {
   KeyEventResult addNewConsumerIfNeeded(RawKeyEvent value, int? index) {
     Fimber.d("addNewConsumerIfNeeded(RawKeyEvent $value, index: $index)");
     if (needToAddNewsOne(value)) {
-      lstConsumers.insert(
-        (index ?? 0) + 1,
-        ConsumerObject(
-          index: (index ?? 0) + 1,
-          consumer: consumerHint,
-          editTextController: TextEditingController(),
-          focusNode: FocusNode(
-            onKey: (node, event) => addNewConsumerIfNeeded(event, (index ?? 0) + 1),
-          ),
-        ),
+      lstConsumers.value[index ?? 0]?.focusNode?.unfocus();
+
+      final newConsumer = ConsumerObject(
+        index: (index ?? 0) + 1,
+        consumer: consumerHint,
+        editTextController: TextEditingController(),
       );
-      lstConsumers.value = lstConsumers.value;
+      lstConsumers.value.insert((index ?? 0) + 1, newConsumer);
+
+      final List<ConsumerObject?> result = [];
+      lstConsumers.value.forEachIndexed((element, index) {
+        final x = index;
+        result.add(element?.copyWith(
+          index: x,
+          focusNode: FocusNode(
+            onKey: (node, event) => addNewConsumerIfNeeded(event, x),
+          ),
+        ));
+      });
+      lstConsumers.value = result;
+      // request focus to the new item.
+      consumerItemRequestFocus.value = lstConsumers[(index ?? 0) + 1];
       return KeyEventResult.handled;
     }
     return KeyEventResult.ignored;
