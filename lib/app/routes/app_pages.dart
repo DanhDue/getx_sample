@@ -29,10 +29,6 @@ import '../modules/tea_home/views/tea_home_view.dart';
 
 // Copyright (c) 2023, one of the D3F outsourcing projects. All rights reserved.
 
-// Copyright (c) 2023, one of the D3F outsourcing projects. All rights reserved.
-
-// coverage:ignore-file
-
 // coverage:ignore-file
 
 part 'app_routes.dart';

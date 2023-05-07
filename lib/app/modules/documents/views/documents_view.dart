@@ -252,38 +252,58 @@ class DocumentsView extends BaseView<DocumentsController> {
 
   _buildQuillToolbar(BuildContext context) {
     return SizedBox(
-      width: 820,
-      child: ToolBar(
-        toolBarColor: context.themeExtensions.bgGrey,
-        padding: const EdgeInsets.all(8),
-        iconSize: 25,
-        iconColor: context.themeExtensions.textColor,
-        activeIconColor: Colors.purple.shade300,
-        controller: controller.quillEditorController,
-        alignment: WrapAlignment.start,
-        crossAxisAlignment: WrapCrossAlignment.center,
-        customButtons: [
-          InkWell(
-              onTap: () => controller.quillEditorController.unFocus(),
-              child: const Icon(
-                Icons.favorite,
-                color: Colors.black,
-              )),
-          InkWell(
-              onTap: () async {
-                var selectedText = await controller.quillEditorController.getSelectedText();
-                debugPrint('selectedText $selectedText');
-                var selectedHtmlText =
-                    await controller.quillEditorController.getSelectedHtmlText();
-                debugPrint('selectedHtmlText $selectedHtmlText');
-              },
-              child: const Icon(
-                Icons.add_circle,
-                color: Colors.black,
-              )),
-        ],
-      ),
-    );
+        width: 820,
+        child: Stack(
+          children: [
+            ToolBar(
+              toolBarColor: context.themeExtensions.bgGrey,
+              padding: const EdgeInsets.all(8),
+              iconSize: 25,
+              iconColor: context.themeExtensions.textColor,
+              activeIconColor: Colors.purple.shade300,
+              controller: controller.quillEditorController,
+              alignment: WrapAlignment.start,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              customButtons: [
+                InkWell(
+                    onTap: () => controller.quillEditorController.unFocus(),
+                    child: const Icon(
+                      Icons.favorite,
+                      color: Colors.black,
+                    )),
+                InkWell(
+                    onTap: () async {
+                      var selectedText = await controller.quillEditorController.getSelectedText();
+                      debugPrint('selectedText $selectedText');
+                      var selectedHtmlText =
+                          await controller.quillEditorController.getSelectedHtmlText();
+                      debugPrint('selectedHtmlText $selectedHtmlText');
+                    },
+                    child: const Icon(
+                      Icons.add_circle,
+                      color: Colors.black,
+                    )),
+              ],
+            ),
+            Positioned.directional(
+              bottom: 0,
+              end: 0,
+              textDirection: TextDirection.ltr,
+              child: InkWell(
+                onTap: () => controller.navigateToPreview(),
+                child: Container(
+                  color: context.themeExtensions.apple,
+                  padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 3),
+                  child: AutoSizeText(
+                    "Preview",
+                    style: context.themeExtensions.paragraphSemiBold
+                        .copyWith(color: context.themeExtensions.red),
+                  ),
+                ),
+              ),
+            )
+          ],
+        ));
   }
 
   buildDocumentPage(BuildContext context) {
@@ -305,6 +325,15 @@ class DocumentsView extends BaseView<DocumentsController> {
             const SizedBox(height: 45),
             _buildDocumentContentViews(context),
             _buildDocumentFooterViews(context),
+            Obx(() {
+              if (controller.ittemRequestFocus.value.focusNode != null) {
+                WidgetsBinding.instance.addPostFrameCallback((duration) {
+                  FocusScope.of(context)
+                      .requestFocus(controller.ittemRequestFocus.value.focusNode);
+                });
+              }
+              return const SizedBox.shrink();
+            }),
           ],
         ),
       ).paddingSymmetric(horizontal: 20),
@@ -442,21 +471,28 @@ class DocumentsView extends BaseView<DocumentsController> {
         children: [
           Expanded(
             flex: 1,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                AutoSizeText(
-                  "${LocaleKeys.consumer.tr}:",
-                  style: context.themeExtensions.heading2
-                      .copyWith(color: context.themeExtensions.black, fontStyle: FontStyle.italic),
-                ),
-                const SizedBox(height: 15),
-                for (var consumer in controller.lstConsumers)
-                  _buildConsumer(context, consumer: consumer),
-              ],
-            ),
+            child: Obx(() => Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextFormField(
+                      controller: controller.consumerEditTextDesController,
+                      style: context.themeExtensions.heading2.copyWith(
+                          color: context.themeExtensions.black, fontStyle: FontStyle.italic),
+                      maxLines: null,
+                      textAlign: TextAlign.start,
+                      decoration: const InputDecoration.collapsed(hintText: ""),
+                      textInputAction: TextInputAction.none,
+                      focusNode: FocusNode(
+                        onKey: (node, event) => controller.addNewConsumerIfNeeded(event, -1),
+                      ),
+                    ),
+                    const SizedBox(height: 15),
+                    for (var consumer in controller.lstConsumers)
+                      _buildConsumer(context, consumer: consumer),
+                  ],
+                )),
           ),
           Expanded(
             flex: 2,
@@ -532,17 +568,17 @@ class DocumentsView extends BaseView<DocumentsController> {
               Expanded(
                 child: SingleChildScrollView(
                   physics: const AlwaysScrollableScrollPhysics(),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      for (var suggestion in controller.suggestions)
-                        _buildSuggestionItem(context,
-                            suggestion: suggestion,
-                            isFirst: controller.suggestions.first == suggestion)
-                    ],
-                  ),
+                  child: Obx(() => Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          for (var suggestion in controller.suggestions)
+                            _buildSuggestionItem(context,
+                                suggestion: suggestion,
+                                isFirst: controller.suggestions.first == suggestion)
+                        ],
+                      )),
                 ),
               ),
             ],
@@ -573,134 +609,148 @@ class DocumentsView extends BaseView<DocumentsController> {
   _buildSuggestionItem(BuildContext context, {String? suggestion, bool? isFirst, bool? isLast}) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 9),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          isFirst == false
-              ? Container(
-                  height: 1,
-                  color: context.themeExtensions.textLightGrey,
-                ).marginSymmetric(horizontal: 20)
-              : const SizedBox.shrink(),
-          const SizedBox(height: 10),
-          AutoSizeText(
-            suggestion ?? "",
-            maxLines: 3,
-            overflow: TextOverflow.ellipsis,
-            style: context.themeExtensions.subTexMedium
-                .copyWith(color: context.themeExtensions.black),
-          ),
-          const SizedBox(height: 10)
-        ],
+      child: InkWell(
+        onTap: () => controller.pickSuggestion(suggestion),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            isFirst == false
+                ? Container(
+                    height: 1,
+                    color: context.themeExtensions.textLightGrey,
+                  ).marginSymmetric(horizontal: 20)
+                : const SizedBox.shrink(),
+            const SizedBox(height: 10),
+            AutoSizeText(
+              suggestion ?? "",
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
+              style: context.themeExtensions.subTexMedium
+                  .copyWith(color: context.themeExtensions.black),
+            ),
+            const SizedBox(height: 10)
+          ],
+        ),
       ),
     );
   }
 
   _buildDocumentContentViews(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        TextFormField(
-          controller: controller.resolutionTextController,
-          style: context.themeExtensions.heading2
-              .copyWith(color: context.themeExtensions.textColor, fontWeight: FontWeight.w900),
-          maxLines: null,
-          textAlign: TextAlign.center,
-          decoration: const InputDecoration.collapsed(hintText: ""),
-        ),
-        const SizedBox(height: 13),
-        TextFormField(
-          controller: controller.resolutionEditTextDesController,
-          maxLines: null,
-          textAlign: TextAlign.center,
-          decoration: const InputDecoration.collapsed(hintText: ""),
-        ).paddingSymmetric(horizontal: 96),
-        const SizedBox(height: 13),
-        Container(
-          height: 2,
-          width: 136,
-          color: context.themeExtensions.textLightGrey,
-        ),
-        const SizedBox(height: 35),
-        TextFormField(
-          controller: controller.authorizationEditTextDesController,
-          style: context.themeExtensions.heading2
-              .copyWith(color: context.themeExtensions.textColor, fontWeight: FontWeight.w900),
-          maxLines: null,
-          textAlign: TextAlign.center,
-          decoration: const InputDecoration.collapsed(hintText: ""),
-        ),
-        const SizedBox(height: 20),
-        TextFormField(
-          controller: controller.authorizationTitleEditTextDesController,
-          style: context.themeExtensions.heading2
-              .copyWith(color: context.themeExtensions.textColor, fontWeight: FontWeight.w900),
-          maxLines: null,
-          textAlign: TextAlign.start,
-          decoration: const InputDecoration.collapsed(hintText: ""),
-        ).paddingOnly(left: 35),
-        const SizedBox(height: 13),
-        for (var basis in controller.lstBasises) _buildBasis(context, basis: basis),
-        const SizedBox(height: 35),
-        TextFormField(
-          controller: controller.resolveEditTextDesController,
-          style: context.themeExtensions.heading2
-              .copyWith(color: context.themeExtensions.textColor, fontWeight: FontWeight.w900),
-          maxLines: null,
-          textAlign: TextAlign.center,
-          decoration: const InputDecoration.collapsed(hintText: ""),
-        ),
-        const SizedBox(height: 20),
-        TextFormField(
-          controller: controller.resolveDescriptionEditTextDesController,
-          style: context.themeExtensions.paragraph
-              .copyWith(color: context.themeExtensions.textColor, fontWeight: FontWeight.w700),
-          maxLines: null,
-          textAlign: TextAlign.start,
-          decoration: const InputDecoration.collapsed(hintText: ""),
-        ).paddingOnly(left: 35),
-        const SizedBox(height: 35),
-        for (var resolution in controller.lstResolutions)
-          _buildResolution(context,
-              resolution: resolution, index: controller.lstResolutions.indexOf(resolution)),
-        const SizedBox(height: 69),
-      ],
-    );
+    return Obx(() => Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            TextFormField(
+              controller: controller.resolutionTextController,
+              style: context.themeExtensions.heading2
+                  .copyWith(color: context.themeExtensions.textColor, fontWeight: FontWeight.w900),
+              maxLines: null,
+              textAlign: TextAlign.center,
+              decoration: const InputDecoration.collapsed(hintText: ""),
+            ),
+            const SizedBox(height: 13),
+            TextFormField(
+              controller: controller.resolutionEditTextDesController,
+              maxLines: null,
+              textAlign: TextAlign.center,
+              decoration: const InputDecoration.collapsed(hintText: ""),
+            ).paddingSymmetric(horizontal: 96),
+            const SizedBox(height: 13),
+            Container(
+              height: 2,
+              width: 136,
+              color: context.themeExtensions.textLightGrey,
+            ),
+            const SizedBox(height: 35),
+            TextFormField(
+              controller: controller.authorizationEditTextDesController,
+              style: context.themeExtensions.heading2
+                  .copyWith(color: context.themeExtensions.textColor, fontWeight: FontWeight.w900),
+              maxLines: null,
+              textAlign: TextAlign.center,
+              decoration: const InputDecoration.collapsed(hintText: ""),
+            ),
+            const SizedBox(height: 20),
+            TextFormField(
+              controller: controller.authorizationTitleEditTextDesController,
+              style: context.themeExtensions.heading2
+                  .copyWith(color: context.themeExtensions.textColor, fontWeight: FontWeight.w900),
+              maxLines: null,
+              textAlign: TextAlign.start,
+              decoration: const InputDecoration.collapsed(hintText: ""),
+              focusNode: FocusNode(
+                onKey: (node, event) => controller.addNewBasisIfNeeded(event, -1),
+              ),
+              textInputAction: TextInputAction.none,
+            ).paddingOnly(left: 35),
+            const SizedBox(height: 13),
+            for (var basis in controller.lstBasises) _buildBasis(context, basis: basis),
+            const SizedBox(height: 35),
+            TextFormField(
+              controller: controller.resolveEditTextDesController,
+              style: context.themeExtensions.heading2
+                  .copyWith(color: context.themeExtensions.textColor, fontWeight: FontWeight.w900),
+              maxLines: null,
+              textAlign: TextAlign.center,
+              decoration: const InputDecoration.collapsed(hintText: ""),
+            ),
+            const SizedBox(height: 20),
+            TextFormField(
+              controller: controller.resolveDescriptionEditTextDesController,
+              style: context.themeExtensions.paragraph
+                  .copyWith(color: context.themeExtensions.textColor, fontWeight: FontWeight.w700),
+              maxLines: null,
+              textAlign: TextAlign.start,
+              decoration: const InputDecoration.collapsed(hintText: ""),
+              textInputAction: TextInputAction.none,
+              focusNode: FocusNode(
+                onKey: (node, event) => controller.addNewResolutionIfNeeded(event, -1),
+              ),
+            ).paddingOnly(left: 35),
+            const SizedBox(height: 35),
+            for (var resolution in controller.lstResolutions)
+              _buildResolution(context,
+                  resolution: resolution, index: controller.lstResolutions.indexOf(resolution)),
+            const SizedBox(height: 69),
+          ],
+        ));
   }
 
   _buildBasis(BuildContext context,
       {BasisObject? basis, bool? isFirst = false, bool? isLast = false}) {
-    return RawKeyboardListener(
-      focusNode: basis?.focusNode ?? FocusNode(),
-      onKey: (value) => controller.handleKey(value),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const SizedBox(width: 20),
-          AutoSizeText(
-            "\u2022",
-            style: context.themeExtensions.paragraphSemiBold
-                .copyWith(color: context.themeExtensions.black),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const SizedBox(width: 20),
+        AutoSizeText(
+          "\u2022",
+          style: context.themeExtensions.paragraphSemiBold
+              .copyWith(color: context.themeExtensions.black),
+        ),
+        const SizedBox(width: 10),
+        Expanded(
+          child: TextFormField(
+            onChanged: (value) => controller.retrieveBasisSugesstion(value),
+            controller: basis?.editTextController,
+            style: context.themeExtensions.paragraph
+                .copyWith(color: context.themeExtensions.textColor, height: 1.6),
+            maxLines: null,
+            textAlign: TextAlign.start,
+            decoration: InputDecoration.collapsed(hintText: basis?.basis),
+            onFieldSubmitted: (value) => controller.basisSubmitted(basis),
+            textInputAction: TextInputAction.none,
+            focusNode: basis?.focusNode,
           ),
-          const SizedBox(width: 10),
-          Expanded(
-            child: TextFormField(
-              controller: basis?.editTextController,
-              style: context.themeExtensions.paragraph
-                  .copyWith(color: context.themeExtensions.textColor, height: 1.6),
-              maxLines: null,
-              textAlign: TextAlign.start,
-              decoration: InputDecoration.collapsed(hintText: basis?.basis),
-              onFieldSubmitted: (value) => controller.basisSubmitted(basis),
-            ),
-          ),
-          InkWell(
+        ),
+        Focus(
+          canRequestFocus: false,
+          descendantsAreFocusable: false,
+          child: InkWell(
             onTap: () => controller.deleteBasis(basis),
             child: IconTheme(
               data: IconThemeData(color: context.themeExtensions.textGrey),
@@ -715,53 +765,56 @@ class DocumentsView extends BaseView<DocumentsController> {
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     ).marginOnly(left: 45, top: 0, right: 45, bottom: 15);
   }
 
   _buildResolution(BuildContext context,
       {ResolutionObject? resolution, int? index, bool? isFirst = false, bool? isLast = false}) {
-    return RawKeyboardListener(
-      focusNode: resolution?.focusNode ?? FocusNode(),
-      onKey: (value) => controller.handleKey(value),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                "Điều ${(index ?? 0) + 1}:",
-                style: context.themeExtensions.paragraphSemiBold
-                    .copyWith(color: context.themeExtensions.black, fontWeight: FontWeight.w900),
-              ),
-              const SizedBox(height: 2),
-              Container(
-                height: 1,
-                width: 56,
-                color: Colors.grey,
-              ),
-            ],
-          ),
-          const SizedBox(width: 10),
-          Expanded(
-            child: TextFormField(
-              controller: resolution?.editTextController,
-              style: context.themeExtensions.paragraph
-                  .copyWith(color: context.themeExtensions.textColor, height: 1.6),
-              maxLines: null,
-              minLines: 2,
-              textAlign: TextAlign.start,
-              decoration: InputDecoration.collapsed(hintText: resolution?.resolution),
-              onFieldSubmitted: (value) => controller.resolutionSummitted(resolution),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              "Điều ${(index ?? 0) + 1}:",
+              style: context.themeExtensions.paragraphSemiBold
+                  .copyWith(color: context.themeExtensions.black, fontWeight: FontWeight.w900),
             ),
+            const SizedBox(height: 2),
+            Container(
+              height: 1,
+              width: 56,
+              color: Colors.grey,
+            ),
+          ],
+        ),
+        const SizedBox(width: 10),
+        Expanded(
+          child: TextFormField(
+            onChanged: (value) => controller.retrieveResolutionSuggestions(value),
+            controller: resolution?.editTextController,
+            style: context.themeExtensions.paragraph
+                .copyWith(color: context.themeExtensions.textColor, height: 1.6),
+            maxLines: null,
+            minLines: 2,
+            textAlign: TextAlign.start,
+            decoration: InputDecoration.collapsed(hintText: resolution?.resolution),
+            textInputAction: TextInputAction.none,
+            onFieldSubmitted: (value) => controller.resolutionSummitted(resolution),
+            focusNode: resolution?.focusNode,
           ),
-          InkWell(
+        ),
+        Focus(
+          canRequestFocus: false,
+          descendantsAreFocusable: false,
+          child: InkWell(
             onTap: () => controller.deleteResolution(resolution),
             child: IconTheme(
               data: IconThemeData(color: context.themeExtensions.textGrey),
@@ -776,32 +829,34 @@ class DocumentsView extends BaseView<DocumentsController> {
               ),
             ),
           ),
-        ],
-      ).marginOnly(left: 45, top: 0, right: 45, bottom: 15),
-    );
+        ),
+      ],
+    ).marginOnly(left: 45, top: 0, right: 45, bottom: 15);
   }
 
   _buildConsumer(BuildContext context,
       {ConsumerObject? consumer, bool? isFirst = false, bool? isLast = false}) {
-    return RawKeyboardListener(
-      focusNode: consumer?.focusNode ?? FocusNode(),
-      onKey: (value) => controller.handleKey(value),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Expanded(
-            child: TextFormField(
-              controller: consumer?.editTextController,
-              style: context.themeExtensions.subTexMedium
-                  .copyWith(color: context.themeExtensions.textGrey),
-              maxLines: null,
-              decoration: const InputDecoration.collapsed(hintText: ""),
-              onFieldSubmitted: (value) => controller.consumerSummitted(consumer),
-            ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Expanded(
+          child: TextFormField(
+            controller: consumer?.editTextController,
+            style: context.themeExtensions.subTexMedium
+                .copyWith(color: context.themeExtensions.textGrey),
+            maxLines: null,
+            decoration: InputDecoration.collapsed(hintText: consumer?.consumer),
+            onFieldSubmitted: (value) => controller.consumerSummitted(consumer),
+            textInputAction: TextInputAction.none,
+            focusNode: consumer?.focusNode,
           ),
-          InkWell(
+        ),
+        Focus(
+          canRequestFocus: false,
+          descendantsAreFocusable: false,
+          child: InkWell(
             onTap: () => controller.deleteConsumer(consumer),
             child: IconTheme(
               data: IconThemeData(color: context.themeExtensions.textGrey),
@@ -816,8 +871,8 @@ class DocumentsView extends BaseView<DocumentsController> {
               ),
             ),
           ),
-        ],
-      ).marginOnly(left: 0, top: 0, right: 45, bottom: 15),
-    );
+        ),
+      ],
+    ).marginOnly(left: 0, top: 0, right: 45, bottom: 15);
   }
 }

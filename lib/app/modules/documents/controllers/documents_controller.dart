@@ -6,9 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:getx_sample/app/modules/base/base.dart';
+import 'package:getx_sample/app/routes/app_pages.dart';
 import 'package:getx_sample/data/bean/basis_object/basis_object.dart';
 import 'package:getx_sample/data/bean/consumer_object/consumer_object.dart';
 import 'package:getx_sample/data/bean/resolution_object/resolution_object.dart';
+import 'package:getx_sample/generated/locales.g.dart';
+import 'package:getx_sample/utils/pair.dart';
 import 'package:quill_html_editor/quill_html_editor.dart';
 
 class DocumentsController extends BaseController {
@@ -22,9 +25,12 @@ class DocumentsController extends BaseController {
   late TextEditingController? authorizationTitleEditTextDesController;
   late TextEditingController? resolveEditTextDesController;
   late TextEditingController? resolveDescriptionEditTextDesController;
+  late TextEditingController? consumerEditTextDesController;
   late TextEditingController? positionEditTextDesController;
   late TextEditingController? positionNoteEditTextDesController;
   late TextEditingController? delegateFullNameEditTextDesController;
+
+  final Rx<dynamic> ittemRequestFocus = BasisObject().obs;
 
   final lstCategories = <String>[
     "Nghị quyết",
@@ -40,42 +46,67 @@ class DocumentsController extends BaseController {
   final savedDocuments =
       <String>["Thông tư 05", "Văn bản hướng dẫn nộp thuế 05/2023", "Báo cáo hợp nhất"].obs;
 
-  final suggestions = <String>[
-    "Căn cứ luật sửa đổi bổ sung một số điều của luật tổ chức chính phủ ngày 22 tháng 11 năm 2019",
-    "Căn cứ nghị định 24/2014/NĐ-CP ngày 02 tháng 04 năm 2014 của chính phủ quy định tổ chức các cơ quan",
-    "Căn cứ nghị định số 107/2020/NĐ-CP ngày 14 tháng 09 năm 2020 của Chính phủ sửa đổi, bổ sung một số điều",
-    "Căn cứ thông tin liên tịch số 01/2015/TTLT-VPCP-BNV ngày 23 tháng 10 năm 2015 của Bộ trưởng, Chủ nhiệm",
-    "Căn cứ luật sửa đổi bổ sung một số điều của luật tổ chức chính phủ ngày 22 tháng 11 năm 2020",
-    "Căn cứ luật sửa đổi bổ sung một số điều của luật tổ chức chính phủ ngày 22 tháng 11 năm 2021",
-    "Căn cứ luật sửa đổi bổ sung một số điều của luật tổ chức chính phủ ngày 22 tháng 11 năm 2022",
-    "Căn cứ luật sửa đổi bổ sung một số điều của luật tổ chức chính phủ ngày 22 tháng 11 năm 2023",
-    "Căn cứ luật sửa đổi bổ sung một số điều của luật tổ chức chính phủ ngày 22 tháng 11 năm 2018",
-    "Căn cứ luật sửa đổi bổ sung một số điều của luật tổ chức chính phủ ngày 22 tháng 11 năm 2017",
-    "Căn cứ luật sửa đổi bổ sung một số điều của luật tổ chức chính phủ ngày 22 tháng 11 năm 2016",
-    "Căn cứ luật sửa đổi bổ sung một số điều của luật tổ chức chính phủ ngày 22 tháng 11 năm 2015",
-  ].obs;
+  final basisSuggestions = [
+    "Luật sửa đổi bổ sung một số điều của luật tổ chức chính phủ ngày 22 tháng 11 năm 2019",
+    "Nghị định 24/2014/NĐ-CP ngày 02 tháng 04 năm 2014 của chính phủ quy định tổ chức các cơ quan",
+    "Nghị định số 107/2020/NĐ-CP ngày 14 tháng 09 năm 2020 của Chính phủ sửa đổi, bổ sung một số điều",
+    "Thông tin liên tịch số 01/2015/TTLT-VPCP-BNV ngày 23 tháng 10 năm 2015 của Bộ trưởng, Chủ nhiệm",
+    "Luật sửa đổi bổ sung một số điều của luật tổ chức chính phủ ngày 22 tháng 11 năm 2020",
+    "Luật sửa đổi bổ sung một số điều của luật tổ chức chính phủ ngày 22 tháng 11 năm 2021",
+    "Luật sửa đổi bổ sung một số điều của luật tổ chức chính phủ ngày 22 tháng 11 năm 2022",
+    "Luật sửa đổi bổ sung một số điều của luật tổ chức chính phủ ngày 22 tháng 11 năm 2023",
+    "Luật sửa đổi bổ sung một số điều của luật tổ chức chính phủ ngày 22 tháng 11 năm 2018",
+    "Luật sửa đổi bổ sung một số điều của luật tổ chức chính phủ ngày 22 tháng 11 năm 2017",
+    "Luật sửa đổi bổ sung một số điều của luật tổ chức chính phủ ngày 22 tháng 11 năm 2016",
+    "Luật sửa đổi bổ sung một số điều của luật tổ chức chính phủ ngày 22 tháng 11 năm 2015",
+  ];
+
+  final resolutionSuggestions = [
+    "Gia hạn thời gian tổ chức cuộc họp ĐHĐCĐ thường niên năm 2023: dự kiến tổ chức vào ngày 22/06/2023.",
+    "Chốt ngày đăng kí cuối cùng để lập danh sách cổ đông có quyền tham dự họp ĐHĐCĐ thường niên là ngày 18/05/2023.",
+    "Địa điểm dự kiến tổ chức và nội dung họp: Công ty sẽ thông báo chi tiết tại \"Thư mời\" tham dự họp ĐHĐCĐ thường niên năm 2023.",
+    "HĐQT thống nhất trao quyền cho Chủ tịch HĐQT, người đại diện theo pháp luật của Công Ty tiến hành các thủ tục cần thiết theo quy định của pháp luật để hoàn thành các nội dung quy định tại các điều 1, 2, 3 của nghị quyết này.",
+    "Các thành viên HĐQT, Ban Tổng Giám Đốc, các Phòng/Ban và cá nhân có liên quan của Công Ty chịu trách nhiệm thi hành Nghị quyết này.",
+    "Nghị quyết có hiệu lực kể từ ngày kí.",
+    "Luật sửa đổi bổ sung một số điều của luật tổ chức chính phủ ngày 22 tháng 11 năm 2022",
+    "Luật sửa đổi bổ sung một số điều của luật tổ chức chính phủ ngày 22 tháng 11 năm 2023",
+    "Luật sửa đổi bổ sung một số điều của luật tổ chức chính phủ ngày 22 tháng 11 năm 2018",
+    "Luật sửa đổi bổ sung một số điều của luật tổ chức chính phủ ngày 22 tháng 11 năm 2017",
+    "Luật sửa đổi bổ sung một số điều của luật tổ chức chính phủ ngày 22 tháng 11 năm 2016",
+    "Luật sửa đổi bổ sung một số điều của luật tổ chức chính phủ ngày 22 tháng 11 năm 2015",
+  ];
+
+  final suggestions = <String>[].obs;
+
+  static const String basisHint =
+      "........................................................................................................................";
 
   final basises = <String>[
-    "............................................................................................................................................",
-    "............................................................................................................................................",
-    "............................................................................................................................................",
-    "............................................................................................................................................",
-    "............................................................................................................................................",
+    basisHint,
+    basisHint,
+    basisHint,
+    basisHint,
+    basisHint,
   ].obs;
 
   final lstBasises = <BasisObject?>[].obs;
 
+  static const String resolutionHint =
+      "..................................................................................................................................................................................................................................................................";
+
   final resolutions = <String>[
-    "..................................................................................................................................................................................................................................................................",
-    "..................................................................................................................................................................................................................................................................",
-    "..................................................................................................................................................................................................................................................................",
-    "..................................................................................................................................................................................................................................................................",
-    "..................................................................................................................................................................................................................................................................",
-    "..................................................................................................................................................................................................................................................................",
-    "..................................................................................................................................................................................................................................................................",
+    resolutionHint,
+    resolutionHint,
+    resolutionHint,
+    resolutionHint,
+    resolutionHint,
+    resolutionHint,
+    resolutionHint,
   ].obs;
 
   final lstResolutions = <ResolutionObject?>[].obs;
+
+  static const consumerHint = "- ......................;";
 
   final consumers = <String>[
     "- Như điều: ............;",
@@ -100,29 +131,45 @@ class DocumentsController extends BaseController {
     authorizationTitleEditTextDesController = TextEditingController();
     resolveEditTextDesController = TextEditingController();
     resolveDescriptionEditTextDesController = TextEditingController();
+    consumerEditTextDesController = TextEditingController();
     positionEditTextDesController = TextEditingController();
     positionNoteEditTextDesController = TextEditingController();
     delegateFullNameEditTextDesController = TextEditingController();
     basises.asMap().forEach((index, value) {
-      lstBasises.add(BasisObject(
+      lstBasises.add(
+        BasisObject(
           index: index,
           basis: value,
           editTextController: TextEditingController(),
-          focusNode: FocusNode()));
+          focusNode: FocusNode(
+            onKey: (node, event) => addNewBasisIfNeeded(event, index),
+          ),
+        ),
+      );
     });
     resolutions.asMap().forEach((index, resolution) {
-      lstResolutions.add(ResolutionObject(
+      lstResolutions.add(
+        ResolutionObject(
           index: index,
           resolution: resolution,
           editTextController: TextEditingController(),
-          focusNode: FocusNode()));
+          focusNode: FocusNode(
+            onKey: (node, event) => addNewResolutionIfNeeded(event, index),
+          ),
+        ),
+      );
     });
     consumers.asMap().forEach((index, consumer) {
-      lstConsumers.add(ConsumerObject(
+      lstConsumers.add(
+        ConsumerObject(
           index: index,
           consumer: consumer,
-          editTextController: TextEditingController()..text = consumer,
-          focusNode: FocusNode()));
+          editTextController: TextEditingController(),
+          focusNode: FocusNode(
+            onKey: (node, event) => addNewConsumerIfNeeded(event, index),
+          ),
+        ),
+      );
     });
   }
 
@@ -137,6 +184,7 @@ class DocumentsController extends BaseController {
     authorizationTitleEditTextDesController?.text = "Căn cứ:";
     resolveEditTextDesController?.text = "Quyết nghị".toUpperCase();
     resolveDescriptionEditTextDesController?.text = "Thông qua việc ...";
+    consumerEditTextDesController?.text = "${LocaleKeys.consumer.tr}:";
     positionNoteEditTextDesController?.text =
         "(Chữ kí của người có thẩm quyền, dấu/chữ kí số của cơ quan, tổ chức)";
     _handleOrganizationEdtFocus();
@@ -169,19 +217,112 @@ class DocumentsController extends BaseController {
 
   consumerSummitted(ConsumerObject? consumer) {}
 
-  handleKey(RawKeyEvent? key) {
+  bool needToAddNewsOne(RawKeyEvent? key) {
     if (key?.isShiftPressed == true &&
         (key is RawKeyDownEvent) &&
         key.logicalKey.keyLabel.equalsIgnoreCase("Enter") == true) {
       Fimber.d("Add a new line.");
+      return true;
     }
+    return false;
   }
 
-  changeBasisValue(String value) {}
+  changeBasisValue(String value) {
+    Fimber.d("changeBasisValue(String $value)");
+  }
 
-  deleteBasis(BasisObject? basis) {}
+  deleteBasis(BasisObject? basis) {
+    Fimber.d("deleteBasis(BasisObject? ${basis.toString()})");
+    lstBasises.remove(basis);
+    lstBasises.value = lstBasises.value;
+  }
 
-  deleteConsumer(ConsumerObject? consumer) {}
+  deleteConsumer(ConsumerObject? consumer) {
+    Fimber.d("deleteConsumer(ConsumerObject? ${consumer.toString()})");
+    lstConsumers.remove(consumer);
+    lstConsumers.value = lstConsumers.value;
+  }
 
-  deleteResolution(ResolutionObject? resolution) {}
+  deleteResolution(ResolutionObject? resolution) {
+    Fimber.d("deleteResolution(ResolutionObject? ${resolution.toString()})");
+    lstResolutions.remove(resolution);
+    lstResolutions.value = lstResolutions.value;
+  }
+
+  KeyEventResult addNewBasisIfNeeded(RawKeyEvent value, int? index) {
+    Fimber.d("addNewBasisIfNeeded(RawKeyEvent value, index: $index)");
+    if (needToAddNewsOne(value)) {
+      final newBasis = BasisObject(
+        index: (index ?? 0) + 1,
+        basis: basisHint,
+        editTextController: TextEditingController(),
+        focusNode: FocusNode(
+          onKey: (node, event) => addNewBasisIfNeeded(event, (index ?? 0) + 1),
+        ),
+      );
+      lstBasises.insert((index ?? 0) + 1, newBasis);
+      lstBasises.value = lstBasises.value;
+      ittemRequestFocus.value = newBasis;
+      return KeyEventResult.handled;
+    }
+    return KeyEventResult.ignored;
+  }
+
+  KeyEventResult addNewResolutionIfNeeded(RawKeyEvent event, int? index) {
+    Fimber.d("addNewResolutionIfNeeded(RawKeyEvent value, index: $index)");
+    if (needToAddNewsOne(event)) {
+      lstResolutions.insert(
+        (index ?? 0) + 1,
+        ResolutionObject(
+          index: (index ?? 0) + 1,
+          resolution: resolutionHint,
+          editTextController: TextEditingController(),
+          focusNode: FocusNode(
+            onKey: (node, event) => addNewResolutionIfNeeded(event, (index ?? 0) + 1),
+          ),
+        ),
+      );
+      lstResolutions.value = lstResolutions.value;
+      return KeyEventResult.handled;
+    }
+    return KeyEventResult.ignored;
+  }
+
+  KeyEventResult addNewConsumerIfNeeded(RawKeyEvent value, int? index) {
+    Fimber.d("addNewConsumerIfNeeded(RawKeyEvent $value, index: $index)");
+    if (needToAddNewsOne(value)) {
+      lstConsumers.insert(
+        (index ?? 0) + 1,
+        ConsumerObject(
+          index: (index ?? 0) + 1,
+          consumer: consumerHint,
+          editTextController: TextEditingController(),
+          focusNode: FocusNode(
+            onKey: (node, event) => addNewConsumerIfNeeded(event, (index ?? 0) + 1),
+          ),
+        ),
+      );
+      lstConsumers.value = lstConsumers.value;
+      return KeyEventResult.handled;
+    }
+    return KeyEventResult.ignored;
+  }
+
+  retrieveBasisSugesstion(String value) {
+    Fimber.d("retrieveBasisSugesstion(String $value)");
+    suggestions.value = basisSuggestions;
+  }
+
+  retrieveResolutionSuggestions(String value) {
+    Fimber.d("retrieveResolutionSuggestions(String $value)");
+    suggestions.value = resolutionSuggestions;
+  }
+
+  navigateToPreview() {
+    Get.toNamed(Routes.DOCUMENT_PREVIEW);
+  }
+
+  pickSuggestion(String? suggestion) {
+    Fimber.d("pickSuggestion(String? $suggestion)");
+  }
 }
