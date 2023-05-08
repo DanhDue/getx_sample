@@ -16,8 +16,9 @@ import 'app/routes/app_pages.dart';
 import 'widgets/easy_loading_animation.dart';
 
 Future<void> main() async {
-  Fimber.plantTree(DebugTree(useColors: true));
-  Fimber.plantTree(DebugTree.elapsed());
+  final fimberDebugTree = DebugTree(useColors: true);
+  Fimber.plantTree(fimberDebugTree);
+  Fimber.unplantTree(DebugTree.elapsed());
 
   WidgetsFlutterBinding.ensureInitialized();
 

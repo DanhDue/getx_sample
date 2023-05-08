@@ -10,8 +10,8 @@ part 'basis_object.g.dart';
 class BasisObject with _$BasisObject {
   factory BasisObject({
     int? index,
-    String? basis,
-    @TextEditingControllerJsonConverter() TextEditingController? editTextController,
+    @required String? basis,
+    @required @TextEditingControllerJsonConverter() TextEditingController? editTextController,
     @FocusNodeJsonConverter() FocusNode? focusNode,
   }) = _BasisObject;
 

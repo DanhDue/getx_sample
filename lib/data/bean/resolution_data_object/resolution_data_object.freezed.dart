@@ -26,9 +26,12 @@ mixin _$ResolutionDataObject {
   String? get resolution => throw _privateConstructorUsedError;
   String? get resolutionDes => throw _privateConstructorUsedError;
   String? get author => throw _privateConstructorUsedError;
-  List<String>? get basises => throw _privateConstructorUsedError;
-  List<String>? get resolutions => throw _privateConstructorUsedError;
-  List<String>? get consumers => throw _privateConstructorUsedError;
+  List<BasisObject?>? get basises => throw _privateConstructorUsedError;
+  String? get resolve => throw _privateConstructorUsedError;
+  String? get resolveDescription => throw _privateConstructorUsedError;
+  List<ResolutionObject?>? get resolutions => throw _privateConstructorUsedError;
+  List<ConsumerObject?>? get consumers => throw _privateConstructorUsedError;
+  String? get rightPositionOfDelegate => throw _privateConstructorUsedError;
   String? get delegate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -50,9 +53,12 @@ abstract class $ResolutionDataObjectCopyWith<$Res> {
       String? resolution,
       String? resolutionDes,
       String? author,
-      List<String>? basises,
-      List<String>? resolutions,
-      List<String>? consumers,
+      List<BasisObject?>? basises,
+      String? resolve,
+      String? resolveDescription,
+      List<ResolutionObject?>? resolutions,
+      List<ConsumerObject?>? consumers,
+      String? rightPositionOfDelegate,
       String? delegate});
 }
 
@@ -76,8 +82,11 @@ class _$ResolutionDataObjectCopyWithImpl<$Res, $Val extends ResolutionDataObject
     Object? resolutionDes = freezed,
     Object? author = freezed,
     Object? basises = freezed,
+    Object? resolve = freezed,
+    Object? resolveDescription = freezed,
     Object? resolutions = freezed,
     Object? consumers = freezed,
+    Object? rightPositionOfDelegate = freezed,
     Object? delegate = freezed,
   }) {
     return _then(_value.copyWith(
@@ -108,15 +117,27 @@ class _$ResolutionDataObjectCopyWithImpl<$Res, $Val extends ResolutionDataObject
       basises: freezed == basises
           ? _value.basises
           : basises // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<BasisObject?>?,
+      resolve: freezed == resolve
+          ? _value.resolve
+          : resolve // ignore: cast_nullable_to_non_nullable
+              as String?,
+      resolveDescription: freezed == resolveDescription
+          ? _value.resolveDescription
+          : resolveDescription // ignore: cast_nullable_to_non_nullable
+              as String?,
       resolutions: freezed == resolutions
           ? _value.resolutions
           : resolutions // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<ResolutionObject?>?,
       consumers: freezed == consumers
           ? _value.consumers
           : consumers // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<ConsumerObject?>?,
+      rightPositionOfDelegate: freezed == rightPositionOfDelegate
+          ? _value.rightPositionOfDelegate
+          : rightPositionOfDelegate // ignore: cast_nullable_to_non_nullable
+              as String?,
       delegate: freezed == delegate
           ? _value.delegate
           : delegate // ignore: cast_nullable_to_non_nullable
@@ -140,9 +161,12 @@ abstract class _$$_ResolutionDataObjectCopyWith<$Res>
       String? resolution,
       String? resolutionDes,
       String? author,
-      List<String>? basises,
-      List<String>? resolutions,
-      List<String>? consumers,
+      List<BasisObject?>? basises,
+      String? resolve,
+      String? resolveDescription,
+      List<ResolutionObject?>? resolutions,
+      List<ConsumerObject?>? consumers,
+      String? rightPositionOfDelegate,
       String? delegate});
 }
 
@@ -164,8 +188,11 @@ class __$$_ResolutionDataObjectCopyWithImpl<$Res>
     Object? resolutionDes = freezed,
     Object? author = freezed,
     Object? basises = freezed,
+    Object? resolve = freezed,
+    Object? resolveDescription = freezed,
     Object? resolutions = freezed,
     Object? consumers = freezed,
+    Object? rightPositionOfDelegate = freezed,
     Object? delegate = freezed,
   }) {
     return _then(_$_ResolutionDataObject(
@@ -196,15 +223,27 @@ class __$$_ResolutionDataObjectCopyWithImpl<$Res>
       basises: freezed == basises
           ? _value._basises
           : basises // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<BasisObject?>?,
+      resolve: freezed == resolve
+          ? _value.resolve
+          : resolve // ignore: cast_nullable_to_non_nullable
+              as String?,
+      resolveDescription: freezed == resolveDescription
+          ? _value.resolveDescription
+          : resolveDescription // ignore: cast_nullable_to_non_nullable
+              as String?,
       resolutions: freezed == resolutions
           ? _value._resolutions
           : resolutions // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<ResolutionObject?>?,
       consumers: freezed == consumers
           ? _value._consumers
           : consumers // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<ConsumerObject?>?,
+      rightPositionOfDelegate: freezed == rightPositionOfDelegate
+          ? _value.rightPositionOfDelegate
+          : rightPositionOfDelegate // ignore: cast_nullable_to_non_nullable
+              as String?,
       delegate: freezed == delegate
           ? _value.delegate
           : delegate // ignore: cast_nullable_to_non_nullable
@@ -223,9 +262,12 @@ class _$_ResolutionDataObject implements _ResolutionDataObject {
       this.resolution,
       this.resolutionDes,
       this.author,
-      final List<String>? basises,
-      final List<String>? resolutions,
-      final List<String>? consumers,
+      final List<BasisObject?>? basises,
+      this.resolve,
+      this.resolveDescription,
+      final List<ResolutionObject?>? resolutions,
+      final List<ConsumerObject?>? consumers,
+      this.rightPositionOfDelegate,
       this.delegate})
       : _basises = basises,
         _resolutions = resolutions,
@@ -246,27 +288,31 @@ class _$_ResolutionDataObject implements _ResolutionDataObject {
   final String? resolutionDes;
   @override
   final String? author;
-  final List<String>? _basises;
+  final List<BasisObject?>? _basises;
   @override
-  List<String>? get basises {
+  List<BasisObject?>? get basises {
     final value = _basises;
     if (value == null) return null;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
-  final List<String>? _resolutions;
   @override
-  List<String>? get resolutions {
+  final String? resolve;
+  @override
+  final String? resolveDescription;
+  final List<ResolutionObject?>? _resolutions;
+  @override
+  List<ResolutionObject?>? get resolutions {
     final value = _resolutions;
     if (value == null) return null;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
-  final List<String>? _consumers;
+  final List<ConsumerObject?>? _consumers;
   @override
-  List<String>? get consumers {
+  List<ConsumerObject?>? get consumers {
     final value = _consumers;
     if (value == null) return null;
     // ignore: implicit_dynamic_type
@@ -274,11 +320,13 @@ class _$_ResolutionDataObject implements _ResolutionDataObject {
   }
 
   @override
+  final String? rightPositionOfDelegate;
+  @override
   final String? delegate;
 
   @override
   String toString() {
-    return 'ResolutionDataObject(organization: $organization, docNumber: $docNumber, createdAt: $createdAt, resolution: $resolution, resolutionDes: $resolutionDes, author: $author, basises: $basises, resolutions: $resolutions, consumers: $consumers, delegate: $delegate)';
+    return 'ResolutionDataObject(organization: $organization, docNumber: $docNumber, createdAt: $createdAt, resolution: $resolution, resolutionDes: $resolutionDes, author: $author, basises: $basises, resolve: $resolve, resolveDescription: $resolveDescription, resolutions: $resolutions, consumers: $consumers, rightPositionOfDelegate: $rightPositionOfDelegate, delegate: $delegate)';
   }
 
   @override
@@ -294,8 +342,13 @@ class _$_ResolutionDataObject implements _ResolutionDataObject {
                 other.resolutionDes == resolutionDes) &&
             (identical(other.author, author) || other.author == author) &&
             const DeepCollectionEquality().equals(other._basises, _basises) &&
+            (identical(other.resolve, resolve) || other.resolve == resolve) &&
+            (identical(other.resolveDescription, resolveDescription) ||
+                other.resolveDescription == resolveDescription) &&
             const DeepCollectionEquality().equals(other._resolutions, _resolutions) &&
             const DeepCollectionEquality().equals(other._consumers, _consumers) &&
+            (identical(other.rightPositionOfDelegate, rightPositionOfDelegate) ||
+                other.rightPositionOfDelegate == rightPositionOfDelegate) &&
             (identical(other.delegate, delegate) || other.delegate == delegate));
   }
 
@@ -310,8 +363,11 @@ class _$_ResolutionDataObject implements _ResolutionDataObject {
       resolutionDes,
       author,
       const DeepCollectionEquality().hash(_basises),
+      resolve,
+      resolveDescription,
       const DeepCollectionEquality().hash(_resolutions),
       const DeepCollectionEquality().hash(_consumers),
+      rightPositionOfDelegate,
       delegate);
 
   @JsonKey(ignore: true)
@@ -336,9 +392,12 @@ abstract class _ResolutionDataObject implements ResolutionDataObject {
       final String? resolution,
       final String? resolutionDes,
       final String? author,
-      final List<String>? basises,
-      final List<String>? resolutions,
-      final List<String>? consumers,
+      final List<BasisObject?>? basises,
+      final String? resolve,
+      final String? resolveDescription,
+      final List<ResolutionObject?>? resolutions,
+      final List<ConsumerObject?>? consumers,
+      final String? rightPositionOfDelegate,
       final String? delegate}) = _$_ResolutionDataObject;
 
   factory _ResolutionDataObject.fromJson(Map<String, dynamic> json) =
@@ -357,11 +416,17 @@ abstract class _ResolutionDataObject implements ResolutionDataObject {
   @override
   String? get author;
   @override
-  List<String>? get basises;
+  List<BasisObject?>? get basises;
   @override
-  List<String>? get resolutions;
+  String? get resolve;
   @override
-  List<String>? get consumers;
+  String? get resolveDescription;
+  @override
+  List<ResolutionObject?>? get resolutions;
+  @override
+  List<ConsumerObject?>? get consumers;
+  @override
+  String? get rightPositionOfDelegate;
   @override
   String? get delegate;
   @override

@@ -93,7 +93,7 @@ Future<Uint8List> generateResume(
                         pw.SizedBox(height: 7),
                         pw.Container(
                           height: 1,
-                          width: 286,
+                          width: 120,
                           color: PdfColors.grey,
                         ),
                         pw.SizedBox(height: 13),
@@ -134,7 +134,7 @@ Future<Uint8List> generateResume(
                   pw.SizedBox(height: 6),
                   pw.Container(
                     height: 1,
-                    width: 136,
+                    width: 120,
                     color: PdfColors.grey,
                   ),
                   pw.SizedBox(height: 25),

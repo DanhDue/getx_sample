@@ -10,8 +10,8 @@ part 'resolution_object.g.dart';
 class ResolutionObject with _$ResolutionObject {
   factory ResolutionObject({
     int? index,
-    String? resolution,
-    @TextEditingControllerJsonConverter() TextEditingController? editTextController,
+    @required String? resolution,
+    @required @TextEditingControllerJsonConverter() TextEditingController? editTextController,
     @FocusNodeJsonConverter() FocusNode? focusNode,
   }) = _ResolutionObject;
 

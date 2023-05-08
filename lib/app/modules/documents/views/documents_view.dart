@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:fimber/fimber.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_sample/app/modules/base/base.dart';
@@ -55,82 +56,86 @@ class DocumentsView extends BaseView<DocumentsController> {
   }
 
   buildLeftMenus(BuildContext context) {
-    return Align(
-      alignment: FractionalOffset.topLeft,
-      child: Container(
-        width: 269,
-        height: 727,
-        color: context.themeExtensions.bgGrey,
-        child: SingleChildScrollView(
-          physics: const AlwaysScrollableScrollPhysics(),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Obx(() {
-                return ExpansionTile(
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      AutoSizeText(
-                        '#',
-                        style: context.themeExtensions.heading2
-                            .copyWith(color: context.themeExtensions.black),
-                      ),
-                      const SizedBox(width: 7),
-                      Expanded(
-                        flex: 1,
-                        child: AutoSizeText(
-                          LocaleKeys.docCategories.tr,
-                          style: context.themeExtensions.paragraphSemiBold
-                              .copyWith(color: context.themeExtensions.mainGreen),
+    return Focus(
+      canRequestFocus: false,
+      descendantsAreFocusable: false,
+      child: Align(
+        alignment: FractionalOffset.topLeft,
+        child: Container(
+          width: 269,
+          height: 727,
+          color: context.themeExtensions.bgGrey,
+          child: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Obx(() {
+                  return ExpansionTile(
+                    title: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        AutoSizeText(
+                          '#',
+                          style: context.themeExtensions.heading2
+                              .copyWith(color: context.themeExtensions.black),
                         ),
-                      )
-                    ],
-                  ),
-                  iconColor: context.themeExtensions.semiGrey,
-                  collapsedIconColor: context.themeExtensions.semiGrey,
-                  children: [
-                    for (var category in controller.lstCategories)
-                      _buildCategoryOrSavedDocumentMenuItem(context, category)
-                  ],
-                );
-              }),
-              Obx(() {
-                return ExpansionTile(
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.max,
+                        const SizedBox(width: 7),
+                        Expanded(
+                          flex: 1,
+                          child: AutoSizeText(
+                            LocaleKeys.docCategories.tr,
+                            style: context.themeExtensions.paragraphSemiBold
+                                .copyWith(color: context.themeExtensions.mainGreen),
+                          ),
+                        )
+                      ],
+                    ),
+                    iconColor: context.themeExtensions.semiGrey,
+                    collapsedIconColor: context.themeExtensions.semiGrey,
                     children: [
-                      AutoSizeText(
-                        '#',
-                        style: context.themeExtensions.heading2
-                            .copyWith(color: context.themeExtensions.black),
-                      ),
-                      const SizedBox(width: 7),
-                      Expanded(
-                        flex: 1,
-                        child: AutoSizeText(
-                          LocaleKeys.createdDocuments.tr,
-                          style: context.themeExtensions.paragraphSemiBold
-                              .copyWith(color: context.themeExtensions.mainGreen),
-                        ),
-                      )
+                      for (var category in controller.lstCategories)
+                        _buildCategoryOrSavedDocumentMenuItem(context, category)
                     ],
-                  ),
-                  iconColor: context.themeExtensions.semiGrey,
-                  collapsedIconColor: context.themeExtensions.semiGrey,
-                  children: [
-                    for (var document in controller.savedDocuments)
-                      _buildCategoryOrSavedDocumentMenuItem(context, document)
-                  ],
-                );
-              }),
-            ],
+                  );
+                }),
+                Obx(() {
+                  return ExpansionTile(
+                    title: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        AutoSizeText(
+                          '#',
+                          style: context.themeExtensions.heading2
+                              .copyWith(color: context.themeExtensions.black),
+                        ),
+                        const SizedBox(width: 7),
+                        Expanded(
+                          flex: 1,
+                          child: AutoSizeText(
+                            LocaleKeys.createdDocuments.tr,
+                            style: context.themeExtensions.paragraphSemiBold
+                                .copyWith(color: context.themeExtensions.mainGreen),
+                          ),
+                        )
+                      ],
+                    ),
+                    iconColor: context.themeExtensions.semiGrey,
+                    collapsedIconColor: context.themeExtensions.semiGrey,
+                    children: [
+                      for (var document in controller.savedDocuments)
+                        _buildCategoryOrSavedDocumentMenuItem(context, document)
+                    ],
+                  );
+                }),
+              ],
+            ),
           ),
         ),
       ),
@@ -202,17 +207,37 @@ class DocumentsView extends BaseView<DocumentsController> {
               bottom: 0,
               end: 0,
               textDirection: TextDirection.ltr,
-              child: InkWell(
-                onTap: () => controller.navigateToPreview(),
-                child: Container(
-                  color: context.themeExtensions.apple,
-                  padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 3),
-                  child: AutoSizeText(
-                    "Preview",
-                    style: context.themeExtensions.paragraphSemiBold
-                        .copyWith(color: context.themeExtensions.red),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  InkWell(
+                    onTap: () => controller.saveDocument(),
+                    child: Container(
+                      color: context.themeExtensions.apple,
+                      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+                      child: AutoSizeText(
+                        LocaleKeys.save.tr,
+                        style: context.themeExtensions.paragraphSemiBold
+                            .copyWith(color: context.themeExtensions.red),
+                      ),
+                    ),
                   ),
-                ),
+                  Container(width: 1, color: context.themeExtensions.bgGrey),
+                  InkWell(
+                    onTap: () => controller.navigateToPreview(),
+                    child: Container(
+                      color: context.themeExtensions.apple,
+                      padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 3),
+                      child: AutoSizeText(
+                        LocaleKeys.preview.tr,
+                        style: context.themeExtensions.paragraphSemiBold
+                            .copyWith(color: context.themeExtensions.red),
+                      ),
+                    ),
+                  )
+                ],
               ),
             )
           ],
@@ -239,10 +264,28 @@ class DocumentsView extends BaseView<DocumentsController> {
             _buildDocumentContentViews(context),
             _buildDocumentFooterViews(context),
             Obx(() {
-              if (controller.ittemRequestFocus.value.focusNode != null) {
+              // request focus for the basis item if need.
+              if (controller.basisItemRequestFocus.value?.focusNode != null) {
                 WidgetsBinding.instance.addPostFrameCallback((duration) {
                   FocusScope.of(context)
-                      .requestFocus(controller.ittemRequestFocus.value.focusNode);
+                      .requestFocus(controller.basisItemRequestFocus.value?.focusNode);
+                  controller.basisItemRequestFocus.value = BasisObject();
+                });
+              }
+              // request focus for the resolution item if need.
+              if (controller.resolutionItemRequestFocus.value?.focusNode != null) {
+                WidgetsBinding.instance.addPostFrameCallback((duration) {
+                  FocusScope.of(context)
+                      .requestFocus(controller.resolutionItemRequestFocus.value?.focusNode);
+                  controller.resolutionItemRequestFocus.value = ResolutionObject();
+                });
+              }
+              // request focus for the basis item if need.
+              if (controller.consumerItemRequestFocus.value?.focusNode != null) {
+                WidgetsBinding.instance.addPostFrameCallback((duration) {
+                  FocusScope.of(context)
+                      .requestFocus(controller.consumerItemRequestFocus.value?.focusNode);
+                  controller.consumerItemRequestFocus.value = ConsumerObject();
                 });
               }
               return const SizedBox.shrink();
@@ -358,7 +401,7 @@ class DocumentsView extends BaseView<DocumentsController> {
         mainAxisSize: MainAxisSize.max,
         children: [
           Expanded(
-            flex: 1,
+            flex: 4,
             child: Obx(() => Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -372,10 +415,7 @@ class DocumentsView extends BaseView<DocumentsController> {
                       textAlign: TextAlign.start,
                       decoration: const InputDecoration.collapsed(hintText: ""),
                       textInputAction: TextInputAction.none,
-                      focusNode: FocusNode(
-                        ///TODO tuyendv
-                        onKey: (node, event) => controller.addNewConsumerIfNeeded(event, -1),
-                      ),
+                      focusNode: controller.consumerEdtFocusNode,
                     ),
                     const SizedBox(height: 15),
                     for (var consumer in controller.lstConsumers)
@@ -384,7 +424,7 @@ class DocumentsView extends BaseView<DocumentsController> {
                 )),
           ),
           Expanded(
-            flex: 2,
+            flex: 7,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -400,14 +440,18 @@ class DocumentsView extends BaseView<DocumentsController> {
                       InputDecoration.collapsed(hintText: LocaleKeys.rightPositionOfDelegate.tr),
                 ),
                 const SizedBox(height: 7),
-                TextFormField(
-                  controller: controller.positionNoteEditTextDesController,
-                  style: context.themeExtensions.heading3.copyWith(
-                      color: context.themeExtensions.textGrey, fontStyle: FontStyle.italic),
-                  maxLines: null,
-                  textAlign: TextAlign.center,
-                  decoration: const InputDecoration.collapsed(hintText: ""),
-                ).paddingSymmetric(horizontal: 79),
+                Focus(
+                  canRequestFocus: false,
+                  descendantsAreFocusable: false,
+                  child: TextFormField(
+                    controller: controller.positionNoteEditTextDesController,
+                    style: context.themeExtensions.heading3.copyWith(
+                        color: context.themeExtensions.textGrey, fontStyle: FontStyle.italic),
+                    maxLines: null,
+                    textAlign: TextAlign.center,
+                    decoration: const InputDecoration.collapsed(hintText: ""),
+                  ).paddingSymmetric(horizontal: 79),
+                ),
                 const SizedBox(height: 79),
                 TextFormField(
                   controller: controller.delegateFullNameEditTextDesController,
@@ -428,50 +472,54 @@ class DocumentsView extends BaseView<DocumentsController> {
   }
 
   buildSuggestions(BuildContext context) {
-    return Align(
-      alignment: FractionalOffset.topRight,
-      child: Container(
-          width: 269,
-          height: 727,
-          decoration: BoxDecoration(
-              color: context.themeExtensions.transparent,
-              borderRadius: const BorderRadius.all(Radius.zero),
-              border: Border.all(color: context.themeExtensions.black)),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              const SizedBox(height: 7),
-              Center(
-                child: AutoSizeText(
-                  LocaleKeys.sugesstionList.tr,
-                  style: context.themeExtensions.heading2
-                      .copyWith(color: context.themeExtensions.mainGreen),
+    return Focus(
+      canRequestFocus: false,
+      descendantsAreFocusable: false,
+      child: Align(
+        alignment: FractionalOffset.topRight,
+        child: Container(
+            width: 269,
+            height: 727,
+            decoration: BoxDecoration(
+                color: context.themeExtensions.transparent,
+                borderRadius: const BorderRadius.all(Radius.zero),
+                border: Border.all(color: context.themeExtensions.black)),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                const SizedBox(height: 7),
+                Center(
+                  child: AutoSizeText(
+                    LocaleKeys.sugesstionList.tr,
+                    style: context.themeExtensions.heading2
+                        .copyWith(color: context.themeExtensions.mainGreen),
+                  ),
                 ),
-              ),
-              Container(
-                height: 1,
-                color: context.themeExtensions.black,
-              ),
-              Expanded(
-                child: SingleChildScrollView(
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  child: Obx(() => Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          for (var suggestion in controller.suggestions)
-                            _buildSuggestionItem(context,
-                                suggestion: suggestion,
-                                isFirst: controller.suggestions.first == suggestion)
-                        ],
-                      )),
+                Container(
+                  height: 1,
+                  color: context.themeExtensions.black,
                 ),
-              ),
-            ],
-          )),
+                Expanded(
+                  child: SingleChildScrollView(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    child: Obx(() => Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            for (var suggestion in controller.suggestions)
+                              _buildSuggestionItem(context,
+                                  suggestion: suggestion,
+                                  isFirst: controller.suggestions.first == suggestion)
+                          ],
+                        )),
+                  ),
+                ),
+              ],
+            )),
+      ),
     );
   }
 
@@ -545,7 +593,8 @@ class DocumentsView extends BaseView<DocumentsController> {
               controller: controller.resolutionEditTextDesController,
               maxLines: null,
               textAlign: TextAlign.center,
-              decoration: const InputDecoration.collapsed(hintText: ""),
+              decoration:
+                  const InputDecoration.collapsed(hintText: "................................"),
             ).paddingSymmetric(horizontal: 96),
             const SizedBox(height: 13),
             Container(
@@ -570,10 +619,7 @@ class DocumentsView extends BaseView<DocumentsController> {
               maxLines: null,
               textAlign: TextAlign.start,
               decoration: const InputDecoration.collapsed(hintText: ""),
-              focusNode: FocusNode(
-                onKey: (node, event) =>
-                    controller.addNewBasisIfNeeded(event, -1, context: context),
-              ),
+              focusNode: controller.authTitleEdtFocusNode,
               textInputAction: TextInputAction.none,
             ).paddingOnly(left: 35),
             const SizedBox(height: 13),
@@ -596,9 +642,7 @@ class DocumentsView extends BaseView<DocumentsController> {
               textAlign: TextAlign.start,
               decoration: const InputDecoration.collapsed(hintText: ""),
               textInputAction: TextInputAction.none,
-              focusNode: FocusNode(
-                onKey: (node, event) => controller.addNewResolutionIfNeeded(event, -1),
-              ),
+              focusNode: controller.resolveDesEdtFocusNode,
             ).paddingOnly(left: 35),
             const SizedBox(height: 35),
             for (var resolution in controller.lstResolutions)
@@ -611,6 +655,8 @@ class DocumentsView extends BaseView<DocumentsController> {
 
   _buildBasis(BuildContext context,
       {BasisObject? basis, bool? isFirst = false, bool? isLast = false}) {
+    Fimber.d(
+        "_buildBasis(BuildContext context, {BasisObject? $basis, bool? isFirst = false, bool? isLast = false})");
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -625,7 +671,7 @@ class DocumentsView extends BaseView<DocumentsController> {
         const SizedBox(width: 10),
         Expanded(
           child: TextFormField(
-            onChanged: (value) => controller.retrieveBasisSugesstion(value),
+            onChanged: (value) => controller.retrieveBasisSugesstion(value, basis),
             controller: basis?.editTextController,
             style: context.themeExtensions.paragraph
                 .copyWith(color: context.themeExtensions.textColor, height: 1.6),
@@ -688,7 +734,7 @@ class DocumentsView extends BaseView<DocumentsController> {
         const SizedBox(width: 10),
         Expanded(
           child: TextFormField(
-            onChanged: (value) => controller.retrieveResolutionSuggestions(value),
+            onChanged: (value) => controller.retrieveResolutionSuggestions(value, resolution),
             controller: resolution?.editTextController,
             style: context.themeExtensions.paragraph
                 .copyWith(color: context.themeExtensions.textColor, height: 1.6),
@@ -751,7 +797,7 @@ class DocumentsView extends BaseView<DocumentsController> {
             child: IconTheme(
               data: IconThemeData(color: context.themeExtensions.textGrey),
               child: Container(
-                padding: const EdgeInsets.only(right: 13),
+                padding: const EdgeInsets.only(left: 3),
                 child: Assets.images.icClear.svg(
                   width: 22,
                   height: 22,

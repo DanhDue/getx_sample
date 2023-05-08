@@ -10,8 +10,8 @@ part 'consumer_object.g.dart';
 class ConsumerObject with _$ConsumerObject {
   factory ConsumerObject({
     int? index,
-    String? consumer,
-    @TextEditingControllerJsonConverter() TextEditingController? editTextController,
+    @required String? consumer,
+    @required @TextEditingControllerJsonConverter() TextEditingController? editTextController,
     @FocusNodeJsonConverter() FocusNode? focusNode,
   }) = _ConsumerObject;
 
