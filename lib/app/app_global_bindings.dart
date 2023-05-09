@@ -10,7 +10,9 @@ import 'package:getx_sample/data/bean/app_configurations.dart';
 import 'package:getx_sample/data/bean/location_object/location_object.dart';
 import 'package:getx_sample/data/bean/user_object/user_object.dart';
 import 'package:getx_sample/data/repositories/app_configs_repository.dart';
+import 'package:getx_sample/data/repositories/document_basis_repository.dart';
 import 'package:getx_sample/data/repositories/impl/app_configs_repository_impl.dart';
+import 'package:getx_sample/data/repositories/impl/document_basis_repository_impl.dart';
 import 'package:getx_sample/data/repositories/impl/user_repository_impl.dart';
 import 'package:getx_sample/data/repositories/user_repository.dart';
 import 'package:getx_sample/utils/biometric_auth/biometric_authenticator.dart';
@@ -27,6 +29,7 @@ class AppGlobalBindings extends Bindings {
     Hive.registerAdapter(LocationObjectAdapter());
     Get.lazyPut<AppConfigsRepository>(() => AppConfigurationsRepositoryImpl(), fenix: true);
     Get.lazyPut<UserRepository>(() => UserRepositoryImpl(), fenix: true);
+    Get.lazyPut<DocumentBasisRepository?>(() => DocumentBasisRepositoryImpl(), fenix: true);
     Get.lazyPut<LocalAuthentication>(() => LocalAuthentication(), fenix: true);
     Get.lazyPut<BiometricAuthenticator>(() => BiometricAuthenticatorImpl(), fenix: true);
     Get.lazyPut<PhotoRepository>(() => PhotoRepositoryImpl(), fenix: true);
