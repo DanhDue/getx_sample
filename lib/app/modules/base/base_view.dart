@@ -12,7 +12,6 @@ import 'package:getx_sample/generated/locales.g.dart';
 import 'package:getx_sample/styles/theme_extensions.dart';
 
 import 'base_controller.dart';
-
 abstract class BaseView<C extends BaseController> extends GetView<C> {
   BaseView({Key? key}) : super(key: key);
 

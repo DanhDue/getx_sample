@@ -1,5 +1,6 @@
 // ignore_for_file: invalid_use_of_protected_member
 
+
 import 'package:dart_extensions/dart_extensions.dart';
 import 'package:fimber/fimber.dart';
 import 'package:flutter/material.dart';
@@ -462,7 +463,7 @@ class DocumentsController extends BaseController {
       rightPositionOfDelegate: positionEditTextDesController?.text,
       delegate: delegateFullNameEditTextDesController?.text,
     );
-    Get.toNamed(Routes.DOCUMENT_PREVIEW, arguments: resolutionData);
+    Get.toNamed(Routes.DOCUMENT_PREVIEW, arguments: <ResolutionDataObject>[resolutionData]);
   }
 
   pickSuggestion(String? suggestion) {

@@ -2,6 +2,8 @@
 
 // coverage:ignore-file
 
+// ignore_for_file: deprecated_member_use_from_same_package
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_sample/generated/assets.gen.dart';
