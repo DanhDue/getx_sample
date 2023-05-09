@@ -95,8 +95,7 @@ class _$DocumentBasisClientCopyWithImpl<$Res, $Val extends DocumentBasisClient>
 }
 
 /// @nodoc
-abstract class _$$_SearchCopyWith<$Res>
-    implements $DocumentBasisClientCopyWith<$Res> {
+abstract class _$$_SearchCopyWith<$Res> implements $DocumentBasisClientCopyWith<$Res> {
   factory _$$_SearchCopyWith(_$_Search value, $Res Function(_$_Search) then) =
       __$$_SearchCopyWithImpl<$Res>;
   @override
@@ -105,11 +104,9 @@ abstract class _$$_SearchCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_SearchCopyWithImpl<$Res>
-    extends _$DocumentBasisClientCopyWithImpl<$Res, _$_Search>
+class __$$_SearchCopyWithImpl<$Res> extends _$DocumentBasisClientCopyWithImpl<$Res, _$_Search>
     implements _$$_SearchCopyWith<$Res> {
-  __$$_SearchCopyWithImpl(_$_Search _value, $Res Function(_$_Search) _then)
-      : super(_value, _then);
+  __$$_SearchCopyWithImpl(_$_Search _value, $Res Function(_$_Search) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -226,13 +223,11 @@ abstract class _Search extends DocumentBasisClient {
   String? get text;
   @override
   @JsonKey(ignore: true)
-  _$$_SearchCopyWith<_$_Search> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_SearchCopyWith<_$_Search> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_AutoCopyWith<$Res>
-    implements $DocumentBasisClientCopyWith<$Res> {
+abstract class _$$_AutoCopyWith<$Res> implements $DocumentBasisClientCopyWith<$Res> {
   factory _$$_AutoCopyWith(_$_Auto value, $Res Function(_$_Auto) then) =
       __$$_AutoCopyWithImpl<$Res>;
   @override
@@ -241,11 +236,9 @@ abstract class _$$_AutoCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_AutoCopyWithImpl<$Res>
-    extends _$DocumentBasisClientCopyWithImpl<$Res, _$_Auto>
+class __$$_AutoCopyWithImpl<$Res> extends _$DocumentBasisClientCopyWithImpl<$Res, _$_Auto>
     implements _$$_AutoCopyWith<$Res> {
-  __$$_AutoCopyWithImpl(_$_Auto _value, $Res Function(_$_Auto) _then)
-      : super(_value, _then);
+  __$$_AutoCopyWithImpl(_$_Auto _value, $Res Function(_$_Auto) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -288,8 +281,7 @@ class _$_Auto extends _Auto {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AutoCopyWith<_$_Auto> get copyWith =>
-      __$$_AutoCopyWithImpl<_$_Auto>(this, _$identity);
+  _$$_AutoCopyWith<_$_Auto> get copyWith => __$$_AutoCopyWithImpl<_$_Auto>(this, _$identity);
 
   @override
   @optionalTypeArgs

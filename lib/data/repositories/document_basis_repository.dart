@@ -4,8 +4,8 @@ import 'package:getx_sample/data/remote/wrappers/network_error.dart';
 import 'package:getx_sample/data/remote/wrappers/result.dart';
 
 abstract class DocumentBasisRepository {
-  Future<Result<BaseResponseObject<List<SuggestionObject?>?>, NetworkError>>
-      searchBasis(String? text);
-  Future<Result<BaseResponseObject<List<SuggestionObject?>?>, NetworkError>>
-      autoGenBasis(String? text);
+  Future<Result<BaseResponseObject<List<SuggestionObject?>?>, NetworkError>> searchBasis(
+      String? text);
+  Future<Result<BaseResponseObject<List<SuggestionObject?>?>, NetworkError>> autoGenBasis(
+      String? text);
 }

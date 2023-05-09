@@ -26,14 +26,12 @@ mixin _$SuggestionObject {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SuggestionObjectCopyWith<SuggestionObject> get copyWith =>
-      throw _privateConstructorUsedError;
+  $SuggestionObjectCopyWith<SuggestionObject> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $SuggestionObjectCopyWith<$Res> {
-  factory $SuggestionObjectCopyWith(
-          SuggestionObject value, $Res Function(SuggestionObject) then) =
+  factory $SuggestionObjectCopyWith(SuggestionObject value, $Res Function(SuggestionObject) then) =
       _$SuggestionObjectCopyWithImpl<$Res, SuggestionObject>;
   @useResult
   $Res call({String? link, String? id, String? tieude});
@@ -74,8 +72,7 @@ class _$SuggestionObjectCopyWithImpl<$Res, $Val extends SuggestionObject>
 }
 
 /// @nodoc
-abstract class _$$_SuggestionObjectCopyWith<$Res>
-    implements $SuggestionObjectCopyWith<$Res> {
+abstract class _$$_SuggestionObjectCopyWith<$Res> implements $SuggestionObjectCopyWith<$Res> {
   factory _$$_SuggestionObjectCopyWith(
           _$_SuggestionObject value, $Res Function(_$_SuggestionObject) then) =
       __$$_SuggestionObjectCopyWithImpl<$Res>;
@@ -165,13 +162,10 @@ class _$_SuggestionObject implements _SuggestionObject {
 }
 
 abstract class _SuggestionObject implements SuggestionObject {
-  factory _SuggestionObject(
-      {final String? link,
-      final String? id,
-      final String? tieude}) = _$_SuggestionObject;
+  factory _SuggestionObject({final String? link, final String? id, final String? tieude}) =
+      _$_SuggestionObject;
 
-  factory _SuggestionObject.fromJson(Map<String, dynamic> json) =
-      _$_SuggestionObject.fromJson;
+  factory _SuggestionObject.fromJson(Map<String, dynamic> json) = _$_SuggestionObject.fromJson;
 
   @override
   String? get link;

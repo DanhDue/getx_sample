@@ -13,6 +13,5 @@ class SuggestionObject with _$SuggestionObject {
     String? tieude,
   }) = _SuggestionObject;
 
-  factory SuggestionObject.fromJson(Map<String, dynamic> json) =>
-      _$SuggestionObjectFromJson(json);
+  factory SuggestionObject.fromJson(Map<String, dynamic> json) => _$SuggestionObjectFromJson(json);
 }
