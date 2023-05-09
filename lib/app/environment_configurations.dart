@@ -2,6 +2,8 @@
 
 // coverage:ignore-file
 
+// ignore_for_file: constant_identifier_names
+
 class EnvironmentConfig {
   static const APP_NAME =
       String.fromEnvironment('DART_DEFINES_APP_NAME', defaultValue: "GetX Sample");

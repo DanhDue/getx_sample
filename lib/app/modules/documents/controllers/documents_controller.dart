@@ -340,11 +340,13 @@ class DocumentsController extends BaseController {
 
   deleteResolution(ResolutionObject? resolution) {
     Fimber.d("deleteResolution(ResolutionObject? ${resolution.toString()})");
-    lstResolutions.remove(resolution);
-    lstResolutions.value = lstResolutions.value;
+    if (resolution?.index != 0) {
+      lstResolutions.remove(resolution);
+      lstResolutions.value = lstResolutions.value;
+    }
   }
 
-  KeyEventResult addNewBasisIfNeeded(RawKeyEvent value, int? index) {
+  KeyEventResult addNewBasisIfNeeded(RawKeyEvent value, int? index, {BuildContext? context}) {
     Fimber.d("addNewBasisIfNeeded(RawKeyEvent value, index: $index)");
     if (needToAddNewsOne(value)) {
       if (index == -1) authTitleEdtFocusNode?.unfocus();
@@ -458,7 +460,8 @@ class DocumentsController extends BaseController {
       rightPositionOfDelegate: positionEditTextDesController?.text,
       delegate: delegateFullNameEditTextDesController?.text,
     );
-    Get.toNamed(Routes.DOCUMENT_PREVIEW, arguments: resolutionData);
+    print('===============> ${resolutionData.resolutions}');
+    Get.toNamed(Routes.DOCUMENT_PREVIEW, arguments: <ResolutionDataObject>[resolutionData]);
   }
 
   pickSuggestion(String? suggestion) {
