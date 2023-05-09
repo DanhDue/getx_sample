@@ -133,7 +133,7 @@ class DocumentsController extends BaseController {
 
   final QuillEditorController quillEditorController = QuillEditorController();
 
-  final _searchDebouncer = Debouncer(milliseconds: 300);
+  final _searchDebouncer = Debouncer(milliseconds: 150);
 
   @override
   void onInit() {
