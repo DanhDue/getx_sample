@@ -192,34 +192,13 @@ class DocumentPreviewView extends BaseView<DocumentPreviewController> {
                   style: pw.Theme.of(context).tableCell.copyWith(color: PdfColors.black),
                 ),
                 pw.SizedBox(height: 13),
-                for (var i = 0;
-                    i < (controller.resolutionDataObject.value.resolution?.length ?? 0);
-                    i++)
-                  Resolution(
-                      resolution: controller.resolutionDataObject.value.resolutions![i]!
-                              .editTextController?.text ??
-                          '',
-                      index: i),
-                // Resolution(
-                //     resolution:
-                //         "Gia hạn thời gian tổ chức cuộc họp ĐHĐCĐ thường niên năm 2023: dự kiến tổ chức vào ngày 22/06/2023.",
-                //     index: 1),
-                // Resolution(
-                //     resolution:
-                //         "Chốt ngày đăng kí cuối cùng để lập danh sách cổ đông có quyền tham dự họp ĐHĐCĐ thường niên là ngày 18/05/2023.",
-                //     index: 2),
-                // Resolution(
-                //     resolution:
-                //         "Địa điểm dự kiến tổ chức và nội dung họp: Công ty sẽ thông báo chi tiết tại \"Thư mời\" tham dự họp ĐHĐCĐ thường niên năm 2023.",
-                //     index: 3),
-                // Resolution(
-                //     resolution:
-                //         "HĐQT thống nhất trao quyền cho Chủ tịch HĐQT, người đại diện theo pháp luật của Công Ty tiến hành các thủ tục cần thiết theo quy định của pháp luật để hoàn thành các nội dung quy định tại các điều 1, 2, 3 của nghị quyết này.",
-                //     index: 4),
-                // Resolution(
-                //     resolution:
-                //         "Các thành viên HĐQT, Ban Tổng Giám Đốc, các Phòng/Ban và cá nhân có liên quan của Công Ty chịu trách nhiệm thi hành Nghị quyết này.",
-                //     index: 5),
+                ///TODO tuyendv bug this here
+                // for (var i = 0; i < controller.resolutionDataObject.value.resolution!.length; i++)
+                //     Resolution(
+                //         resolution: controller.resolutionDataObject.value.resolutions![i]!
+                //                 .editTextController?.text ??
+                //             '',
+                //         index: i),
                 ResolutionFooter(
                   // consumers: ["Ban Tổng Giám Đốc;", "Các Phòng/Ban;", "Các cá nhân liên quan;"],
                   consumers: controller.resolutionDataObject.value.consumers,

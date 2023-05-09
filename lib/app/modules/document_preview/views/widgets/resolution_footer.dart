@@ -40,7 +40,7 @@ class ResolutionFooter extends pw.StatelessWidget {
                       ),
                       pw.SizedBox(height: 6),
                       // for (var consumer in consumers!) Consumer(consumer: consu),
-                      for (var i = 0; i < (consumers?.length ?? 0);i++) Consumer(consumer: consumers?[i]?.editTextController?.text ?? ''),
+                      for (var i = 0; i < consumers!.length ;i++) Consumer(consumer: consumers?[i]?.editTextController?.text ?? ''),
                     ],
                   ),
           ),
