@@ -13,6 +13,7 @@
                 "DART_DEFINES_APP_SUFFIX=.dev",
                 "--dart-define",
                 "DART_DEFINES_BASE_URL=https://danhdue.com",
+                "--web-browser-flag=--disable-web-security",
                 "--debug"
             ]
         },
@@ -28,6 +29,7 @@
                 "DART_DEFINES_APP_SUFFIX=.stg",
                 "--dart-define",
                 "DART_DEFINES_BASE_URL=https://danhdue.com",
+                "--web-browser-flag=--disable-web-security",
                 "--profile"
             ]
         },
@@ -41,6 +43,7 @@
                 "DART_DEFINES_APP_NAME=GetX Sample",
                 "--dart-define",
                 "DART_DEFINES_BASE_URL=https://danhdue.com",
+                "--web-browser-flag=--disable-web-security",
                 "--release"
             ]
         }

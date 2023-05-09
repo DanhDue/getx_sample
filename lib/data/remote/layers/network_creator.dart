@@ -90,7 +90,7 @@ class NetworkCreator {
     /// Test for the token refreshing: END !!!
 
     return _client.fetch(RequestOptions(
-        baseUrl: _appConfigs?.baseUrl ?? route.baseURL,
+        baseUrl: route.baseURL,
         method: route.method,
         path: route.path,
         queryParameters: route.queryParameters,

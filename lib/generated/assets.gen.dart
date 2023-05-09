@@ -315,17 +315,23 @@ class $AssetsImagesGen {
 class $AssetsJsonsGen {
   const $AssetsJsonsGen();
 
+  /// File path: assets/jsons/auto_gen.json
+  String get autoGen => 'assets/jsons/auto_gen.json';
+
   /// File path: assets/jsons/locations.json
   String get locations => 'assets/jsons/locations.json';
 
   /// File path: assets/jsons/resolution_data.json
   String get resolutionData => 'assets/jsons/resolution_data.json';
 
+  /// File path: assets/jsons/suggestion.json
+  String get suggestion => 'assets/jsons/suggestion.json';
+
   /// File path: assets/jsons/user_object.json
   String get userObject => 'assets/jsons/user_object.json';
 
   /// List of all assets
-  List<String> get values => [locations, resolutionData, userObject];
+  List<String> get values => [autoGen, locations, resolutionData, suggestion, userObject];
 }
 
 class $AssetsLottiesGen {

@@ -11,7 +11,7 @@ BaseResponseObject<T> _$BaseResponseObjectFromJson<T>(
   T Function(Object? json) fromJsonT,
 ) =>
     BaseResponseObject<T>(
-      code: json['code'] as String?,
+      code: json['code'] as int?,
       message: json['message'] as String?,
       result: _$nullableGenericFromJson(json['result'], fromJsonT),
     );

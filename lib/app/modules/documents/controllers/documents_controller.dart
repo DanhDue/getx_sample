@@ -11,10 +11,13 @@ import 'package:getx_sample/data/bean/basis_object/basis_object.dart';
 import 'package:getx_sample/data/bean/consumer_object/consumer_object.dart';
 import 'package:getx_sample/data/bean/resolution_data_object/resolution_data_object.dart';
 import 'package:getx_sample/data/bean/resolution_object/resolution_object.dart';
+import 'package:getx_sample/data/repositories/document_basis_repository.dart';
 import 'package:getx_sample/generated/locales.g.dart';
 import 'package:quill_html_editor/quill_html_editor.dart';
 
 class DocumentsController extends BaseController {
+  final docBasisRepo = Get.find<DocumentBasisRepository?>();
+
   late TextEditingController? organizationEditTextController;
   late FocusNode? organizationEdtFocusNode;
   late TextEditingController? docNumberEditTextController;
@@ -266,6 +269,9 @@ class DocumentsController extends BaseController {
   @override
   void onReady() {
     super.onReady();
+
+    retrieveBasisSugesstion("Luật", null);
+
     createdAtEditTextController?.text = "Quảng Ngãi, ngày ..., tháng ..., năm ... .";
     docNumberEditTextController?.text = "Số: .../... NQ-.......";
     resolutionTextController?.text = "Nghị quyết".toUpperCase();
@@ -408,12 +414,21 @@ class DocumentsController extends BaseController {
     return KeyEventResult.ignored;
   }
 
-  retrieveBasisSugesstion(String value, BasisObject? basis) {
+  retrieveBasisSugesstion(String value, BasisObject? basis) async {
     Fimber.d("retrieveBasisSugesstion(String $value)");
-    suggestions.value = basisSuggestions;
-    currentBasis = basis;
-    currentResolution = null;
-    currentConsumer = null;
+    final response = await docBasisRepo?.searchBasis(value);
+    response?.when(
+      success: (data) {
+        Fimber.d(data.result.toString());
+        suggestions.value = basisSuggestions;
+        currentBasis = basis;
+        currentResolution = null;
+        currentConsumer = null;
+      },
+      failure: (error) {
+        Fimber.d(error.toString());
+      },
+    );
   }
 
   retrieveResolutionSuggestions(String value, ResolutionObject? resolution) {
