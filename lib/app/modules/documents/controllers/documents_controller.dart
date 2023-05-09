@@ -13,6 +13,7 @@ import 'package:getx_sample/data/bean/resolution_data_object/resolution_data_obj
 import 'package:getx_sample/data/bean/resolution_object/resolution_object.dart';
 import 'package:getx_sample/data/repositories/document_basis_repository.dart';
 import 'package:getx_sample/generated/locales.g.dart';
+import 'package:getx_sample/utils/debouncer.dart';
 import 'package:quill_html_editor/quill_html_editor.dart';
 
 class DocumentsController extends BaseController {
@@ -57,7 +58,7 @@ class DocumentsController extends BaseController {
   final savedDocuments =
       <String>["Thông tư 05", "Văn bản hướng dẫn nộp thuế 05/2023", "Báo cáo hợp nhất"].obs;
 
-  final basisSuggestions = [
+  List<String?> basisSuggestions = [
     "Luật sửa đổi bổ sung một số điều của luật tổ chức chính phủ ngày 22 tháng 11 năm 2019",
     "Nghị định 24/2014/NĐ-CP ngày 02 tháng 04 năm 2014 của chính phủ quy định tổ chức các cơ quan",
     "Nghị định số 107/2020/NĐ-CP ngày 14 tháng 09 năm 2020 của Chính phủ sửa đổi, bổ sung một số điều",
@@ -87,7 +88,7 @@ class DocumentsController extends BaseController {
     "Luật sửa đổi bổ sung một số điều của luật tổ chức chính phủ ngày 22 tháng 11 năm 2015",
   ];
 
-  final suggestions = <String>[].obs;
+  final RxList<String?> suggestions = <String?>[].obs;
   late BasisObject? currentBasis;
   late ResolutionObject? currentResolution;
   late ConsumerObject? currentConsumer;
@@ -131,6 +132,8 @@ class DocumentsController extends BaseController {
   final lstConsumers = <ConsumerObject?>[].obs;
 
   final QuillEditorController quillEditorController = QuillEditorController();
+
+  final _searchDebouncer = Debouncer(milliseconds: 300);
 
   @override
   void onInit() {
@@ -269,9 +272,6 @@ class DocumentsController extends BaseController {
   @override
   void onReady() {
     super.onReady();
-
-    retrieveBasisSugesstion("Luật", null);
-
     createdAtEditTextController?.text = "Quảng Ngãi, ngày ..., tháng ..., năm ... .";
     docNumberEditTextController?.text = "Số: .../... NQ-.......";
     resolutionTextController?.text = "Nghị quyết".toUpperCase();
@@ -416,19 +416,22 @@ class DocumentsController extends BaseController {
 
   retrieveBasisSugesstion(String value, BasisObject? basis) async {
     Fimber.d("retrieveBasisSugesstion(String $value)");
-    final response = await docBasisRepo?.searchBasis(value);
-    response?.when(
-      success: (data) {
-        Fimber.d(data.result.toString());
-        suggestions.value = basisSuggestions;
-        currentBasis = basis;
-        currentResolution = null;
-        currentConsumer = null;
-      },
-      failure: (error) {
-        Fimber.d(error.toString());
-      },
-    );
+    _searchDebouncer.run(() async {
+      final response = await docBasisRepo?.searchBasis(value);
+      response?.when(
+        success: (data) {
+          Fimber.d(data.result.toString());
+          suggestions.value = basisSuggestions;
+          basisSuggestions = data.result?.mapList((e) => e?.tieude) ?? [];
+          currentBasis = basis;
+          currentResolution = null;
+          currentConsumer = null;
+        },
+        failure: (error) {
+          Fimber.d(error.toString());
+        },
+      );
+    });
   }
 
   retrieveResolutionSuggestions(String value, ResolutionObject? resolution) {
