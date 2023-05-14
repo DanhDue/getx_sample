@@ -356,7 +356,8 @@ class DocumentsView extends BaseView<DocumentsController> {
                 WidgetsBinding.instance.addPostFrameCallback((duration) {
                   FocusScope.of(context)
                       .requestFocus(controller.basisItemRequestFocus.value?.focusNode);
-                  controller.basisItemRequestFocus.value = BasisObject();
+                  controller.basisItemRequestFocus.value =
+                      BasisObject(basis: '', editTextController: null);
                 });
               }
               // request focus for the resolution item if need.
@@ -364,7 +365,8 @@ class DocumentsView extends BaseView<DocumentsController> {
                 WidgetsBinding.instance.addPostFrameCallback((duration) {
                   FocusScope.of(context)
                       .requestFocus(controller.resolutionItemRequestFocus.value?.focusNode);
-                  controller.resolutionItemRequestFocus.value = ResolutionObject();
+                  controller.resolutionItemRequestFocus.value =
+                      ResolutionObject(resolution: '', editTextController: null);
                 });
               }
               // request focus for the basis item if need.
@@ -372,7 +374,8 @@ class DocumentsView extends BaseView<DocumentsController> {
                 WidgetsBinding.instance.addPostFrameCallback((duration) {
                   FocusScope.of(context)
                       .requestFocus(controller.consumerItemRequestFocus.value?.focusNode);
-                  controller.consumerItemRequestFocus.value = ConsumerObject();
+                  controller.consumerItemRequestFocus.value =
+                      ConsumerObject(consumer: '', editTextController: null);
                 });
               }
               return const SizedBox.shrink();
@@ -848,6 +851,30 @@ class DocumentsView extends BaseView<DocumentsController> {
         Expanded(
           child: TextFormField(
             onChanged: (value) => controller.retrieveResolutionSuggestions(value, resolution),
+            contextMenuBuilder: (BuildContext context, EditableTextState editableTextState) {
+              final List<ContextMenuButtonItem> buttonItems =
+                  editableTextState.contextMenuButtonItems;
+              // Here we add an "Email" button to the default TextField
+              // context menu for the current platform, but only if an email
+              // address is currently selected.
+              final TextEditingValue? value = resolution?.editTextController?.value;
+              if (_isValidEmail(value?.selection.textInside(value.text))) {
+                buttonItems.insert(
+                  0,
+                  ContextMenuButtonItem(
+                    label: 'Send email',
+                    onPressed: () {
+                      ContextMenuController.removeAny();
+                      _showDialog(context);
+                    },
+                  ),
+                );
+              }
+              return AdaptiveTextSelectionToolbar.buttonItems(
+                anchors: editableTextState.contextMenuAnchors,
+                buttonItems: buttonItems,
+              );
+            },
             controller: resolution?.editTextController,
             style: context.themeExtensions.paragraph
                 .copyWith(color: context.themeExtensions.textColor, height: 1.6),
@@ -926,4 +953,25 @@ class DocumentsView extends BaseView<DocumentsController> {
       ],
     ).marginOnly(left: 0, top: 0, right: 45, bottom: 15);
   }
+
+  void _showDialog(BuildContext context) {
+    Navigator.of(context).push(
+      DialogRoute<void>(
+        context: context,
+        builder: (BuildContext context) =>
+            const AlertDialog(title: Text('You clicked send email!')),
+      ),
+    );
+  }
+}
+
+bool _isValidEmail(String? text) {
+  if (text == null || text.isEmpty) return false;
+  return RegExp(
+    r'(?<name>[a-zA-Z0-9]+)'
+    r'@'
+    r'(?<domain>[a-zA-Z0-9]+)'
+    r'\.'
+    r'(?<topLevelDomain>[a-zA-Z0-9]+)',
+  ).hasMatch(text);
 }

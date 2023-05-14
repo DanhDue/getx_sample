@@ -290,3 +290,11 @@ scripts:
   buildWebRelease:
     run: bash ./scripts/buildWebRelease.sh
     description: build the IPA release.
+
+  testOnWebWithoutCORS:
+    run: bash ./scripts/runWebServerWithoutCORS.sh
+    description: build the IPA release.
+
+  testOnMobileWebWithoutCORS:
+    run: bash ./scripts/runWebServerWithoutCORSTestOnMobileWebBrowser.sh
+    description: build the IPA release.

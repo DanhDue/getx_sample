@@ -272,6 +272,9 @@ class DocumentsController extends BaseController {
   @override
   void onReady() {
     super.onReady();
+    // if (kIsWeb) {
+    //   BrowserContextMenu.disableContextMenu();
+    // }
     createdAtEditTextController?.text = "Quảng Ngãi, ngày ..., tháng ..., năm ... .";
     docNumberEditTextController?.text = "Số: .../... NQ-.......";
     resolutionTextController?.text = "Nghị quyết".toUpperCase();
@@ -301,6 +304,9 @@ class DocumentsController extends BaseController {
   void onClose() {
     Fimber.d("onClose()");
     organizationEdtFocusNode?.dispose();
+    // if (kIsWeb) {
+    //   BrowserContextMenu.enableContextMenu();
+    // }
     super.onClose();
   }
 
