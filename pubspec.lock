@@ -26,6 +26,14 @@ packages:
       url: "https://github.com/DanhDue/animated-bottom-navigation-bar-flutter.git"
     source: git
     version: "1.1.0"
+  animated_text_kit:
+    dependency: "direct main"
+    description:
+      name: animated_text_kit
+      sha256: "37392a5376c9a1a503b02463c38bc0342ef814ddbb8f9977bc90f2a84b22fa92"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.2.2"
   annotations:
     dependency: "direct main"
     description:
@@ -41,14 +49,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.2+1"
-  appflowy_editor:
-    dependency: "direct main"
-    description:
-      name: appflowy_editor
-      sha256: "5371e8aa78e6a5e5b5c958b1450958689755b5fd0e9862312ca423f7c0da9fcc"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.1.10"
   archive:
     dependency: transitive
     description:
@@ -662,11 +662,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.0"
-  flutter_localizations:
-    dependency: transitive
-    description: flutter
-    source: sdk
-    version: "0.0.0"
   flutter_native_splash:
     dependency: "direct dev"
     description:
@@ -911,14 +906,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.17.0"
-  intl_utils:
-    dependency: transitive
-    description:
-      name: intl_utils
-      sha256: "856baa08d4735ee3476901827d52671c1a2b6f9ccb8b848d73bc5b8dd28b21e5"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.7.0"
   io:
     dependency: transitive
     description:
@@ -959,6 +946,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.5.4"
+  just_the_tooltip:
+    dependency: "direct main"
+    description:
+      name: just_the_tooltip
+      sha256: "7a081133d57285bfb41b331f411006d57b433d7b35772e6155745f6a7a09cb82"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.12"
   lints:
     dependency: transitive
     description:
@@ -1047,14 +1042,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.4.3"
-  markdown:
-    dependency: transitive
-    description:
-      name: markdown
-      sha256: d95a9d12954aafc97f984ca29baaa7690ed4d9ec4140a23ad40580bcdb6c87f5
-      url: "https://pub.dev"
-    source: hosted
-    version: "7.0.2"
   matcher:
     dependency: transitive
     description:
@@ -1111,14 +1098,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
-  nested:
-    dependency: transitive
-    description:
-      name: nested
-      sha256: "03bac4c528c64c95c722ec99280375a6f2fc708eec17c7b3f07253b626cd2a20"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
   nm:
     dependency: transitive
     description:
@@ -1319,14 +1298,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
-  provider:
-    dependency: transitive
-    description:
-      name: provider
-      sha256: cdbe7530b12ecd9eb455bdaa2fcb8d4dad22e80b8afb4798b41479d5ce26847f
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.0.5"
   pub_semver:
     dependency: transitive
     description:
@@ -1399,70 +1370,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.2.0"
-  rich_clipboard:
-    dependency: transitive
-    description:
-      name: rich_clipboard
-      sha256: "48bfc84a0d3eeec5692b3afd0277aa658a7c95d1dbda72bb623188fba6a8e253"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.1"
-  rich_clipboard_android:
-    dependency: transitive
-    description:
-      name: rich_clipboard_android
-      sha256: "72725b248d5359a7ad6db2fea5aef921015ba9a00af275cbce3721a4fef20356"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.1"
-  rich_clipboard_ios:
-    dependency: transitive
-    description:
-      name: rich_clipboard_ios
-      sha256: "9d6bc037463b1b24cb14ae35ee9d7530bd6b2bdb15b30909fb47a1af01bf3233"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
-  rich_clipboard_linux:
-    dependency: transitive
-    description:
-      name: rich_clipboard_linux
-      sha256: "0d0ab273afd60cb7314d01fdf3994fa01be2be79528f448241d9d70ea19b3db9"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.1"
-  rich_clipboard_macos:
-    dependency: transitive
-    description:
-      name: rich_clipboard_macos
-      sha256: "1aeb409e267576baaced347549e42dabc59895b10b2e09dabd9f753f469deb3e"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.1"
-  rich_clipboard_platform_interface:
-    dependency: transitive
-    description:
-      name: rich_clipboard_platform_interface
-      sha256: a1cbf255719cd4e340d33eca02b619d9ffb9cb571f1905e80b9345d4266e893d
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
-  rich_clipboard_web:
-    dependency: transitive
-    description:
-      name: rich_clipboard_web
-      sha256: c1dd2b75b8ce83fed0027828900bbfd5c33c0f8ff22efb266931db5aa7acffa0
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.2"
-  rich_clipboard_windows:
-    dependency: transitive
-    description:
-      name: rich_clipboard_windows
-      sha256: fa2a28e75ce4bcc9efc6d5d0e9788b76716cdaf3b7063c141fe8af12a315f414
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.2"
   rxdart:
     dependency: "direct main"
     description:

@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:fimber/fimber.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ import 'package:getx_sample/data/bean/resolution_object/resolution_object.dart';
 import 'package:getx_sample/generated/assets.gen.dart';
 import 'package:getx_sample/generated/locales.g.dart';
 import 'package:getx_sample/styles/theme_extensions.dart';
+import 'package:just_the_tooltip/just_the_tooltip.dart';
 import 'package:quill_html_editor/quill_html_editor.dart';
 
 class DocumentsView extends BaseView<DocumentsController> {
@@ -824,91 +826,201 @@ class DocumentsView extends BaseView<DocumentsController> {
 
   _buildResolution(BuildContext context,
       {ResolutionObject? resolution, int? index, bool? isFirst = false, bool? isLast = false}) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.max,
+    return Stack(
       children: [
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
           children: [
-            Text(
-              "Điều ${(index ?? 0) + 1}:",
-              style: context.themeExtensions.paragraphSemiBold
-                  .copyWith(color: context.themeExtensions.black, fontWeight: FontWeight.w900),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  "Điều ${(index ?? 0) + 1}:",
+                  style: context.themeExtensions.paragraphSemiBold
+                      .copyWith(color: context.themeExtensions.black, fontWeight: FontWeight.w900),
+                ),
+                const SizedBox(height: 2),
+                Container(
+                  height: 1,
+                  width: 56,
+                  color: Colors.grey,
+                ),
+              ],
             ),
-            const SizedBox(height: 2),
-            Container(
-              height: 1,
-              width: 56,
-              color: Colors.grey,
+            const SizedBox(width: 10),
+            Expanded(
+              child: TextFormField(
+                onChanged: (value) => controller.retrieveResolutionSuggestions(value, resolution),
+                contextMenuBuilder: (BuildContext context, EditableTextState editableTextState) {
+                  final List<ContextMenuButtonItem> buttonItems =
+                      editableTextState.contextMenuButtonItems;
+                  // Here we add an "Email" button to the default TextField
+                  // context menu for the current platform, but only if an email
+                  // address is currently selected.
+                  final TextEditingValue? value = resolution?.editTextController?.value;
+                  if (_isValidEmail(value?.selection.textInside(value.text))) {
+                    buttonItems.insert(
+                      0,
+                      ContextMenuButtonItem(
+                        label: 'Send email',
+                        onPressed: () {
+                          ContextMenuController.removeAny();
+                          _showDialog(context);
+                        },
+                      ),
+                    );
+                  }
+                  return AdaptiveTextSelectionToolbar.buttonItems(
+                    anchors: editableTextState.contextMenuAnchors,
+                    buttonItems: buttonItems,
+                  );
+                },
+                controller: resolution?.editTextController,
+                style: context.themeExtensions.paragraph
+                    .copyWith(color: context.themeExtensions.textColor, height: 1.6),
+                maxLines: null,
+                minLines: 2,
+                textAlign: TextAlign.start,
+                decoration: InputDecoration.collapsed(hintText: resolution?.resolution),
+                textInputAction: TextInputAction.none,
+                onFieldSubmitted: (value) => controller.resolutionSummitted(resolution),
+                focusNode: resolution?.focusNode,
+              ),
             ),
-          ],
-        ),
-        const SizedBox(width: 10),
-        Expanded(
-          child: TextFormField(
-            onChanged: (value) => controller.retrieveResolutionSuggestions(value, resolution),
-            contextMenuBuilder: (BuildContext context, EditableTextState editableTextState) {
-              final List<ContextMenuButtonItem> buttonItems =
-                  editableTextState.contextMenuButtonItems;
-              // Here we add an "Email" button to the default TextField
-              // context menu for the current platform, but only if an email
-              // address is currently selected.
-              final TextEditingValue? value = resolution?.editTextController?.value;
-              if (_isValidEmail(value?.selection.textInside(value.text))) {
-                buttonItems.insert(
-                  0,
-                  ContextMenuButtonItem(
-                    label: 'Send email',
-                    onPressed: () {
-                      ContextMenuController.removeAny();
-                      _showDialog(context);
-                    },
+            Focus(
+              canRequestFocus: false,
+              descendantsAreFocusable: false,
+              child: InkWell(
+                onTap: () => controller.deleteResolution(resolution),
+                child: IconTheme(
+                  data: IconThemeData(color: context.themeExtensions.textGrey),
+                  child: Container(
+                    padding: const EdgeInsets.only(right: 13),
+                    child: Assets.images.icClear.svg(
+                      width: 22,
+                      height: 22,
+                      fit: BoxFit.cover,
+                      colorFilter:
+                          ColorFilter.mode(context.themeExtensions.textGrey, BlendMode.modulate),
+                    ),
                   ),
-                );
-              }
-              return AdaptiveTextSelectionToolbar.buttonItems(
-                anchors: editableTextState.contextMenuAnchors,
-                buttonItems: buttonItems,
-              );
-            },
-            controller: resolution?.editTextController,
-            style: context.themeExtensions.paragraph
-                .copyWith(color: context.themeExtensions.textColor, height: 1.6),
-            maxLines: null,
-            minLines: 2,
-            textAlign: TextAlign.start,
-            decoration: InputDecoration.collapsed(hintText: resolution?.resolution),
-            textInputAction: TextInputAction.none,
-            onFieldSubmitted: (value) => controller.resolutionSummitted(resolution),
-            focusNode: resolution?.focusNode,
-          ),
-        ),
-        Focus(
-          canRequestFocus: false,
-          descendantsAreFocusable: false,
-          child: InkWell(
-            onTap: () => controller.deleteResolution(resolution),
-            child: IconTheme(
-              data: IconThemeData(color: context.themeExtensions.textGrey),
-              child: Container(
-                padding: const EdgeInsets.only(right: 13),
-                child: Assets.images.icClear.svg(
-                  width: 22,
-                  height: 22,
-                  fit: BoxFit.cover,
-                  colorFilter:
-                      ColorFilter.mode(context.themeExtensions.textGrey, BlendMode.modulate),
                 ),
               ),
             ),
-          ),
+          ],
+        ).marginOnly(left: 45, top: 0, right: 45, bottom: 15),
+        Obx(
+          () => (controller.abc.value.index == index)
+              ? Focus(
+                  canRequestFocus: false,
+                  descendantsAreFocusable: false,
+                  child: Align(
+                    alignment: Alignment.bottomRight,
+                    child: _buildAISuggestion(context, resolution),
+                  ).marginOnly(top: 20, right: 79),
+                )
+              : const SizedBox.shrink(),
         ),
       ],
-    ).marginOnly(left: 45, top: 0, right: 45, bottom: 15);
+    );
+  }
+
+  _buildAISuggestion(BuildContext context, ResolutionObject? resolution) {
+    Fimber.d("_buildAISuggestion()");
+    return Tooltip(
+      message: "Gợi ý bằng AI",
+      margin: const EdgeInsets.only(top: 3),
+      child: Focus(
+        canRequestFocus: false,
+        descendantsAreFocusable: false,
+        child: JustTheTooltip(
+            tailLength: 10.0,
+            preferredDirection: AxisDirection.down,
+            isModal: true,
+            margin: const EdgeInsets.all(20.0),
+            content: Container(
+              width: 456,
+              height: 120,
+              padding: const EdgeInsets.all(8),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: AnimatedTextKit(
+                      totalRepeatCount: 1,
+                      animatedTexts: [
+                        TyperAnimatedText(
+                          "Là thành phần hỗ trợ việc đăng kí/xác thực device(Device Registration) với DanhDue ExOICTIF Service. Từ đó có thể sử dụng thông tin này xác thực với VA Cloud cũng như mã hóa, giải mã thông tin giao tiếp giữa VA với các hệ thông online(VA Cloud).",
+                          speed: const Duration(milliseconds: 20),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Assets.images.icSparkles.svg(
+                        width: 13,
+                        fit: BoxFit.cover,
+                      ),
+                      const SizedBox(width: 7),
+                      Expanded(
+                        child: TextFormField(
+                          decoration: const InputDecoration.collapsed(
+                              hintText: 'Tell AI what to do next...'),
+                          onChanged: (value) =>
+                              controller.retrieveResolutionSuggestions(value, resolution),
+                          controller: resolution?.editTextController,
+                          style: context.themeExtensions.paragraph
+                              .copyWith(color: context.themeExtensions.textColor),
+                          maxLines: null,
+                          minLines: 1,
+                          textAlign: TextAlign.start,
+                          textInputAction: TextInputAction.none,
+                          onFieldSubmitted: (value) => controller.resolutionSummitted(resolution),
+                          focusNode: resolution?.focusNode,
+                        ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+                        decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.all(Radius.circular(3)),
+                            color: context.themeExtensions.bgGrey),
+                        child: Center(
+                            child: AutoSizeText(
+                          LocaleKeys.replace.tr,
+                          style: context.themeExtensions.subTexMedium
+                              .copyWith(color: context.themeExtensions.red),
+                        )),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+            child: Container(
+              padding: const EdgeInsets.all(3),
+              decoration: BoxDecoration(
+                  border: Border.all(color: context.themeExtensions.textGrey, width: 1),
+                  color: Colors.amberAccent,
+                  borderRadius: const BorderRadius.all(Radius.circular(36))),
+              child: Assets.lotties.ai.lottie(
+                width: 36,
+                height: 36,
+                fit: BoxFit.cover,
+              ),
+            )),
+      ),
+    );
   }
 
   _buildConsumer(BuildContext context,

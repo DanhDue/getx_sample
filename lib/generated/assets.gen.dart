@@ -179,6 +179,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/ic_settings.svg
   SvgGenImage get icSettings => const SvgGenImage('assets/images/ic_settings.svg');
 
+  /// File path: assets/images/ic_sparkles.svg
+  SvgGenImage get icSparkles => const SvgGenImage('assets/images/ic_sparkles.svg');
+
   /// File path: assets/images/ic_splash_background.png
   AssetGenImage get icSplashBackground =>
       const AssetGenImage('assets/images/ic_splash_background.png');
@@ -291,6 +294,7 @@ class $AssetsImagesGen {
         icProfileTick,
         icReadAll,
         icSettings,
+        icSparkles,
         icSplashBackground,
         icTeacherPng,
         icTeacherSvg,
@@ -337,12 +341,15 @@ class $AssetsJsonsGen {
 class $AssetsLottiesGen {
   const $AssetsLottiesGen();
 
+  /// File path: assets/lotties/ai.json
+  LottieGenImage get ai => const LottieGenImage('assets/lotties/ai.json');
+
   /// File path: assets/lotties/splash_animation.json
   LottieGenImage get splashAnimation =>
       const LottieGenImage('assets/lotties/splash_animation.json');
 
   /// List of all assets
-  List<LottieGenImage> get values => [splashAnimation];
+  List<LottieGenImage> get values => [ai, splashAnimation];
 }
 
 class $WebAssetsGen {

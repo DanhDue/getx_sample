@@ -51,6 +51,8 @@ class LocaleKeys {
   static const basis = 'basis';
   static const preview = 'preview';
   static const save = 'save';
+  static const replace = 'replace';
+  static const tellAIDesciption = 'tellAIDesciption';
   static const eof = 'eof';
 }
 
@@ -96,6 +98,8 @@ class Locales {
     'basis': 'Căn cứ',
     'preview': 'Xem trước',
     'save': 'Lưu',
+    'replace': 'Thay thế',
+    'tellAIDesciption': 'Nói cho ai biết phải làm gì tiếp theo ...',
     'eof': 'End of File. Please add a new text above this item to avoid conflicts. Thanks!',
   };
   static const en_US = {
@@ -139,6 +143,8 @@ class Locales {
     'basis': 'Căn cứ',
     'preview': 'Preview',
     'save': 'save',
+    'replace': 'Replace',
+    'tellAIDesciption': 'Tell AI what to do next...',
     'eof': 'End of File. Please add a new text above this item to avoid conflicts. Thanks!',
   };
 }

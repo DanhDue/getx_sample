@@ -91,6 +91,7 @@ class DocumentsController extends BaseController {
   final RxList<String?> suggestions = <String?>[].obs;
   late BasisObject? currentBasis;
   late ResolutionObject? currentResolution;
+  final abc = ResolutionObject(resolution: '', editTextController: null).obs;
   late ConsumerObject? currentConsumer;
 
   static const String basisHint =
@@ -133,7 +134,7 @@ class DocumentsController extends BaseController {
 
   final QuillEditorController quillEditorController = QuillEditorController();
 
-  final _searchDebouncer = Debouncer(milliseconds: 300);
+  final _searchDebouncer = Debouncer(milliseconds: 100);
 
   @override
   void onInit() {
@@ -216,6 +217,7 @@ class DocumentsController extends BaseController {
       if (currentFocusNode.hasFocus == true) {
         Fimber.d("currentFocusNode: $newBasis");
         currentBasis = newBasis;
+        abc.value = ResolutionObject(resolution: '', editTextController: null, index: -1);
       }
     });
     return newBasis;
@@ -240,6 +242,7 @@ class DocumentsController extends BaseController {
     currentFocusNode.addListener(() {
       if (currentFocusNode.hasFocus == true) {
         currentResolution = newResolution;
+        abc.value = newResolution;
       }
     });
     return newResolution;

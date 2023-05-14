@@ -39,6 +39,8 @@
   "basis": "Căn cứ",
   "preview": "Preview",
   "save": "save",
+  "replace": "Replace",
+  "tellAIDesciption": "Tell AI what to do next...",
   
   "eof": "End of File. Please add a new text above this item to avoid conflicts. Thanks!"
 }

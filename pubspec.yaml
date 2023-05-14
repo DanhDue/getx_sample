@@ -46,7 +46,6 @@ dependencies:
   clippy_flutter: 2.0.0-nullsafety.1
   melos: 3.0.1
   flutter_quill: 7.1.13
-  appflowy_editor: 0.1.10
   quill_html_editor: 2.1.8
   pdf: 3.10.1
   printing: ^5.10.3
@@ -62,6 +61,8 @@ dependencies:
       ref: scrolling-in-the-minimized-state
   annotations: 
     path: lib/utils/annotations/
+  just_the_tooltip: ^0.0.12
+  animated_text_kit: ^4.2.2
 
 dev_dependencies: 
   flutter_lints: ^2.0.0
