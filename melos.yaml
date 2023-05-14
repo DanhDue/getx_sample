@@ -286,3 +286,7 @@ scripts:
   runDockerImage:
     run: bash ./scripts/docker_run.sh
     description: build the IPA release.
+
+  buildWebRelease:
+    run: bash ./scripts/buildWebRelease.sh
+    description: build the IPA release.

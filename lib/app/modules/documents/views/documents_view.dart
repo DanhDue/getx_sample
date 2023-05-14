@@ -257,7 +257,7 @@ class DocumentsView extends BaseView<DocumentsController> {
 
   _buildQuillToolbar(BuildContext context) {
     return SizedBox(
-        width: 820,
+        width: 850,
         child: Stack(
           children: [
             ToolBar(
@@ -334,7 +334,7 @@ class DocumentsView extends BaseView<DocumentsController> {
   buildDocumentPage(BuildContext context) {
     return Center(
       child: Container(
-        width: 820,
+        width: 850,
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
             color: context.themeExtensions.transparent,
@@ -808,7 +808,8 @@ class DocumentsView extends BaseView<DocumentsController> {
                   width: 22,
                   height: 22,
                   fit: BoxFit.cover,
-                  color: context.themeExtensions.textGrey,
+                  colorFilter:
+                      ColorFilter.mode(context.themeExtensions.textGrey, BlendMode.modulate),
                 ),
               ),
             ),
@@ -872,7 +873,8 @@ class DocumentsView extends BaseView<DocumentsController> {
                   width: 22,
                   height: 22,
                   fit: BoxFit.cover,
-                  color: context.themeExtensions.textGrey,
+                  colorFilter:
+                      ColorFilter.mode(context.themeExtensions.textGrey, BlendMode.modulate),
                 ),
               ),
             ),
@@ -914,7 +916,8 @@ class DocumentsView extends BaseView<DocumentsController> {
                   width: 22,
                   height: 22,
                   fit: BoxFit.cover,
-                  color: context.themeExtensions.textGrey,
+                  colorFilter:
+                      ColorFilter.mode(context.themeExtensions.textGrey, BlendMode.modulate),
                 ),
               ),
             ),

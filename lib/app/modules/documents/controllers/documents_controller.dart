@@ -73,7 +73,7 @@ class DocumentsController extends BaseController {
     "Luật sửa đổi bổ sung một số điều của luật tổ chức chính phủ ngày 22 tháng 11 năm 2015",
   ];
 
-  final resolutionSuggestions = [
+  List<String?> resolutionSuggestions = [
     "Gia hạn thời gian tổ chức cuộc họp ĐHĐCĐ thường niên năm 2023: dự kiến tổ chức vào ngày 22/06/2023.",
     "Chốt ngày đăng kí cuối cùng để lập danh sách cổ đông có quyền tham dự họp ĐHĐCĐ thường niên là ngày 18/05/2023.",
     "Địa điểm dự kiến tổ chức và nội dung họp: Công ty sẽ thông báo chi tiết tại \"Thư mời\" tham dự họp ĐHĐCĐ thường niên năm 2023.",
@@ -133,7 +133,7 @@ class DocumentsController extends BaseController {
 
   final QuillEditorController quillEditorController = QuillEditorController();
 
-  final _searchDebouncer = Debouncer(milliseconds: 150);
+  final _searchDebouncer = Debouncer(milliseconds: 300);
 
   @override
   void onInit() {
@@ -417,12 +417,12 @@ class DocumentsController extends BaseController {
   retrieveBasisSugesstion(String value, BasisObject? basis) async {
     Fimber.d("retrieveBasisSugesstion(String $value)");
     _searchDebouncer.run(() async {
-      final response = await docBasisRepo?.searchBasis(value);
+      final response = await docBasisRepo?.searchBasis("Nghị quyết $value");
       response?.when(
         success: (data) {
           Fimber.d(data.result.toString());
-          suggestions.value = basisSuggestions;
           basisSuggestions = data.result?.mapList((e) => e?.tieude) ?? [];
+          suggestions.value = basisSuggestions;
           currentBasis = basis;
           currentResolution = null;
           currentConsumer = null;
