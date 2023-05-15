@@ -2,8 +2,6 @@
 
 import 'dart:math' as math;
 
-// coverage:ignore-file
-
 import 'package:equatable/equatable.dart';
 import 'package:fimber/fimber.dart';
 import 'package:flutter/material.dart';
@@ -114,5 +112,5 @@ extension NetworkResponseConverter on BaseResponseObject {
   }
 
   int? jsonToInt(Object? json) => json as int?;
-  String? jsonToString(Object? json) => json as String?;
+  String? jsonToString(Object? json) => json.toString();
 }

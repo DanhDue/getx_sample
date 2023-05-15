@@ -914,15 +914,11 @@ class DocumentsView extends BaseView<DocumentsController> {
           ],
         ).marginOnly(left: 45, top: 0, right: 45, bottom: 15),
         Obx(
-          () => (controller.abc.value.index == index)
-              ? Focus(
-                  canRequestFocus: false,
-                  descendantsAreFocusable: false,
-                  child: Align(
-                    alignment: Alignment.bottomRight,
-                    child: _buildAISuggestion(context, resolution),
-                  ).marginOnly(top: 20, right: 79),
-                )
+          () => (controller.aiResolutionSuggestion.value.index == index)
+              ? Align(
+                  alignment: Alignment.bottomRight,
+                  child: _buildAISuggestion(context, controller.aiResolutionSuggestion.value),
+                ).marginOnly(top: 20, right: 79)
               : const SizedBox.shrink(),
         ),
       ],
@@ -930,67 +926,66 @@ class DocumentsView extends BaseView<DocumentsController> {
   }
 
   _buildAISuggestion(BuildContext context, ResolutionObject? resolution) {
-    Fimber.d("_buildAISuggestion()");
+    Fimber.d("_buildAISuggestion(ResolutionObject? $resolution)");
     return Tooltip(
       message: "Gợi ý bằng AI",
       margin: const EdgeInsets.only(top: 3),
-      child: Focus(
-        canRequestFocus: false,
-        descendantsAreFocusable: false,
-        child: JustTheTooltip(
-            tailLength: 10.0,
-            preferredDirection: AxisDirection.down,
-            isModal: true,
-            margin: const EdgeInsets.all(20.0),
-            content: Container(
-              width: 456,
-              height: 120,
-              padding: const EdgeInsets.all(8),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: AnimatedTextKit(
-                      totalRepeatCount: 1,
-                      animatedTexts: [
-                        TyperAnimatedText(
-                          "Là thành phần hỗ trợ việc đăng kí/xác thực device(Device Registration) với DanhDue ExOICTIF Service. Từ đó có thể sử dụng thông tin này xác thực với VA Cloud cũng như mã hóa, giải mã thông tin giao tiếp giữa VA với các hệ thông online(VA Cloud).",
-                          speed: const Duration(milliseconds: 20),
-                        ),
-                      ],
-                    ),
+      child: JustTheTooltip(
+          tailLength: 10.0,
+          preferredDirection: AxisDirection.down,
+          isModal: true,
+          margin: const EdgeInsets.all(20.0),
+          content: Container(
+            width: 456,
+            height: 120,
+            padding: const EdgeInsets.all(8),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: AnimatedTextKit(
+                    totalRepeatCount: 1,
+                    animatedTexts: [
+                      TyperAnimatedText(
+                        resolution?.resolution ?? "",
+                        speed: const Duration(milliseconds: 20),
+                      ),
+                    ],
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Assets.images.icSparkles.svg(
-                        width: 13,
-                        fit: BoxFit.cover,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Assets.images.icSparkles.svg(
+                      width: 13,
+                      fit: BoxFit.cover,
+                    ),
+                    const SizedBox(width: 7),
+                    Expanded(
+                      child: TextFormField(
+                        decoration: const InputDecoration.collapsed(
+                            hintText: 'Tell AI what to do next...'),
+                        onChanged: (value) =>
+                            controller.retrieveResolutionSuggestions(value, resolution),
+                        controller:
+                            TextEditingController(text: resolution?.editTextController?.text),
+                        style: context.themeExtensions.paragraph
+                            .copyWith(color: context.themeExtensions.textColor),
+                        maxLines: null,
+                        minLines: 1,
+                        textAlign: TextAlign.start,
+                        textInputAction: TextInputAction.none,
+                        onFieldSubmitted: (value) => controller.resolutionSummitted(resolution),
                       ),
-                      const SizedBox(width: 7),
-                      Expanded(
-                        child: TextFormField(
-                          decoration: const InputDecoration.collapsed(
-                              hintText: 'Tell AI what to do next...'),
-                          onChanged: (value) =>
-                              controller.retrieveResolutionSuggestions(value, resolution),
-                          controller: resolution?.editTextController,
-                          style: context.themeExtensions.paragraph
-                              .copyWith(color: context.themeExtensions.textColor),
-                          maxLines: null,
-                          minLines: 1,
-                          textAlign: TextAlign.start,
-                          textInputAction: TextInputAction.none,
-                          onFieldSubmitted: (value) => controller.resolutionSummitted(resolution),
-                          focusNode: resolution?.focusNode,
-                        ),
-                      ),
-                      Container(
+                    ),
+                    InkWell(
+                      onTap: () => controller.pickAISuggention(resolution),
+                      child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
                         decoration: BoxDecoration(
                             borderRadius: const BorderRadius.all(Radius.circular(3)),
@@ -1002,24 +997,24 @@ class DocumentsView extends BaseView<DocumentsController> {
                               .copyWith(color: context.themeExtensions.red),
                         )),
                       ),
-                    ],
-                  )
-                ],
-              ),
+                    ),
+                  ],
+                )
+              ],
             ),
-            child: Container(
-              padding: const EdgeInsets.all(3),
-              decoration: BoxDecoration(
-                  border: Border.all(color: context.themeExtensions.textGrey, width: 1),
-                  color: Colors.amberAccent,
-                  borderRadius: const BorderRadius.all(Radius.circular(36))),
-              child: Assets.lotties.ai.lottie(
-                width: 36,
-                height: 36,
-                fit: BoxFit.cover,
-              ),
-            )),
-      ),
+          ),
+          child: Container(
+            padding: const EdgeInsets.all(3),
+            decoration: BoxDecoration(
+                border: Border.all(color: context.themeExtensions.textGrey, width: 1),
+                color: Colors.amberAccent,
+                borderRadius: const BorderRadius.all(Radius.circular(36))),
+            child: Assets.lotties.ai.lottie(
+              width: 36,
+              height: 36,
+              fit: BoxFit.cover,
+            ),
+          )),
     );
   }
 

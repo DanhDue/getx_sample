@@ -91,7 +91,7 @@ class DocumentsController extends BaseController {
   final RxList<String?> suggestions = <String?>[].obs;
   late BasisObject? currentBasis;
   late ResolutionObject? currentResolution;
-  final abc = ResolutionObject(resolution: '', editTextController: null).obs;
+  final aiResolutionSuggestion = ResolutionObject(resolution: '', editTextController: null).obs;
   late ConsumerObject? currentConsumer;
 
   static const String basisHint =
@@ -134,7 +134,8 @@ class DocumentsController extends BaseController {
 
   final QuillEditorController quillEditorController = QuillEditorController();
 
-  final _searchDebouncer = Debouncer(milliseconds: 100);
+  final _searchDebouncer = Debouncer(milliseconds: 150);
+  final _searchResolutionDebouncer = Debouncer(milliseconds: 150);
 
   @override
   void onInit() {
@@ -217,7 +218,8 @@ class DocumentsController extends BaseController {
       if (currentFocusNode.hasFocus == true) {
         Fimber.d("currentFocusNode: $newBasis");
         currentBasis = newBasis;
-        abc.value = ResolutionObject(resolution: '', editTextController: null, index: -1);
+        aiResolutionSuggestion.value =
+            ResolutionObject(resolution: '', editTextController: null, index: -1);
       }
     });
     return newBasis;
@@ -242,7 +244,8 @@ class DocumentsController extends BaseController {
     currentFocusNode.addListener(() {
       if (currentFocusNode.hasFocus == true) {
         currentResolution = newResolution;
-        abc.value = newResolution;
+        aiResolutionSuggestion.value =
+            ResolutionObject(resolution: '', editTextController: null, index: -1);
       }
     });
     return newResolution;
@@ -425,8 +428,9 @@ class DocumentsController extends BaseController {
 
   retrieveBasisSugesstion(String value, BasisObject? basis) async {
     Fimber.d("retrieveBasisSugesstion(String $value)");
+    final searchText = value;
     _searchDebouncer.run(() async {
-      final response = await docBasisRepo?.searchBasis("Nghị quyết $value");
+      final response = await docBasisRepo?.searchBasis("Nghị quyết $searchText");
       response?.when(
         success: (data) {
           Fimber.d(data.result.toString());
@@ -443,12 +447,32 @@ class DocumentsController extends BaseController {
     });
   }
 
-  retrieveResolutionSuggestions(String value, ResolutionObject? resolution) {
+  retrieveResolutionSuggestions(String value, ResolutionObject? resolution) async {
     Fimber.d("retrieveResolutionSuggestions(String $value)");
-    suggestions.value = resolutionSuggestions;
-    currentResolution = resolution;
-    currentBasis = null;
-    currentConsumer = null;
+    final searchText = value;
+    aiResolutionSuggestion.value = ResolutionObject(
+        resolution: '',
+        editTextController: resolution?.editTextController,
+        index: resolution?.index);
+    _searchResolutionDebouncer.run(() async {
+      final response = await docBasisRepo?.autoGenBasis(searchText);
+      response?.when(
+        success: (data) {
+          Fimber.d(data.result.toString());
+          // suggestions.value = basisSuggestions;
+          aiResolutionSuggestion.value = ResolutionObject(
+              resolution: data.result,
+              editTextController: resolution?.editTextController,
+              index: resolution?.index);
+          currentResolution = resolution;
+          currentBasis = null;
+          currentConsumer = null;
+        },
+        failure: (error) {
+          Fimber.d(error.toString());
+        },
+      );
+    });
   }
 
   navigateToPreview() {
@@ -474,6 +498,11 @@ class DocumentsController extends BaseController {
     Fimber.d("pickSuggestion(String? $suggestion)");
     currentBasis?.editTextController?.text = suggestion ?? "";
     currentResolution?.editTextController?.text = suggestion ?? "";
+  }
+
+  pickAISuggention(ResolutionObject? suggestion) {
+    Fimber.d("pickAISuggention(String? $suggestion)");
+    suggestion?.editTextController?.text = suggestion.resolution ?? '';
   }
 
   saveDocument() {

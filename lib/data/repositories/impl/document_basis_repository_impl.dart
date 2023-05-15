@@ -17,11 +17,8 @@ class DocumentBasisRepositoryImpl extends DocumentBasisRepository {
   }
 
   @override
-  Future<Result<BaseResponseObject<List<SuggestionObject?>?>, NetworkError>> autoGenBasis(
-      String? text) {
-    return NetworkExecutor.execute<BaseResponseObject<List<SuggestionObject?>?>,
-            BaseResponseObject<List<SuggestionObject?>?>>(
-        route: DocumentBasisClient.auto(text),
-        responseType: const BaseResponseObject<List<SuggestionObject?>?>());
+  Future<Result<BaseResponseObject<String?>, NetworkError>> autoGenBasis(String? text) {
+    return NetworkExecutor.execute<BaseResponseObject<String?>, BaseResponseObject<String?>>(
+        route: DocumentBasisClient.auto(text), responseType: const BaseResponseObject<String?>());
   }
 }
