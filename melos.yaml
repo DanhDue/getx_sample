@@ -281,20 +281,20 @@ scripts:
 
   buildDockerImage:
     run: bash ./scripts/docker_build.sh
-    description: build the IPA release.
+    description: build the the docker image for the CI/CD.
 
   runDockerImage:
     run: bash ./scripts/docker_run.sh
-    description: build the IPA release.
+    description: run the docker container for the CI/CD.
 
   buildWebRelease:
     run: bash ./scripts/buildWebRelease.sh
-    description: build the IPA release.
+    description: build the web app release with canvaskit.
 
   testOnWebWithoutCORS:
     run: bash ./scripts/runWebServerWithoutCORS.sh
-    description: build the IPA release.
+    description: run flutter web server without CORS.
 
   testOnMobileWebWithoutCORS:
     run: bash ./scripts/runWebServerWithoutCORSTestOnMobileWebBrowser.sh
-    description: build the IPA release.
+    description: run flutter web server without CORS to connect from mobile web browser.

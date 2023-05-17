@@ -135,7 +135,7 @@ class DocumentsController extends BaseController {
   final QuillEditorController quillEditorController = QuillEditorController();
 
   final _searchDebouncer = Debouncer(milliseconds: 150);
-  final _searchResolutionDebouncer = Debouncer(milliseconds: 150);
+  final _searchResolutionDebouncer = Debouncer(milliseconds: 10);
 
   @override
   void onInit() {
@@ -451,7 +451,7 @@ class DocumentsController extends BaseController {
     Fimber.d("retrieveResolutionSuggestions(String $value)");
     final searchText = value;
     aiResolutionSuggestion.value = ResolutionObject(
-        resolution: '',
+        resolution: searchText,
         editTextController: resolution?.editTextController,
         index: resolution?.index);
     _searchResolutionDebouncer.run(() async {
