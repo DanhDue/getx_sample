@@ -21,7 +21,7 @@ Or you can view the [Melos package homepage](18) for more details.
 After performing 2 steps above, you can install other necessary tools by running Melos's command following below:
 
 ```shell
-Melos installTools
+melos installTools
 ```
 
 <mark> **Note**: You need to pay attention to the installation process to grant root permission for some necessary settings.<br /><mark />
@@ -30,7 +30,7 @@ This Melos's script will install FVM for you too so you can skip the fourth step
 However, you still need to active FVM for this project following the below command:
 
 ```shell
-Melos fvmUse
+melos fvmUse
 ```
 
 ### 4. Install the Flutter Version Manager(FVM).
@@ -40,9 +40,9 @@ So, in this project, I have used the FVM([Flutter Version Management][2]) packag
 To install this app, you can see at FVM official [page][3].
 Here, I only show you some steps to run this sample.
 
-1. Flutter version 2.10.3 is used for this project:
+1. Flutter version 3.7.12 is used for this project:
 ```
-fvm use 2.10.3
+fvm use 3.7.12
 ```
 
 2. FVM setup for the Android Studio:
@@ -66,6 +66,7 @@ fvm use 2.10.3
   "terminal.integrated.fontFamily": "MesloLGS NF",
 }
 ```
+=> You can also add this settings to the user settings or workspace settings for your VSCode.
 <br />
 
 ## Libraries Used

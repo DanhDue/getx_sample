@@ -1,7 +1,5 @@
 // ignore_for_file: must_be_immutable
 
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -222,8 +220,6 @@ class DocumentPreviewView extends BaseView<DocumentPreviewController> {
   }
 
   Future<pw.PageTheme> _myPageTheme(PdfPageFormat format) async {
-    final bgShape = await rootBundle.loadString('assets/images/resume.svg');
-
     format = format.applyMargin(
         left: 0.1 * PdfPageFormat.cm,
         top: 1.0 * PdfPageFormat.cm,
@@ -240,18 +236,7 @@ class DocumentPreviewView extends BaseView<DocumentPreviewController> {
         return pw.FullPage(
           ignoreMargins: true,
           child: pw.Stack(
-            children: [
-              pw.Positioned(
-                child: pw.SvgImage(svg: bgShape),
-                left: 0,
-                top: 0,
-              ),
-              pw.Positioned(
-                child: pw.Transform.rotate(angle: pi, child: pw.SvgImage(svg: bgShape)),
-                right: 0,
-                bottom: 0,
-              ),
-            ],
+            children: [],
           ),
         );
       },
