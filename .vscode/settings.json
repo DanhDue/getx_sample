@@ -57,5 +57,6 @@
     "**/build": false
   },
   "java.configuration.updateBuildConfiguration": "disabled",
-  "dart.lineLength": 99
+  "dart.lineLength": 99,
+  "terminal.integrated.profiles.osx": { "zsh": { "path": "/bin/zsh", "args": ["-l", "-i"] } }
 }
