@@ -45,6 +45,15 @@ class NetworkCreator {
           refreshTokenInterceptor(error: error, handler: handler, route: route, options: options),
     ));
 
+    // _client.interceptors.add(InterceptorsWrapper(
+    //   onRequest: (options, handler) {
+    //     options.headers["X-Requested-With"] = "XMLHttpRequest";
+    //   },
+    //   onResponse: (e, handler) {
+    //     e.headers.add("", "");
+    //   },
+    // ));
+
     /// Add interceptor to refresh token: END !!!.
 
     /// Test for the token refreshing: START !!!

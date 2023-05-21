@@ -2,40 +2,79 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "pubGet",
+            "type": "shell",
+            "command": "fvm flutter pub get",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "panel": "shared",
+                "reveal": "always",
+                "focus": true,
+            },
+            "isBackground": true
+        },
+        {
             "label": "genAlls",
             "type": "shell",
             "command": "melos genAlls",
             "group": {
                 "kind": "build",
                 "isDefault": true
-            }
+            },
+            "presentation": {
+                "panel": "shared",
+                "reveal": "always",
+                "focus": true,
+            },
+            "isBackground": true
         },
         {
             "label": "genImages",
             "type": "shell",
-            "command": "melos genAlls",
+            "command": "melos genImages",
             "group": {
                 "kind": "build",
                 "isDefault": true
-            }
+            },
+            "presentation": {
+                "panel": "shared",
+                "reveal": "always",
+                "focus": true,
+            },
+            "isBackground": true
         },
         {
             "label": "genColors",
             "type": "shell",
-            "command": "melos genAlls",
+            "command": "melos genColors",
             "group": {
                 "kind": "build",
                 "isDefault": true
-            }
+            },
+            "presentation": {
+                "panel": "shared",
+                "reveal": "always",
+                "focus": true,
+            },
+            "isBackground": true
         },
         {
             "label": "genLocales",
             "type": "shell",
-            "command": "melos genAlls",
+            "command": "melos genLocales",
             "group": {
                 "kind": "build",
                 "isDefault": true
-            }
+            },
+            "presentation": {
+                "panel": "shared",
+                "reveal": "always",
+                "focus": true,
+            },
+            "isBackground": true
         },
         {
             "label": "build runner",
@@ -44,7 +83,13 @@
             "group": {
                 "kind": "build",
                 "isDefault": true
-            }
+            },
+            "presentation": {
+                "panel": "shared",
+                "reveal": "always",
+                "focus": true,
+            },
+            "isBackground": true
         }
     ]
 }
