@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="GetXSample(Dev)" type="FlutterRunConfigurationType" factoryName="Flutter">
+    <option name="additionalArgs" value="--dart-define=DART_DEFINES_APP_NAME=&quot;GetX Sample(Dev)&quot; --dart-define=DART_DEFINES_APP_SUFFIX=.dev --dart-define=DART_DEFINES_BASE_URL=&quot;https://danhdue.com&quot; --debug" />
+    <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
+    <method v="2" />
+  </configuration>
+</component>
