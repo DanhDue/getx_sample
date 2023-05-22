@@ -37,7 +37,7 @@ melos fvmUse
 Flutter version management is a big trouble that any Flutter developers have to face in their development process.
 So, in this project, I have used the FVM([Flutter Version Management][2]) package to manage it easily, rapidly, and conveniently.
 
-To install this app, you can see at FVM official [page][3].
+To install this app, you can see it on the FVM official [page][3].
 Here, I only show you some steps to run this sample.
 
 1. Flutter version 3.7.12 is used for this project:
@@ -51,7 +51,7 @@ fvm use 3.7.12
 </p>
 
 3. FVM setup for the VSCode:
-   Create a settings.json file on ~/.vscode folder and paste content below:
+   Create a settings.json file on ~/.vscode folder and paste the content below:
 ```
 {
   "dart.flutterSdkPath": ".fvm/flutter_sdk",
@@ -66,13 +66,13 @@ fvm use 3.7.12
   "terminal.integrated.fontFamily": "MesloLGS NF",
 }
 ```
-=> You can also add this settings to the user settings or workspace settings for your VSCode.
+=> You can also add these settings to the user settings or workspace settings for your VSCode.
 <br />
 
 ## III. Libraries Used
 
 * Third party
-    * [GetX][1] fast, stable, extra-light and powerful Flutter framework.
+    * [GetX][1] fast, stable, extra-light, and powerful Flutter framework.
     * [Get_CLI][14] is a CLI tool used to help build your App's features with GetX more easily.
     * [Melos][13] is a CLI tool used to help manage Dart projects with multiple modules/packages and more ….
     * [Flutter_Gen][15]: The Flutter code generator for your assets, fonts, colors, ….
@@ -85,10 +85,10 @@ To create a new feature, such as login, you only have to run:
 ```dart
 get create page:login
 ```
-After the command is run, a page has a username created that included view, controller, and binding.
+After the command is run, a page has created that included view, controller, and binding.
 View, Controller, and Binding have generated automatically and then are added to the corresponding places(app_pages, app_routes) so you can manage them easily.
 
-Now you can use the greate features that GetX brings.
+Now you can use the great features that GetX brings.
 
 #### 1.1. Navigation
 * To navigate to nextScreen
@@ -112,20 +112,20 @@ Moreover, GetX Navigation mechanism also offers some other features such as:
 * Navigation with Dynamic Urls Link:
 
 ```dart
-// navigate to profile with the id is 34954
+// navigate to the profile with the id is 34954
 Get.offAllNamed("/profile/34954");
 // navigate with some params
 Get.toNamed("/profile/34954?flag=true&country=italy");
 ```
 
-* listen GetX Navigation Events to trigger actions with Middleware
+* listen to GetX Navigation Events to trigger actions with Middleware
 * ...
 
 #### 1.2. Dependency Injection
 
 * Providers and Consumners. <br />
 
-Get has a simple and powerful dependency manager that allows you to retrieve the same class as your Bloc or Controller with just 1 lines of code, no Provider context, no inheritedWidget:
+Get has a simple and powerful dependency manager that allows you to retrieve the same class as your Bloc or Controller with just one line of code, no Provider context, no inheritedWidget:
 
 ```dart
 // To provide a controller/bloc in a binding
@@ -139,14 +139,14 @@ Controller controller = Get.find();
 
 * Bindings<br />
 
-<mark> **Note**: One of the most differentials of GetX Dependency Injection package is the possibility of full integration of the routes, state manager and dependency manager.<br />
+<mark> **Note**: One of the most differentials of GetX Dependency Injection package is the possibility of full integration of the routes, state manager, and dependency manager.<br />
 When a route is removed from the Stack, all controllers, variables, and instances of objects related to it are removed from memory.<br /><mark />
 
 Additionally, GetX also offers a lot of methods for providers such as: Get.put(), Get.lazyPut(), Get.putAsync(), Get.create(),... and a smart management mechanism to prevent memory leaks. You can see more detail in the official documents [here][19].
 
 #### 1.3. State Management.
 State management is also one of the main components within a code base as well as a framework.
-Therefore, GetX has provided a great mechanism to manage states of view. For more detail you should see [here][20].
+Therefore, GetX has provided a great mechanism to manage states of view. For more details, you should see [here][20].
 
 <mark> ***Note***: Flutter has a lot of packages for the State Management so there is a lot of controversy about which tool we should use.
 Personally, I think we don't have a perfect tool. It is important that you have to understand and have to use it correctly.
@@ -154,7 +154,7 @@ Personally, I think we don't have a perfect tool. It is important that you have 
 
 ### 2. Manage resources.
 I have added the Flutter Gen package to manage and share resources so all resources now we can manage and use easily.
-For more detail, you can see in the official [page][14].
+For more details, you can see the official [page][14].
 
 Now, you can use, reuse, share, modify, and manage single or multiple resources such as(animations(flare, lottie), vector/raster images, colors, fonts,...) at once.
 
@@ -198,7 +198,7 @@ brew install lcov
 brew install cloc
 ```
 
-Replace a long command with muiltple confusing parameters:
+Replace a long command with multiple confusing parameters:
 
 ```shell
 git ls-files -z -- '*.dart' | xargs -0 dart format "$@" -l 99
@@ -282,7 +282,7 @@ In this project, I have installed the [Fastlane][21], [Melos][13] and some other
 
 After the code convention checking, unit testing, and building,... all the results will be saved and deployed to Firebase App Distribution/App Stores(Google Play, Apple Store) for the mobile apps or the Github/Gitlab Pages for the Flutter Web app.
 
-So, the coordination between departments in product development will become easier, prevent and minimize impacts and conflicts. 
+So, the coordination between departments in product development will become easier, preventing and minimizing impacts and conflicts. 
 
 ## V. CI/CD results with Gitlab, Gitlab Runner, Docker,... on another project.
 ### 1. Flutter project overview.
