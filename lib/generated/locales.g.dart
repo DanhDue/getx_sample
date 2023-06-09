@@ -52,6 +52,7 @@ class LocaleKeys {
   static const preview = 'preview';
   static const save = 'save';
   static const replace = 'replace';
+  static const useIt = 'useIt';
   static const tellAIDesciption = 'tellAIDesciption';
   static const eof = 'eof';
 }
@@ -86,12 +87,12 @@ class Locales {
     'firstNameAndLastName': 'Họ và tên',
     'sugesstionList': 'Danh sách gợi ý',
     'docCategories': 'Thể loại văn bản',
-    'qnCommunity': 'Ủy ban nhân dân tỉnh Quảng Nghãi',
+    'qnCommunity': 'Ủy ban nhân dân tỉnh Quảng Ngãi',
     'communityDocumentSystem': 'Hệ thống hỗ trợ soạn thảo văn bản hành chính',
     'publicService': 'Dịch vụ công',
     'docManagementSystem': 'Hệ thống văn bản',
     'createdDocuments': 'Văn bản đã soạn thảo',
-    'organizationNameDiscription': 'TÊN CQ, TC CHỦ QUẢN\nTÊN CƠ QUAN, TỔ CHỨC',
+    'organizationNameDiscription': 'ỦY BAN NHÂN DÂN\nTỈNH QUẢNG NGÃI',
     'resolution': 'Nghị quyết',
     'basisTitle': 'Thẩm quyền ban hành',
     'resolve': 'Quyết nghị',
@@ -99,6 +100,7 @@ class Locales {
     'preview': 'Xem trước',
     'save': 'Lưu',
     'replace': 'Thay thế',
+    'useIt': 'Sử dụng',
     'tellAIDesciption': 'Nói cho ai biết phải làm gì tiếp theo ...',
     'eof': 'End of File. Please add a new text above this item to avoid conflicts. Thanks!',
   };
@@ -131,20 +133,21 @@ class Locales {
     'firstNameAndLastName': 'Họ và tên',
     'sugesstionList': 'Danh sách gợi ý',
     'docCategories': 'Thể loại văn bản',
-    'qnCommunity': 'Ủy ban nhân dân tỉnh Quảng Nghãi',
+    'qnCommunity': 'Ủy ban nhân dân tỉnh Quảng Ngãi',
     'communityDocumentSystem': 'Hệ thống hỗ trợ soạn thảo văn bản hành chính',
     'publicService': 'Dịch vụ công',
     'docManagementSystem': 'Hệ thống văn bản',
     'createdDocuments': 'Văn bản đã soạn thảo',
-    'organizationNameDiscription': 'TÊN CQ, TC CHỦ QUẢN\nTÊN CƠ QUAN, TỔ CHỨC',
+    'organizationNameDiscription': 'ỦY BAN NHÂN DÂN\nTỈNH QUẢNG NGÃI',
     'resolution': 'Nghị quyết',
     'basisTitle': 'Thẩm quyền ban hành',
     'resolve': 'Quyết nghị',
     'basis': 'Căn cứ',
-    'preview': 'Preview',
-    'save': 'save',
-    'replace': 'Replace',
-    'tellAIDesciption': 'Tell AI what to do next...',
+    'preview': 'Xem trước',
+    'save': 'Lưu',
+    'replace': 'Thay thế',
+    'useIt': 'Sử dụng',
+    'tellAIDesciption': 'Nói cho AI biết phải làm gì tiếp theo...',
     'eof': 'End of File. Please add a new text above this item to avoid conflicts. Thanks!',
   };
 }

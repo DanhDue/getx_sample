@@ -468,8 +468,11 @@ class DocumentsView extends BaseView<DocumentsController> {
                     const SizedBox(height: 13),
                     TextFormField(
                       controller: controller.createdAtEditTextController,
-                      style: context.themeExtensions.subTexMedium
-                          .copyWith(color: context.themeExtensions.black, height: 1.6),
+                      style: context.themeExtensions.subTexMedium.copyWith(
+                        color: context.themeExtensions.black,
+                        height: 1.6,
+                        fontStyle: FontStyle.italic,
+                      ),
                       maxLines: null,
                       textAlign: TextAlign.center,
                       decoration: const InputDecoration.collapsed(hintText: ""),
@@ -743,15 +746,6 @@ class DocumentsView extends BaseView<DocumentsController> {
             for (var basis in controller.lstBasises) _buildBasis(context, basis: basis),
             const SizedBox(height: 35),
             TextFormField(
-              controller: controller.resolveEditTextDesController,
-              style: context.themeExtensions.heading2
-                  .copyWith(color: context.themeExtensions.textColor, fontWeight: FontWeight.w900),
-              maxLines: null,
-              textAlign: TextAlign.center,
-              decoration: const InputDecoration.collapsed(hintText: ""),
-            ),
-            const SizedBox(height: 20),
-            TextFormField(
               controller: controller.resolveDescriptionEditTextDesController,
               style: context.themeExtensions.paragraph
                   .copyWith(color: context.themeExtensions.textColor, fontWeight: FontWeight.w700),
@@ -761,6 +755,15 @@ class DocumentsView extends BaseView<DocumentsController> {
               textInputAction: TextInputAction.none,
               focusNode: controller.resolveDesEdtFocusNode,
             ).paddingOnly(left: 35),
+            const SizedBox(height: 35),
+            TextFormField(
+              controller: controller.resolveEditTextDesController,
+              style: context.themeExtensions.heading2
+                  .copyWith(color: context.themeExtensions.textColor, fontWeight: FontWeight.w900),
+              maxLines: null,
+              textAlign: TextAlign.center,
+              decoration: const InputDecoration.collapsed(hintText: ""),
+            ),
             const SizedBox(height: 35),
             for (var resolution in controller.lstResolutions)
               _buildResolution(context,
@@ -992,7 +995,7 @@ class DocumentsView extends BaseView<DocumentsController> {
                             color: context.themeExtensions.bgGrey),
                         child: Center(
                             child: AutoSizeText(
-                          LocaleKeys.replace.tr,
+                          LocaleKeys.useIt.tr,
                           style: context.themeExtensions.subTexMedium
                               .copyWith(color: context.themeExtensions.red),
                         )),

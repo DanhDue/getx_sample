@@ -32,7 +32,7 @@
   "publicService": "Dịch vụ công",
   "docManagementSystem": "Hệ thống văn bản",
   "createdDocuments": "Văn bản đã soạn thảo",
-  "organizationNameDiscription": "TÊN CQ, TC CHỦ QUẢN\nTÊN CƠ QUAN, TỔ CHỨC",
+  "organizationNameDiscription": "ỦY BAN NHÂN DÂN\nTỈNH QUẢNG NGÃI",
   "resolution": "Nghị quyết",
   "basisTitle": "Thẩm quyền ban hành",
   "resolve": "Quyết nghị",
@@ -40,6 +40,7 @@
   "preview": "Xem trước",
   "save": "Lưu",
   "replace": "Thay thế",
+  "useIt": "Sử dụng",
   "tellAIDesciption": "Nói cho ai biết phải làm gì tiếp theo ...",
 
   "eof": "End of File. Please add a new text above this item to avoid conflicts. Thanks!"

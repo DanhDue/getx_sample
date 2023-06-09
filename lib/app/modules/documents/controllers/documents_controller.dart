@@ -202,6 +202,12 @@ class DocumentsController extends BaseController {
     final currentFocusNode = FocusNode(
       onKey: (node, event) => addNewBasisIfNeeded(event, x),
     );
+    currentFocusNode.addListener(() {
+      if (currentFocusNode.hasFocus && suggestions.value.isEmptyOrNull) {
+        suggestions.value = basisSuggestions;
+        retrieveBasisSugesstion("", null);
+      }
+    });
     final newBasis = (oldBasis == null)
         ? BasisObject(
             index: index,
@@ -228,7 +234,7 @@ class DocumentsController extends BaseController {
   ResolutionObject? _buildNewResolution(int? index, ResolutionObject? oldResolution) {
     final x = index;
     final currentFocusNode = FocusNode(
-      onKey: (node, event) => addNewBasisIfNeeded(event, x),
+      onKey: (node, event) => addNewResolutionIfNeeded(event, x),
     );
     final newResolution = (oldResolution == null)
         ? ResolutionObject(
@@ -281,7 +287,8 @@ class DocumentsController extends BaseController {
     // if (kIsWeb) {
     //   BrowserContextMenu.disableContextMenu();
     // }
-    createdAtEditTextController?.text = "Quảng Ngãi, ngày ..., tháng ..., năm ... .";
+    organizationEditTextController?.text = LocaleKeys.organizationNameDiscription.tr;
+    createdAtEditTextController?.text = "Quảng Ngãi, ngày ..., tháng ..., năm 2023";
     docNumberEditTextController?.text = "Số: .../... NQ-.......";
     resolutionTextController?.text = "Nghị quyết".toUpperCase();
     authorizationEditTextDesController?.text = "Thẩm quyền ban hành".toUpperCase();

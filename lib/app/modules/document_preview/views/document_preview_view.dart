@@ -103,9 +103,11 @@ class DocumentPreviewView extends BaseView<DocumentPreviewController> {
                             pw.Text(
                               controller.resolutionDataObject.value.createdAt ??
                                   '..., ngày ..., tháng ..., năm ... ',
-                              style: pw.Theme.of(context)
-                                  .tableCell
-                                  .copyWith(color: PdfColors.black, height: 1.6),
+                              style: pw.Theme.of(context).tableCell.copyWith(
+                                    color: PdfColors.black,
+                                    height: 1.6,
+                                    fontStyle: pw.FontStyle.italic,
+                                  ),
                               textAlign: pw.TextAlign.center,
                             ),
                           ],
@@ -230,16 +232,9 @@ class DocumentPreviewView extends BaseView<DocumentPreviewController> {
       theme: pw.ThemeData.withFont(
         base: await PdfGoogleFonts.tinosRegular(),
         bold: await PdfGoogleFonts.tinosBold(),
+        italic: await PdfGoogleFonts.tinosItalic(),
         icons: await PdfGoogleFonts.materialIcons(),
       ),
-      buildBackground: (pw.Context context) {
-        return pw.FullPage(
-          ignoreMargins: true,
-          child: pw.Stack(
-            children: [],
-          ),
-        );
-      },
     );
   }
 }
